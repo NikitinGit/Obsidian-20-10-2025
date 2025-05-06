@@ -1,0 +1,313 @@
+{
+  "main": {
+    "id": "bfb323ae55920b07",
+    "type": "split",
+    "children": [
+      {
+        "id": "4807bb2ac28d45d8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "15564b8b3318b0b1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ENGLISH/memorised words.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "memorised words"
+            }
+          },
+          {
+            "id": "f2a380d384982672",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "СТРАТЕГИЯ РЕШЕНИЯ"
+            }
+          },
+          {
+            "id": "d523c2734a97b434",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "e0089750cd0a7777",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "VPS/nginx.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "nginx"
+            }
+          },
+          {
+            "id": "d3c9b2ac8432aa53",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "d04b9756423c85f2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2025-04-30.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025-04-30"
+            }
+          },
+          {
+            "id": "834c6e57199f79c6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "BEGIN/LINUX.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "LINUX"
+            }
+          },
+          {
+            "id": "9f14e328c2c1579f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "BEGIN/LINUX.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "LINUX"
+            }
+          },
+          {
+            "id": "ea2ce942d31011a9",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7d72be4e6a787f2f",
+    "type": "split",
+    "children": [
+      {
+        "id": "a9ebea3335faab03",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "af07f7b0f12ad293",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byCreatedTime",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f3b7893664b5a734",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "111e792fcbae6891",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 355.51103591918945
+  },
+  "right": {
+    "id": "44b4722d8c480464",
+    "type": "split",
+    "children": [
+      {
+        "id": "02796b1d269579a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4053abefaa3492bc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ENGLISH/forgotten words.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for forgotten words"
+            }
+          },
+          {
+            "id": "444a68fdad031e08",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ENGLISH/forgotten words.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from forgotten words"
+            }
+          },
+          {
+            "id": "c896b6d3e8a5bc3c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "299245f7d5ef485b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of СТРАТЕГИЯ РЕШЕНИЯ"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "f2a380d384982672",
+  "lastOpenFiles": [
+    "java core notes/Records.md",
+    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+    "ENGLISH/memorised words.md",
+    "ENGLISH/forgotten words.md",
+    "java core notes/ENUM.md",
+    "java core notes/Stream API.md",
+    "java core notes/Интерфейсы и наследование.md",
+    "java core notes/Лямбда.md",
+    "java core notes/Строки.md",
+    "java core notes/Типы данных.md",
+    "GIT.md",
+    "JPQL.md",
+    "java core notes/многопоточность/Многопоточное программирование на java.md",
+    "2025-04-30.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "STRIKERSTAT SPRINT/nuxt.md",
+    "Untitled",
+    "Untitled.canvas",
+    "BEGIN/Вопросы по работе.md",
+    "BEGIN/LINUX.md",
+    "BEGIN/Nginx Основы.md",
+    "BEGIN/SSH.md",
+    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
+    "DNS.md",
+    "VPS/nginx.md",
+    "BEGIN/свое приложенгие на java например.md",
+    "mysql.md",
+    "Цели на месяц/17-25 декабря.md",
+    "SQL",
+    "BEGIN",
+    "Pasted image 20241202180935.png",
+    "VPS",
+    "Nginx",
+    "ДОКЕР",
+    "ЖЕЛЕЗО",
+    "Untitled 1.canvas",
+    "ОТВЕТЫ ПО СОБЕЗУ",
+    "Транзакции",
+    "КЭШ",
+    "testFolder/demo canvas.canvas"
+  ]
+}

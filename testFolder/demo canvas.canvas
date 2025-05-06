@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"2ae7ae6e9af64592","type":"file","file":"java core notes/многопоточность/Многопоточное программирование на java.md","x":-1500,"y":-320,"width":400,"height":400,"color":"5"},
+		{"id":"b43724136f664c23","x":-820,"y":-520,"width":400,"height":400,"type":"file","file":"Цели на месяц/Список целей по Паше.md"}
+	],
+	"edges":[
+		{"id":"f6cb79344df04a11","fromNode":"2ae7ae6e9af64592","fromSide":"right","toNode":"b43724136f664c23","toSide":"left"}
+	]
+}

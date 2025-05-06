@@ -1,0 +1,2 @@
+1. грязное чтение возможно на sql - если НА ТРАНЗАКЦИЮ КОТОРАЯ ЧИТАЕТ при чтение стоит SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; - во всех остальных случаях нет 
+2. НЕ ПОВТОРЯЕМОРЕ чтение - возможно если НА ТРАНЗАКЦИЮ КОТОРАЯ ЧИТАЕТ при чтение стоит SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; и ниже

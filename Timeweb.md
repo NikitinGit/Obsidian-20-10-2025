@@ -1,0 +1,1 @@
+1. Путь к конфигу nginx обычно находится в /etc/nginx/nginx.conf
