@@ -27,22 +27,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "BEGIN/SSH.md",
+                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SSH"
+              "title": "СТЕНДАП"
             }
           },
           {
             "id": "d3c9b2ac8432aa53",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "СТЕНДАП"
             }
           },
           {
@@ -65,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "BEGIN/LINUX.md",
+                "file": "java core notes/композиция и агрегирование.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LINUX"
+              "title": "композиция и агрегирование"
             }
           },
           {
@@ -79,26 +83,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "BEGIN/LINUX.md",
+                "file": "java core notes/композиция и агрегирование.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LINUX"
+              "title": "композиция и агрегирование"
             }
           },
           {
             "id": "ea2ce942d31011a9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "SQL/Создание - удаление таблиц.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Создание - удаление таблиц"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -217,13 +225,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "BEGIN/SSH.md",
+                "file": "java core notes/композиция и агрегирование.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of SSH"
+              "title": "Outline of композиция и агрегирование"
             }
           }
         ],
@@ -243,10 +251,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f2a380d384982672",
+  "active": "834c6e57199f79c6",
   "lastOpenFiles": [
-    "BEGIN/свое приложенгие на java например.md",
+    "BEGIN/LINUX.md",
+    "java core notes/композиция и агрегирование.md",
+    "SQL/Создание - удаление таблиц.md",
+    "java core notes/аннотоации.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
+    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/ВОПРОСЫ ПО СОБЕЗУ.md",
+    "STRIKERSTAT SPRINT/Плюсы спринта.md",
+    "STRIKERSTAT SPRINT/Вопросы.md",
     "BEGIN/SSH.md",
+    "STRIKERSTAT SPRINT/КОМИТЕТ АРХИТЕКТУРНЫЙ.md",
+    "BEGIN/свое приложенгие на java например.md",
     "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
     "BEGIN/Вопросы по работе.md",
     "GIT.md",
@@ -260,19 +279,8 @@
     "java core notes/Лямбда.md",
     "java core notes/Строки.md",
     "java core notes/Типы данных.md",
-    "JPQL.md",
-    "java core notes/многопоточность/Многопоточное программирование на java.md",
-    "2025-04-30.md",
-    "STRIKERSTAT SPRINT/СТЕНДАП.md",
-    "STRIKERSTAT SPRINT/nuxt.md",
     "Untitled",
     "Untitled.canvas",
-    "BEGIN/LINUX.md",
-    "BEGIN/Nginx Основы.md",
-    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
-    "DNS.md",
-    "mysql.md",
-    "Цели на месяц/17-25 декабря.md",
     "SQL",
     "BEGIN",
     "Pasted image 20241202180935.png",
