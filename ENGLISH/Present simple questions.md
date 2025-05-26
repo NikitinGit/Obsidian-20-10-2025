@@ -1,0 +1,8 @@
+1. [[Present simple answers#^1|-s пишется после ]]
+2. [[Present simple answers#^2|-es пишется после]]
+3. [[Present simple answers#^3|-ies пишется после]]
+4. [[Present simple answers#^6|Перед вопросительными предложениями пишется ]] 
+5. [[Present simple answers#^7|Когда используется Present Simple?]] 
+6. [[Present simple answers#^8| местоимение]]
+7. [[Present simple answers#^9|Наречие частоты]]
+8. [[Present simple answers#^10|Выражение частоты]]
