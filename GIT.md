@@ -35,6 +35,9 @@
 >git checkout -b fourth-branch 
 >git push -u origin fourth-branch 
 
+>[!question]- ЧТО МЕНЯТСЯ ПРИ МЕРДЖЕ
+>ТОЛЬКО ИЗМЕНЕНИЯ
+
 
 
 

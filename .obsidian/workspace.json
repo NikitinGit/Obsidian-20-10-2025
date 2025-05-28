@@ -247,13 +247,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "LINUX/linux команды работы с папками-файлами.md",
+                "file": "GIT.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of linux команды работы с папками-файлами"
+              "title": "Outline of GIT"
             }
           }
         ],
@@ -273,10 +273,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3a58a6ebaf583f42",
+  "active": "ea2ce942d31011a9",
   "lastOpenFiles": [
-    "GIT.md",
     "LINUX/linux команды работы с папками-файлами.md",
+    "GIT.md",
     "ENGLISH/Present continuous questions.md",
     "ENGLISH/forgotten words.md",
     "ENGLISH/Present continuous answers.md",
