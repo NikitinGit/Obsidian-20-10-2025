@@ -6,6 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
+        "dimension": 51.82795698924731,
         "children": [
           {
             "id": "15564b8b3318b0b1",
@@ -92,11 +93,12 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       },
       {
         "id": "83fd6de25a6da192",
         "type": "tabs",
+        "dimension": 48.17204301075269,
         "children": [
           {
             "id": "3a58a6ebaf583f42",
@@ -273,12 +275,12 @@
   },
   "active": "3a58a6ebaf583f42",
   "lastOpenFiles": [
+    "GIT.md",
+    "LINUX/linux команды работы с папками-файлами.md",
     "ENGLISH/Present continuous questions.md",
     "ENGLISH/forgotten words.md",
     "ENGLISH/Present continuous answers.md",
-    "LINUX/linux команды работы с папками-файлами.md",
     "LINUX/флаги.md",
-    "GIT.md",
     "ENGLISH/Present simple questions.md",
     "Untitled.md",
     "LINUX",

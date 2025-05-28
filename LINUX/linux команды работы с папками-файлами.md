@@ -1,9 +1,7 @@
- > [!question]- 1. Как найти папку на компьютере?  
+ > [!question]- Как найти папку на компьютере?  
 > **Ответ:**  
 > find / -type d -name ".obsidian" 2>dev/null 
 > "2>dev/null" скрыть ошибки типа Permission dined
-> 
-
 
  > [!question]- через tree
 > tree / -d | grep ".obsidian"
