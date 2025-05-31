@@ -70,12 +70,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GIT.md",
+                "file": "SQL/число повторений.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "число повторений"
             }
           },
           {
@@ -93,7 +93,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       },
       {
         "id": "83fd6de25a6da192",
@@ -247,13 +247,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GIT.md",
+                "file": "LINUX/linux команды работы с папками-файлами.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of GIT"
+              "title": "Outline of linux команды работы с папками-файлами"
             }
           }
         ],
@@ -273,10 +273,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ea2ce942d31011a9",
+  "active": "3a58a6ebaf583f42",
   "lastOpenFiles": [
-    "LINUX/linux команды работы с папками-файлами.md",
     "GIT.md",
+    "SQL/число повторений.md",
+    "SQL/Создание - удаление таблиц.md",
+    "LINUX/linux команды работы с папками-файлами.md",
     "ENGLISH/Present continuous questions.md",
     "ENGLISH/forgotten words.md",
     "ENGLISH/Present continuous answers.md",
@@ -296,12 +298,10 @@
     "mysql.md",
     "java core notes/композиция и агрегирование.md",
     "BEGIN/свое приложенгие на java например.md",
-    "SQL/число повторений.md",
     "DNS.md",
     "-es пишется после.md",
     "[Present tenses answers.md",
     "ENGLISH/memorised words.md",
-    "SQL/Создание - удаление таблиц.md",
     "BEGIN/Nginx Основы.md",
     "BEGIN/SSH.md",
     "BEGIN/Вопросы по работе.md",

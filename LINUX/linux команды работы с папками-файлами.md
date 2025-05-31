@@ -28,6 +28,10 @@
 >[!question]- при копирование спрашивать подтверждение если файл существет
 >cp -i ~/Pictures/Screenshots/1.png ~/Music/3
 
+>[!question]- Очистить терминал
+>Ctrl+L
+>reset
+
 
  
  
