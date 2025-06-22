@@ -37,34 +37,6 @@
             }
           },
           {
-            "id": "9f14e328c2c1579f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "java core notes/композиция и агрегирование.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "композиция и агрегирование"
-            }
-          },
-          {
-            "id": "fc115f37e14779d4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "java core notes/аннотоации.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "аннотоации"
-            }
-          },
-          {
             "id": "ea2ce942d31011a9",
             "type": "leaf",
             "state": {
@@ -93,7 +65,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
         "id": "83fd6de25a6da192",
@@ -106,16 +78,72 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINUX/linux команды работы с папками-файлами.md",
+                "file": "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "linux команды работы с папками-файлами"
+              "title": "КОМАНДЫ  ДОКЕРА"
             }
           },
           {
             "id": "522a7fd16b5791cc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring/ERROR.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ERROR"
+            }
+          },
+          {
+            "id": "b676210d37465ef2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "STRIKERSTAT SPRINT/Создание боев.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Создание боев"
+            }
+          },
+          {
+            "id": "56941a1e228d9e3e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Кнопка Одобрить участников"
+            }
+          },
+          {
+            "id": "9451c3c0c5b87b25",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "СТЕНДАП"
+            }
+          },
+          {
+            "id": "843baeb715b6c060",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -128,7 +156,8 @@
               "title": "флаги"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -247,13 +276,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "LINUX/linux команды работы с папками-файлами.md",
+                "file": "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of linux команды работы с папками-файлами"
+              "title": "Outline of Кнопка Одобрить участников"
             }
           }
         ],
@@ -273,23 +302,30 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3a58a6ebaf583f42",
+  "active": "56941a1e228d9e3e",
   "lastOpenFiles": [
-    "GIT.md",
+    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
     "SQL/число повторений.md",
-    "SQL/Создание - удаление таблиц.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "Spring/ERROR.md",
+    "java core notes/аннотоации.md",
+    "LINUX/флаги.md",
+    "Spring",
+    "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
+    "STRIKERSTAT SPRINT/Создание боев.md",
     "LINUX/linux команды работы с папками-файлами.md",
+    "GIT.md",
+    "SQL/Создание - удаление таблиц.md",
     "ENGLISH/Present continuous questions.md",
     "ENGLISH/forgotten words.md",
     "ENGLISH/Present continuous answers.md",
-    "LINUX/флаги.md",
     "ENGLISH/Present simple questions.md",
     "Untitled.md",
     "LINUX",
     "BEGIN/LINUX.md",
     "Миграции БД/Теория.md",
     "ENGLISH/Present simple answers.md",
-    "java core notes/аннотоации.md",
     "JPQL.md",
     "Миграции БД",
     "Untitled 1.canvas",
@@ -299,12 +335,6 @@
     "java core notes/композиция и агрегирование.md",
     "BEGIN/свое приложенгие на java например.md",
     "DNS.md",
-    "-es пишется после.md",
-    "[Present tenses answers.md",
-    "ENGLISH/memorised words.md",
-    "BEGIN/Nginx Основы.md",
-    "BEGIN/SSH.md",
-    "BEGIN/Вопросы по работе.md",
     "SQL",
     "BEGIN",
     "Pasted image 20241202180935.png",
@@ -313,7 +343,6 @@
     "ДОКЕР",
     "ЖЕЛЕЗО",
     "ОТВЕТЫ ПО СОБЕЗУ",
-    "Транзакции",
     "testFolder/demo canvas.canvas"
   ]
 }
