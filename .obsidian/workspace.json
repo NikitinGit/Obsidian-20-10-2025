@@ -65,7 +65,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       },
       {
         "id": "83fd6de25a6da192",
@@ -157,7 +157,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -276,13 +276,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
+                "file": "GIT.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Кнопка Одобрить участников"
+              "title": "Outline of GIT"
             }
           }
         ],
@@ -302,20 +302,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "56941a1e228d9e3e",
+  "active": "f2a380d384982672",
   "lastOpenFiles": [
-    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
-    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
-    "SQL/число повторений.md",
     "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
+    "GIT.md",
+    "LINUX/флаги.md",
+    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+    "SQL/число повторений.md",
     "Spring/ERROR.md",
     "java core notes/аннотоации.md",
-    "LINUX/флаги.md",
     "Spring",
     "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
     "STRIKERSTAT SPRINT/Создание боев.md",
     "LINUX/linux команды работы с папками-файлами.md",
-    "GIT.md",
     "SQL/Создание - удаление таблиц.md",
     "ENGLISH/Present continuous questions.md",
     "ENGLISH/forgotten words.md",
