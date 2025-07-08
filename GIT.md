@@ -6,7 +6,6 @@
 >git remote add github git clone git@github.com:NikitinGit/strikerfront.git
 >  git push -u origin main
 
-
 >[!question]- КОГДА ВОЗНИКАЮТ КОНФЛИКТЫ
 >1. если 2 ветки (b , c) были созданы из первоначальной ветки предка (a) и изменили одну строку файла по разному
 >2. если в одной ветке файл удаляется , а в другой меняется
@@ -50,18 +49,44 @@
 >[!question]- отменить мердж если есть не запушенный коммит
 >git reset --hard HEAD~1
 
-ГИТ ЧЕРЕПИК
+>[!question]- запустить ссш агент 
+> Вручную запустите ssh-agent
+>> Get-Service ssh-agent | Set-Service -StartupType Manual
+>> Start-Service ssh-agent
+>>
+>> # Проверьте статус
+>> Get-Service ssh-agent
 
+>[!question]- ssh добавить ключ
+>Start-Service ssh-agent  # Запуск агента (если ещё не работает)
+>> ssh-add ~/.ssh/id_ed25519
+>> на винде ssh-add C:\Users\user/.ssh/id_ed25519.pub 
 
+>[!question]- скопировать ссш ключ 
+>cat ~/.ssh/id_ed25519.pub | clip
 
-откатить ветку до нужного коммита 
+>[!question]- проверить что ссш ключ работает и хстинг гита тебя пускает 
+>ssh -T git@github.com
+Hi NikitinGit! You've successfully authenticated, but GitHub does not provide shell access.
+
+>[!question]- после установки гита на винду установить свое глаболное имя и почту 
+>git config --global user.email "andnikitn5@gmail.com" 
+> git config --global user.name "NikitinGit"  
+
+>[!question]- Fork это
+> возможность безопасно менять чужой код и предлагать изменения через ПР , в отличие от клона хранится на хстинге а не локально, например на гитхаб
+
+>[!question]- Откатить ветку до нужного коммита 
 git reset --hard <хэш_коммита>
 пример git reset --hard a1b2c3d 
 git push --force-with-lease
 
-
-
-
+>[!question]- ### **`git cherry-pick`** - ПРОВЕРЬ
+>Копирование не всей ветки в другую ветку а только выбранного коммита
+>git checkout main
+>git log feature/branch --oneline  # Скопируйте хеш (например, abc123)
+>git cherry-pick abc123
+> Могут быть конфликты 
 ### **Откат отдельного файла до состояния из коммита**
 
 bash
