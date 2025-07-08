@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 51.82795698924731,
+        "dimension": 39.07766990291262,
         "children": [
           {
             "id": "15564b8b3318b0b1",
@@ -37,83 +37,27 @@
             }
           },
           {
-            "id": "ea2ce942d31011a9",
+            "id": "382faa86786351f2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SQL/число повторений.md",
+                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "число повторений"
-            }
-          },
-          {
-            "id": "b41b61fbed6c440c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ENGLISH/Present continuous questions.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Present continuous questions"
+              "title": "СТЕНДАП"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
         "id": "83fd6de25a6da192",
         "type": "tabs",
-        "dimension": 48.17204301075269,
+        "dimension": 60.92233009708738,
         "children": [
-          {
-            "id": "3a58a6ebaf583f42",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "КОМАНДЫ  ДОКЕРА"
-            }
-          },
-          {
-            "id": "522a7fd16b5791cc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Spring/ERROR.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "ERROR"
-            }
-          },
-          {
-            "id": "b676210d37465ef2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "STRIKERSTAT SPRINT/Создание боев.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Создание боев"
-            }
-          },
           {
             "id": "56941a1e228d9e3e",
             "type": "leaf",
@@ -134,12 +78,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
+                "file": "STRIKERSTAT SPRINT/Динамическое время.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "СТЕНДАП"
+              "title": "Динамическое время"
             }
           },
           {
@@ -148,12 +92,40 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINUX/флаги.md",
+                "file": "STRIKERSTAT SPRINT/Судейство ОЖ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "флаги"
+              "title": "Судейство ОЖ"
+            }
+          },
+          {
+            "id": "75cadde628a9ed7e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "СТРАТЕГИЯ РЕШЕНИЯ"
+            }
+          },
+          {
+            "id": "4390b1239afc1142",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "СТРАТЕГИЯ РЕШЕНИЯ"
             }
           }
         ],
@@ -276,13 +248,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GIT.md",
+                "file": "STRIKERSTAT SPRINT/Судейство ОЖ.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of GIT"
+              "title": "Outline of Судейство ОЖ"
             }
           }
         ],
@@ -290,7 +262,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -302,39 +275,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f2a380d384982672",
+  "active": "4390b1239afc1142",
   "lastOpenFiles": [
-    "STRIKERSTAT SPRINT/СТЕНДАП.md",
-    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
-    "GIT.md",
-    "LINUX/флаги.md",
-    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
-    "SQL/число повторений.md",
-    "Spring/ERROR.md",
-    "java core notes/аннотоации.md",
-    "Spring",
-    "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
-    "STRIKERSTAT SPRINT/Создание боев.md",
-    "LINUX/linux команды работы с папками-файлами.md",
-    "SQL/Создание - удаление таблиц.md",
-    "ENGLISH/Present continuous questions.md",
-    "ENGLISH/forgotten words.md",
-    "ENGLISH/Present continuous answers.md",
-    "ENGLISH/Present simple questions.md",
-    "Untitled.md",
-    "LINUX",
-    "BEGIN/LINUX.md",
+    "mysql.md",
     "Миграции БД/Теория.md",
-    "ENGLISH/Present simple answers.md",
-    "JPQL.md",
+    "STRIKERSTAT SPRINT/не забудь сделать.md",
+    "STRIKERSTAT SPRINT/nuxt.md",
+    "GIT.md",
+    "STRIKERSTAT SPRINT/Плюсы спринта.md",
+    "STRIKERSTAT SPRINT/Спецификация УДАЛИ get_weight_for_bid - удалил.md",
+    "Spring/ERROR.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "SQL/Команды mysql.md",
+    "SQL/Создание - удаление таблиц.md",
+    "SQL/число повторений.md",
+    "STRIKERSTAT SPRINT/Судейство ОЖ.md",
+    "STRIKERSTAT SPRINT/Динамическое время.md",
+    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
+    "STRIKERSTAT SPRINT/Создание боев.md",
+    "Транзакции/WAL.md",
+    "ENGLISH/Present continuous questions.md",
+    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+    "Транзакции/Аномалии.md",
+    "Транзакции/транзакция и уровни изоляции.md",
+    "Транзакции/Блокировки.md",
+    "Транзакции/коммиты в mysql.md",
+    "Транзакции/Выводы.md",
+    "Транзакции/журнал и логи.md",
+    "Транзакции/Задачи.md",
+    "Spring",
+    "LINUX",
     "Миграции БД",
     "Untitled 1.canvas",
     "Untitled.canvas",
-    "2025-05-26.md",
-    "mysql.md",
-    "java core notes/композиция и агрегирование.md",
-    "BEGIN/свое приложенгие на java например.md",
-    "DNS.md",
     "SQL",
     "BEGIN",
     "Pasted image 20241202180935.png",

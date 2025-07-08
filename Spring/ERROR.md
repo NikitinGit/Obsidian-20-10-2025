@@ -8,5 +8,25 @@
 2025-06-19T13:43:20.525+05:00  INFO 26031 --- [  restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2025-06-19T13:43:20.533+05:00  INFO 26031 --- [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
 
+>[!question]- Ошибка в методе репозитория, когда не используется @Param
+>java.lang.IllegalStateException: For queries with named parameters you need to provide names for method parameters; Use @Param for query method parameters, or when on Java 8+ use the javac flag -parameters
+
+>[!question]- Ошибка удаления связанных записей таблиц
+>Cannot delete or update a parent row: a foreign key constraint fails (`co34818_sign`.`judges_scores`, CONSTRAINT
+>`judges_scores_battle_id_foreign` FOREIGN KEY (`battle_id`) REFERENCES `battles` (`battle_id`))
+>2025-07-07T11:32:39.652+03:00  INFO 126006 --- [nio-6300-exec-6] c.s.w.config.RequestLoggingInterceptor   : Request durationfor? 
+>POST /api/open_events/organizer/delete_battles 7.086 s
+> cascade = CascadeType.ALL, orphanRemoval = true работает только при ОРМ удалении
+> battlesRepository.deleteBattlesByBattleIds(battleIdList); // Нативный запрос → каскады игнорируются 
+
+>[!question]- загрузить свой проект на битбакете на гитхаб
+>git remote remove origin  # или git remote rm origin
+>git remote add github git clone git@github.com:NikitinGit/strikerfront.git
+>  git push -u origin main
+
+
+
+
+
 
 
