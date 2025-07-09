@@ -114,7 +114,8 @@
               "title": "СТРАТЕГИЯ РЕШЕНИЯ"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -260,8 +261,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "56941a1e228d9e3e",
+  "active": "a97064dd61bebb00",
   "lastOpenFiles": [
+    "GIT.md",
     "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
     "STRIKERSTAT SPRINT/Динамическое время.md",
     "STRIKERSTAT SPRINT/Судейство ОЖ.md",
@@ -270,7 +272,6 @@
     "Миграции БД/Теория.md",
     "STRIKERSTAT SPRINT/не забудь сделать.md",
     "STRIKERSTAT SPRINT/nuxt.md",
-    "GIT.md",
     "STRIKERSTAT SPRINT/Плюсы спринта.md",
     "STRIKERSTAT SPRINT/Спецификация УДАЛИ get_weight_for_bid - удалил.md",
     "Spring/ERROR.md",
