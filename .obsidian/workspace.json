@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 39.07766990291262,
+        "dimension": 46.94460308395203,
         "children": [
           {
             "id": "15564b8b3318b0b1",
@@ -51,12 +51,12 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       },
       {
         "id": "83fd6de25a6da192",
         "type": "tabs",
-        "dimension": 60.92233009708738,
+        "dimension": 53.05539691604797,
         "children": [
           {
             "id": "56941a1e228d9e3e",
@@ -92,12 +92,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STRIKERSTAT SPRINT/Судейство ОЖ.md",
+                "file": "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Судейство ОЖ"
+              "title": "Вопросы от chagpt middle"
+            }
+          },
+          {
+            "id": "fc2321e53c4fecc8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Вопросы от chagpt Jun"
             }
           },
           {
@@ -172,7 +186,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 355.51103591918945
+    "width": 252.5
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -261,13 +275,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a97064dd61bebb00",
+  "active": "fc2321e53c4fecc8",
   "lastOpenFiles": [
-    "GIT.md",
-    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
-    "STRIKERSTAT SPRINT/Динамическое время.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Миграции.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/ВОПРОСЫ ПО СОБЕЗУ.md",
+    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
     "STRIKERSTAT SPRINT/Судейство ОЖ.md",
     "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+    "GIT.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "STRIKERSTAT SPRINT/ПР корретирование.md",
+    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
+    "STRIKERSTAT SPRINT/Динамическое время.md",
     "mysql.md",
     "Миграции БД/Теория.md",
     "STRIKERSTAT SPRINT/не забудь сделать.md",
@@ -275,20 +297,12 @@
     "STRIKERSTAT SPRINT/Плюсы спринта.md",
     "STRIKERSTAT SPRINT/Спецификация УДАЛИ get_weight_for_bid - удалил.md",
     "Spring/ERROR.md",
-    "STRIKERSTAT SPRINT/СТЕНДАП.md",
     "SQL/Команды mysql.md",
     "SQL/Создание - удаление таблиц.md",
     "SQL/число повторений.md",
     "STRIKERSTAT SPRINT/Создание боев.md",
     "Транзакции/WAL.md",
     "ENGLISH/Present continuous questions.md",
-    "Транзакции/Аномалии.md",
-    "Транзакции/транзакция и уровни изоляции.md",
-    "Транзакции/Блокировки.md",
-    "Транзакции/коммиты в mysql.md",
-    "Транзакции/Выводы.md",
-    "Транзакции/журнал и логи.md",
-    "Транзакции/Задачи.md",
     "Spring",
     "LINUX",
     "Миграции БД",
