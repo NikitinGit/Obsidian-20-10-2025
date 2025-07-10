@@ -53,7 +53,6 @@
 > Вручную запустите ssh-agent
 >> Get-Service ssh-agent | Set-Service -StartupType Manual
 >> Start-Service ssh-agent
->>
 >> # Проверьте статус
 >> Get-Service ssh-agent
 
