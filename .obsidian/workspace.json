@@ -28,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GIT.md",
+                "file": "1/В работе.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "В работе"
             }
           },
           {
@@ -42,12 +42,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring/application.properties.md",
+                "file": "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "application.properties"
+              "title": "Кнопка Одобрить участников"
+            }
+          },
+          {
+            "id": "0b4ea93b80cf588c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Spring/Контроллер.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Контроллер"
             }
           },
           {
@@ -63,9 +77,23 @@
               "icon": "lucide-file",
               "title": "СТЕНДАП"
             }
+          },
+          {
+            "id": "cbc0b88351bba423",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "nginx.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "nginx"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       },
       {
         "id": "83fd6de25a6da192",
@@ -78,12 +106,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GIT.md",
+                "file": "SQL/Команды mysql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "Команды mysql"
             }
           },
           {
@@ -156,8 +184,7 @@
               "title": "Необходимые условия"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -303,15 +330,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d7f8b4166e44aa77",
+  "active": "56941a1e228d9e3e",
   "lastOpenFiles": [
-    "ENGLISH/forgotten words.md",
+    "Spring/Контроллер.md",
+    "SQL/Команды mysql.md",
+    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "STRIKERSTAT SPRINT/Динамическое время.md",
+    "STRIKERSTAT SPRINT/не забудь сделать.md",
+    "Timeweb.md",
     "1/В работе.md",
-    "Spring/application.properties.md",
-    "КУБИК РУБИК/Необходимые условия.md",
     "GIT.md",
     "DNS.md",
+    "КУБИК РУБИК/Необходимые условия.md",
+    "nginx.md",
     "Untitled",
+    "Spring/application.properties.md",
+    "ENGLISH/forgotten words.md",
     "1",
     "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
     "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
@@ -321,18 +356,10 @@
     "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
     "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
     "STRIKERSTAT SPRINT/Судейство ОЖ.md",
-    "STRIKERSTAT SPRINT/СТЕНДАП.md",
     "STRIKERSTAT SPRINT/ПР корретирование.md",
-    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
-    "STRIKERSTAT SPRINT/Динамическое время.md",
     "mysql.md",
     "Миграции БД/Теория.md",
-    "STRIKERSTAT SPRINT/не забудь сделать.md",
     "STRIKERSTAT SPRINT/nuxt.md",
-    "STRIKERSTAT SPRINT/Плюсы спринта.md",
-    "STRIKERSTAT SPRINT/Спецификация УДАЛИ get_weight_for_bid - удалил.md",
-    "Spring/ERROR.md",
-    "SQL/Команды mysql.md",
     "Spring",
     "LINUX",
     "Миграции БД",
