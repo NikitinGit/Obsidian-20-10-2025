@@ -64,7 +64,7 @@
 >[!question]- скопировать ссш ключ 
 >cat ~/.ssh/id_ed25519.pub | clip
 
->[!question]- проверить что ссш ключ работает и хстинг гита тебя пускает 
+>[!question]- проверить что ssh ключ работает и хостинг гита тебя пускает 
 >ssh -T git@github.com
 Hi NikitinGit! You've successfully authenticated, but GitHub does not provide shell access.
 

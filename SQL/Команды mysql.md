@@ -1,7 +1,13 @@
 >[!question]- запрос на получение количества записей
 > Повторения больше одного раза - 
-   SELECT fighter_id, event_id, COUNT(*) as duplicate_count FROM events_bids_fighters GROUP BY fighter_id, event_id HAVING COUNT(*) > 1;
-
+> SELECT first_name, last_name, COUNT(*) as duplicates
+FROM `fighters` 
+WHERE `fromSortition`='Yes'
+GROUP BY first_name, last_name
+HAVING COUNT(*) > 1;
+>
+SELECT fighter_id, event_id, COUNT(*) as duplicate_count FROM events_bids_fighters GROUP BY fighter_id, event_id HAVING COUNT(*) > 1;
+   
 >[!question]- как найти выражение а БД
 >так
 
@@ -32,8 +38,6 @@ ADD COLUMN `weight_category_id` INT NULL;
 
 >[!question]- Как удалить поле 
 >ALTER TABLE `battles` DROP COLUMN `weight_category_id`;
-
-
 
 >[!question]- добавления вторичного ключа 
 >ALTER TABLE `battles` 
