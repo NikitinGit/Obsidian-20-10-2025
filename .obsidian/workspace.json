@@ -56,12 +56,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
+                "file": "SQL/Команды mysql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "СТЕНДАП"
+              "title": "Команды mysql"
             }
           },
           {
@@ -189,8 +189,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
-                "matchingCase": false,
+                "query": "ADD COLUMN",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -210,11 +210,12 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 219.5
+    "width": 321.5
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -305,14 +306,14 @@
   },
   "active": "5d34ce47a7bc94c0",
   "lastOpenFiles": [
+    "SQL/Команды mysql.md",
     "STRIKERSTAT SPRINT/СТЕНДАП.md",
     "STRIKERSTAT SPRINT/Судейство ОЖ.md",
-    "SQL/Команды mysql.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
     "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
     "Миграции БД/Теория.md",
     "DNS.md",
     "КУБИК РУБИК/Необходимые условия.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
     "JPQL.md",
     "1/В работе.md",
     "nginx.md",
