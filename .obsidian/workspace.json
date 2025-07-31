@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ENGLISH/forgotten words.md",
+                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "forgotten words"
+              "title": "СТЕНДАП"
             }
           },
           {
@@ -70,16 +70,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "JPQL.md",
+                "file": "Intelej Idea/Обновить проект.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JPQL"
+              "title": "Обновить проект"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       },
       {
         "id": "83fd6de25a6da192",
@@ -189,7 +189,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ADD COLUMN",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -210,8 +210,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -304,18 +303,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5d34ce47a7bc94c0",
+  "active": "cbc0b88351bba423",
   "lastOpenFiles": [
-    "SQL/Команды mysql.md",
-    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "JPQL.md",
+    "Intelej Idea/Обновить проект.md",
+    "Intelej Idea",
+    "1/В работе.md",
     "STRIKERSTAT SPRINT/Судейство ОЖ.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "ENGLISH/forgotten words.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
+    "Миграции БД/Теория.md",
+    "SQL/Команды mysql.md",
     "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
     "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
-    "Миграции БД/Теория.md",
     "DNS.md",
     "КУБИК РУБИК/Необходимые условия.md",
-    "JPQL.md",
-    "1/В работе.md",
     "nginx.md",
     "STRIKERSTAT SPRINT/Динамическое время.md",
     "SQL/число повторений.md",
@@ -326,14 +329,10 @@
     "GIT.md",
     "STRIKERSTAT SPRINT/ПР корретирование.md",
     "STRIKERSTAT SPRINT/не забудь сделать.md",
-    "Untitled",
     "Spring/application.properties.md",
-    "ENGLISH/forgotten words.md",
     "1",
     "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
     "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Миграции.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
     "Spring",
     "LINUX",
     "Миграции БД",
