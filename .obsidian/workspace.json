@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 46.94460308395203,
+        "dimension": 41.517081644470174,
         "children": [
           {
             "id": "15564b8b3318b0b1",
@@ -28,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/В работе.md",
+                "file": "1/График повторений.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "В работе"
+              "title": "График повторений"
             }
           },
           {
@@ -42,12 +42,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SQL/Команды mysql.md",
+                "file": "java core notes/MAVEN.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Команды mysql"
+              "title": "MAVEN"
             }
           },
           {
@@ -56,12 +56,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SQL/Команды mysql.md",
+                "file": "КЭШ/Memcached.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Команды mysql"
+              "title": "Memcached"
             }
           },
           {
@@ -79,12 +79,12 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       },
       {
         "id": "83fd6de25a6da192",
         "type": "tabs",
-        "dimension": 53.05539691604797,
+        "dimension": 58.482918355529826,
         "children": [
           {
             "id": "9451c3c0c5b87b25",
@@ -106,12 +106,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+                "file": "Intelej Idea/Обновить проект.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Вопросы от chagpt middle"
+              "title": "Обновить проект"
             }
           },
           {
@@ -129,35 +129,35 @@
             }
           },
           {
-            "id": "a97064dd61bebb00",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Миграции БД/Теория.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Теория"
-            }
-          },
-          {
             "id": "5d34ce47a7bc94c0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STRIKERSTAT SPRINT/Судейство ОЖ.md",
+                "file": "GIT.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Судейство ОЖ"
+              "title": "GIT"
+            }
+          },
+          {
+            "id": "00bcc390705ec5f3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "java core notes/Stream API.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Stream API"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -190,7 +190,7 @@
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": true,
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -214,7 +214,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 321.5
+    "width": 277.5
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -295,6 +295,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -303,36 +304,37 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cbc0b88351bba423",
+  "active": "5d34ce47a7bc94c0",
   "lastOpenFiles": [
-    "JPQL.md",
-    "Intelej Idea/Обновить проект.md",
-    "Intelej Idea",
+    "1/График повторений.md",
+    "GIT.md",
     "1/В работе.md",
-    "STRIKERSTAT SPRINT/Судейство ОЖ.md",
     "STRIKERSTAT SPRINT/СТЕНДАП.md",
-    "ENGLISH/forgotten words.md",
+    "java core notes/MAVEN.md",
+    "java core notes/Stream API.md",
+    "Intelej Idea/Обновить проект.md",
+    "Интерфейсы.md",
+    "JPQL.md",
+    "Spring/application.properties.md",
+    "Spring/ERROR.md",
+    "КЭШ/Memcached.md",
+    "STRIKERSTAT SPRINT/Судейство ОЖ.md",
+    "BEGIN/LINUX.md",
+    "LINUX/linux команды работы с папками-файлами.md",
+    "LINUX/флаги.md",
+    "BEGIN/Вопросы по работе.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "testFolder/demo canvas.canvas",
     "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
     "Миграции БД/Теория.md",
+    "java core notes/Records.md",
     "SQL/Команды mysql.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "Intelej Idea",
+    "ENGLISH/forgotten words.md",
     "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
     "DNS.md",
     "КУБИК РУБИК/Необходимые условия.md",
-    "nginx.md",
-    "STRIKERSTAT SPRINT/Динамическое время.md",
-    "SQL/число повторений.md",
-    "SQL/mysql.md",
-    "SQL/Создание - удаление таблиц.md",
-    "Spring/Контроллер.md",
-    "Timeweb.md",
-    "GIT.md",
-    "STRIKERSTAT SPRINT/ПР корретирование.md",
-    "STRIKERSTAT SPRINT/не забудь сделать.md",
-    "Spring/application.properties.md",
     "1",
-    "КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Миграции.md",
     "Spring",
     "LINUX",
     "Миграции БД",
@@ -343,7 +345,6 @@
     "Pasted image 20241202180935.png",
     "VPS",
     "Nginx",
-    "ДОКЕР",
-    "testFolder/demo canvas.canvas"
+    "ДОКЕР"
   ]
 }

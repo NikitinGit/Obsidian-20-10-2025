@@ -32,7 +32,9 @@
 >Ctrl+L
 >reset
 
-
+>[!question]- Удалить директорию 
+>rm -rf strikerstat
+>rm -rf ~/.m2/repository/org/mapstruct/
  
  
 
