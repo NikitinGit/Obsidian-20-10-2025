@@ -102,6 +102,10 @@ git push --force-with-lease
 >[!question]- Отличие ребэйс от мердж 
 >пиши
 
+>[!question]- объединить несколько коммитов в один 
+>1 .git rebase -i HEAD~N
+>2. В гуи идеи **Squash Commits**
+>3. pick a1b2c3d Старый коммит , squash d4e5f6a Средний коммит , squash g7h8i9j Новый коммит
 
 ### **6. Что делать после `git reset --hard`?**
 

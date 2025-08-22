@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STRIKERSTAT SPRINT/СТЕНДАП.md",
+                "file": "1/График повторений.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "СТЕНДАП"
+              "title": "График повторений"
             }
           },
           {
@@ -28,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/График повторений.md",
+                "file": "1/note for repeate/WSL.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "График повторений"
+              "title": "WSL"
             }
           },
           {
@@ -77,9 +77,22 @@
               "icon": "lucide-file",
               "title": "Обновить проект"
             }
+          },
+          {
+            "id": "edc30ba93876f040",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Команды mysql.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Команды mysql"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "83fd6de25a6da192",
@@ -157,7 +170,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -189,7 +202,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "linux",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -304,36 +317,37 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5d34ce47a7bc94c0",
+  "active": "15564b8b3318b0b1",
   "lastOpenFiles": [
+    "1/note for repeate/Команды mysql.md",
     "1/График повторений.md",
-    "GIT.md",
-    "1/В работе.md",
-    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "SQL/mysql.md",
+    "BEGIN/LINUX.md",
+    "VPS/nginx.md",
+    "VPS/SSH.md",
     "java core notes/MAVEN.md",
-    "java core notes/Stream API.md",
+    "1/note for repeate/WSL.md",
+    "GIT.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
+    "STRIKERSTAT SPRINT/СТЕНДАП.md",
+    "1/note for repeate/MySql.md",
+    "SQL/число повторений.md",
+    "Транзакции/Чистый mysql.md",
+    "Цели на месяц/17-25 декабря.md",
     "Intelej Idea/Обновить проект.md",
+    "КЭШ/Memcached.md",
+    "1/note for repeate",
+    "nginx.md",
+    "1/В работе.md",
+    "java core notes/Stream API.md",
     "Интерфейсы.md",
     "JPQL.md",
     "Spring/application.properties.md",
     "Spring/ERROR.md",
-    "КЭШ/Memcached.md",
-    "STRIKERSTAT SPRINT/Судейство ОЖ.md",
-    "BEGIN/LINUX.md",
-    "LINUX/linux команды работы с папками-файлами.md",
-    "LINUX/флаги.md",
-    "BEGIN/Вопросы по работе.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
     "testFolder/demo canvas.canvas",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
-    "Миграции БД/Теория.md",
-    "java core notes/Records.md",
-    "SQL/Команды mysql.md",
     "Intelej Idea",
-    "ENGLISH/forgotten words.md",
-    "STRIKERSTAT SPRINT/Кнопка Одобрить участников.md",
-    "DNS.md",
-    "КУБИК РУБИК/Необходимые условия.md",
     "1",
     "Spring",
     "LINUX",
@@ -344,7 +358,6 @@
     "BEGIN",
     "Pasted image 20241202180935.png",
     "VPS",
-    "Nginx",
-    "ДОКЕР"
+    "Nginx"
   ]
 }

@@ -1,3 +1,18 @@
+>[!question]- подключиться к БД
+>mysql -ureadonly_user -piek7IequEiJ2oLac -h188.225.76.97 strikerstat
+
+1. ALTER TABLE `events` MODIFY COLUMN `organizer_login` INT NOT NULL;
+2. ALTER TABLE `events` 
+CHANGE COLUMN `organizer_login` `organizer_login` INT NOT NULL,
+ADD CONSTRAINT `events_organizer_login_foreign` 
+FOREIGN KEY (`organizer_login`) 
+REFERENCES `users` (`id`);
+3. Один ко многим от один к одному отличается юником ADD COLUMN `main_event_id` INT UNIQUE,
+
+
+>[!question]- поменять поле с нот нал на нал 
+>ALTER TABLE fighters  MODIFY sport_school_name VARCHAR(50) NULL DEFAULT NULL;
+
 >[!question]- запрос на получение количества записей
 > Повторения больше одного раза - 
 > SELECT first_name, last_name, COUNT(*) as duplicates
@@ -68,7 +83,6 @@ SELECT CASE WHEN COUNT(t) > 0 THEN true ELSE false END FROM JudgeScore t
 >[!question]-  COALESCE это 
 >Функция COALESCE принимает список значений и возвращает первое из них, которое не равно NULL:
 > `COALESCE``(выражение_1, выражение_2, выражение_N)` |
-
 
 
 
