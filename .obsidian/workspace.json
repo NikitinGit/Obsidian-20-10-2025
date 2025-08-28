@@ -227,7 +227,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "mvn",
+                "query": " docker exec",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -248,7 +248,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -344,13 +345,13 @@
   },
   "active": "15564b8b3318b0b1",
   "lastOpenFiles": [
-    "1/График повторений.md",
+    "1/note for repeate/Команды mysql.md",
     "1/note for repeate/Докер.md",
-    "1/note for repeate/Spring основы.md",
     "java core notes/MAVEN.md",
+    "1/График повторений.md",
+    "1/note for repeate/Spring основы.md",
     "Intelej Idea/Обновить проект.md",
     "BEGIN/LINUX.md",
-    "1/note for repeate/Команды mysql.md",
     "GIT.md",
     "1/note for repeate/Микросервисы.md",
     "1/СТЕНДАП.md",

@@ -12,3 +12,8 @@
 ></dependency>
 >```
 
+>[!question]- запустить спринг проект
+>mvn spring-boot:run
+
+
+

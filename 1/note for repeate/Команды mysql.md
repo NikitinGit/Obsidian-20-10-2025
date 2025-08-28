@@ -1,12 +1,6 @@
 >[!question]- подключиться к БД
 >mysql -ureadonly_user -piek7IequEiJ2oLac -h188.225.76.97 strikerstat
 
->[!question]- подключиться к БД серверу если он запущен в докере
->Подключение к контейнеру
->docker exec -it f28 mysql -u root -p
->создание БД
->CREATE DATABASE service_db1;
-
 >[!question]- Создать пользователя БД
 >CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';  
 GRANT ALL PRIVILEGES ON service_db1.* TO 'your_username'@'localhost';  
