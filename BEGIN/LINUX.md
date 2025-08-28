@@ -1,3 +1,9 @@
+>[!question]- как правильно удалить проект 
+>rm -rf folder
+
+
+
+
 1. Поиск файла по имени быстрый если примерно известна папка нахождения 
    sudo grep -rliw "nikitin" /var/www/html/ 2>/dev/null ^find
 2. стоит попробовать быстрый поиск по всему серверу sudo grep -rliP --exclude-dir={proc,sys,dev,tmp,run,var/cache} "Hi\s+Nikitin" / 2>/dev/null 

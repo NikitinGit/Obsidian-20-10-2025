@@ -1,14 +1,61 @@
 >[!question]- подключиться к БД
 >mysql -ureadonly_user -piek7IequEiJ2oLac -h188.225.76.97 strikerstat
 
-1. ALTER TABLE `events` MODIFY COLUMN `organizer_login` INT NOT NULL;
-2. ALTER TABLE `events` 
-CHANGE COLUMN `organizer_login` `organizer_login` INT NOT NULL,
-ADD CONSTRAINT `events_organizer_login_foreign` 
-FOREIGN KEY (`organizer_login`) 
-REFERENCES `users` (`id`);
-3. Один ко многим от один к одному отличается юником ADD COLUMN `main_event_id` INT UNIQUE,
+>[!question]- подключиться к БД серверу если он запущен в докере
+>Подключение к контейнеру
+>docker exec -it f28 mysql -u root -p
+>создание БД
+>CREATE DATABASE service_db1;
 
+>[!question]- Создать пользователя БД
+>CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';  
+GRANT ALL PRIVILEGES ON service_db1.* TO 'your_username'@'localhost';  
+FLUSH PRIVILEGES;
+
+>[!question]- Создать пользователя БД с доступом с  любого хоста 
+>CREATE USER 'your_username'@'%' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON service_db1.* TO 'your_username'@'%';
+FLUSH PRIVILEGES;
+
+>[!question]- Установить максимальные права пользователя БД с именем root
+>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; 
+>FLUSH PRIVILEGES;
+
+>[!question]- Посмотреть созданные  БД
+>SHOW DATABASES;
+
+>[!question]- Посмотреть созданных юзеров и их хосты
+>SELECT user, host FROM mysql.user;
+
+>[!question]- удалить пользователя бд
+>DROP USER 'your_username'@'localhost'; 
+
+>[!question]- Число записей с данным условием 
+>SELECT fighter_id, event_id, COUNT(*) as duplicate_count FROM events_bids_fighters GROUP BY fighter_id, event_id HAVING COUNT(*) > 1;
+
+>[!question]- добавить вторичный ключ short
+>при создании таблицы 
+>CREATE TABLE judges ( id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), organizer_id INT UNSIGNED, FOREIGN KEY (organizer_id) REFERENCES organizers(id));
+>
+>При добавлении поля таблицы 
+>ADD FOREIGN KEY (organizer_id) REFERENCES organizers(id); 
+
+>[!question]- добавления вторичного ключа long
+>ALTER TABLE `battles` 
+ADD COLUMN `weight_categories_id` INT NULL AFTER `battle_id`,
+ADD INDEX `idx_battles_weight_category` (`weight_categories_id`),
+ADD CONSTRAINT `fk_battles_weight_category` 
+FOREIGN KEY (`weight_categories_id`) 
+REFERENCES `olympic_events_weight_categories` (`weight_category_id`)
+ON DELETE SET NULL 
+ON UPDATE CASCADE;
+
+>[!question]- Удалить вторичный ключ
+>ALTER TABLE judges DROP FOREIGN KEY fk_judges_organizer;
+>fk_judges_organizer = CONSTRAINT УКАЗАННЫЙ ПРИ СОЗДАНИИИ ВТОРИЧНОГО КЛЮЧА
+
+>[!question]- Отличие одного ко многим от одного к одному
+> Один ко многим от один к одному отличается юником ADD COLUMN `main_event_id` INT UNIQUE,
 
 >[!question]- поменять поле с нот нал на нал 
 >ALTER TABLE fighters  MODIFY sport_school_name VARCHAR(50) NULL DEFAULT NULL;
@@ -41,16 +88,6 @@ ADD COLUMN `weight_category_id` INT NULL;
 >[!question]- Как удалить поле 
 >ALTER TABLE `battles` DROP COLUMN `weight_category_id`;
 
->[!question]- добавления вторичного ключа 
->ALTER TABLE `battles` 
-ADD COLUMN `weight_categories_id` INT NULL AFTER `battle_id`,
-ADD INDEX `idx_battles_weight_category` (`weight_categories_id`),
-ADD CONSTRAINT `fk_battles_weight_category` 
-FOREIGN KEY (`weight_categories_id`) 
-REFERENCES `olympic_events_weight_categories` (`weight_category_id`)
-ON DELETE SET NULL 
-ON UPDATE CASCADE;
-
 >[!question]- УДАЛЕНИЯ ПОЛЯ СО  вторичным ключом 
 >ALTER TABLE `battles` 
 DROP FOREIGN KEY `fk_battles_weight_category`,
@@ -61,7 +98,7 @@ DROP COLUMN `weight_category_id`;
 > SELECT CONCAT(' ' + 'TIM' + 'tom')
 > `SELECT` `CONCAT_WS(``' '``,` `'Tom'``,` `'Smith'``,` `'Age:'``, 34)`
 
->[!QUESTION]- условия в запросых
+>[!QUESTION]- условия в запросах
 >`SELECT` `ProductName, ProductCount,`
 `CASE`
 `WHEN` `ProductCount = 1`

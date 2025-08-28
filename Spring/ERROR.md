@@ -19,10 +19,6 @@
 > cascade = CascadeType.ALL, orphanRemoval = true работает только при ОРМ удалении
 > battlesRepository.deleteBattlesByBattleIds(battleIdList); // Нативный запрос → каскады игнорируются 
 
->[!question]- загрузить свой проект на битбакете на гитхаб
->git remote remove origin  # или git remote rm origin
->git remote add github git clone git@github.com:NikitinGit/strikerfront.git
->  git push -u origin main
 
 
 

@@ -1,6 +1,12 @@
 >[!question]- склонировать гит проект
 >git clone git@github.com:NikitinGit/Obsidian-Vault-MAIN.git
 
+>[!question]- Операции отмены ИЗУЧИ
+>git restore, git reset 
+
+>[!question]- Отличие ребэйс от мердж ПРОВЕРЬ
+>merge  сохраняет коммиты локальной ветки разработчика - используется для публичной истории , rebase переносит их в другую ветку - используется для локальных изменений 
+
 >[!question]- checkout коммита
 >git checkout hash например   git checkout 9b066cbd  
 
@@ -8,6 +14,21 @@
 >git remote remove origin  # или git remote rm origin
 >git remote add github git clone git@github.com:NikitinGit/strikerfront.git
 >  git push -u origin main
+
+>[!question]- что такое origin 
+>alias , имя удаленного репозитория (remote),  псевдоним 
+>origin = https://github.com/ваш-логин/ваш-репозиторий.git 
+>узнать origin git remote -v
+> origin https://github.com/ваш-логин/ваш-репозиторий.git (fetch)
+
+>[!question]- что такое -u 
+> команда запомнить то, что пишется дальше , например
+> git push -u origin main = «Запомни, что локальная ветка `main` должна отслеживать (`track`) удаленную ветку `main` на `origin`»
+> Записывается в локальном файле конфигурации локального репозитория 
+> После этого можно просто вызвать git push 
+
+>[!question]- как переключаться между репозиторииями 
+> пиши
 
 >[!question]- КОГДА ВОЗНИКАЮТ КОНФЛИКТЫ
 >1. если 2 ветки (b , c) были созданы из первоначальной ветки предка (a) и изменили одну строку файла по разному
@@ -98,9 +119,6 @@ git push --force-with-lease
 
 >[!question]- Найти хеш коммита
 >git log --oneline
-
->[!question]- Отличие ребэйс от мердж 
->пиши
 
 >[!question]- объединить несколько коммитов в один 
 >1 .git rebase -i HEAD~N
