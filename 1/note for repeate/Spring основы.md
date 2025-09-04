@@ -15,5 +15,12 @@
 >[!question]- запустить спринг проект
 >mvn spring-boot:run
 
+>[!question]- если @Transactionl не используется то в каких методах не нужен .save
+>```List<Battle> battles = battlesRepository.getBattlesFromClient(battleIdList); 
+>for  (Battle battle : battles) {  
+ >   battlesRepository.delete(battle);  
+>}
+>```
+
 
 

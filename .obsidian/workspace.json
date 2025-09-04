@@ -9,7 +9,35 @@
         "dimension": 41.77288528389338,
         "children": [
           {
-            "id": "48d1bcc944cac4a0",
+            "id": "f2a380d384982672",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/английские слова.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "английские слова"
+            }
+          },
+          {
+            "id": "be3b883debc6790e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Вопросы от chagpt middle"
+            }
+          },
+          {
+            "id": "cbc0b88351bba423",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -23,63 +51,21 @@
             }
           },
           {
-            "id": "5acd362c327d5ea9",
+            "id": "48d1bcc944cac4a0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Команды mysql.md",
+                "file": "1/note for repeate/Spring основы.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Команды mysql"
-            }
-          },
-          {
-            "id": "f2a380d384982672",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/WSL.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "WSL"
+              "title": "Spring основы"
             }
           },
           {
             "id": "d7f8b4166e44aa77",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "java core notes/MAVEN.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "MAVEN"
-            }
-          },
-          {
-            "id": "cbc0b88351bba423",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Intelej Idea/Обновить проект.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Обновить проект"
-            }
-          },
-          {
-            "id": "be3b883debc6790e",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -92,28 +78,13 @@
               "title": "СТЕНДАП"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "83fd6de25a6da192",
         "type": "tabs",
         "dimension": 58.22711471610662,
         "children": [
-          {
-            "id": "15564b8b3318b0b1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/Докер.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Докер"
-            }
-          },
           {
             "id": "cf85243112efcfe2",
             "type": "leaf",
@@ -134,12 +105,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "STRIKERSTAT SPRINT/Динамическое время.md",
+                "file": "1/note for repeate/GRADLE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Динамическое время"
+              "title": "GRADLE"
             }
           },
           {
@@ -184,8 +155,7 @@
               "title": "Stream API"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -217,8 +187,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "spring-boo",
-                "matchingCase": false,
+                "query": "LINUX",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -332,34 +302,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9451c3c0c5b87b25",
+  "active": "f2a380d384982672",
   "lastOpenFiles": [
-    "1/note for repeate/Команды mysql.md",
-    "STRIKERSTAT SPRINT/Динамическое время.md",
-    "1/В работе.md",
     "1/График повторений.md",
-    "1/note for repeate/Миграции.md",
-    "1/note for repeate/Spring основы.md",
+    "1/В работе.md",
     "1/note for repeate/Докер.md",
+    "1/note for repeate/GIT.md",
     "1/Задачи обучения.md",
-    "1/note for repeate/Микросервисы.md",
-    "1/СТЕНДАП.md",
     "Intelej Idea/Обновить проект.md",
+    "1/СТЕНДАП.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "1/note for repeate/Spring основы.md",
+    "1/note for repeate/LINUX/LINUX.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Миграции.md",
     "java core notes/MAVEN.md",
+    "Pasted image 20241202180935.png",
+    "Интерфейсы.md",
     "1/note for repeate/WSL.md",
-    "1/note for repeate/javacore.md",
-    "java core notes/Stream API.md",
-    "BEGIN/Nginx Основы.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
-    "GIT.md",
-    "BEGIN/LINUX.md",
-    "Spring/ERROR.md",
-    "SQL/число повторений.md",
+    "JPQL.md",
+    "DNS.md",
+    "nginx.md",
+    "BEGIN/Вопросы по работе.md",
     "SQL/mysql.md",
-    "Spring/application.properties.md",
-    "Spring/Контроллер.md",
-    "КЭШ/Memcached.md",
-    "STRIKERSTAT SPRINT/Судейство ОЖ.md",
+    "SQL",
+    "1/note for repeate/LINUX/флаги.md",
+    "1/note for repeate/LINUX/linux команды работы с папками-файлами.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/note for repeate/английские слова.md",
+    "1/note for repeate/GRADLE.md",
+    "STRIKERSTAT SPRINT/Динамическое время.md",
+    "1/note for repeate/Миграции.md",
     "1/note for repeate",
     "testFolder/demo canvas.canvas",
     "Intelej Idea",
@@ -369,9 +341,7 @@
     "Миграции БД",
     "Untitled 1.canvas",
     "Untitled.canvas",
-    "SQL",
     "BEGIN",
-    "Pasted image 20241202180935.png",
     "VPS",
     "Nginx"
   ]

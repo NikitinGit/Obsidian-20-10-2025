@@ -1,8 +1,72 @@
 >[!question]- как правильно удалить проект 
 >rm -rf folder
 
+>[!question]- запустить идею 
+> cd jetbrains-toolbox-2.8.1.52155/bin/
+>./jetbrains-toolbox
 
+>[!question]- запустить исполняемый файл
+>Узнать какой файл исполняемый = ls -l для всей директории или  ls -l jetbrains-toolbox для файла (если покажет переде ним -rwxr-xr-x то исполняемый)
+>Как сделать файл исполняемым 
+>Если файла нет в `ls -l` с правами `x`, нужно дать разрешение: chmod +x my_app
+>Запустить ./my_app 
+>в Linux **`.` (точка)** и **`./`** означают текущую директорию.  
+  Просто `my_app` не сработает, если путь не прописан в `$PATH`.
 
+>[!question]- посмотреть инфо о диструбутиве линукс на wsl
+>cat /etc/os-release 
+>lsb_release -a
+>версия ядра uname -a
+
+>[!question]- ядро линукса это 
+
+>[!question]- версия wsl 
+>wsl --version
+
+>[!question]- удалить директорию
+> rm -rf ~/idea/docker-compose-demo
+
+ >[!question]- перенести файл
+ mv /home/igor/Pictures/Screenshots/ANginx.png /home/igor/Music/2/
+>mv ~/Pictures/Screenshots/ANginx.png ~/Music/1
+
+ > [!question]- через tree
+> tree / -d | grep ".obsidian"
+
+ > [!question]- создать папку
+ >  mkdir /home/igor/Music 
+ 
+ > [!question]- создать несколько папок 
+ >  mkdir /home/igor/Music/{2,3,4}
+
+ > [!question]- перенести файл
+ >  mv /home/igor/Pictures/Screenshots/ANginx.png /home/igor/Music/2/
+>   mv ~/Pictures/Screenshots/ANginx.png ~/Music/1
+
+  > [!question]- перенести несколько файлов 
+  > mv ~/Pictures/Screenshots/{bn.png,nginxN2.png} ~/Music/2
+
+ > [!question]- копировать файл 
+ > cp ~/Pictures/Screenshots/1.png ~/Music/3
+
+ > [!question]- копировать несколько файлов 
+ > cp ~/Pictures/Screenshots/{1.png,2.png,3.png} ~/Music/4
+
+>[!question]- при копирование спрашивать подтверждение если файл существет
+>cp -i ~/Pictures/Screenshots/1.png ~/Music/3
+
+>[!question]- Очистить терминал
+>Ctrl+L
+>reset
+
+>[!question]- Удалить директорию 
+>rm -rf strikerstat
+>rm -rf ~/.m2/repository/org/mapstruct/
+ 
+  > [!question]- Как найти папку на компьютере?  
+> **Ответ:**  
+> find / -type d -name ".obsidian" 2>dev/null 
+> "2>dev/null" скрыть ошибки типа Permission dined
 
 1. Поиск файла по имени быстрый если примерно известна папка нахождения 
    sudo grep -rliw "nikitin" /var/www/html/ 2>/dev/null ^find

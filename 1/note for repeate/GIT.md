@@ -1,3 +1,9 @@
+>[!question]- загрузить свой проект на битбакете на гитхаб
+>git remote remove origin  # или git remote rm origin
+>git remote add origin git@github.com:NikitinGit/microServises.git
+>git branch -M main
+>git push -u origin main
+
 >[!question]- склонировать гит проект
 >git clone git@github.com:NikitinGit/Obsidian-Vault-MAIN.git
 
@@ -10,10 +16,6 @@
 >[!question]- checkout коммита
 >git checkout hash например   git checkout 9b066cbd  
 
->[!question]- загрузить свой проект на битбакете на гитхаб
->git remote remove origin  # или git remote rm origin
->git remote add github git clone git@github.com:NikitinGit/strikerfront.git
->  git push -u origin main
 
 >[!question]- что такое origin 
 >alias , имя удаленного репозитория (remote),  псевдоним 
