@@ -16,7 +16,7 @@
 >[!question]- запустить спринг проект
 >mvn spring-boot:run
 
->[!question]- узнать путиь в wsl где установлен мавен 
+>[!question]- узнать путь в wsl где установлен мавен 
 >which mvn
 
 
