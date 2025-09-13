@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 41.77288528389338,
+        "dimension": 41.772885283893395,
         "children": [
           {
             "id": "f2a380d384982672",
@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/Дневник работы.md",
+                "file": "1/note for repeate/Повторение того, что знаешь.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Дневник работы"
+              "title": "Повторение того, что знаешь"
             }
           },
           {
@@ -83,7 +83,7 @@
       {
         "id": "83fd6de25a6da192",
         "type": "tabs",
-        "dimension": 58.22711471610662,
+        "dimension": 58.22711471610661,
         "children": [
           {
             "id": "cf85243112efcfe2",
@@ -91,12 +91,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/График повторений.md",
+                "file": "1/СОБЕСЕДОВАНИЕ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "График повторений"
+              "title": "СОБЕСЕДОВАНИЕ"
             }
           },
           {
@@ -155,8 +155,7 @@
               "title": "В работе"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -305,32 +304,32 @@
   },
   "active": "f2a380d384982672",
   "lastOpenFiles": [
-    "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/GRADLE.md",
     "1/График повторений.md",
-    "1/Дневник работы.md",
-    "1/note for repeate/Stream api.md",
-    "1/note for repeate/Spring Kafka.md",
-    "1/note for repeate/Spring основы.md",
+    "1/СОБЕСЕДОВАНИЕ.md",
+    "1/note for repeate/LINUX/LINUX.md",
+    "1/note for repeate/DOCKER COMPOSE.md",
     "1/note for repeate/DOCKER.md",
+    "java core notes/MAVEN.md",
+    "BEGIN/свое приложенгие на java например.md",
+    "BEGIN/SSH.md",
+    "BEGIN/Nginx Основы.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/ВОПРОСЫ ПО СОБЕЗУ.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Миграции.md",
+    "1/note for repeate/GRADLE.md",
+    "1/note for repeate/Повторение того, что знаешь.md",
+    "1/note for repeate/Stream api.md",
+    "1/note for repeate/javacore.md",
+    "1/note for repeate/Spring Kafka.md",
+    "1/note for repeate/RabbitMQ.md",
+    "1/Дневник работы.md",
+    "Intelej Idea/Обновить проект.md",
+    "1/note for repeate/Spring основы.md",
     "java core notes/Строки.md",
     "java core notes/Stream API.md",
     "1/note for repeate/DOCKERFILE.md",
-    "java core notes/throw and try catch.md",
-    "java core notes/Типы данных.md",
-    "java core notes/аннотоации.md",
-    "java core notes/Интерфейсы и наследование.md",
-    "java core notes/Лямбда.md",
-    "1/note for repeate/Команды mysql.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
-    "1/note for repeate/Микросервисы.md",
-    "1/note for repeate/LINUX/LINUX.md",
-    "1/note for repeate/английские слова.md",
-    "BEGIN/Nginx Основы.md",
-    "Интерфейсы.md",
-    "Стэк и куча/Статья про кучу на английском.md",
-    "1/note for repeate/DOCKER COMPOSE.md",
-    "1/СТЕНДАП.md",
     "Pasted image 20241202180935.png",
     "SQL",
     "1/note for repeate",

@@ -1,6 +1,7 @@
 https://habr.com/ru/articles/488654/
 
 >[!question]- Base
+>Инструмент по работе с очередями сообщений
 >Разработан на языке Erlang, самый известный протокол AMQP (Advanced Message Queuing Protocol - Расширенный протокол очередей сообщений)
 
 >[!question]- AMQP

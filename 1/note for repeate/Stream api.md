@@ -37,3 +37,28 @@ https://metanit.com/java/tutorial/10.1.php
 
 >[!question]- Ленивые вычисления 
 
+>[!question]- Отображение это 
+>Промежуточная операция map
+
+>[!question]- Плоское Отображение это 
+>Промежуточная операция flatMap
+>Пример
+>```
+>Stream phoneStream = Stream.of(new Phone("iPhone 1 s", 28555), new Phone("iPhone 1 s", 28555));
+>phoneStream.stream().flatMap(p->Stream.of(
+>      String.format(p.getName(), ", ", p.getPrice()),
+>      String.formate(p.getName(), ", discount; ", p.getPrice() / 2)
+>    )
+>).forEach(s->System.out.println(s));
+>```
+>Еще пример 
+>```
+>public List<FighterModel> getSortedFighters(List<FighterModel> fighterSortData) {
+>    return Stream.of(BidStatus.APPROVED, BidStatus.WAIT_APPROVED, BidStatus.REJECT)
+>        .flatMap(bs -> getFighterSortedList(fighterSortData, bs).stream())  .toList();
+>    }
+>```
+
+
+
+docker exec -it -u root f28 sh

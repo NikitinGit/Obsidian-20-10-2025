@@ -3,3 +3,6 @@
 >./gradlew build
 
 docker run -d --name konteiner_name image
+
+
+нет коммерческого опытан    
