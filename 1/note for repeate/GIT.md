@@ -16,7 +16,6 @@
 >[!question]- checkout коммита
 >git checkout hash например   git checkout 9b066cbd  
 
-
 >[!question]- что такое origin 
 >alias , имя удаленного репозитория (remote),  псевдоним 
 >origin = https://github.com/ваш-логин/ваш-репозиторий.git 
