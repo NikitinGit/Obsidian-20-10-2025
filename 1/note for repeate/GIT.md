@@ -1,8 +1,18 @@
+# GIT 
+>[!question]- в одном файле  классе  в разных ветах методы поменяли местами , возникнет ли кофликт при мердже 
+> ДА . или появляется дублирование методов
+
 >[!question]- загрузить свой проект на битбакете на гитхаб
 >git remote remove origin  # или git remote rm origin
 >git remote add origin git@github.com:NikitinGit/microServises.git
 >git branch -M main
 >git push -u origin main
+
+>[!question]- git reflog это 
+> пиши
+
+>[!question]- сколько репозиториев может быть в одной директории 
+> пиши
 
 >[!question]- склонировать гит проект
 >git clone git@github.com:NikitinGit/Obsidian-Vault-MAIN.git

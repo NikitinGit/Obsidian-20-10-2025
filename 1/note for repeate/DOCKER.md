@@ -15,8 +15,22 @@
 >[!question]- как написать 2 докер файла java приложения, использующих один jdk
 >Пиши
 
+>[!question]- Типы томов: `volume`, `bind`, `tmpfs`. 
+>do
+
+>[!question]-  Виды сетей: `bridge`, `host`, `overlay`.
+>do it 
+
+
 >[!question]- Что такое VOLUME в докерфайле
->Создает и монтирует том внутри контейнера
+>Внешнее хранилище контейнера , в которое можно зайти  с хост машины (ОС)
+> docker volume ls    - посомтреть все созданные тома
+> docker volume inspect local-nginx-proxy_mysql_data - посмотреть пути где они находятся , дату создания и остальные параметры 
+> sudo ls /var/lib/docker/volumes/local-nginx-proxy_mysql_data/_data -  посомтреть содержимое 
+> sudo -i                                                           
+>root@igor-desktop:~/ > 1234
+>zsh: command not found: 1234
+>root@igor-desktop:~/ > cd /var/lib/docker/volumes/local-nginx-proxy_mysql_data/_data       - перейти в папку
 >Том - это постоянное хранилище  данных вне контейнера , в котором софт , расположенный в контейнере может сохранять данные . Без VOLUME данные хранятся внутри контейнера
 >пример 
 >...

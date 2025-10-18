@@ -1,11 +1,17 @@
+# лямбда 
 
->[!question]- лямбда в методе forEach, что с его парамметром
+>[!question]-  что работает быстрее  - .forEach или просто for 
 >```
 >bidFighterList.forEach(bidFighter -> {
 >bidFighter.setApproved(newStatus.num);
 >bidFighter.setApproved(BidStatus.APPROVED.num);  
 });
 >```
+> .forEach работает медленнее потому что  использует лямбд-выражение, то есть создает объект функционального интерфейса (Consumer)
+> из за вызова скрытого мтеода accept()
+> **.foreach Указывает  но то, что внутри должны менятся тольк оего элементы, но есть исеключения*
+> фунциональный метод 
+> break |continue  не используются 
 
 >[!question]- как создать int[]
 >int[] test = new int[]{1, 2};
@@ -21,6 +27,12 @@
 >```
 >Map<Integer, Integer> mapOfNums = new HashMap<>(); Arrays.stream(nums).forEach(n -> mapOfNums.put(n, nums[n]));
 >```
+> отсортировать по значению, без LinkedHashMap::new не сортируется ? 
+> ```
+> Map<Integer, Integer> mapOfNums = IntStream.range(0, nums.length).boxed()  
+>.sorted(Comparator.comparingInt(i -> nums[i]))  
+>.collect(Collectors.toMap(i -> i, i -> nums[i], (a, b) -> a, LinkedHashMap::new));
+> ```
 
 >[!question]- получить значение мап по индексу
 >```
@@ -41,4 +53,11 @@
 
 >[!question]- Optional это 
 контейнер который  может быть пустым
+
+# функциональные методы интерфейсы
+
+Function
+Consumer
+BinaryOperator
+Supplier
 

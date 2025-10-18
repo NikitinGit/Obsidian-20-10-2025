@@ -1,5 +1,3 @@
->[!question]- Устанавливаем рабочую директорию
-WORKDIR /app
 
 >[!question]- Копирование файлов с компа  в директорию образа
 >в корень COPY pom.xml .
@@ -7,19 +5,3 @@ WORKDIR /app
 
 >[!question]- Устанавливаем рабочую директорию
 WORKDIR /app
-
->[!question]- Устанавливаем рабочую директорию
-WORKDIR /app
-
->[!question]- Устанавливаем рабочую директорию
-WORKDIR /app
-
->[!question]- Устанавливаем рабочую директорию
-WORKDIR /app
-
->[!question]- Устанавливаем рабочую директорию
-WORKDIR /app
-
->[!question]- Устанавливаем рабочую директорию
-WORKDIR /app
-

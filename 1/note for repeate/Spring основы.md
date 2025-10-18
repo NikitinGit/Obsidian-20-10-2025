@@ -12,6 +12,10 @@
 ></dependency>
 >```
 
+>[!question]- логи статистики jpa/hibernate
+> spring.jpa.properties,hubernate.generate_statistics=false
+> spring.jpa.properties.hibernate.generate_statistics=true
+
 >[!question]- запустить спринг проект
 >mvn spring-boot:run
 

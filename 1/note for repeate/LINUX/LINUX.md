@@ -1,6 +1,15 @@
 >[!question]- Интерактивный режим это 
 >Пиши
 
+>[!question]- узнать где установлено приложение, мавен или сервис
+>›   which mvn
+mvn not found
+ ~ 
+›   which java
+/etc/profiles/per-user/igor/bin/java
+ ~ 
+›   which mysql    
+/run/current-system/sw/bin/mysql
 
 >[!question]- Стать супер пользователем (root)
 >sudo su (окружение смешанное)
