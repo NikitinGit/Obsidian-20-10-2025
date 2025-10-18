@@ -275,6 +275,8 @@
   },
   "active": "12c50d0c57e3571d",
   "lastOpenFiles": [
+    "a-bootiful-client.properties",
+    "Obsidian-Vault-MAIN",
     "1/СТЕНДАП.md",
     "1/note for repeate/GIT.md",
     "1/График повторений.md",
@@ -300,7 +302,6 @@
     "Транзакции/Выводы.md",
     "Транзакции/Блокировки.md",
     "Транзакции/Аномалии.md",
-    "Транзакции/WAL.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "SQL",
@@ -313,7 +314,6 @@
     "Untitled 1.canvas",
     "Untitled.canvas",
     "BEGIN",
-    "VPS",
-    "Nginx"
+    "VPS"
   ]
 }
