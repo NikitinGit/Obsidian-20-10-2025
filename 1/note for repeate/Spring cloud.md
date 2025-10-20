@@ -28,7 +28,6 @@
   > 3. Polling - клиент сам периодически проверяет изменения (можно настроить через spring.cloud.config.refresh-interval)
   > 4. Config Server webhooks - Config Server может отслеживать изменения в git и автоматически уведомлять клиентов
 
-
 > [!question]- Config - а что обычно хранится в файлах конфига в микросервисной архитектуре  
 > В файлах конфигурации микросервисов обычно хранится:  
 > 1. Подключения к БД:  
@@ -87,12 +86,19 @@
 >это 
 
 
+
+
 >[!question]-  spring-cloud-netflix-server
 >[Netflix Eureka service registry](https://github.com/spring-cloud/spring-cloud-netflix),
 >сервер дискавери еврика, который  атоматически (без перезагрузки) определяет какие сери=висы работают через гет запрос  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>  </dependency>```
 
 >[!question]-  spring-cloud-netflix-client
 >клиент секрвис, который может получать данные через сервер еврика от другого клиента сервиса  гет запрос  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> </dependency>```
+>Сам регистрируется в реестре еврика при старте
+>Мингует сервер раз в 3 0 секунд на heartbeat 
+>**периодически обновляют кэш** списка сервисов (по умолчанию раз в 30 секунд) 
+
+
 
 >[!question]- Config -  client-side 
 >  пиши

@@ -13,10 +13,10 @@ https://metanit.com/java/tutorial/10.1.php
 >Не убирая дубликаты
 >4. 
 >```
->Map<Integer, Fighter> mapObjById = list.stream().collect(      Collectors.toMap(Fighter::getId, o -> o));
+>Map<Integer, Fighter> mapObjById = list.stream().collect(Collectors.toMap(Fighter::getId, o -> o));
 >```
 >```
->Map<Integer, Fighter> mapObjById = list.stream().collect(      Collectors.toMap(Fighter::getId,  Function.identity()));
+>Map<Integer, Fighter> mapObjById = list.stream().collect(Collectors.toMap(Fighter::getId,  Function.identity()));
 >```
 >Убрать дубликаты и оставить первое значение
 >```

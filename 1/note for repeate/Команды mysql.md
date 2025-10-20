@@ -1,3 +1,9 @@
+# MYSQL
+
+>[!question]- подключиться по ssh  к тестингу а потом к mysql
+>mysql -ureadonly_user -piek7IequEiJ2oLac localhost strikerstat_test ? 
+
+
 >[!question]- подключиться к БД
 >mysql -ureadonly_user -piek7IequEiJ2oLac -h188.225.76.97 strikerstat
 
