@@ -132,12 +132,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
+                "file": "1/note for repeate/GIT.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "АНГЛИЙСКИЕ СЛОВА"
+              "title": "GIT"
             }
           }
         ],
@@ -291,6 +291,9 @@
   "active": "5ef244d777342e65",
   "lastOpenFiles": [
     "1/note for repeate/MAVEN.md",
+    "1/note for repeate/GIT.md",
+    "test_write.txt",
+    "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
     "1/note for repeate/Spring cloud.md",
     "1/График повторений.md",
     "1/Дневник работы.md",
@@ -302,7 +305,6 @@
     "1/note for repeate/HTTPS.md",
     "1/note for repeate/общие знания IT.md",
     "1/note for repeate/DOCKERFILE.md",
-    "1/note for repeate/GIT.md",
     "1/note for repeate/GRADLE.md",
     "1/note for repeate/IoC Spring.md",
     "1/note for repeate/JavaCore.md",
@@ -312,12 +314,10 @@
     "1/note for repeate/Spring тесты.md",
     "1/note for repeate/WSL.md",
     "1/note for repeate/Stream api.md",
-    "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
     "1/note for repeate/Команды mysql.md",
     "1/note for repeate/Повторение того, что знаешь.md",
     "a-bootiful-client.properties",
     "Obsidian-Vault-MAIN",
-    "1/График работы.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "SQL",
@@ -328,7 +328,6 @@
     "1/note for repeate/LINUX",
     "Миграции БД",
     "Untitled 1.canvas",
-    "Untitled.canvas",
-    "BEGIN"
+    "Untitled.canvas"
   ]
 }

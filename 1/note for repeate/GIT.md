@@ -3,10 +3,28 @@
 > ДА . или появляется дублирование методов
 
 >[!question]- загрузить свой проект на битбакете на гитхаб
+>```
 >git remote remove origin  # или git remote rm origin
 >git remote add origin git@github.com:NikitinGit/microServises.git
 >git branch -M main
 >git push -u origin main
+>```
+>Проверить конкретные права на репозиторий 
+>```
+>git ls-remote origin 
+>```
+>переключиться с https-url на  ssh
+>```
+>git remote set-url origin git@github.com:NikitinGit/TestLinux.git 
+>```
+>проверка текущего ключа 
+>```
+>ssh -v git@github.com 2>&1 | grep "Offering public key" 
+>```
+>явно проверить ключ
+>```
+>ssh -i ~/.ssh/nikitinssh -T git@github.com
+>```
 
 >[!question]- git reflog это 
 > пиши
