@@ -31,10 +31,30 @@
 
 >[!question]- `<version>${spring-cloud.version}</version>`  это 
 >использует версию , указанную в 
->```<properties>  
+>```
+><properties>  
 <spring-cloud.version>2025.0.0</spring-cloud.version>  
 </properties>
 >```
+
+>[!question]- exclusions
+>исключение автоматически подтягиваемых зависимостей , например 
+>```
+><dependency>> <groupId>org.springframework.boot</groupId>><artifactId>spring-boot-starter-web</artifactId>
+><exclusions>
+>        <exclusion>
+>            <groupId>com.jayway.jsonpath</groupId>
+ >           <artifactId>json-path</artifactId>
+ >       </exclusion>
+ >   </exclusions>
+></dependency>
+<dependency>
+><groupId>com.jayway.jsonpath</groupId>
+><artifactId>json-path</artifactId>
+><version>2.9.0</version>
+></dependency>
+>```
+
 
 >[!question]- Зависимости это 
 > пиши
