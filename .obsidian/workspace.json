@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/График повторений.md",
+                "file": "1/note for repeate/Команды mysql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "График повторений"
+              "title": "Команды mysql"
             }
           },
           {
@@ -63,7 +63,8 @@
               "title": "GIT"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -144,7 +145,7 @@
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": false,
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -258,10 +259,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "65f827a1a503a7e6",
+  "active": "af07f7b0f12ad293",
   "lastOpenFiles": [
-    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
     "1/График повторений.md",
+    "1/note for repeate/LINUX/LINUX.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/Spring cloud.md",
+    "ОТВЕТЫ ПО СОБЕЗУ/JUN.md",
     "1/Дневник работы.md",
     "1/note for repeate/JavaCore.md",
     "1/note for repeate/JVM.md",
@@ -272,9 +277,7 @@
     "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
     "1/note for repeate/GIT.md",
     "test_write.txt",
-    "1/note for repeate/Spring cloud.md",
     "1/note for repeate/Микросервисы.md",
-    "1/СТЕНДАП.md",
     "1/СОБЕСЕДОВАНИЕ.md",
     "1/КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
     "1/note for repeate/Тестирование приложений.md",
@@ -287,8 +290,6 @@
     "1/note for repeate/RabbitMQ.md",
     "1/note for repeate/Spring Kafka.md",
     "1/note for repeate/Spring тесты.md",
-    "1/note for repeate/WSL.md",
-    "1/note for repeate/Stream api.md",
     "a-bootiful-client.properties",
     "Obsidian-Vault-MAIN",
     "testFolder/demo canvas.canvas",
