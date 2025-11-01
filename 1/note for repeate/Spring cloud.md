@@ -1,6 +1,13 @@
 
+# Задачи 
+# Напоминалки
 >[!question]- Что отвечает за балансировку нагрузки 
->  Ribbon
+>Cloud Loadbalancer  
+>```
+><artifactId>spring-cloud-starter-loadbalancer</artifactId>
+>```
+>WebClient.Builder 
+> Ribbon - устаревший 
 
 >[!question]- Чем конфигурация микросервиса отличается от его настроек
 >  Ribbon

@@ -11,5 +11,16 @@
 >```
 >java -cp /path/to/classes:/path/to/lib.jar com.example.Main
 >```
+>Example 
+>```<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+<<classpathentry kind="src" path="src"/>
+< <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+ <  <classpathentry kind="lib" path="lib/mysql-connector-j-8.0.33.jar"/>
+<<classpathentry kind="lib" path="lib/gson-2.10.jar"/>
+<    <classpathentry kind="output" path="bin"/>
+</classpath>
+>```
 
 
+1. [x] пример фала classpath 

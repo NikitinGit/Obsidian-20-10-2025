@@ -1,3 +1,17 @@
+# Бины
+
+>[!question]- @Primary
+>приоритет бина -  указывает, что данный bean должен быть приоритетным (основным) при внедрении зависимостей, когда существует несколько bean-ов одного типа.  
+>без него ошибка 
+>```
+>NoUniqueBeanDefinitionException: expected single matching bean but found 2
+>```
+>1. [ ] напиши тестовый проект 
+
+>[!question]- @Component
+>1. [ ] напиши тестовый проект  
+# Остальное 
+
 >[!question]- добавить jpa
 >```xml
 ><dependency>

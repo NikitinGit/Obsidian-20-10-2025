@@ -1,4 +1,81 @@
 # GIT 
+
+>[!question]-  Показать коммиты только в текущей ветке
+>  git log --oneline
+
+>[!question]-  Показать коммиты   из ВСЕХ веток
+>    git log --oneline --all --graph
+>  
+
+
+```
+ Вот список Git команд для определения родительской ветки:
+
+  Основные команды
+
+  # 1. Показать рефлог для текущей ветки (самый надежный способ)
+  git reflog show --all --date=relative | grep -i "checkout\|branch"
+
+  # 2. Показать рефлог с форматированием
+  git reflog --format='%gd %gs %s' | grep -E 'checkout|branch'
+
+  # 3. Найти первый коммит, когда ветка была создана
+  git reflog show <branch-name>
+
+  # 4. Показать информацию о создании ветки из общего рефлога
+  git reflog | grep -i "branch: Created from"
+
+  # 5. Найти точку ветвления с main
+  git merge-base --all HEAD main
+
+  # 6. Показать коммит ветвления с визуализацией
+  git log --graph --oneline --all --decorate | grep -B5 -A5 $(git rev-parse HEAD)
+
+  # 7. Сравнить с другими ветками для поиска общего предка
+  git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1
+
+  # 8. Показать все ветки, которые содержат первый коммит текущей ветки
+  git branch -r --contains $(git rev-list --max-parents=0 HEAD)
+
+  # 9. Использовать git log с фильтром по дате создания
+  git log --all --oneline --graph --decorate --source | grep -B10 $(git rev-list --max-parents=1 HEAD | tail -1)
+```
+
+```
+  Для вашей текущей ветки task/STR6-1124_export_excel:
+
+  # Самый простой способ - проверить рефлог
+  git reflog show task/STR6-1124_export_excel
+
+  # Или для текущей ветки
+  git reflog show HEAD
+
+  # Найти общий предок с main
+  git merge-base task/STR6-1124_export_excel main
+
+  # Показать информацию об этом коммите
+  git show $(git merge-base task/STR6-1124_export_excel main)
+
+  Примечание: Самый надежный метод - это git reflog, так как он показывает историю операций, включая создание веток. Если рефлог был очищен или ветка создана давно, можно использовать git merge-base для поиска общего предка с предполагаемой родительской веткой.
+```
+
+
+
+>[!question]- найти общего предка у двух веток
+>git merge-base  task/STR6-1121_judge_notification_from_main_branshe main
+
+>[!question]- Что такое HEAD
+>УКАЗАТЕЛЬ на текущую позицию в истории коммитов
+>указывает на **последний коммит** в **текущей ветке**. Пример 
+>```
+>HEAD -> main -> b818241
+>```
+>HEAD "отцепляется" (detached HEAD) если делаешь чекаут коммита а не ветки , например
+>```
+>git  checkout  b818241 
+>You are in 'detached HEAD' state
+>```
+
 >[!question]- в одном файле  классе  в разных ветах методы поменяли местами , возникнет ли кофликт при мердже 
 > ДА . или появляется дублирование методов
 
@@ -25,9 +102,6 @@
 >```
 >ssh -i ~/.ssh/nikitinssh -T git@github.com
 >```
-
->[!question]- git reflog это 
-> пиши
 
 >[!question]- сколько репозиториев может быть в одной директории 
 > пиши
@@ -154,7 +228,7 @@ git push --force-with-lease
 >2. В гуи идеи **Squash Commits**
 >3. pick a1b2c3d Старый коммит , squash d4e5f6a Средний коммит , squash g7h8i9j Новый коммит
 
-### **6. Что делать после `git reset --hard`?**
+# Что делать после `git reset --hard`?**
 
 Если изменения не были запушены:
 
