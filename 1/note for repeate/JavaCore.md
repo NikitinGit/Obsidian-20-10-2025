@@ -1,7 +1,12 @@
 # Задачи 
-1. [ ] the stack overflow exception - пример  https://topjava.ru/blog/what-is-the-jre 
-2. [ ] как увеличить стек и кучу
-3. [ ] мониторинг программ
+https://topjava.ru/blog/what-is-the-jre  
+1. [x] the stack overflow exception - пример  
+2. [x] как увеличить стек
+3. [ ] как увеличить кучу
+4. [ ] Методы object 
+5. [ ] мониторинг программ
+6. [ ] Посмотри лямбда в стрим апи линекд хеш мап 
+7. [ ] Почему при создании хешмап сбивается сортировка   
 
 # BASE
 
@@ -27,6 +32,36 @@
 >[!question]- Память в java 
 >делится на 3 части - стэк, куча и метаспейс (не изменная часть проги - например где хранятся классы )
 >the stack overflow exception - переполненеи стека  - Как правило, переполнение стека происходит когда метод или методы обращаются друг к другу зацикленным способом, тем самым выделяя постоянно растущее число вызовов в стек. 
+
+>[!question]- Что хранит стек
+> локаьлные перемекнные метода 
+> параметры метода 
+> адрес  возврата 
+> служебные данные JVM. 
+> все это хранится в stack frame 
+> когда метод заканчивается — фрейм удаляется (pop). 
+
+>[!question]-  Методы object 
+
+>[!question]-  Когда вызызвается toString()
+> System.out.println(obj);  
+
+ >[!question]- stack overflow exception когда возникает 
+ >При рекурсии 
+ 
+  >[!question]- хвостовая рекурсия 
+ > не ждет вызвоа осталдьных методов
+ 
+   >[!question]- увлечить стек 
+java -Xss512k TestLinuxApplication - 512  кб
+ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xss512k"  
+ **IntelliJ IDEA** →  
+`Run > Edit Configurations > VM options`  
+→ впиши `-Xss2m`
+java -Xss1m TestLinuxApplication - с Мб
+
+>[!question]- узнать глубину текущего стектрейса 
+>Thread.currentThread().getStackTrace().length 
 # лямбда 
 
 >[!question]-  что работает быстрее  - .forEach или просто for 

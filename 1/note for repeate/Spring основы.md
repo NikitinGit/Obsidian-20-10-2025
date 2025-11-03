@@ -6,10 +6,33 @@
 >```
 >NoUniqueBeanDefinitionException: expected single matching bean but found 2
 >```
->1. [ ] напиши тестовый проект 
+>пример 
+>```
+>public class EnglishGreetingService implements GreetingService {
+>...
+>public class RussianGreetingService implements GreetingService {
+>...
+>public interface GreetingService {
+>```
 
 >[!question]- @Component
->1. [ ] напиши тестовый проект  
+> внедряется автоматчиески при  запуске проги с помощью  @ComponentScan ?
+
+>[!question]- @Qualifier("russianGreetingService") 
+>указывает какой бин использовать если дубль бина интерфейса
+>```
+>@Service
+public class RussianGreetingService implements GreetingService {
+>```
+
+>[!question]-  @ComponentScan
+>**отвечает за поиск и регистрацию бинов**, созданных через аннотации вроде `@Component`, `@Service`, `@Repository`, `@Controller` и т. д.
+
+>[!question]-  singleton может хранить состояние  ? 
+> Да, **синглтон может хранить состояние**  
+
+>[!question]- @Lazy 
+>линивая инициализация бина при первом обращение к нему во время выполнения проги 
 # Остальное 
 
 >[!question]- добавить jpa

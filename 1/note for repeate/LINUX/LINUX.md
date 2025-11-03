@@ -22,6 +22,16 @@
 >grep 'password' Documents/android\ studio\ jetbrains.txt | tail -n 2
 >```
 
+>[!question]- ripgrep (rg) это 
+>ищет рекурсивно строку в текущем катологе во всех файлах 
+>```
+>rg "error"
+>```
+>Пример поиска только в файлах с расширением .log:
+>```
+>rg --type=log "error"
+>```
+
 >[!question]- аналоги исполняемых файлов .exe
 > 
 
