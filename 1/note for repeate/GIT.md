@@ -1,5 +1,9 @@
 # GIT 
 
+>[!question]- аборт мерджа при решенеи конликтов 
+>  git reset --hard HEAD
+>  git merge --abort
+
 >[!question]-  Показать коммиты только в текущей ветке
 >  git log --oneline
 

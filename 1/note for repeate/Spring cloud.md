@@ -1,4 +1,3 @@
-
 # Задачи 
 # Напоминалки
 >[!question]- Что отвечает за балансировку нагрузки 
@@ -91,8 +90,6 @@
 
 >[!question]- JMX
 >это 
-
-
 
 
 >[!question]-  spring-cloud-netflix-server

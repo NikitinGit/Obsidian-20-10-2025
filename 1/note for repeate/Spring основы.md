@@ -1,4 +1,9 @@
 # Бины
+>[!question]- BeanFactory
+>Базовый IoC контейнер — управляет созданием, хранением и выдачей бинов
+
+>[!question]- ApplicationContext
+>Расширяет `BeanFactory`, добавляет всё, что нужно в реальном приложении 
 
 >[!question]- @Primary
 >приоритет бина -  указывает, что данный bean должен быть приоритетным (основным) при внедрении зависимостей, когда существует несколько bean-ов одного типа.  
@@ -16,7 +21,7 @@
 >```
 
 >[!question]- @Component
-> внедряется автоматчиески при  запуске проги с помощью  @ComponentScan ?
+> внедряется автоматчиески при  запуске проги с помощью  @ComponentScan . его потомки(`@Service`, `@Repository`, `@Controller` и т.д.)
 
 >[!question]- @Qualifier("russianGreetingService") 
 >указывает какой бин использовать если дубль бина интерфейса
@@ -26,7 +31,16 @@ public class RussianGreetingService implements GreetingService {
 >```
 
 >[!question]-  @ComponentScan
->**отвечает за поиск и регистрацию бинов**, созданных через аннотации вроде `@Component`, `@Service`, `@Repository`, `@Controller` и т. д.
+>**отвечает за поиск и регистрацию бинов**, созданных через аннотации вроде `@Component`, `@Service`, `@Repository`, `@Controller` и т. д. 
+>не сканирует @Bean
+
+>[!question]- @SpringBootApplication
+>  =  @Configuration
+@EnableAutoConfiguration
+@ComponentScan
+
+>[!question]- @Bean когда создается 
+> 
 
 >[!question]-  singleton может хранить состояние  ? 
 > Да, **синглтон может хранить состояние**  

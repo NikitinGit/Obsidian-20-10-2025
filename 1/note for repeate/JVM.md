@@ -22,5 +22,3 @@
 </classpath>
 >```
 
-
-1. [x] пример фала classpath 
