@@ -1,4 +1,41 @@
 # GIT 
+>[!question]-  GitHub CLI (gh) это
+> официальная утилита GitHub для работы с репозиториями из командной строки.
+> - Позволяет создавать репозитории на GitHub прямо из терминала
+> - Можно сразу инициализировать git, создать репозиторий на GitHub и
+  запушить код одной командой  
+  >- Не нужно заходить на сайт GitHub для создания репозитория
+
+>[!question]- как  локально создать все репозитории и закинуть их на гитхаб ( ил еще куда ) 
+>1.  EurekaServer:
+  cd EurekaServer && git init && git add . && git commit -m "Initial commit" && gh repo create EurekaServer --private --source=. --push
+> 2. OrderService:
+  cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/OrderService && git init && git add . && git commit -m "Initial commit" && gh repo create OrderService --private --source=. --push
+  >3. OrderService2:
+  cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/OrderService2 && git init && git add . && git commit -m "Initial commit" && gh repo create OrderService2 --private --source=. --push
+  >4. UserService:
+  cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/UserService && git init && git add . && git commit -m "Initial commit" && gh
+  repo create UserService --private --source=. --push
+  >
+  >gh repo create название --private --source=. --push - создание приватного репозитория на GitHub и загрузка кода
+  >--private - приватный репозиторий
+  > --source=. - использовать текущую директорию 
+
+>[!question]-  одной командой все запушить 
+>Способ 1: Простой bash цикл (самый удобный)
+  for dir in EurekaServer OrderService OrderService2 UserService; do 
+  cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/$dir
+   git init 
+   git add 
+   .git commit -m "Initial commit"
+   gh repo create $dir --private --source=. --push 
+   done
+   Способ 2: Используя find (для всех директорий автоматически) 
+   cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt
+  for dir in */; do cd "$dir" git init git add . git commit -m "Initial commit" gh repo create "${dir%/}" --private --source=. --push cd .. done
+  Способ 3: Компактная однострочная команда
+  cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt && for dir in EurekaServer OrderService OrderService2 UserService; do (cd
+  "$dir" && git init && git add . && git commit -m "Initial commit" && gh repo create "$dir" --private --source=. --push); done
 
 >[!question]- аборт мерджа при решенеи конликтов 
 >  git reset --hard HEAD
@@ -249,3 +286,69 @@ bash
 Copy
 
 git push --force-with-lease
+
+
+
+# атоматическое создания репоизиторяия гилаба и пуша его на удаленные сервер 
+Для GitLab процесс похожий, но есть отличия:
+
+  Вариант 1: Используя GitLab CLI (glab)
+
+  Сначала нужно установить glab (аналог gh для GitLab):
+
+  В вашем hosts/desktop/default.nix добавьте:
+  environment.systemPackages = with pkgs; [
+    gh    # GitHub CLI
+    glab  # GitLab CLI
+  ];
+
+  После установки:
+  # Авторизация
+  glab auth login
+
+  # Загрузка всех проектов одной командой
+  for dir in EurekaServer OrderService OrderService2 UserService; do
+    cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/$dir
+    git init
+    git add .
+    git commit -m "Initial commit"
+    glab repo create $dir --private --defaultBranch main
+    git remote add origin git@gitlab.com:ВАШ_USERNAME/$dir.git
+    git push -u origin main
+  done
+
+  Вариант 2: Вручную через git (без CLI)
+
+  for dir in EurekaServer OrderService OrderService2 UserService; do
+    cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/$dir
+    git init
+    git add .
+    git commit -m "Initial commit"
+    git remote add origin git@gitlab.com:ВАШ_USERNAME/$dir.git
+    git push -u origin main
+  done
+
+  Но перед этим нужно создать репозитории на GitLab (через API или вручную).
+
+  Вариант 3: Через GitLab API (автоматическое создание)
+
+  GITLAB_TOKEN="ваш_токен"
+  GITLAB_USER="ваш_username"
+
+  for dir in EurekaServer OrderService OrderService2 UserService; do
+    # Создание репозитория через API
+    curl --request POST --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+      --header "Content-Type: application/json" \
+      --data "{\"name\": \"$dir\", \"visibility\": \"private\"}" \
+      "https://gitlab.com/api/v4/projects"
+
+    # Загрузка кода
+    cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/$dir
+    git init
+    git add .
+    git commit -m "Initial commit"
+    git remote add origin git@gitlab.com:$GITLAB_USER/$dir.git
+    git push -u origin main
+  done
+
+  Рекомендую Вариант 1 с glab - это самый простой и удобный способ, аналогичный тому, что мы делали с GitHub.

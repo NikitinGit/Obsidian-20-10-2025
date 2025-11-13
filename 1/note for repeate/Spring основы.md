@@ -40,7 +40,7 @@ public class RussianGreetingService implements GreetingService {
 @ComponentScan
 
 >[!question]- @Bean когда создается 
-> 
+> при обращение к методу ? 
 
 >[!question]-  singleton может хранить состояние  ? 
 > Да, **синглтон может хранить состояние**  

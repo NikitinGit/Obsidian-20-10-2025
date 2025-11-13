@@ -1,12 +1,70 @@
 # Задачи 
+https://chatgpt.com/c/6915e111-75d4-832a-acc4-e6004a51044c 
+1. [x] Чем отличается балансировка на стороне сервера от на стороне клиента 
+2. [ ] ДРУГИЕ БАЛАНСИРОВЩИКИ - API Gateway balancing , DNS Load Balancing ,  **Service Mesh balancing** 
+3. [ ] как еврика или конфиг или что то еще может определить насколько сильно забит инстанс запросами и как сильно занят вычислениями ? что в спринг за это отвечает ?
+4. [ ] ЗАДАЧА написать микросервисную систему в которой - 
+5. [ ] при создание нового инстанса он подхватывает нужные ему настройки из конфига 
+6. [ ] работает балансировка 
+7. [ ] как балансировщик может отслеживать нагрузку на инстанс 
+8. [ ] как откатить инстанс назад и как при этом должен работать пайплайн 
+9. [ ] как произвести транзакции в БД на 2  инстанцах 
+10. [ ] Spring Cloud Gateway 
 # Напоминалки
->[!question]- Что отвечает за балансировку нагрузки 
+
+>[!question]-  изолированный контекст 
+> @LoadBalancerClient создает изолированный контекст Spring, и бины из главного контекста туда не попадают.
+
+>[!question]- Чем отличается балансировка настороне сервера от на стороне клиента 
+>Client-side (Spring Cloud LoadBalancer, Ribbon)  - 
+> - На стороне клиента (в коде) , 
+> - кто зннает все о инстанцах - Клиент (через Eureka) 
+> - Масштабируемость - требует чтобы все инстанцы могли балансировать (должны быть установлены зависимости ? )
+>  - Примеры - Spring Cloud LoadBalancer, Netflix Ribbon  
+>Server-side (Nginx, HAProxy, AWS ELB 
+> - РЕШЕНИЕ принимается На стороне балансировщика (в инфраструктуре)
+> - знает о всех инстанцах Балансировщик 
+> - масштабируемость  управляется Централизовано и проще администрировать
+> - примеры Nginx, HAProxy, AWS ELB, Traefik 
+> ДАЛЬШЕ
+
+>[!question]- где указывется конфигурация 
+>@LoadBalancerClient(name = "OrderService", configuration = LoadBalancerConfiguration.class) 
+>в классе LoadBalancerConfiguration а имя инстанса - OrderService 
+
+>[!question]- Какая зависимость отвечает за балансировку нагрузки 
 >Cloud Loadbalancer  
 >```
 ><artifactId>spring-cloud-starter-loadbalancer</artifactId>
 >```
->WebClient.Builder 
-> Ribbon - устаревший 
+
+>[!question]- какая аннотация делает бин балансирующем нагрузку
+>```
+> @LoadBalanced   
+>```
+
+>[!question]- класс отвечающий за балансировку 
+>```
+>@Configuration  
+class RestTemplateConfig { 
+>@Bean  
+> @LoadBalanced    public RestTemplate restTemplate() {  
+  >    return new RestTemplate();  
+>}  
+>}
+>```
+> п о умолчанию использет  алгоритм балансировки  Round Robin 
+
+>[!question]- получить алгоритм балансировки через  .yml 
+>```
+spring:
+cloud:
+loadbalancer:
+  clients:
+order-service:
+  configuration:
+org.springframework.cloud.loadbalancer.core.RandomLoadBalancer
+>```
 
 >[!question]- Чем конфигурация микросервиса отличается от его настроек
 >  Ribbon
@@ -91,17 +149,15 @@
 >[!question]- JMX
 >это 
 
-
 >[!question]-  spring-cloud-netflix-server
 >[Netflix Eureka service registry](https://github.com/spring-cloud/spring-cloud-netflix),
->сервер дискавери еврика, который  атоматически (без перезагрузки) определяет какие сери=висы работают через гет запрос  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>  </dependency>```
+>сервер дискавери еврика,  через гет запрос который  атоматически (без перезагрузки) определяет какие серивисы работают  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>  </dependency>```
 
 >[!question]-  spring-cloud-netflix-client
 >клиент секрвис, который может получать данные через сервер еврика от другого клиента сервиса  гет запрос  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> </dependency>```
 >Сам регистрируется в реестре еврика при старте
 >Мингует сервер раз в 3 0 секунд на heartbeat 
 >**периодически обновляют кэш** списка сервисов (по умолчанию раз в 30 секунд) 
-
 
 
 >[!question]- Config -  client-side 
