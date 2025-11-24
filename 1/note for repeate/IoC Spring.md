@@ -39,7 +39,40 @@
 >
 
 >[!question]- У приложения может быть несколько ioc контейнеров ?
->Да
+>Да - пример 
+>```
+>public class TestBean {  
+>  
+>    public static void main(String[] tons) {  
+>        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig1.class);  
+>        MyBean bean1 = (MyBean) context.getBean("bean1");  
+>        bean1.sayHello();  
+>  
+>        ApplicationContext context3 = new AnnotationConfigApplicationContext(AppConfig3.class);  
+>        MyBean bean2 = (MyBean) context3.getBean("bean1");  
+>        bean2.sayHello();  
+>    }  
+>}
+>>---
+>
+>@Configuration  
+>public class AppConfig1 {  
+>  
+>    @Bean(name = "bean1")  
+>    public MyBean myBean() {  
+>        return new MyBean(25);  
+>    }  
+>}
+>>---
+>@Configuration  
+>public class AppConfig3 {  
+>  
+>    @Bean(name = "bean1")  
+>    public MyBean myBean() {  
+>        return new MyBean(852);  
+>    }  
+>}
+>```
 
 >[!question]- Какие реализации IoC существуют
 >Да

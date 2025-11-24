@@ -1,3 +1,13 @@
+# NGINX
+установка сертифката 
+https://sky.pro/wiki/html/kak-nastroit-https-na-vashem-sajte/ 
+
+>[!question]- каак сделать так чтобы он запускаался после ребутва автоматически 
+> sudo systemctl enable nginx.service
+
+
+
+# To do 
 1. **Поиск по части имени**
 
 Если название содержит слово "parking" (например, `my_parking_file.txt`):
@@ -82,4 +92,4 @@ sudo find / -type f -name "*parking*" 2>/dev/null
 
 
 ls -la /var/www/strikerstat-front/pages/ 
-
+ 

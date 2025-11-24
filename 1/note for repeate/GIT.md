@@ -1,4 +1,75 @@
 # GIT 
+
+>[!question]- ветки локального репозитория при git pull меняюся ?
+>Нет 
+>одна ветка Меняется только после чекаута удаленной ветки 
+
+>[!question]- Откатить ветку до нужного коммита 
+>git reset --hard <хэш_коммита>
+>пример git reset --hard a1b2c3d 
+>git push --force-with-lease
+>вернуться обратно - 
+>  git reset --hard HEAD@{1}
+>  ```
+>  >В Восстановление после git reset --hard в IntelliJ IDEA:  
+>  
+>  Способ 1: Через Reflog (самый простой)  
+>  
+>  1. Откройте панель Git (Alt+9)  
+>  2. Нажмите на иконку часов (Clock icon) в верхней панели или используйте меню: Git → Show Git Log  
+>  3. В нижней части окна найдите вкладку Reflog (если её нет, нажмите на шестеренку и включите её)  
+>  4. В Reflog найдите запись до вашего reset (обычно это HEAD@{1})  
+>  5. Кликните правой кнопкой мыши на нужный коммит  
+>  6. Выберите Reset Current Branch to Here...  
+>  7. Выберите Hard и нажмите Reset  
+>  
+>  Способ 2: Через Git Log  
+>  
+>  8. Откройте Git → Show Git Log (Alt+9, затем вкладка Log)  
+>  9. Справа вверху найдите поле поиска  
+>  10. Введите хеш коммита 296663c42 или название коммита  
+>  11. Найдите коммит "STR6-1130 добавил валидацию на изменение оценок бокового судьи главным судьей"  
+>  12. Кликните правой кнопкой мыши на нем  
+>  13. Выберите Reset Current Branch to Here...  
+>  14. Выберите Hard и нажмите Reset  
+>  
+>  Способ 3: Через меню VCS  
+>  
+>  15. VCS → Git → Show History (или Ctrl+Alt+H)  
+>  16. Включите опцию показа всех веток и reflog  
+>  17. Найдите нужный коммит и сделайте reset как описано выше  
+>  
+>  Reflog в IntelliJ обычно находится в той же панели Git Log, просто нужно переключиться на соответствующую вкладку.осстановление после git reset --hard в IntelliJ IDEA:  
+>  
+>Способ 1: Через Reflog (самый простой)  
+>  
+>  18. Откройте панель Git (Alt+9)  
+>  19. Нажмите на иконку часов (Clock icon) в верхней панели или используйте меню: Git → Show Git Log  
+>  20. В нижней части окна найдите вкладку Reflog (если её нет, нажмите на шестеренку и включите её)  
+>  21. В Reflog найдите запись до вашего reset (обычно это HEAD@{1})  
+>        5. Кликните правой кнопкой мыши на нужный коммит  
+>  22. Выберите Reset Current Branch to Here...  
+>        7. Выберите Hard и нажмите Reset  
+>  
+>Способ 2: Через Git Log  
+>  
+>  23. Откройте Git → Show Git Log (Alt+9, затем вкладка Log)  
+>  24. Справа вверху найдите поле поиска  
+>  25. Введите хеш коммита 296663c42 или название коммита  
+>  26. Найдите коммит "STR6-1130 добавил валидацию на изменение оценок бокового судьи главным судьей"  
+>        5. Кликните правой кнопкой мыши на нем  
+>  27. Выберите Reset Current Branch to Here...  
+>        7. Выберите Hard и нажмите Reset  
+>  
+>Способ 3: Через меню VCS  
+>  
+>  28. VCS → Git → Show History (или Ctrl+Alt+H)  
+>  29. Включите опцию показа всех веток и reflog  
+>  30. Найдите нужный коммит и сделайте reset как описано выше  
+>  
+>Reflog в IntelliJ обычно находится в той же панели Git Log, просто нужно переключиться на соответствующую вкладку.
+>  ```
+
 >[!question]-  GitHub CLI (gh) это
 > официальная утилита GitHub для работы с репозиториями из командной строки.
 > - Позволяет создавать репозитории на GitHub прямо из терминала
@@ -48,59 +119,33 @@
 >    git log --oneline --all --graph
 >  
 
-
-```
- Вот список Git команд для определения родительской ветки:
-
-  Основные команды
-
-  # 1. Показать рефлог для текущей ветки (самый надежный способ)
-  git reflog show --all --date=relative | grep -i "checkout\|branch"
-
-  # 2. Показать рефлог с форматированием
-  git reflog --format='%gd %gs %s' | grep -E 'checkout|branch'
-
-  # 3. Найти первый коммит, когда ветка была создана
-  git reflog show <branch-name>
-
-  # 4. Показать информацию о создании ветки из общего рефлога
-  git reflog | grep -i "branch: Created from"
-
-  # 5. Найти точку ветвления с main
-  git merge-base --all HEAD main
-
-  # 6. Показать коммит ветвления с визуализацией
-  git log --graph --oneline --all --decorate | grep -B5 -A5 $(git rev-parse HEAD)
-
-  # 7. Сравнить с другими ветками для поиска общего предка
-  git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1
-
-  # 8. Показать все ветки, которые содержат первый коммит текущей ветки
-  git branch -r --contains $(git rev-list --max-parents=0 HEAD)
-
-  # 9. Использовать git log с фильтром по дате создания
-  git log --all --oneline --graph --decorate --source | grep -B10 $(git rev-list --max-parents=1 HEAD | tail -1)
-```
-
-```
-  Для вашей текущей ветки task/STR6-1124_export_excel:
-
-  # Самый простой способ - проверить рефлог
-  git reflog show task/STR6-1124_export_excel
-
-  # Или для текущей ветки
-  git reflog show HEAD
-
-  # Найти общий предок с main
-  git merge-base task/STR6-1124_export_excel main
-
-  # Показать информацию об этом коммите
-  git show $(git merge-base task/STR6-1124_export_excel main)
-
-  Примечание: Самый надежный метод - это git reflog, так как он показывает историю операций, включая создание веток. Если рефлог был очищен или ветка создана давно, можно использовать git merge-base для поиска общего предка с предполагаемой родительской веткой.
-```
-
-
+>[!question]-  Как переименовать ветку 
+>   в интелдж идеа 
+>   ```
+>   >1. Откройте панель Git (Alt+9 или внизу экрана)  
+>2. В разделе Local Branches найдите ветку STR6-1130-reduce-main-judge-permissions  
+>3. Кликните правой кнопкой мыши по ветке  
+>4. Выберите Rename...  
+>5. Введите новое имя: STR-1130-reduce-main-judge-permissions  
+>6. Нажмите OK
+>   ```
+>   В терминале Git: 
+> если вы находитесь  в ветке git branch -m STR-1130-reduce-main-judge-permissions
+> >Если ветка уже была запушена на удаленный репозиторий, нужно:  
+>  ```
+>  # Удалить старую ветку на remote  
+>git push origin --delete STR6-1130-reduce-main-judge-permissions  
+>  
+>  # Запушить новую ветку  
+>git push origin -u STR-1130-reduce-main-judge-permissions
+>>  # Безопасное переименование  
+>git branch -m STR-1008-reduce-main-judge-permissions  
+>  # Ошибка, если ветка STR-1008-reduce-main-judge-permissions уже существует  
+>  
+>  # Принудительное переименование  
+>git branch -M STR-1008-reduce-main-judge-permissions  
+>  # Перезапишет существующую ветку без предупреждения
+>  ```
 
 >[!question]- найти общего предка у двух веток
 >git merge-base  task/STR6-1121_judge_notification_from_main_branshe main
@@ -243,11 +288,6 @@ Hi NikitinGit! You've successfully authenticated, but GitHub does not provide sh
 >[!question]- Fork это
 > возможность безопасно менять чужой код и предлагать изменения через ПР , в отличие от клона хранится на хстинге а не локально, например на гитхаб
 
->[!question]- Откатить ветку до нужного коммита 
-git reset --hard <хэш_коммита>
-пример git reset --hard a1b2c3d 
-git push --force-with-lease
-
 >[!question]- git cherry-pick - ПРОВЕРЬ
 >Копирование не всей ветки в другую ветку а только выбранного коммита
 >git checkout main
@@ -266,8 +306,41 @@ git push --force-with-lease
 
 >[!question]- объединить несколько коммитов в один 
 >1 .git rebase -i HEAD~N
->2. В гуи идеи **Squash Commits**
->3. pick a1b2c3d Старый коммит , squash d4e5f6a Средний коммит , squash g7h8i9j Новый коммит
+>31. В гуи идеи **Squash Commits**
+>32. pick a1b2c3d Старый коммит , squash d4e5f6a Средний коммит , squash g7h8i9j Новый коммит
+
+
+>[!question]- Список Git команд для определения родительской ветки:  
+>  ```
+>Основные команды  
+>  # 1. Показать рефлог для текущей ветки (самый надежный способ)  
+>git reflog show --all --date=relative | grep -i "checkout\|branch"  
+>        # 2. Показать рефлог с форматированием  
+>git reflog --format='%gd %gs %s' | grep -E 'checkout|branch'  
+>        # 3. Найти первый коммит, когда ветка была создана  
+>git reflog show <branch-name>  
+>        # 4. Показать информацию о создании ветки из общего рефлога  
+>git reflog | grep -i "branch: Created from"  
+>        # 5. Найти точку ветвления с main  
+>git merge-base --all HEAD main  
+>  # 6. Показать коммит ветвления с визуализацией  
+>git log --graph --oneline --all --decorate | grep -B5 -A5 $(git rev-parse HEAD)  
+>  # 7. Сравнить с другими ветками для поиска общего предка  
+>git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1  
+>        # 8. Показать все ветки, которые содержат первый коммит текущей ветки  
+>git branch -r --contains $(git rev-list --max-parents=0 HEAD)  
+>  # 9. Использовать git log с фильтром по дате создания  
+>git log --all --oneline --graph --decorate --source | grep -B10 $(git rev-list --max-parents=1 HEAD | tail -1) 
+>> # Самый простой способ - проверить рефлог  
+>git reflog show task/STR6-1124_export_excel  
+>  # Или для текущей ветки  
+>git reflog show HEAD  
+>  # Найти общий предок с main  
+>git merge-base task/STR6-1124_export_excel main  
+>  # Показать информацию об этом коммите  
+>git show $(git merge-base task/STR6-1124_export_excel main)  
+>Примечание: Самый надежный метод - это git reflog, так как он показывает историю операций, включая создание веток. Если рефлог был очищен или ветка создана давно, можно использовать git merge-base для поиска общего предка с предполагаемой родительской веткой.
+>```
 
 # Что делать после `git reset --hard`?**
 

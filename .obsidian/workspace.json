@@ -6,6 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
+        "dimension": 48.688969258589516,
         "children": [
           {
             "id": "b08d3d1807ad6f39",
@@ -22,6 +23,48 @@
             }
           },
           {
+            "id": "d4c6ff52eb673124",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
+            }
+          },
+          {
+            "id": "be3b883debc6790e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "АНГЛИЙСКИЕ СЛОВА"
+            }
+          },
+          {
+            "id": "a4c66d9cc6571154",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Spring основы.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Spring основы"
+            }
+          },
+          {
             "id": "65f827a1a503a7e6",
             "type": "leaf",
             "state": {
@@ -34,54 +77,13 @@
               "icon": "lucide-file",
               "title": "MAVEN"
             }
-          },
-          {
-            "id": "be3b883debc6790e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/Задачи обучения.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Задачи обучения"
-            }
-          },
-          {
-            "id": "d4c6ff52eb673124",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "КОМАНДЫ  ДОКЕРА"
-            }
-          },
-          {
-            "id": "a4c66d9cc6571154",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/График повторений.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "График повторений"
-            }
           }
         ]
       },
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
+        "dimension": 51.311030741410484,
         "children": [
           {
             "id": "2b705153bc71c0b7",
@@ -89,12 +91,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring cloud.md",
+                "file": "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spring cloud"
+              "title": "АНГЛИЙСКИЕ СЛОВА"
             }
           },
           {
@@ -117,27 +119,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/GO LANG.md",
+                "file": "1/СТЕНДАП.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GO LANG"
+              "title": "СТЕНДАП"
             }
           },
           {
-            "id": "d9afeb806b4c43a2",
+            "id": "cbc2cbef368887e2",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.10.3"
+                "file": "1/note for repeate/JavaCore.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.10.3"
+              "icon": "lucide-file",
+              "title": "JavaCore"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -169,7 +174,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "mvn",
+                "query": "nginx",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -286,32 +291,32 @@
   },
   "active": "b08d3d1807ad6f39",
   "lastOpenFiles": [
-    "1/note for repeate/Spring cloud.md",
-    "1/note for repeate/MAVEN.md",
-    "1/note for repeate/LINUX/LINUX.md",
-    "1/note for repeate/JavaCore.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/Повторение того, что знаешь.md",
+    "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
     "1/note for repeate/Spring основы.md",
-    "1/note for repeate/GIT.md",
-    "1/График работы.md",
-    "1/Задачи обучения.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/СОБЕСЕДОВАНИЕ.md",
+    "1/note for repeate/JVM.md",
+    "1/note for repeate/JavaCore.md",
     "1/СТЕНДАП.md",
     "1/note for repeate/GO LANG.md",
-    "1/Дневник работы.md",
-    "1/note for repeate/Команды mysql.md",
-    "Стэк и куча/Статья про кучу на английском.md",
-    "1/note for repeate/Spring тесты.md",
-    "1/note for repeate/IoC Spring.md",
-    "1/note for repeate/JVM.md",
-    "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/HTTPS.md",
-    "1/note for repeate/Тестирование приложений.md",
-    "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/Миграции.md",
-    "1/note for repeate/DOCKER COMPOSE.md",
+    "1/График работы.md",
+    "1/note for repeate/MAVEN.md",
+    "1/note for repeate/NGINX.md",
+    "1/note for repeate/Spring cloud.md",
+    "1/note for repeate/LINUX/LINUX.md",
     "1/note for repeate/DOCKER.md",
-    "1/note for repeate/Шаблоны проектирования.md",
+    "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
+    "1/note for repeate/IntelliJ IDEA.md",
+    "1/note for repeate/Повторение того, что знаешь.md",
+    "1/note for repeate/GIT.md",
+    "1/Задачи обучения.md",
+    "1/Дневник работы.md",
+    "1/note for repeate/Kotlin.md",
+    "1/note for repeate/IoC Spring.md",
+    "1/note for repeate/общие знания IT.md",
+    "nginx.md",
+    "VPS/nginx.md",
+    "1/note for repeate/HTTPS.md",
     "Untitled 1.base",
     "Untitled.base",
     "test_write.txt",

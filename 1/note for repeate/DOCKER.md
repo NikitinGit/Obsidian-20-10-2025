@@ -1,4 +1,10 @@
 
+ > [!question]- посмотреть логи содержаший искомый текст 
+ > docker logs 9e4 | grep YooKassaService
+ 
+> [!question]-  Найти последние 3 записи на искомый текст 
+>  **Ответ:**  docker logs 561 | grep -A 3 YooKassaService
+
 >[!question]- Подключиться к контейнеру
 >docker exec -it f28 bash - запускает внутри контейнера интерактивную оболочку
 >bash - после чего можно запускать команды линукс, bash shell

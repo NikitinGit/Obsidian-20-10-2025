@@ -1,3 +1,6 @@
+
+# IntelliJ IDEA
+
 1. зайти в мавен и нажать clean compile и отключить тесты 
 2. file/ invalidate cashes
 3. В мавен гуи первая кнопка Sync all maven project
@@ -13,4 +16,6 @@
 >Или **Lombok: AllArgsConstructor / NoArgsConstructor RequiredArgsConstructor**, если используется Lombok. 
 >Через контекстное меню ПКМ Generte - constructor
 
+>[!question]- поменять настройки кодировки на утф8 
+>Settings - > Editor ->  File Encodings 
 
