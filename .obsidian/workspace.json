@@ -28,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+                "file": "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
+              "title": "АНГЛИЙСКИЕ СЛОВА"
             }
           },
           {
@@ -78,7 +78,8 @@
               "title": "MAVEN"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -289,20 +290,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b08d3d1807ad6f39",
+  "active": "a4c66d9cc6571154",
   "lastOpenFiles": [
+    "1/График работы.md",
     "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/Spring основы.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Spring основы.md",
+    "1/note for repeate/Spring cloud.md",
+    "1/note for repeate/JavaCore.md",
     "1/СОБЕСЕДОВАНИЕ.md",
     "1/note for repeate/JVM.md",
-    "1/note for repeate/JavaCore.md",
     "1/СТЕНДАП.md",
     "1/note for repeate/GO LANG.md",
-    "1/График работы.md",
     "1/note for repeate/MAVEN.md",
     "1/note for repeate/NGINX.md",
-    "1/note for repeate/Spring cloud.md",
     "1/note for repeate/LINUX/LINUX.md",
     "1/note for repeate/DOCKER.md",
     "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",

@@ -5,12 +5,15 @@ https://topjava.ru/blog/what-is-the-jre
 3. [x] что хранится в куче 
 4. [x] как увеличить кучу
 5. [x] преобразjвание через (Myclass) может ли быть вверходящим - да , но в таком случае это преобразвание излишне 
-6. [ ] Методы object - допиши и  посмотри в коде 
-7. [ ] Методы рефлексии
-8. [ ] как Thread.currentThread() связан с Object
-9. [ ] мониторинг программ 
-10. [ ] Посмотри лямбда в стрим апи линекд хеш мап 
-11. [ ] Почему при создании хешмап сбивается сортировка   
+6. [x] Методы object - допиши 11.49 - 12/05
+7. [ ] Зачем нежен hashCode() и как он создается, может ли он измениться -ДОПИШИ
+8. [x] instanceof зачем пишут в equals переопределиние метода 
+9. [ ] Методы object - посмотри в коде 
+10. [ ] Методы рефлексии
+11. [ ] как Thread.currentThread() связан с Object
+12. [ ] мониторинг программ 
+13. [ ] Посмотри лямбда в стрим апи линекд хеш мап 
+14. [ ] Почему при создании хешмап сбивается сортировка   
 
 # BASE
 
@@ -21,21 +24,84 @@ https://topjava.ru/blog/what-is-the-jre
 >```
 >public final void wait() throws InterruptedException - Останавливает текущий поток до вызова `notify()` / `notifyAll()`. 
 >```
-> equals ()- соответствие по ссылке
-> toString() - представление в строковом виде
-> notify()
-> notifyAll()
-> hashCode()
+> ```
+> public boolean equals(Object obj) - Сравнивает два объекта **на логическое равенство**, не на одинаковость ссылок. 
+> ```
+> ```
+> public String toString() - представление в строковом виде
+> ```
+> ```
+> public int hashCode() - Возвращает хэш-код объекта. 
+> ```
+> ```
+> public final void wait(long timeout) throws InterruptedException
+> public final void wait(long timeout, int nanos) throws InterruptedException
+>  перегрузка метода с таймаутом 
+> ```
+> ```
+> public final void notify() - Пробуждает один ожидающий поток. 
+> ```
+> ```
+> public final void notifyAll() - Пробуждает все ожидающие потоки. 
+> ```
+> Protected методы (доступны в наследниках) 
+> ```
+> protected Object clone() throws CloneNotSupportedException - Создаёт копию объекта (поверхностное клонирование). 
+> ```
+> ```
+>protected void finalize() throws Throwable (устарел) - Вызывался перед удалением объекта GC.  
+> С JDK 9 помечен как deprecated → нельзя применять.
+> ```
+
+>[!question]- меняет ли объект  рдителя его кастомизация к наследнику 
+> Нет , пример 
+> ```
+> PrivateOverride po = new Derived(); 
+> Derived test = (Derived)po; 
+> System.out.println("PrivateOverride test equals Derived test1; " + test.equals(po));
+> output; true
+> ```
+
+>[!question]- Какая кастомизация разрешается а какая нет 
+> Разрешается 
+> ```
+> PrivateOverride po = new Derived(); 
+> Derived test = (Derived)po; 
+> ```
+> Не разрешается 
+> ```
+> PrivateOverride po = new PrivateOverride(); 
+> Derived test = (Derived)po; 
+> ```
+> Привести объект можно **только к его реальному типу или одному из его родителей**. 
 
 >[!question]- преоброзование через (Myclass) может ли быть вверходящим (от предка к родителю)
 > Да , но в таком случае это преобразвание излишне 
+> ```
+> PrivateOverride po = new PrivateOverride();
+> Derived derived = new Derived();
+> PrivateOverride test = (PrivateOverride)derived;
+> ```
 
 >[!question]- проверить типа  объекта 
 >if (bean instanceof MyBean) 
 
 >[!question]- полиморфизм
->способность базового класса принимать  свою версию в производных классах
->скрытые  или final  поля базового класса не переопределяются в наследниках 
+>способность базового класса принимать  сформу своих наследников, но не наоборот
+>например так нельзя 
+>```
+>PrivateOverride po = new PrivateOverride();
+>Derived test1 = (Derived) po; //ERROR
+>output; Exception in thread "main" java.lang.ClassCastException: class com.example.testlinux.polymorphism.PrivateOverride cannot be cast to class com.example.testlinux.polymorphism.Derived  
+>```
+>но так можно
+>```
+> Derived derived = new Derived();
+> PrivateOverride test = (PrivateOverride)derived;  
+> Derived test1 = (Derived) test;
+>```
+> потому что даже не смотря на преоброзование (PrivateOverride) test все равно принимает форму  Derived 
+>Скрытые  или final  поля базового класса не переопределяются в наследниках 
 
 >[!question]- сколько публичных классов может быть в одном файле 
 >один
@@ -49,7 +115,6 @@ https://topjava.ru/blog/what-is-the-jre
 >  float - 32 бит ~ ±3.4 × 10³⁸
 > long - 64 бит  −9 223 372 036 854 775 808 … 9 223 372 036 854 775 807 
 >  double   - 64 бит  ~ ±1.7 × 10³⁰⁸ 
-
 
 >[!question]- JIT 
 >JIT - just in time компиляция байткода при запуске программы - его горячих мест (hot spots) - которые часто используются
