@@ -28,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+                "file": "1/note for repeate/Команды mysql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
+              "title": "Команды mysql"
             }
           },
           {
@@ -42,12 +42,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
+                "file": "1/График работы.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "АНГЛИЙСКИЕ СЛОВА"
+              "title": "График работы"
             }
           },
           {
@@ -175,7 +175,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "nginx",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -196,7 +196,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -290,34 +291,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d4c6ff52eb673124",
+  "active": "a28be4470479d606",
   "lastOpenFiles": [
+    "1/note for repeate/Команды mysql.md",
     "1/СТЕНДАП.md",
-    "1/КУБИК РУБИК/Необходимые условия.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Миграции.md",
+    "1/note for repeate/Повторение того, что знаешь.md",
     "1/График работы.md",
     "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/Spring основы.md",
     "1/note for repeate/Spring cloud.md",
     "1/note for repeate/JavaCore.md",
-    "1/СОБЕСЕДОВАНИЕ.md",
+    "1/note for repeate/RabbitMQ.md",
+    "1/note for repeate/DOCKER COMPOSE.md",
+    "1/note for repeate/DOCKER.md",
+    "1/note for repeate/Шаблоны проектирования.md",
+    "1/note for repeate/Spring тесты.md",
+    "1/note for repeate/IoC Spring.md",
     "1/note for repeate/JVM.md",
     "1/note for repeate/GO LANG.md",
-    "1/note for repeate/MAVEN.md",
     "1/note for repeate/NGINX.md",
-    "1/note for repeate/LINUX/LINUX.md",
-    "1/note for repeate/DOCKER.md",
-    "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
-    "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/Повторение того, что знаешь.md",
-    "1/note for repeate/GIT.md",
-    "1/Задачи обучения.md",
+    "1/note for repeate/Spring основы.md",
+    "1/КУБИК РУБИК/Необходимые условия.md",
     "1/Дневник работы.md",
-    "1/note for repeate/Kotlin.md",
-    "1/note for repeate/IoC Spring.md",
-    "1/note for repeate/общие знания IT.md",
-    "nginx.md",
-    "VPS/nginx.md",
+    "1/Задачи обучения.md",
+    "1/СОБЕСЕДОВАНИЕ.md",
+    "1/note for repeate/MAVEN.md",
+    "1/note for repeate/LINUX/LINUX.md",
+    "ДОКЕР/КОМАНДЫ  ДОКЕРА.md",
     "Untitled 1.base",
     "Untitled.base",
     "test_write.txt",

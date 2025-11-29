@@ -1,8 +1,24 @@
 # MYSQL
 
+>[!question]- Создать дамп БД
+> mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_test > /tmp/strikerstat_test_dump.sql 
+>  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_test > /tmp/strikerstat_test_dump.sql
+
+>[!question]- Перенести данные с препродовой БД в локальную БД 
+>Удаление данных 
+>docker exec mysql_db mysql -uroot -p'gtngtngtnN5' -e "DROP DATABASE IF EXISTS co34818_sign; CREATE DATABASE co34818_sign;" 
+>Импорт дампа в локальную БД
+> cat /tmp/strikerstat_test_dump.sql | docker exec -i mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign
+> Исправление collation для MySQL 5.7 
+>  sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_test_dump.sql > /tmp/strikerstat_test_dump_fixed.sql
+>  Проверка количества таблиц в БД
+>  docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
+>  Удаление временных дампов 
+>   rm -f /tmp/strikerstat_test_dump.sql /tmp/strikerstat_test_dump_fixed.sql && echo "Временные файлы удалены" 
+   
+
 >[!question]- подключиться по ssh  к тестингу а потом к mysql
 >mysql -ureadonly_user -piek7IequEiJ2oLac localhost strikerstat_test ? 
-
 
 >[!question]- подключиться к БД
 >mysql -ureadonly_user -piek7IequEiJ2oLac -h188.225.76.97 strikerstat
@@ -27,7 +43,7 @@ FLUSH PRIVILEGES;
 >[!question]- Посмотреть созданных юзеров и их хосты
 >SELECT user, host FROM mysql.user;
 
->[!question]- удалить пользователя бд
+>[!question]- Удалить пользователя бд
 >DROP USER 'your_username'@'localhost'; 
 
 >[!question]- Число записей с данным условием 
@@ -94,7 +110,7 @@ DROP FOREIGN KEY `fk_battles_weight_category`,
 DROP INDEX `idx_battles_weight_category`,
 DROP COLUMN `weight_category_id`;
 
->[!question]- Как седенить 2 поля в одну строку
+>[!question]- Как соединить 2 поля в одну строку
 > SELECT CONCAT(' ' + 'TIM' + 'tom')
 > `SELECT` `CONCAT_WS(``' '``,` `'Tom'``,` `'Smith'``,` `'Age:'``, 34)`
 
