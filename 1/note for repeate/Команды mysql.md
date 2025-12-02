@@ -1,21 +1,36 @@
 # MYSQL
 
->[!question]- Создать дамп БД
+>[!question]- Создать дамп БД strikerstat_test
 > mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_test > /tmp/strikerstat_test_dump.sql 
+> или
 >  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_test > /tmp/strikerstat_test_dump.sql
 
+>[!question]- Создать дамп БД strikerstat_preprod
+> mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_preprod> /tmp/strikerstat_preprod_dump.sql 
+>  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
+
 >[!question]- Перенести данные с препродовой БД в локальную БД 
->Удаление данных 
+>создаеам дамп и скачиваем 
+>```
+>mariadb-dump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' \
+> --skip-ssl \
+>--no-tablespaces \
+>strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
+>```
+>Исправление кодирвки
+>sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
+>
+>Пересоздание БД 
 >docker exec mysql_db mysql -uroot -p'gtngtngtnN5' -e "DROP DATABASE IF EXISTS co34818_sign; CREATE DATABASE co34818_sign;" 
->Импорт дампа в локальную БД
-> cat /tmp/strikerstat_test_dump.sql | docker exec -i mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign
-> Исправление collation для MySQL 5.7 
->  sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_test_dump.sql > /tmp/strikerstat_test_dump_fixed.sql
->  Проверка количества таблиц в БД
->  docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
+> Импортируем ИСПРАВЛЕННЫЙ дамп
+  cat /tmp/strikerstat_preprod_dump_fixed.sql | docker exec -i mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign 
+>   Проверяем количество таблиц (не обязательно)
+>    docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
 >  Удаление временных дампов 
->   rm -f /tmp/strikerstat_test_dump.sql /tmp/strikerstat_test_dump_fixed.sql && echo "Временные файлы удалены" 
+>    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
    
+>[!question]-  Исправление collation для MySQL 5.7 
+>  sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
 
 >[!question]- подключиться по ssh  к тестингу а потом к mysql
 >mysql -ureadonly_user -piek7IequEiJ2oLac localhost strikerstat_test ? 
