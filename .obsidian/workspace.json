@@ -78,7 +78,8 @@
               "title": "MAVEN"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -289,12 +290,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b08d3d1807ad6f39",
+  "active": "d4c6ff52eb673124",
   "lastOpenFiles": [
-    "1/График работы.md",
-    "1/note for repeate/Spring основы.md",
-    "1/note for repeate/Команды mysql.md",
     "1/СТЕНДАП.md",
+    "1/График работы.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/note for repeate/Spring основы.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/HTTPS.md",
     "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
