@@ -27,6 +27,26 @@ https://topjava.ru/blog/what-is-the-jre
 25. [ ] Почему при создании хешмап сбивается сортировка   
 
 # BASE
+>[!question]- запустить отдельный класс в программе 
+>cd /home/igor/IdeaProjects/TestLinux
+>mvn exec:java -Dexec.mainClass="com.example.testlinux.blind.seal.BlindSeal"
+>чтобы обновить приложение надо сделать mvn clean compile - при этом надо находится в папек где расположен .pom
+
+>[!question]- способы читать ввод из командной строки 
+> Scanner scanner = new Scanner(System.in); 
+> String input = scanner.nextLine();
+> char inputChar = input.charAt(0); 
+> без ентер - raw mode
+> ```
+> try (Terminal terminal = TerminalBuilder.builder().system(true).build())
+> terminal.enterRawMode();
+> NonBlockingReader reader = terminal.reader();  
+> terminal.writer().println("Нажмите Backspace для выхода\n");  
+> terminal.flush();
+> ```
+
+>[!question]- Set.of() когда вызывает исключения 
+>при дублях если есть 
 
 >[!question]- методы Object
 >```

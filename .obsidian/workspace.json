@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+                "file": "1/note for repeate/JavaCore.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
+              "title": "JavaCore"
             }
           },
           {
@@ -78,8 +78,7 @@
               "title": "MAVEN"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -290,21 +289,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "be3b883debc6790e",
+  "active": "a28be4470479d606",
   "lastOpenFiles": [
+    "1/note for repeate/JavaCore.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/График работы.md",
+    "1/note for repeate/Команды mysql.md",
     "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
+    "1/СТЕНДАП.md",
     "1/note for repeate/Шаблоны проектирования.md",
     "1/note for repeate/Микросервисы.md",
     "1/note for repeate/Тестирование приложений.md",
-    "1/note for repeate/Команды mysql.md",
-    "1/График работы.md",
     "1/note for repeate/Spring основы.md",
-    "1/note for repeate/JavaCore.md",
     "1/note for repeate/общие знания IT.md",
     "1/note for repeate/HTTPS.md",
     "1/note for repeate/nixOS.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/IoC Spring.md",
     "1/note for repeate/Повторение того, что знаешь.md",
     "1/note for repeate/Spring cloud.md",
