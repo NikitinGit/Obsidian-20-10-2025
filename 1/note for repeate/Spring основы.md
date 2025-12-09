@@ -4,14 +4,20 @@
 3. [x] напиши прмер приложения с веб запросами , без @SpringBootApplication 
 4. [x] может ли @Configuration класс просканировать бины в других пакетах с помощью @ComponentScan - да
 5. [x] в каком порядке инициализируются бины - ДОПИШИ здесь и пример  с инициализацией и логами  18.05 - 19.41
-6. [ ] возможно ли подлкючиться к бд без application.properties
-7. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
-8. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
-9. [ ] AOP в Spring 
-10. [ ] как создается изолирванный конитекст 
-11. [ ] hikary poll 
-12. [ ] Подключения к БД:  credentials, pool settings
-13. [ ] елк стек, актуатор , графана 
+6. [ ] чем отличается @Bean  созданный внутри @Configuration класса от просто внутри класса ?- ДОПИШИ пример из чатджпт 
+7. [ ] что такое CGLIB 
+8. [ ] возможно ли подлкючиться к бд без application.properties
+9. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
+10. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
+11. [ ] AOP в Spring 
+12. [ ] как создается изолирванный конитекст 
+13. [ ] hikary poll 
+14. [ ] Подключения к БД:  credentials, pool settings
+15. [ ] елк стек, актуатор , графана 
+
+>[!question]- `@Bean` это
+> своего рода фабричный метод - ставится только над методами 
+> без @Configuration над классом в котором находится этот бин Методы @Bean НЕ ПРОКСИРУЮТСЯ через CGLIB - Нет гарантии что будет всегда создаваться синглтон - начиная с версии Spring Boot 3 указывать @Configuration  уже не обязательно ?
 
 >[!question]-  Порядок инициализации бина 
 > Читые бины инициализируются позже тех, в которые они внедренны 
