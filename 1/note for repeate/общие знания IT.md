@@ -41,3 +41,40 @@
 >Ваш VPS → NAT хостера → Интернет
 >Хостер помещает ваши серверы в приватную сеть, а в Интернет они выходят через общий шлюз. 
 
+
+
+Подходы в индустрии
+
+  1. Google, Netflix, Amazon: Contract-Based + Fail-Fast
+
+  Философия: "Не маскируйте проблемы защитой, пусть падает рано и громко"
+
+  // НЕ добавляют nullsFirst(), потому что:
+  // 1. Запрос гарантирует NOT NULL
+  // 2. Если кто-то нарушит контракт - тест упадет сразу
+  // 3. NPE - это правильный сигнал о нарушении инварианта
+
+  // Вместо этого добавляют:
+  @Contract("Contract: findFightReadyBattles MUST return battles with non-null eventDate")
+
+  Преимущества:
+  - Не скрывает баги
+  - Меньше неявного поведения
+  - NPE сразу показывает место проблемы
+
+  2. Microsoft, Facebook: Defensive Programming
+
+  Философия: "Production не должен падать, даже если контракт нарушен"
+
+  // Добавляют nullsFirst() даже если "не нужно"
+  .sorted(Comparator.comparing(
+      BaseBattleDto::getBattleDate,
+      Comparator.nullsFirst(Comparator.naturalOrder())
+  ))
+
+  Преимущества:
+  - Система стабильнее
+  - Защита от будущих изменений
+  - Graceful degradation
+
+  3. Современный подход (2024-2025): Tests + Static Analysis
