@@ -70,6 +70,13 @@
 >Reflog в IntelliJ обычно находится в той же панели Git Log, просто нужно переключиться на соответствующую вкладку.
 >  ```
 
+>[!question]-  Загрузить демо проект с чужого гитхаба и сохранить его в своем
+> git remote remove origin 
+> gh repo create rabbitmq --private --source=. --push
+> git add complete/ASYNC_EXAMPLES.md complete/src/main/java/com/example/messagingrabbitmq/{AsyncRunnerWithAsyncTemplate,AsyncRunnerWithExecutor,FireAndForgetRunner,Receiver,Runner,RunnerAsync}.java  
+> git push -u origin main    
+> 
+  
 >[!question]-  GitHub CLI (gh) это
 > официальная утилита GitHub для работы с репозиториями из командной строки.
 > - Позволяет создавать репозитории на GitHub прямо из терминала
@@ -108,7 +115,7 @@
   cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt && for dir in EurekaServer OrderService OrderService2 UserService; do (cd
   "$dir" && git init && git add . && git commit -m "Initial commit" && gh repo create "$dir" --private --source=. --push); done
 
->[!question]- аборт мерджа при решенеи конликтов 
+>[!question]- аборт мерджа при решении конфликтов 
 >  git reset --hard HEAD
 >  git merge --abort
 

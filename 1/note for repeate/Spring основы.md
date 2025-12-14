@@ -6,16 +6,19 @@
 5. [x] в каком порядке инициализируются бины - ДОПИШИ здесь и пример  с инициализацией и логами  18.05 - 19.41
 6. [x] чем отличается @Bean  созданный внутри @Configuration класса от просто внутри класса ?- ДОПИШИ пример из чатджпт 
 7. [x] что такое CGLIB 
-8. [ ] КЭШ первого и второго уровня
-9. [ ] возможно ли подлкючиться к бд без application.properties
-10. [ ] как запустить не ddl миграции в спринг - посмотри в MigrationService.java 
-11. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
-12. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
-13. [ ] AOP в Spring 
-14. [ ] как создается изолирванный конитекст 
-15. [ ] hikary poll 
-16. [ ] Подключения к БД:  credentials, pool settings
-17. [ ] елк стек, актуатор , графана 
+8. [ ] какие аннотации надо знать на собеседовании 
+9. [ ] @Profile
+10. [ ] @ConditionProperty
+11. [ ] КЭШ первого и второго уровня
+12. [ ] возможно ли подлкючиться к бд без application.properties
+13. [ ] как запустить не ddl миграции в спринг - посмотри в MigrationService.java 
+14. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
+15. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
+16. [ ] AOP в Spring 
+17. [ ] как создается изолирванный конитекст 
+18. [ ] hikary poll 
+19. [ ] Подключения к БД:  credentials, pool settings
+20. [ ] елк стек, актуатор , графана 
 
 >[!question]- `CGLIB` это
 >Code Generation Library
