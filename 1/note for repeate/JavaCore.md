@@ -148,7 +148,7 @@ https://topjava.ru/blog/what-is-the-jre
 >if (bean instanceof MyBean) 
 
 >[!question]- полиморфизм
->способность базового класса принимать  сформу своих наследников, но не наоборот
+>способность базового класса принимать  форму своих наследников, но не наоборот
 >например так нельзя 
 >```
 >PrivateOverride po = new PrivateOverride();
