@@ -34,12 +34,12 @@ https://topjava.ru/blog/what-is-the-jre
 >[!question]- while(test()); может быть ?
 >Да
 
->[!question]- запустить отдельный класс в программе 
+>[!question]- запустить отдельный класс в программе в терминале
 >cd /home/igor/IdeaProjects/TestLinux
 >mvn exec:java -Dexec.mainClass="com.example.testlinux.blind.seal.BlindSeal"
 >чтобы обновить приложение надо сделать mvn clean compile - при этом надо находится в папек где расположен .pom
 
->[!question]- способы читать ввод из командной строки 
+>[!question]- Классы для интерактивного приложения - способы читать ввод из командной строки 
 > Scanner scanner = new Scanner(System.in); 
 > String input = scanner.nextLine();
 > char inputChar = input.charAt(0); 
@@ -144,7 +144,7 @@ https://topjava.ru/blog/what-is-the-jre
 > PrivateOverride test = (PrivateOverride)derived;
 > ```
 
->[!question]- проверить типа  объекта 
+>[!question]-  Как проверить тип  объекта 
 >if (bean instanceof MyBean) 
 
 >[!question]- полиморфизм
@@ -216,7 +216,7 @@ https://topjava.ru/blog/what-is-the-jre
  >При рекурсии 
  
   >[!question]- хвостовая рекурсия 
- > не ждет вызвоа осталдьных методов
+ > Не ждет вызова остальных методов
  
    >[!question]- увлечить стек 
 java -Xss512k TestLinuxApplication - 512  кб
