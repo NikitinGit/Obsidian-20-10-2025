@@ -1,4 +1,7 @@
 # MYSQL
+1. [ ] Как удалить таблицу если в ней есть связи
+2. [ ] Отчистить таблицу 
+3. [ ] Что такое UNION ALL и его типы 
 
 >[!question]- Создать дамп БД strikerstat_test
 > mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_test > /tmp/strikerstat_test_dump.sql 
@@ -28,7 +31,13 @@
 >    docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
 >  Удаление временных дампов 
 >    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
-   
+
+>[!question]-  Переименовать таблицу 
+> RENAME TABLE judges_scores_new TO judges_scores; 
+
+>[!question]-  Удалить таблицу 
+> DROP TABLE IF EXISTS judges_scores;
+
 >[!question]-  Исправление collation для MySQL 5.7 
 >  sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
 

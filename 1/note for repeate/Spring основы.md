@@ -20,9 +20,13 @@
 19. [ ] Подключения к БД:  credentials, pool settings
 20. [ ] елк стек, актуатор , графана 
 
+>[!question]- Когда происходит не явный inner join при выборке 
+>```
+>@Query("SELECT new com.strikerstat.webapp.dto.olympic_events.CityDto(c.country, c.region) "
+>```
+
 >[!question]- какой метод срабатывает после инициализации всех бинов
 >run , чтобы его использоватжь надо переопределить его в классе  помеченном @component и реализовать интерефейс ComandLineRunner
-
 
 >[!question]- `CGLIB` это
 >Code Generation Library
