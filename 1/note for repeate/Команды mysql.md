@@ -3,15 +3,6 @@
 2. [ ] Отчистить таблицу 
 3. [ ] Что такое UNION ALL и его типы 
 
->[!question]- Создать дамп БД strikerstat_test
-> mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_test > /tmp/strikerstat_test_dump.sql 
-> или
->  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_test > /tmp/strikerstat_test_dump.sql
-
->[!question]- Создать дамп БД strikerstat_preprod
-> mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_preprod> /tmp/strikerstat_preprod_dump.sql 
->  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
-
 >[!question]- Перенести данные с препродовой БД в локальную БД 
 >создаеам дамп и скачиваем 
 >```
@@ -21,19 +12,45 @@
 >strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 >```
 >Исправление кодирвки
+>```
 >sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
+>```
 >
 >Пересоздание БД 
->docker exec mysql_db mysql -uroot -p'gtngtngtnN5' -e "DROP DATABASE IF EXISTS co34818_sign; CREATE DATABASE co34818_sign;" 
-> Импортируем ИСПРАВЛЕННЫЙ дамп
-  cat /tmp/strikerstat_preprod_dump_fixed.sql | docker exec -i mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign 
+>```
+>docker exec mysql_db mysql -uroot -p'gtngtngtnN5' -e "DROP DATABASE IF EXISTS co34818_sign; CREATE DATABASE co34818_sign;"
+>```
+> Импортируем ИСПРАВЛЕННЫЙ дамп 
+> ```
+> cat /tmp/strikerstat_preprod_dump_fixed.sql | docker exec -i mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign
+> ``` 
 >   Проверяем количество таблиц (не обязательно)
+>   ```
 >    docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
+>   ```
 >  Удаление временных дампов 
+>    ```
 >    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
+>    ```
+
+>[!question]- Создать дамп БД strikerstat_test
+> mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_test > /tmp/strikerstat_test_dump.sql 
+> или
+>  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_test > /tmp/strikerstat_test_dump.sql
+
+>[!question]- Создать дамп БД strikerstat_preprod
+> mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_preprod> /tmp/strikerstat_preprod_dump.sql 
+>  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 
 >[!question]-  Переименовать таблицу 
 > RENAME TABLE judges_scores_new TO judges_scores; 
+
+>[!question]-  соритровка таблицы по числу записей с одинаковым значением поля event_id
+>```
+>SELECT event_id, COUNT(*) as records_count
+>FROM judges_round_scores GROUP BY event_id ORDER BY records_count ASC;
+>```
+
 
 >[!question]-  Удалить таблицу 
 > DROP TABLE IF EXISTS judges_scores;

@@ -2,7 +2,7 @@
 установка сертифката 
 https://sky.pro/wiki/html/kak-nastroit-https-na-vashem-sajte/ 
 
->[!question]- каак сделать так чтобы он запускаался после ребутва автоматически 
+>[!question]- как сделать так чтобы он запускался после ребутва автоматически 
 > sudo systemctl enable nginx.service
 
 

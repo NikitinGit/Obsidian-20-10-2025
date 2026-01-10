@@ -19,3 +19,11 @@
 >[!question]- поменять настройки кодировки на утф8 
 >Settings - > Editor ->  File Encodings 
 
+   >[!question]- увлечить стек в джава
+java -Xss512k TestLinuxApplication - 512  кб
+ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xss512k"  
+ **IntelliJ IDEA** →  
+`Run > Edit Configurations > VM options`  
+→ впиши `-Xss2m`
+java -Xss1m TestLinuxApplication - с Мб
+
