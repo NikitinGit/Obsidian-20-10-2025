@@ -328,8 +328,6 @@ java -Xss1m TestLinuxApplication - с Мб
 >[!question]- Optional это 
 контейнер который  может быть пустым
 
-# функциональные методы интерфейсы
-
 
 
 
