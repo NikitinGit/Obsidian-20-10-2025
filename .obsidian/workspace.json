@@ -9,6 +9,20 @@
         "dimension": 43.76130198915009,
         "children": [
           {
+            "id": "bf5234dc59216150",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Команды mysql.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Команды mysql"
+            }
+          },
+          {
             "id": "77727c41c33da3b0",
             "type": "leaf",
             "state": {
@@ -42,12 +56,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring cloud.md",
+                "file": "1/note for repeate/Spring основы.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spring cloud"
+              "title": "Spring основы"
             }
           },
           {
@@ -77,20 +91,6 @@
               "icon": "lucide-file",
               "title": "LINUX"
             }
-          },
-          {
-            "id": "bf5234dc59216150",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/Spring основы.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Spring основы"
-            }
           }
         ],
         "currentTab": 1
@@ -101,35 +101,7 @@
         "dimension": 56.23869801084991,
         "children": [
           {
-            "id": "5ed171db59d8a545",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/КУБИК РУБИК/Задачи на день по кубику.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Задачи на день по кубику"
-            }
-          },
-          {
-            "id": "b103916aa73d53b5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/График работы.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "График работы"
-            }
-          },
-          {
-            "id": "2b705153bc71c0b7",
+            "id": "8a96f6bafc90fef5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -143,76 +115,35 @@
             }
           },
           {
-            "id": "a28be4470479d606",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/Spring основы.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Spring основы"
-            }
-          },
-          {
-            "id": "cbc2cbef368887e2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/JavaCore.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "JavaCore"
-            }
-          },
-          {
-            "id": "ce52170e7f317a43",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/IntelliJ IDEA.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "IntelliJ IDEA"
-            }
-          },
-          {
-            "id": "8a96f6bafc90fef5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "АНГЛИЙСКИЕ СЛОВА"
-            }
-          },
-          {
             "id": "62b1af40b626642b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/СТЕНДАП.md",
+                "file": "1/Сайт Александра.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "СТЕНДАП"
+              "title": "Сайт Александра"
+            }
+          },
+          {
+            "id": "040227c563d671d2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/КУБИК РУБИК/Задачи на день по кубику.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Задачи на день по кубику"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -359,41 +290,41 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b08d3d1807ad6f39",
+  "active": "040227c563d671d2",
   "lastOpenFiles": [
-    "1/График работы.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
-    "1/Сайт Александра.md",
-    "1/note for repeate/Spring основы.md",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/RabbitMQ.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/общие знания IT.md",
-    "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/JavaCore.md",
-    "1/ДЕДЛОК.md",
-    "1/note for repeate/NGINX.md",
-    "1/note for repeate/ELK stack.md",
-    "1/note for repeate/Spring cloud.md",
-    "1/note for repeate/Повторение того, что знаешь.md",
-    "1/Задачи обучения.md",
-    "Pasted image 20260109165447.png",
-    "1/note for repeate/JVM.md",
-    "1/note for repeate/Stream api.md",
-    "1/note for repeate/Команды mysql.md",
-    "1/note for repeate/LINUX/LINUX.md",
     "1/КУБИК РУБИК/Видоизменения.md",
     "1/КУБИК РУБИК/Необходимые условия.md",
     "1/КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
-    "1/note for repeate/DOCKER COMPOSE.md",
-    "1/note for repeate/MAVEN.md",
+    "1/Сайт Александра.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/АНГЛИЙСКИЕ СЛОВА.md",
+    "1/ДЕДЛОК.md",
+    "1/СТЕНДАП.md",
+    "1/График работы.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/Дневник работы.md",
+    "1/note for repeate/Spring основы.md",
+    "1/note for repeate/Spring cloud.md",
+    "1/note for repeate/GIT.md",
+    "1/note for repeate/IntelliJ IDEA.md",
+    "1/note for repeate/JavaCore.md",
+    "1/note for repeate/общие знания IT.md",
+    "VPS/SSH.md",
+    "testFolder/demo canvas.canvas",
+    "BEGIN/Nginx Основы.md",
+    "BEGIN/Вопросы по работе.md",
+    "BEGIN/свое приложенгие на java например.md",
+    "1/note for repeate/LINUX/LINUX.md",
+    "DNS.md",
+    "BEGIN/SSH.md",
+    "VPS/веб серверы.md",
+    "Транзакции/журнал и логи.md",
+    "Pasted image 20260109165447.png",
     "Untitled 1.base",
     "Untitled.base",
     "test_write.txt",
     "a-bootiful-client.properties",
     "Obsidian-Vault-MAIN",
-    "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "SQL",
     "1/note for repeate",
