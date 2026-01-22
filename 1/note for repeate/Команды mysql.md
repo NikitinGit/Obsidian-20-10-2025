@@ -56,6 +56,8 @@
 > DROP TABLE IF EXISTS judges_scores;
 
 >[!question]-  Исправление collation для MySQL 5.7 
+>Collation в MySQL — это **набор** правил сравнения и сортировки строк для конкретной кодировки 
+>Character set определяет, какие символы можно хранить (например, utf8mb4), а collation — как эти символы сравниваются и сортируются.
 >  sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
 
 >[!question]- подключиться по ssh  к тестингу а потом к mysql
