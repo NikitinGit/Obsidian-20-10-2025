@@ -7,7 +7,7 @@
 6. [x] чем отличается @Bean  созданный внутри @Configuration класса от просто внутри класса ?- ДОПИШИ пример из чатджпт 
 7. [x] что такое CGLIB 
 8. [x] Можно ли использовать @Entity как класс с полями , а действия над ними (бизнес логику) проводить в другом классе который от него наследуется - нормальный ли это подход ? Или обычно методы бизнес логики назодятся в том же @Entity  классе ? - нет
-9. [ ] Попробуй jOOQ https://www.jooq.org/ 
+9. [x] Попробуй jOOQ https://www.jooq.org/ 
 10. [ ] Когда происходит не явный inner join при выборке - допиши возникает ли если c.country это не сущность а int 
 11. [ ] Проблемы с Hibernate прокси:- как зайбернейт создает проки объект в которм equals | hashcode не работает - 
 12. [ ] Безопасно ли при выборке делать сравнение с объектом сущостью или лучше с id - List\<JudgeScore> findAllByBattleAndJudge(Battle battle, Judge judge); \-  когда могут возникнуть проблеммы ?
@@ -152,7 +152,7 @@ public class RussianGreetingService implements GreetingService {
 >линивая инициализация бина при первом обращение к нему во время выполнения проги 
 # Остальное 
 
->[!question]- добавить jpa
+>[!question]- добавить jpa в maven .pom
 >```xml
 ><dependency>
 >    <groupId>org.springframework.boot</groupId>
@@ -165,6 +165,225 @@ public class RussianGreetingService implements GreetingService {
 >    <scope>runtime</scope>
 ></dependency>
 >```
+
+>[!question]- jOOQ - что это такое?
+> **jOOQ** = **Java Object Oriented Querying** (Объектно-ориентированные запросы на Java)
+>
+> **Что это:**
+> - Database-first библиотека для построения типобезопасных SQL запросов через Java код
+> - Генерирует Java классы на основе **реальной схемы БД** (не Entity классов!)
+> - Предоставляет **ПОЛНУЮ** типобезопасность на этапе компиляции
+> - Fluent API близкий к SQL
+>
+> **Ключевое отличие от QueryDSL:**
+> - **QueryDSL**: Code-first (генерирует Q-классы из Java Entity)
+> - **jOOQ**: Database-first (генерирует классы из таблиц БД)
+>
+> **Настройка Maven:**
+> ```xml
+> <!-- Зависимости -->
+> <dependency>
+>     <groupId>org.springframework.boot</groupId>
+>     <artifactId>spring-boot-starter-jooq</artifactId>
+> </dependency>
+> <dependency>
+>     <groupId>org.jooq</groupId>
+>     <artifactId>jooq</artifactId>
+>     <version>3.19.1</version>
+> </dependency>
+>
+> <!-- Maven plugin для генерации классов из БД -->
+> <plugin>
+>     <groupId>org.jooq</groupId>
+>     <artifactId>jooq-codegen-maven</artifactId>
+>     <version>3.19.1</version>
+>     <configuration>
+>         <jdbc>
+>             <driver>com.mysql.cj.jdbc.Driver</driver>
+>             <url>jdbc:mysql://localhost:3306/my_database</url>
+>             <user>root</user>
+>             <password>password</password>
+>         </jdbc>
+>         <generator>
+>             <database>
+>                 <name>org.jooq.meta.mysql.MySQLDatabase</name>
+>                 <includes>judges_round_scores|judges|battles</includes>
+>                 <inputSchema>my_database</inputSchema>
+>             </database>
+>             <target>
+>                 <packageName>com.example.jooq.generated</packageName>
+>                 <directory>target/generated-sources/jooq</directory>
+>             </target>
+>         </generator>
+>     </configuration>
+>     <executions>
+>         <execution>
+>             <phase>generate-sources</phase>
+>             <goals>
+>                 <goal>generate</goal>
+>             </goals>
+>         </execution>
+>     </executions>
+> </plugin>
+> ```
+>
+> **Генерация классов:**
+> ```bash
+> mvn clean generate-sources  # Сгенерирует классы в target/generated-sources/jooq
+> ```
+>
+> **Пример использования:**
+> ```java
+> import static com.example.jooq.generated.tables.Judges.JUDGES;
+> import static com.example.jooq.generated.tables.JudgesRoundScores.JUDGES_ROUND_SCORES;
+>
+> @Repository
+> @RequiredArgsConstructor
+> public class JudgeRoundScoreRepositoryCustomImpl {
+>     private final DSLContext dsl;  // Инжектится Spring Boot автоматически
+>
+>     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
+>         return dsl
+>             .select(
+>                 JUDGES_ROUND_SCORES.ID,              // ← Типобезопасное поле
+>                 JUDGES.ID,
+>                 JUDGES_ROUND_SCORES.BATTLE_ID,
+>                 JUDGES.FULLNAME,                     // ← Если напишу FULLNAME2 - НЕ СКОМПИЛИРУЕТСЯ!
+>                 JUDGES.SLUG,                         // ← Если напишу SLUG2 - НЕ СКОМПИЛИРУЕТСЯ!
+>                 JUDGES_ROUND_SCORES.FIGHTER_1_ID,
+>                 JUDGES_ROUND_SCORES.FIGHTER_1_SCORE,
+>                 JUDGES_ROUND_SCORES.FIGHTER_2_ID,
+>                 JUDGES_ROUND_SCORES.FIGHTER_2_SCORE,
+>                 JUDGES_ROUND_SCORES.ROUNDNUMBER,
+>                 JUDGES_ROUND_SCORES.WINNER_ID
+>             )
+>             .from(JUDGES_ROUND_SCORES)
+>             .join(JUDGES).on(JUDGES_ROUND_SCORES.JUDGE_ID.eq(JUDGES.ID))
+>             .where(JUDGES_ROUND_SCORES.BATTLE_ID.in(battleIds))
+>             .fetchInto(RoundScoresDto.class);
+>     }
+> }
+> ```
+>
+> **Интеграция со Spring Data:**
+> ```java
+> // 1. Создать Custom интерфейс
+> public interface JudgeRoundScoreRepositoryCustom {
+>     List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
+> }
+>
+> // 2. Реализация через jOOQ (см. выше)
+> public class JudgeRoundScoreRepositoryCustomImpl implements JudgeRoundScoreRepositoryCustom {
+>     // jOOQ реализация
+> }
+>
+> // 3. Расширить основной репозиторий
+> public interface JudgeRoundScoreRepository
+>     extends JpaRepository<JudgeRoundScore, Long>,
+>             JudgeRoundScoreRepositoryCustom {  // ← Spring автоматически найдет *Impl
+> }
+> ```
+>
+> **Типобезопасность - проверка:**
+> ```java
+> // ❌ JPQL - скомпилируется, упадет в рантайме
+> @Query("SELECT t.judge.slug2 FROM JudgeRoundScore t")
+>
+> // ⚠️ Criteria API - скомпилируется, упадет в рантайме
+> judgeJoin.get("slug2")
+>
+> // ✅ jOOQ - НЕ СКОМПИЛИРУЕТСЯ, ошибка сразу в IDE!
+> JUDGES.SLUG2  // ← Cannot resolve symbol 'SLUG2'
+> ```
+>
+> **Преимущества jOOQ:**
+> - ✅ **100% типобезопасность** - все ошибки на этапе компиляции
+> - ✅ **Полная поддержка IDE** - автокомплит (Ctrl+Space), рефакторинг (Ctrl+Shift+R), Find Usages (Alt+F7)
+> - ✅ **Читаемый код** - fluent API близкий к SQL
+> - ✅ **Database-first** - схема БД — единственный источник истины
+> - ✅ **Рефакторинг-дружественность** - переименовали колонку в БД → запустили codegen → IDE показывает ВСЕ места использования
+> - ✅ **Нет магических строк** - нельзя опечататься в имени поля/таблицы
+> - ✅ **Полный контроль SQL** - видно точный SQL в логах
+>
+> **Недостатки:**
+> - ❌ Требует настройки codegen plugin
+> - ❌ Нужно перегенерировать при изменении схемы БД
+> - ❌ Генерирует много классов (но в target/, не в git)
+> - ❌ Database-first подход (если схема БД не контролируется - проблема)
+>
+> **Когда использовать jOOQ:**
+> - ✅ Сложные запросы с множественными JOIN
+> - ✅ Запросы с подзапросами и агрегациями
+> - ✅ Dynamic queries (условия формируются в runtime)
+> - ✅ Когда нужна 100% типобезопасность
+> - ✅ Большой проект с множеством запросов
+>
+> **Когда использовать JPA/JPQL:**
+> - ✅ Простые CRUD операции (save, findById, delete)
+> - ✅ Работа с entity relationships (@OneToMany, @ManyToOne)
+> - ✅ Простые запросы
+>
+> **Гибридный подход (рекомендуется):**
+> Использовать оба инструмента:
+> - Spring Data JPA для простых операций
+> - jOOQ для сложных запросов
+>
+> **Сравнение JPQL vs Criteria API vs jOOQ:**
+>
+> | Критерий | JPQL | Criteria API | jOOQ |
+> |----------|------|--------------|------|
+> | Типобезопасность | ❌ Нет | ⚠️ Частичная* | ✅ Полная |
+> | Рефакторинг | ❌ Не работает | ⚠️ Частично* | ✅ Полностью |
+> | Автодополнение | ❌ Нет | ⚠️ Только типы | ✅ Всё |
+> | Find Usages в IDE | ❌ Не работает | ❌ Не работает* | ✅ Работает |
+> | Читаемость | ✅ Хорошая | ❌ Плохая | ✅ Отличная |
+> | Производительность | ✅ Хорошая | ✅ Хорошая | ✅ Отличная |
+> | Ошибки компиляции | ❌ Только рантайм | ⚠️ Частично* | ✅ Всё в compile-time |
+>
+> *В Criteria API имена полей — строки (`get("fieldName")`), поэтому опечатки не находятся на этапе компиляции
+>
+> **Примеры других операций jOOQ:**
+> ```java
+> // WHERE с несколькими условиями
+> dsl.selectFrom(JUDGES_ROUND_SCORES)
+>     .where(
+>         JUDGES_ROUND_SCORES.BATTLE_ID.eq(battleId)
+>         .and(JUDGES_ROUND_SCORES.ROUNDNUMBER.eq(1))
+>         .and(JUDGES_ROUND_SCORES.WINNER_ID.isNotNull())
+>     )
+>     .fetch();
+>
+> // GROUP BY и агрегации
+> dsl.select(
+>         JUDGES_ROUND_SCORES.BATTLE_ID,
+>         DSL.count().as("score_count"),
+>         DSL.avg(JUDGES_ROUND_SCORES.FIGHTER_1_SCORE).as("avg_score")
+>     )
+>     .from(JUDGES_ROUND_SCORES)
+>     .groupBy(JUDGES_ROUND_SCORES.BATTLE_ID)
+>     .fetch();
+>
+> // ORDER BY + LIMIT
+> dsl.selectFrom(JUDGES_ROUND_SCORES)
+>     .orderBy(
+>         JUDGES_ROUND_SCORES.BATTLE_ID.asc(),
+>         JUDGES_ROUND_SCORES.ROUNDNUMBER.desc()
+>     )
+>     .limit(10)
+>     .offset(20)
+>     .fetch();
+> ```
+>
+> **Debugging - посмотреть SQL:**
+> ```java
+> // В application.properties:
+> logging.level.org.jooq=DEBUG
+>
+> // Или в коде:
+> String sql = dsl.selectFrom(JUDGES_ROUND_SCORES).getSQL();
+> System.out.println(sql);
+> ```
+
 
 >[!question]- логи статистики jpa/hibernate
 > spring.jpa.properties,hubernate.generate_statistics=false
