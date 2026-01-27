@@ -8,7 +8,7 @@
 7. [x] что такое CGLIB 
 8. [x] Можно ли использовать @Entity как класс с полями , а действия над ними (бизнес логику) проводить в другом классе который от него наследуется - нормальный ли это подход ? Или обычно методы бизнес логики назодятся в том же @Entity  классе ? - нет
 9. [x] Попробуй jOOQ https://www.jooq.org/ 
-10. [ ] Когда происходит не явный inner join при выборке - допиши возникает ли если c.country это не сущность а int 
+10. [x] Когда происходит не явный inner join при выборке - допиши возникает ли если c.country это не сущность а int 
 11. [ ] Проблемы с Hibernate прокси:- как зайбернейт создает проки объект в которм equals | hashcode не работает - 
 12. [ ] Безопасно ли при выборке делать сравнение с объектом сущостью или лучше с id - List\<JudgeScore> findAllByBattleAndJudge(Battle battle, Judge judge); \-  когда могут возникнуть проблеммы ?
 13. [ ]  Почему в JudgeScoreRepository можно делать выборку других сущностей не относящихся к этому репозиторию и правильно ли так делать 
@@ -26,7 +26,7 @@
 25. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
 26. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
 27. [ ] AOP в Spring 
-28. [ ] как создается изолирванный конитекст 
+28. [ ] Как создается изолирванный контекст 
 29. [ ] hikary poll 
 30. [ ] Подключения к БД:  credentials, pool settings
 31. [ ] елк стек, актуатор , графана 
@@ -36,6 +36,10 @@
 >@Query("SELECT new com.strikerstat.webapp.dto.olympic_events.CityDto(c.country, c.region) "
 >```
 > и country - это объект класса Country, если он null - то в  выборку не попадает
+> Работает только с сущностями - если просто поля объекта = null  то inner join не происходит, например 
+> ```
+> SELECT new com.strikerstat.webapp.dto.olympic_events.CityDto(c.id, c.name)
+> ```
 
 >[!question]- какой метод срабатывает после инициализации всех бинов
 >run , чтобы его использоватжь надо переопределить его в классе  помеченном @component и реализовать интерефейс ComandLineRunner
@@ -165,225 +169,6 @@ public class RussianGreetingService implements GreetingService {
 >    <scope>runtime</scope>
 ></dependency>
 >```
-
->[!question]- jOOQ - что это такое?
-> **jOOQ** = **Java Object Oriented Querying** (Объектно-ориентированные запросы на Java)
->
-> **Что это:**
-> - Database-first библиотека для построения типобезопасных SQL запросов через Java код
-> - Генерирует Java классы на основе **реальной схемы БД** (не Entity классов!)
-> - Предоставляет **ПОЛНУЮ** типобезопасность на этапе компиляции
-> - Fluent API близкий к SQL
->
-> **Ключевое отличие от QueryDSL:**
-> - **QueryDSL**: Code-first (генерирует Q-классы из Java Entity)
-> - **jOOQ**: Database-first (генерирует классы из таблиц БД)
->
-> **Настройка Maven:**
-> ```xml
-> <!-- Зависимости -->
-> <dependency>
->     <groupId>org.springframework.boot</groupId>
->     <artifactId>spring-boot-starter-jooq</artifactId>
-> </dependency>
-> <dependency>
->     <groupId>org.jooq</groupId>
->     <artifactId>jooq</artifactId>
->     <version>3.19.1</version>
-> </dependency>
->
-> <!-- Maven plugin для генерации классов из БД -->
-> <plugin>
->     <groupId>org.jooq</groupId>
->     <artifactId>jooq-codegen-maven</artifactId>
->     <version>3.19.1</version>
->     <configuration>
->         <jdbc>
->             <driver>com.mysql.cj.jdbc.Driver</driver>
->             <url>jdbc:mysql://localhost:3306/my_database</url>
->             <user>root</user>
->             <password>password</password>
->         </jdbc>
->         <generator>
->             <database>
->                 <name>org.jooq.meta.mysql.MySQLDatabase</name>
->                 <includes>judges_round_scores|judges|battles</includes>
->                 <inputSchema>my_database</inputSchema>
->             </database>
->             <target>
->                 <packageName>com.example.jooq.generated</packageName>
->                 <directory>target/generated-sources/jooq</directory>
->             </target>
->         </generator>
->     </configuration>
->     <executions>
->         <execution>
->             <phase>generate-sources</phase>
->             <goals>
->                 <goal>generate</goal>
->             </goals>
->         </execution>
->     </executions>
-> </plugin>
-> ```
->
-> **Генерация классов:**
-> ```bash
-> mvn clean generate-sources  # Сгенерирует классы в target/generated-sources/jooq
-> ```
->
-> **Пример использования:**
-> ```java
-> import static com.example.jooq.generated.tables.Judges.JUDGES;
-> import static com.example.jooq.generated.tables.JudgesRoundScores.JUDGES_ROUND_SCORES;
->
-> @Repository
-> @RequiredArgsConstructor
-> public class JudgeRoundScoreRepositoryCustomImpl {
->     private final DSLContext dsl;  // Инжектится Spring Boot автоматически
->
->     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
->         return dsl
->             .select(
->                 JUDGES_ROUND_SCORES.ID,              // ← Типобезопасное поле
->                 JUDGES.ID,
->                 JUDGES_ROUND_SCORES.BATTLE_ID,
->                 JUDGES.FULLNAME,                     // ← Если напишу FULLNAME2 - НЕ СКОМПИЛИРУЕТСЯ!
->                 JUDGES.SLUG,                         // ← Если напишу SLUG2 - НЕ СКОМПИЛИРУЕТСЯ!
->                 JUDGES_ROUND_SCORES.FIGHTER_1_ID,
->                 JUDGES_ROUND_SCORES.FIGHTER_1_SCORE,
->                 JUDGES_ROUND_SCORES.FIGHTER_2_ID,
->                 JUDGES_ROUND_SCORES.FIGHTER_2_SCORE,
->                 JUDGES_ROUND_SCORES.ROUNDNUMBER,
->                 JUDGES_ROUND_SCORES.WINNER_ID
->             )
->             .from(JUDGES_ROUND_SCORES)
->             .join(JUDGES).on(JUDGES_ROUND_SCORES.JUDGE_ID.eq(JUDGES.ID))
->             .where(JUDGES_ROUND_SCORES.BATTLE_ID.in(battleIds))
->             .fetchInto(RoundScoresDto.class);
->     }
-> }
-> ```
->
-> **Интеграция со Spring Data:**
-> ```java
-> // 1. Создать Custom интерфейс
-> public interface JudgeRoundScoreRepositoryCustom {
->     List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
-> }
->
-> // 2. Реализация через jOOQ (см. выше)
-> public class JudgeRoundScoreRepositoryCustomImpl implements JudgeRoundScoreRepositoryCustom {
->     // jOOQ реализация
-> }
->
-> // 3. Расширить основной репозиторий
-> public interface JudgeRoundScoreRepository
->     extends JpaRepository<JudgeRoundScore, Long>,
->             JudgeRoundScoreRepositoryCustom {  // ← Spring автоматически найдет *Impl
-> }
-> ```
->
-> **Типобезопасность - проверка:**
-> ```java
-> // ❌ JPQL - скомпилируется, упадет в рантайме
-> @Query("SELECT t.judge.slug2 FROM JudgeRoundScore t")
->
-> // ⚠️ Criteria API - скомпилируется, упадет в рантайме
-> judgeJoin.get("slug2")
->
-> // ✅ jOOQ - НЕ СКОМПИЛИРУЕТСЯ, ошибка сразу в IDE!
-> JUDGES.SLUG2  // ← Cannot resolve symbol 'SLUG2'
-> ```
->
-> **Преимущества jOOQ:**
-> - ✅ **100% типобезопасность** - все ошибки на этапе компиляции
-> - ✅ **Полная поддержка IDE** - автокомплит (Ctrl+Space), рефакторинг (Ctrl+Shift+R), Find Usages (Alt+F7)
-> - ✅ **Читаемый код** - fluent API близкий к SQL
-> - ✅ **Database-first** - схема БД — единственный источник истины
-> - ✅ **Рефакторинг-дружественность** - переименовали колонку в БД → запустили codegen → IDE показывает ВСЕ места использования
-> - ✅ **Нет магических строк** - нельзя опечататься в имени поля/таблицы
-> - ✅ **Полный контроль SQL** - видно точный SQL в логах
->
-> **Недостатки:**
-> - ❌ Требует настройки codegen plugin
-> - ❌ Нужно перегенерировать при изменении схемы БД
-> - ❌ Генерирует много классов (но в target/, не в git)
-> - ❌ Database-first подход (если схема БД не контролируется - проблема)
->
-> **Когда использовать jOOQ:**
-> - ✅ Сложные запросы с множественными JOIN
-> - ✅ Запросы с подзапросами и агрегациями
-> - ✅ Dynamic queries (условия формируются в runtime)
-> - ✅ Когда нужна 100% типобезопасность
-> - ✅ Большой проект с множеством запросов
->
-> **Когда использовать JPA/JPQL:**
-> - ✅ Простые CRUD операции (save, findById, delete)
-> - ✅ Работа с entity relationships (@OneToMany, @ManyToOne)
-> - ✅ Простые запросы
->
-> **Гибридный подход (рекомендуется):**
-> Использовать оба инструмента:
-> - Spring Data JPA для простых операций
-> - jOOQ для сложных запросов
->
-> **Сравнение JPQL vs Criteria API vs jOOQ:**
->
-> | Критерий | JPQL | Criteria API | jOOQ |
-> |----------|------|--------------|------|
-> | Типобезопасность | ❌ Нет | ⚠️ Частичная* | ✅ Полная |
-> | Рефакторинг | ❌ Не работает | ⚠️ Частично* | ✅ Полностью |
-> | Автодополнение | ❌ Нет | ⚠️ Только типы | ✅ Всё |
-> | Find Usages в IDE | ❌ Не работает | ❌ Не работает* | ✅ Работает |
-> | Читаемость | ✅ Хорошая | ❌ Плохая | ✅ Отличная |
-> | Производительность | ✅ Хорошая | ✅ Хорошая | ✅ Отличная |
-> | Ошибки компиляции | ❌ Только рантайм | ⚠️ Частично* | ✅ Всё в compile-time |
->
-> *В Criteria API имена полей — строки (`get("fieldName")`), поэтому опечатки не находятся на этапе компиляции
->
-> **Примеры других операций jOOQ:**
-> ```java
-> // WHERE с несколькими условиями
-> dsl.selectFrom(JUDGES_ROUND_SCORES)
->     .where(
->         JUDGES_ROUND_SCORES.BATTLE_ID.eq(battleId)
->         .and(JUDGES_ROUND_SCORES.ROUNDNUMBER.eq(1))
->         .and(JUDGES_ROUND_SCORES.WINNER_ID.isNotNull())
->     )
->     .fetch();
->
-> // GROUP BY и агрегации
-> dsl.select(
->         JUDGES_ROUND_SCORES.BATTLE_ID,
->         DSL.count().as("score_count"),
->         DSL.avg(JUDGES_ROUND_SCORES.FIGHTER_1_SCORE).as("avg_score")
->     )
->     .from(JUDGES_ROUND_SCORES)
->     .groupBy(JUDGES_ROUND_SCORES.BATTLE_ID)
->     .fetch();
->
-> // ORDER BY + LIMIT
-> dsl.selectFrom(JUDGES_ROUND_SCORES)
->     .orderBy(
->         JUDGES_ROUND_SCORES.BATTLE_ID.asc(),
->         JUDGES_ROUND_SCORES.ROUNDNUMBER.desc()
->     )
->     .limit(10)
->     .offset(20)
->     .fetch();
-> ```
->
-> **Debugging - посмотреть SQL:**
-> ```java
-> // В application.properties:
-> logging.level.org.jooq=DEBUG
->
-> // Или в коде:
-> String sql = dsl.selectFrom(JUDGES_ROUND_SCORES).getSQL();
-> System.out.println(sql);
-> ```
-
 
 >[!question]- логи статистики jpa/hibernate
 > spring.jpa.properties,hubernate.generate_statistics=false
@@ -828,5 +613,469 @@ public class RussianGreetingService implements GreetingService {
 >
 > List<JudgeRoundScore> results = repository.findAll(predicate);
 > ```
+
+>[!question]- jOOQ - что это такое?
+> **jOOQ** = **Java Object Oriented Querying** (Объектно-ориентированные запросы на Java)
+> Коммит с примером https://bitbucket.org/strikerstat/strikerstat/commits/72c197d3619e400ad7800f108621598afc787b08 
+> **Что это:**
+> - Database-first библиотека для построения типобезопасных SQL запросов через Java код
+> - Генерирует Java классы на основе **реальной схемы БД** (не Entity классов!)
+> - Предоставляет **ПОЛНУЮ** типобезопасность на этапе компиляции
+> - Fluent API близкий к SQL
+>
+> **Ключевое отличие от QueryDSL:**
+> - **QueryDSL**: Code-first (генерирует Q-классы из Java Entity)
+> - **jOOQ**: Database-first (генерирует классы из таблиц БД)
+>
+> **Настройка Maven:**
+> ```xml
+> <!-- Зависимости -->
+> <dependency>
+>     <groupId>org.springframework.boot</groupId>
+>     <artifactId>spring-boot-starter-jooq</artifactId>
+> </dependency>
+> <dependency>
+>     <groupId>org.jooq</groupId>
+>     <artifactId>jooq</artifactId>
+>     <version>3.19.1</version>
+> </dependency>
+>
+> <!-- Maven plugin для генерации классов из БД -->
+> <plugin>
+>     <groupId>org.jooq</groupId>
+>     <artifactId>jooq-codegen-maven</artifactId>
+>     <version>3.19.1</version>
+>     <configuration>
+>         <jdbc>
+>             <driver>com.mysql.cj.jdbc.Driver</driver>
+>             <url>jdbc:mysql://localhost:3306/my_database</url>
+>             <user>root</user>
+>             <password>password</password>
+>         </jdbc>
+>         <generator>
+>             <database>
+>                 <name>org.jooq.meta.mysql.MySQLDatabase</name>
+>                 <includes>judges_round_scores|judges|battles</includes>
+>                 <inputSchema>my_database</inputSchema>
+>             </database>
+>             <target>
+>                 <packageName>com.example.jooq.generated</packageName>
+>                 <directory>target/generated-sources/jooq</directory>
+>             </target>
+>         </generator>
+>     </configuration>
+>     <executions>
+>         <execution>
+>             <phase>generate-sources</phase>
+>             <goals>
+>                 <goal>generate</goal>
+>             </goals>
+>         </execution>
+>     </executions>
+> </plugin>
+> ```
+>
+> **Генерация классов:**
+> ```bash
+> mvn clean generate-sources  # Сгенерирует классы в target/generated-sources/jooq
+> ```
+>
+> **Пример использования:**
+> ```java
+> import static com.example.jooq.generated.tables.Judges.JUDGES;
+> import static com.example.jooq.generated.tables.JudgesRoundScores.JUDGES_ROUND_SCORES;
+>
+> @Repository
+> @RequiredArgsConstructor
+> public class JudgeRoundScoreRepositoryCustomImpl {
+>     private final DSLContext dsl;  // Инжектится Spring Boot автоматически
+>
+>     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
+>         return dsl
+>             .select(
+>                 JUDGES_ROUND_SCORES.ID,              // ← Типобезопасное поле
+>                 JUDGES.ID,
+>                 JUDGES_ROUND_SCORES.BATTLE_ID,
+>                 JUDGES.FULLNAME,                     // ← Если напишу FULLNAME2 - НЕ СКОМПИЛИРУЕТСЯ!
+>                 JUDGES.SLUG,                         // ← Если напишу SLUG2 - НЕ СКОМПИЛИРУЕТСЯ!
+>                 JUDGES_ROUND_SCORES.FIGHTER_1_ID,
+>                 JUDGES_ROUND_SCORES.FIGHTER_1_SCORE,
+>                 JUDGES_ROUND_SCORES.FIGHTER_2_ID,
+>                 JUDGES_ROUND_SCORES.FIGHTER_2_SCORE,
+>                 JUDGES_ROUND_SCORES.ROUNDNUMBER,
+>                 JUDGES_ROUND_SCORES.WINNER_ID
+>             )
+>             .from(JUDGES_ROUND_SCORES)
+>             .join(JUDGES).on(JUDGES_ROUND_SCORES.JUDGE_ID.eq(JUDGES.ID))
+>             .where(JUDGES_ROUND_SCORES.BATTLE_ID.in(battleIds))
+>             .fetchInto(RoundScoresDto.class);
+>     }
+> }
+> ```
+>
+> **Интеграция со Spring Data:**
+> ```java
+> // 1. Создать Custom интерфейс
+> public interface JudgeRoundScoreRepositoryCustom {
+>     List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
+> }
+>
+> // 2. Реализация через jOOQ (см. выше)
+> public class JudgeRoundScoreRepositoryCustomImpl implements JudgeRoundScoreRepositoryCustom {
+>     // jOOQ реализация
+> }
+>
+> // 3. Расширить основной репозиторий
+> public interface JudgeRoundScoreRepository
+>     extends JpaRepository<JudgeRoundScore, Long>,
+>             JudgeRoundScoreRepositoryCustom {  // ← Spring автоматически найдет *Impl
+> }
+> ```
+>
+> **Типобезопасность - проверка:**
+> ```java
+> // ❌ JPQL - скомпилируется, упадет в рантайме
+> @Query("SELECT t.judge.slug2 FROM JudgeRoundScore t")
+>
+> // ⚠️ Criteria API - скомпилируется, упадет в рантайме
+> judgeJoin.get("slug2")
+>
+> // ✅ jOOQ - НЕ СКОМПИЛИРУЕТСЯ, ошибка сразу в IDE!
+> JUDGES.SLUG2  // ← Cannot resolve symbol 'SLUG2'
+> ```
+>
+> **Преимущества jOOQ:**
+> - ✅ **100% типобезопасность** - все ошибки на этапе компиляции
+> - ✅ **Полная поддержка IDE** - автокомплит (Ctrl+Space), рефакторинг (Ctrl+Shift+R), Find Usages (Alt+F7)
+> - ✅ **Читаемый код** - fluent API близкий к SQL
+> - ✅ **Database-first** - схема БД — единственный источник истины
+> - ✅ **Рефакторинг-дружественность** - переименовали колонку в БД → запустили codegen → IDE показывает ВСЕ места использования
+> - ✅ **Нет магических строк** - нельзя опечататься в имени поля/таблицы
+> - ✅ **Полный контроль SQL** - видно точный SQL в логах
+>
+> **Недостатки:**
+> - ❌ Требует настройки codegen plugin
+> - ❌ Нужно перегенерировать при изменении схемы БД
+> - ❌ Генерирует много классов (но в target/, не в git)
+> - ❌ Database-first подход (если схема БД не контролируется - проблема)
+>
+> **Когда использовать jOOQ:**
+> - ✅ Сложные запросы с множественными JOIN
+> - ✅ Запросы с подзапросами и агрегациями
+> - ✅ Dynamic queries (условия формируются в runtime)
+> - ✅ Когда нужна 100% типобезопасность
+> - ✅ Большой проект с множеством запросов
+>
+> **Когда использовать JPA/JPQL:**
+> - ✅ Простые CRUD операции (save, findById, delete)
+> - ✅ Работа с entity relationships (@OneToMany, @ManyToOne)
+> - ✅ Простые запросы
+>
+> **Гибридный подход (рекомендуется):**
+> Использовать оба инструмента:
+> - Spring Data JPA для простых операций
+> - jOOQ для сложных запросов
+>
+> **Сравнение JPQL vs Criteria API vs jOOQ:**
+>
+> | Критерий | JPQL | Criteria API | jOOQ |
+> |----------|------|--------------|------|
+> | Типобезопасность | ❌ Нет | ⚠️ Частичная* | ✅ Полная |
+> | Рефакторинг | ❌ Не работает | ⚠️ Частично* | ✅ Полностью |
+> | Автодополнение | ❌ Нет | ⚠️ Только типы | ✅ Всё |
+> | Find Usages в IDE | ❌ Не работает | ❌ Не работает* | ✅ Работает |
+> | Читаемость | ✅ Хорошая | ❌ Плохая | ✅ Отличная |
+> | Производительность | ✅ Хорошая | ✅ Хорошая | ✅ Отличная |
+> | Ошибки компиляции | ❌ Только рантайм | ⚠️ Частично* | ✅ Всё в compile-time |
+>
+> *В Criteria API имена полей — строки (`get("fieldName")`), поэтому опечатки не находятся на этапе компиляции
+>
+> **Примеры других операций jOOQ:**
+> ```java
+> // WHERE с несколькими условиями
+> dsl.selectFrom(JUDGES_ROUND_SCORES)
+>     .where(
+>         JUDGES_ROUND_SCORES.BATTLE_ID.eq(battleId)
+>         .and(JUDGES_ROUND_SCORES.ROUNDNUMBER.eq(1))
+>         .and(JUDGES_ROUND_SCORES.WINNER_ID.isNotNull())
+>     )
+>     .fetch();
+>
+> // GROUP BY и агрегации
+> dsl.select(
+>         JUDGES_ROUND_SCORES.BATTLE_ID,
+>         DSL.count().as("score_count"),
+>         DSL.avg(JUDGES_ROUND_SCORES.FIGHTER_1_SCORE).as("avg_score")
+>     )
+>     .from(JUDGES_ROUND_SCORES)
+>     .groupBy(JUDGES_ROUND_SCORES.BATTLE_ID)
+>     .fetch();
+>
+> // ORDER BY + LIMIT
+> dsl.selectFrom(JUDGES_ROUND_SCORES)
+>     .orderBy(
+>         JUDGES_ROUND_SCORES.BATTLE_ID.asc(),
+>         JUDGES_ROUND_SCORES.ROUNDNUMBER.desc()
+>     )
+>     .limit(10)
+>     .offset(20)
+>     .fetch();
+> ```
+>
+> **Debugging - посмотреть SQL:**
+> ```java
+> // В application.properties:
+> logging.level.org.jooq=DEBUG
+>
+> // Или в коде:
+> String sql = dsl.selectFrom(JUDGES_ROUND_SCORES).getSQL();
+> System.out.println(sql);
+> ```
+>
+> **Переиспользование кода (избежать дублирования WHERE):**
+>
+> Если несколько методов используют одинаковый SELECT + JOIN, но разные WHERE:
+>
+> ```java
+> @Repository
+> @RequiredArgsConstructor
+> public class JudgeRoundScoreRepositoryCustomImpl {
+>     private final DSLContext dsl;
+>
+>     // Базовый запрос с SELECT и JOIN - переиспользуется во всех методах
+>     private SelectJoinStep<Record11<...>> buildBaseQuery() {
+>         return dsl
+>             .select(ПОЛЯ...)
+>             .from(JUDGES_ROUND_SCORES)
+>             .join(JUDGES).on(JUDGES_ROUND_SCORES.JUDGE_ID.eq(JUDGES.ID));
+>     }
+>
+>     // Метод 1: свой WHERE
+>     public List<RoundScoresDto> method1(Set<Long> battleIds) {
+>         return buildBaseQuery()
+>             .where(JUDGES_ROUND_SCORES.BATTLE_ID.in(battleIds))
+>             .fetchInto(RoundScoresDto.class);
+>     }
+>
+>     // Метод 2: другой WHERE
+>     public List<RoundScoresDto> method2(long battleId, int judgeId) {
+>         return buildBaseQuery()
+>             .where(
+>                 JUDGES_ROUND_SCORES.BATTLE_ID.eq(battleId)
+>                 .and(JUDGES_ROUND_SCORES.JUDGE_ID.eq(judgeId))
+>             )
+>             .fetchInto(RoundScoresDto.class);
+>     }
+>
+>     // Метод 3: еще один WHERE - просто добавляем!
+>     public List<RoundScoresDto> method3(Set<Long> battleIds, int round) {
+>         return buildBaseQuery()
+>             .where(
+>                 JUDGES_ROUND_SCORES.BATTLE_ID.in(battleIds)
+>                 .and(JUDGES_ROUND_SCORES.ROUNDNUMBER.eq(round))
+>             )
+>             .fetchInto(RoundScoresDto.class);
+>     }
+> }
+> ```
+>
+> **Преимущества:**
+> - ✅ SELECT проекция в одном месте (метод `buildBaseQuery()`)
+> - ✅ Легко добавлять новые методы с разными WHERE
+> - ✅ Изменение DTO → правка только в `buildBaseQuery()`
+> - ✅ НЕ нужно писать новый метод каждый раз!
+
+>[!question]- Как Spring Data JPA находит кастомную реализацию репозитория (паттерн *Impl)?
+> **Проблема:** Как добавить собственные методы (jOOQ, Criteria API) к стандартному JpaRepository?
+>
+> **Решение:** Spring Data JPA использует соглашение о наименовании `*Impl` для автоматического подключения кастомных реализаций
+>
+> **Структура паттерна:**
+> ```java
+> // 1. Основной интерфейс репозитория (наследует JpaRepository И Custom интерфейс)
+> public interface JudgeRoundScoreRepository
+>     extends JpaRepository<JudgeRoundScore, Long>,
+>             JudgeRoundScoreRepositoryCustom {  // ← Наследование Custom интерфейса
+>
+>     // Стандартные JPA методы (findById, save, delete...)
+>     boolean isJudgeScoreNotExists(long battleId, int judgeId);
+> }
+>
+> // 2. Custom интерфейс - объявляет дополнительные методы
+> public interface JudgeRoundScoreRepositoryCustom {
+>     List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
+>     List<RoundScoresDto> getJudgeRoundScoresDto(long battleId, int judgeId);
+> }
+>
+> // 3. Custom реализация - ОБЯЗАТЕЛЬНО суффикс *Impl
+> @Repository
+> @RequiredArgsConstructor
+> public class JudgeRoundScoreRepositoryCustomImpl implements JudgeRoundScoreRepositoryCustom {
+>     private final DSLContext dsl;  // jOOQ
+>
+>     @Override
+>     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
+>         return dsl.select(...).from(...).where(...).fetchInto(RoundScoresDto.class);
+>     }
+>
+>     @Override
+>     public List<RoundScoresDto> getJudgeRoundScoresDto(long battleId, int judgeId) {
+>         return dsl.select(...).from(...).where(...).fetchInto(RoundScoresDto.class);
+>     }
+> }
+> ```
+>
+> **Как это работает:**
+>
+> 1. **@Repository на Impl классе:**
+>    - Регистрирует класс как Spring-бин
+>    - БЕЗ @Repository Spring не найдет эту реализацию
+>
+> 2. **Соглашение о наименовании (naming convention):**
+>    - Spring ищет бин с именем `{ИмяКастомногоИнтерфейса}Impl`
+>    - Пример: `JudgeRoundScoreRepositoryCustom` → `JudgeRoundScoreRepositoryCustomImpl`
+>    - **ВАЖНО:** Суффикс `Impl` обязателен (можно изменить в настройках, см. ниже)
+>
+> 3. **Магия Spring Data JPA:**
+>    - Spring создает прокси для `JudgeRoundScoreRepository`
+>    - Видит наследование `JudgeRoundScoreRepositoryCustom`
+>    - Автоматически находит бин `JudgeRoundScoreRepositoryCustomImpl`
+>    - **Комбинирует в единый прокси-объект:**
+>      - Стандартные JPA методы (findById, save, delete)
+>      - Кастомные методы (из JudgeRoundScoreRepositoryCustomImpl)
+>
+> 4. **Использование:**
+> ```java
+> @Service
+> public class MyService {
+>     @Autowired
+>     private JudgeRoundScoreRepository repo;  // Получаем единый прокси
+>
+>     public void example() {
+>         // Стандартный JPA метод
+>         repo.findById(1L);
+>
+>         // Кастомный метод (jOOQ)
+>         repo.getAllJudgeRoundScoresListDto(battleIds);
+>     }
+> }
+> ```
+>
+> **Что будет если НЕ использовать суффикс *Impl или назвать по-другому:**
+>
+> ❌ **Проблема 1: Spring не найдет реализацию**
+> ```java
+> // ❌ НЕПРАВИЛЬНО - нет суффикса Impl
+> @Repository
+> public class JudgeRoundScoreRepositoryCustom implements JudgeRoundScoreRepositoryCustom {
+>     // Spring НЕ найдет этот бин
+> }
+>
+> // ❌ НЕПРАВИЛЬНО - другое имя
+> @Repository
+> public class MyCustomRepo implements JudgeRoundScoreRepositoryCustom {
+>     // Spring НЕ найдет этот бин
+> }
+> ```
+>
+> **Ошибка при запуске:**
+> ```
+> org.springframework.beans.factory.NoSuchBeanDefinitionException:
+> No qualifying bean of type 'JudgeRoundScoreRepositoryCustom' available
+> ```
+>
+> ❌ **Проблема 2: Методы не доступны**
+> ```java
+> @Autowired
+> private JudgeRoundScoreRepository repo;
+>
+> repo.getAllJudgeRoundScoresListDto(battleIds);  // ← Ошибка компиляции или рантайм исключение
+> ```
+>
+> **Решение 1: Изменить суффикс глобально (в application.properties)**
+> ```properties
+> # Можно изменить дефолтный суффикс Impl на другой
+> spring.data.jpa.repository.repository-impl-postfix=Custom
+> ```
+> Тогда класс должен называться:
+> ```java
+> @Repository
+> public class JudgeRoundScoreRepositoryCustomCustom implements JudgeRoundScoreRepositoryCustom {
+>     // Теперь Spring найдет по суффиксу Custom
+> }
+> ```
+>
+> **Решение 2: Явно указать имя бина**
+> ```java
+> @Repository("judgeRoundScoreRepositoryCustomImpl")  // ← Явное имя
+> public class MyWeirdName implements JudgeRoundScoreRepositoryCustom {
+>     // Spring найдет по явному имени
+> }
+> ```
+>
+> **Решение 3: Использовать @EnableJpaRepositories с repositoryImplementationPostfix**
+> ```java
+> @Configuration
+> @EnableJpaRepositories(
+>     basePackages = "com.example.repository",
+>     repositoryImplementationPostfix = "Custom"  // ← Изменить суффикс
+> )
+> public class JpaConfig {
+> }
+> ```
+>
+> **Рекомендация:**
+> ✅ Всегда следуйте соглашению и используйте суффикс `Impl` - это стандарт Spring Data JPA
+> ✅ Не изобретайте свои схемы именования без крайней необходимости
+>
+> **Почему это элегантно:**
+> 1. **Прозрачность:** Клиент работает с единым интерфейсом `JudgeRoundScoreRepository`
+> 2. **Гибкость:** Можно комбинировать простые JPA методы и сложные jOOQ/Criteria API запросы
+> 3. **Типобезопасность:** IDE видит все методы (и JPA, и кастомные)
+> 4. **Maintainability:** Кастомная логика изолирована в отдельном классе
+>
+> **Пример с jOOQ из реального проекта:**
+> ```java
+> // Интерфейс
+> public interface JudgeRoundScoreRepositoryCustom {
+>     List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
+> }
+>
+> // Реализация с jOOQ
+> @Repository
+> @RequiredArgsConstructor
+> public class JudgeRoundScoreRepositoryCustomImpl implements JudgeRoundScoreRepositoryCustom {
+>     private final DSLContext dsl;
+>
+>     @Override
+>     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
+>         return dsl
+>             .select(JUDGES_ROUND_SCORES.ID, JUDGES.FULLNAME, ...)
+>             .from(JUDGES_ROUND_SCORES)
+>             .join(JUDGES).on(JUDGES_ROUND_SCORES.JUDGE_ID.eq(JUDGES.ID))
+>             .where(JUDGES_ROUND_SCORES.BATTLE_ID.in(battleIds))
+>             .fetchInto(RoundScoresDto.class);
+>     }
+> }
+>
+> // Основной репозиторий
+> public interface JudgeRoundScoreRepository
+>     extends JpaRepository<JudgeRoundScore, Long>,
+>             JudgeRoundScoreRepositoryCustom {
+>
+>     // JPA методы
+>     boolean isJudgeScoreNotExists(long battleId, int judgeId);
+>
+>     // Кастомные методы (jOOQ) доступны автоматически через наследование!
+>     // List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
+> }
+> ```
+>
+> **Когда использовать этот паттерн:**
+> - ✅ Нужны сложные запросы с jOOQ/Criteria API
+> - ✅ Хотите избежать дублирования JPQL конструкторов DTO
+> - ✅ Требуется динамическое построение запросов
+> - ✅ Нужна полная типобезопасность
+> - ✅ Хотите переиспользовать общую SELECT проекцию
 
 
