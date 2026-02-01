@@ -9,27 +9,29 @@
 8. [x] Можно ли использовать @Entity как класс с полями , а действия над ними (бизнес логику) проводить в другом классе который от него наследуется - нормальный ли это подход ? Или обычно методы бизнес логики назодятся в том же @Entity  классе ? - нет
 9. [x] Попробуй jOOQ https://www.jooq.org/ 
 10. [x] Когда происходит не явный inner join при выборке - допиши возникает ли если c.country это не сущность а int 
-11. [ ] Проблемы с Hibernate прокси:- как зайбернейт создает проки объект в которм equals | hashcode не работает - 
-12. [ ] Безопасно ли при выборке делать сравнение с объектом сущостью или лучше с id - List\<JudgeScore> findAllByBattleAndJudge(Battle battle, Judge judge); \-  когда могут возникнуть проблеммы ?
-13. [ ]  Почему в JudgeScoreRepository можно делать выборку других сущностей не относящихся к этому репозиторию и правильно ли так делать 
-14. [ ] Прочитай https://docs.spring.io/spring-framework/reference/web.html и сравни со своим проектом
-15. [x] Попробуй вариант Решение 2: QueryDSL (IDE видит usage!) в клоде - который должен показывать usage  
-16. [ ] как кэшировать гет запросы 
-17. [ ] Domain-Driven Design (Доменно-ориентированное проектирование)  
-18. [ ] Всегда ли есть смысл делать связь на уровне ентити а не только на уровне БД ?
-19. [ ] какие аннотации надо знать на собеседовании 
-20. [ ] @Profile
-21. [ ] @ConditionProperty
-22. [ ] КЭШ первого и второго уровня
-23. [ ] возможно ли подлкючиться к бд без application.properties
-24. [ ] как запустить не ddl миграции в спринг - посмотри в MigrationService.java 
-25. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
-26. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
-27. [ ] AOP в Spring 
-28. [ ] Как создается изолирванный контекст 
-29. [ ] hikary poll 
-30. [ ] Подключения к БД:  credentials, pool settings
-31. [ ] елк стек, актуатор , графана 
+11. [ ] динамический прокси-объект ,существует ли статический 
+12. [ ] детальнее про фабричный метод патерн - почему @Bean это он
+13. [ ] Проблемы с Hibernate прокси:- как хайбернейт создает проки объект в которм equals | hashcode не работает - 
+14. [ ] Безопасно ли при выборке делать сравнение с объектом сущостью или лучше с id - List\<JudgeScore> findAllByBattleAndJudge(Battle battle, Judge judge); \-  когда могут возникнуть проблеммы ?
+15. [ ]  Почему в JudgeScoreRepository можно делать выборку других сущностей не относящихся к этому репозиторию и правильно ли так делать 
+16. [ ] Прочитай https://docs.spring.io/spring-framework/reference/web.html и сравни со своим проектом
+17. [x] Попробуй вариант Решение 2: QueryDSL (IDE видит usage!) в клоде - который должен показывать usage  
+18. [ ] как кэшировать гет запросы 
+19. [ ] Domain-Driven Design (Доменно-ориентированное проектирование)  
+20. [ ] Всегда ли есть смысл делать связь на уровне ентити а не только на уровне БД ?
+21. [ ] какие аннотации надо знать на собеседовании 
+22. [ ] @Profile
+23. [ ] @ConditionProperty
+24. [ ] КЭШ первого и второго уровня
+25. [ ] возможно ли подлкючиться к бд без application.properties
+26. [ ] как запустить не ddl миграции в спринг - посмотри в MigrationService.java 
+27. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
+28. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
+29. [ ] AOP в Spring 
+30. [ ] Как создается изолирванный контекст 
+31. [ ] hikary poll 
+32. [ ] Подключения к БД:  credentials, pool settings
+33. [ ] елк стек, актуатор , графана 
 
 >[!question]- Когда происходит не явный inner join при выборке 
 >```
@@ -1077,5 +1079,730 @@ public class RussianGreetingService implements GreetingService {
 > - ✅ Требуется динамическое построение запросов
 > - ✅ Нужна полная типобезопасность
 > - ✅ Хотите переиспользовать общую SELECT проекцию
+
+>[!question]- Как Spring создает единый прокси-объект из JpaRepository + Custom интерфейса?
+> **Вопрос:** JudgeRoundScoreRepository расширяет интерфейс JudgeRoundScoreRepositoryCustom, который реализуется классом JudgeRoundScoreRepositoryCustomImpl. При компиляции из всего этого образуется один прокси-объект?
+>
+> **Ответ: ДА!** Spring Data JPA создает **один динамический прокси-объект**, который объединяет все три компонента.
+>
+> **Структура:**
+> ```java
+> // 1. Основной репозиторий
+> public interface JudgeRoundScoreRepository
+>     extends JpaRepository<JudgesRoundScore, Long>,
+>             JudgeRoundScoreRepositoryCustom {
+>     // Методы Spring Data JPA (автогенерация)
+>     List<JudgesRoundScore> findByBattleId(Long battleId);
+> }
+>
+> // 2. Кастомный интерфейс
+> public interface JudgeRoundScoreRepositoryCustom {
+>     List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds);
+> }
+>
+> // 3. Реализация кастомных методов
+> @Repository
+> public class JudgeRoundScoreRepositoryCustomImpl
+>     implements JudgeRoundScoreRepositoryCustom {
+>
+>     @Autowired
+>     private DSLContext dsl;
+>
+>     @Override
+>     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
+>         // jOOQ запрос
+>     }
+> }
+> ```
+>
+> **Что происходит при запуске приложения:**
+>
+> **Spring создает ОДИН динамический прокси-объект**, который комбинирует:
+> - Методы из `JpaRepository` (автогенерируемые Spring Data)
+> - Методы из `JudgeRoundScoreRepositoryCustom` (ваша реализация)
+>
+> **Визуализация прокси:**
+> ```
+> ┌─────────────────────────────────────────────────────┐
+> │  Прокси-объект JudgeRoundScoreRepository           │
+> │                                                      │
+> │  ┌────────────────────────────────────────────┐    │
+> │  │ Методы JpaRepository (Spring Data JPA)     │    │
+> │  │ - findById(), save(), delete()             │    │
+> │  │ - findByBattleId() (Query Methods)         │    │
+> │  └────────────────────────────────────────────┘    │
+> │                                                      │
+> │  ┌────────────────────────────────────────────┐    │
+> │  │ Методы JudgeRoundScoreRepositoryCustom     │    │
+> │  │ (делегирование в CustomImpl)               │    │
+> │  │ - getAllJudgeRoundScoresListDto()          │────┼──> JudgeRoundScoreRepositoryCustomImpl
+> │  └────────────────────────────────────────────┘    │
+> └─────────────────────────────────────────────────────┘
+> ```
+>
+> **Как это работает под капотом:**
+> ```java
+> // Когда вы инжектите репозиторий:
+> @Autowired
+> private JudgeRoundScoreRepository repository;
+>
+> // Spring создает прокси примерно так (упрощенно):
+> class JudgeRoundScoreRepositoryProxy implements JudgeRoundScoreRepository {
+>
+>     private SimpleJpaRepository<JudgesRoundScore, Long> jpaImpl; // Для JPA методов
+>     private JudgeRoundScoreRepositoryCustomImpl customImpl;       // Для кастомных методов
+>
+>     // JPA методы делегируются в SimpleJpaRepository
+>     @Override
+>     public Optional<JudgesRoundScore> findById(Long id) {
+>         return jpaImpl.findById(id);
+>     }
+>
+>     // Кастомные методы делегируются в CustomImpl
+>     @Override
+>     public List<RoundScoresDto> getAllJudgeRoundScoresListDto(Set<Long> battleIds) {
+>         return customImpl.getAllJudgeRoundScoresListDto(battleIds);
+>     }
+> }
+> ```
+>
+> **Технические детали:**
+>
+> **1. JDK Dynamic Proxy:**
+> Spring использует `java.lang.reflect.Proxy` для создания прокси-объекта во время выполнения (runtime).
+>
+> **2. Naming Convention:**
+> Spring автоматически находит `JudgeRoundScoreRepositoryCustomImpl` по суффиксу `Impl` и связывает его с интерфейсом.
+>
+> **3. Один бин в контексте:**
+> В Spring контексте регистрируется только **ОДИН бин** типа `JudgeRoundScoreRepository`, который является этим прокси.
+>
+> **Проверка в коде:**
+> ```java
+> @Autowired
+> private JudgeRoundScoreRepository repository;
+>
+> public void checkProxy() {
+>     System.out.println(repository.getClass().getName());
+>     // Вывод: com.sun.proxy.$Proxy123 (или что-то подобное)
+>     // Это и есть прокси-объект!
+>
+>     // Оба типа методов работают через один объект:
+>     repository.findById(1L);                          // JPA метод
+>     repository.getAllJudgeRoundScoresListDto(Set.of(1L)); // Кастомный метод
+> }
+> ```
+>
+> **Паттерн Composite (Композитный шаблон проектирования):**
+> Spring использует паттерн Composite для объединения разных реализаций в единый интерфейс.
+>
+> **Итого:**
+> - ✅ **Создается ОДИН прокси-объект**
+> - ✅ Он объединяет методы JpaRepository и ваши кастомные методы
+> - ✅ Прокси делегирует вызовы в правильные реализации
+> - ✅ Для вас это выглядит как один репозиторий со всеми методами
+> - ✅ Это паттерн Composite - объединение нескольких компонентов в единый интерфейс
+>
+> **Преимущества:**
+> - Один интерфейс для всех операций (простых JPA и сложных jOOQ/Criteria API)
+> - Типобезопасность - IDE видит все методы
+> - Прозрачность для клиентского кода
+> - Легко добавлять новые кастомные методы
+>
+> **Что происходит, если назвать Impl класс по-другому:**
+> ```
+> org.springframework.beans.factory.NoSuchBeanDefinitionException:
+> No qualifying bean of type 'JudgeRoundScoreRepositoryCustom' available
+> ```
+> Spring не найдет реализацию и методы не будут доступны в прокси!
+
+>[!question]- Типы прокси-объектов: статический vs динамический (JDK vs CGLIB)
+>
+> ## Типы прокси-объектов
+>
+> ### 1. Статический прокси (Static Proxy)
+> Создается **вручную разработчиком** на этапе написания кода.
+>
+> **Пример:**
+> ```java
+> // Интерфейс
+> public interface UserService {
+>     void saveUser(String name);
+> }
+>
+> // Реальная реализация
+> public class UserServiceImpl implements UserService {
+>     @Override
+>     public void saveUser(String name) {
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+>
+> // СТАТИЧЕСКИЙ ПРОКСИ - написан вручную!
+> public class UserServiceProxy implements UserService {
+>     private UserService target;
+>
+>     public UserServiceProxy(UserService target) {
+>         this.target = target;
+>     }
+>
+>     @Override
+>     public void saveUser(String name) {
+>         System.out.println("BEFORE: Logging...");
+>         target.saveUser(name);  // Делегирование к реальному объекту
+>         System.out.println("AFTER: User saved");
+>     }
+> }
+>
+> // Использование:
+> UserService service = new UserServiceProxy(new UserServiceImpl());
+> service.saveUser("Igor");
+> // Вывод:
+> // BEFORE: Logging...
+> // Saving user: Igor
+> // AFTER: User saved
+> ```
+>
+> **Проблемы статического прокси:**
+> - ❌ Нужно вручную писать класс-прокси для каждого интерфейса
+> - ❌ Дублирование кода (если 100 сервисов - нужно 100 прокси)
+> - ❌ Сложно поддерживать (изменение интерфейса → изменение прокси)
+>
+> ### 2. Динамический прокси (Dynamic Proxy)
+> Создается **автоматически в runtime** (во время выполнения программы).
+>
+> В Java есть **два механизма** динамических прокси:
+>
+> #### 2.1. JDK Dynamic Proxy (стандартный механизм Java)
+> Работает **только с интерфейсами**.
+>
+> **Пример:**
+> ```java
+> import java.lang.reflect.InvocationHandler;
+> import java.lang.reflect.Method;
+> import java.lang.reflect.Proxy;
+>
+> // Интерфейс и реализация
+> public interface UserService {
+>     void saveUser(String name);
+> }
+>
+> public class UserServiceImpl implements UserService {
+>     @Override
+>     public void saveUser(String name) {
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+>
+> // InvocationHandler - обработчик вызовов методов
+> public class LoggingHandler implements InvocationHandler {
+>     private Object target;
+>
+>     public LoggingHandler(Object target) {
+>         this.target = target;
+>     }
+>
+>     @Override
+>     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+>         System.out.println("BEFORE: " + method.getName());
+>         Object result = method.invoke(target, args);  // Вызов реального метода
+>         System.out.println("AFTER: " + method.getName());
+>         return result;
+>     }
+> }
+>
+> // Создание динамического прокси:
+> public class Main {
+>     public static void main(String[] args) {
+>         UserService realService = new UserServiceImpl();
+>
+>         // СОЗДАЕМ ДИНАМИЧЕСКИЙ ПРОКСИ В RUNTIME!
+>         UserService proxyService = (UserService) Proxy.newProxyInstance(
+>             UserService.class.getClassLoader(),
+>             new Class<?>[]{UserService.class},  // Интерфейсы для прокси
+>             new LoggingHandler(realService)
+>         );
+>
+>         proxyService.saveUser("Igor");
+>
+>         // Проверка типа
+>         System.out.println(proxyService.getClass().getName());
+>         // Вывод: com.sun.proxy.$Proxy0 ← Динамический класс!
+>     }
+> }
+> ```
+>
+> **Ограничение JDK Dynamic Proxy:**
+> ```java
+> // ❌ НЕ РАБОТАЕТ - нет интерфейса!
+> public class UserServiceImpl {  // Без интерфейса
+>     public void saveUser(String name) {
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+>
+> // ОШИБКА при попытке создать прокси:
+> UserServiceImpl proxy = (UserServiceImpl) Proxy.newProxyInstance(...);
+> // IllegalArgumentException: UserServiceImpl is not an interface
+> ```
+>
+> #### 2.2. CGLIB Dynamic Proxy (библиотека)
+> Работает **с классами БЕЗ интерфейсов** (создает подкласс через наследование).
+>
+> **Пример:**
+> ```java
+> import org.springframework.cglib.proxy.Enhancer;
+> import org.springframework.cglib.proxy.MethodInterceptor;
+> import org.springframework.cglib.proxy.MethodProxy;
+>
+> // Класс БЕЗ интерфейса
+> public class UserService {
+>     public void saveUser(String name) {
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+>
+> // Interceptor для CGLIB
+> public class LoggingInterceptor implements MethodInterceptor {
+>     @Override
+>     public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+>         System.out.println("BEFORE: " + method.getName());
+>         Object result = proxy.invokeSuper(obj, args);  // Вызов родительского метода
+>         System.out.println("AFTER: " + method.getName());
+>         return result;
+>     }
+> }
+>
+> // Создание CGLIB прокси:
+> public class Main {
+>     public static void main(String[] args) {
+>         Enhancer enhancer = new Enhancer();
+>         enhancer.setSuperclass(UserService.class);  // Наследуемся от класса!
+>         enhancer.setCallback(new LoggingInterceptor());
+>
+>         UserService proxy = (UserService) enhancer.create();
+>         proxy.saveUser("Igor");
+>
+>         // Проверка типа
+>         System.out.println(proxy.getClass().getName());
+>         // Вывод: UserService$$EnhancerByCGLIB$$12345678 ← CGLIB создал подкласс!
+>     }
+> }
+> ```
+>
+> **Как работает CGLIB:**
+> ```
+>            UserService (оригинальный класс)
+>                     ↑
+>                     | наследование
+>                     |
+>     UserService$$EnhancerByCGLIB$$12345678 (динамически созданный подкласс)
+>
+>     @Override
+>     public void saveUser(String name) {
+>         interceptor.intercept(...);  // Вызов interceptor'а
+>         super.saveUser(name);         // Затем вызов оригинального метода
+>     }
+> ```
+>
+> ## Сравнение всех типов прокси
+>
+> | Критерий | Статический прокси | JDK Dynamic Proxy | CGLIB Dynamic Proxy |
+> |----------|-------------------|-------------------|---------------------|
+> | **Создание** | Вручную программистом | Автоматически в runtime | Автоматически в runtime |
+> | **Требует интерфейс** | Нет | ✅ ДА (обязательно!) | ❌ НЕТ (работает с классами) |
+> | **Механизм** | Обычный класс | `java.lang.reflect.Proxy` | Наследование (создает подкласс) |
+> | **Производительность** | Быстрый | Средняя | Чуть медленнее (из-за наследования) |
+> | **Когда создается** | Compile-time | Runtime | Runtime |
+> | **Название класса** | YourProxy | com.sun.proxy.$Proxy0 | YourClass$$EnhancerByCGLIB$$... |
+> | **Используется в Spring** | Редко | Если есть интерфейс | Если нет интерфейса (или @Configuration) |
+>
+> ## Что использует Spring?
+>
+> Spring **автоматически выбирает** между JDK и CGLIB прокси:
+>
+> ```java
+> // Случай 1: Есть интерфейс → JDK Dynamic Proxy
+> public interface UserService {
+>     void saveUser(String name);
+> }
+>
+> @Service
+> public class UserServiceImpl implements UserService {
+>     @Override
+>     public void saveUser(String name) {
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+>
+> // Spring создаст: com.sun.proxy.$Proxy123
+>
+>
+> // Случай 2: Нет интерфейса → CGLIB Proxy
+> @Service
+> public class UserService {  // БЕЗ интерфейса!
+>     public void saveUser(String name) {
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+>
+> // Spring создаст: UserService$$EnhancerBySpringCGLIB$$12345678
+>
+>
+> // Случай 3: @Configuration → ВСЕГДА CGLIB (даже если есть интерфейс)
+> @Configuration
+> public class AppConfig {
+>     @Bean
+>     public UserService userService() {
+>         return new UserServiceImpl();
+>     }
+> }
+>
+> // Spring создаст: AppConfig$$EnhancerBySpringCGLIB$$12345678
+> ```
+>
+> ## Spring Data JPA + Custom Repository - какой прокси?
+>
+> В случае с `JudgeRoundScoreRepository`:
+>
+> ```java
+> public interface JudgeRoundScoreRepository
+>     extends JpaRepository<JudgesRoundScore, Long>,
+>             JudgeRoundScoreRepositoryCustom {
+>     // ...
+> }
+> ```
+>
+> Spring использует **JDK Dynamic Proxy**, потому что:
+> - ✅ Есть интерфейс `JudgeRoundScoreRepository`
+> - ✅ Spring Data создает прокси через `java.lang.reflect.Proxy`
+>
+> **Проверка:**
+> ```java
+> @Autowired
+> private JudgeRoundScoreRepository repository;
+>
+> public void check() {
+>     System.out.println(repository.getClass().getName());
+>     // Вывод: com.sun.proxy.$Proxy123 ← JDK Dynamic Proxy!
+>
+>     System.out.println(Proxy.isProxyClass(repository.getClass()));
+>     // Вывод: true
+> }
+> ```
+>
+> ## Когда Spring использует CGLIB вместо JDK?
+>
+> ```java
+> // 1. @Configuration класс - ВСЕГДА CGLIB
+> @Configuration
+> public class MyConfig {
+>     @Bean
+>     public UserService userService() {
+>         return new UserServiceImpl();
+>     }
+> }
+>
+> // 2. @Transactional на классе без интерфейса
+> @Service
+> @Transactional
+> public class UserService {  // Нет интерфейса
+>     public void saveUser(String name) { ... }
+> }
+>
+> // 3. Принудительно через настройку
+> @Configuration
+> @EnableAspectJAutoProxy(proxyTargetClass = true)  // ← Форсировать CGLIB
+> public class AppConfig { }
+> ```
+>
+> ## Итого
+>
+> **Статический прокси:**
+> - Пишется вручную
+> - Используется редко (только для учебных целей или очень специфичных случаев)
+>
+> **Динамический прокси:**
+> - **JDK Dynamic Proxy** (стандарт Java):
+>   - Работает ТОЛЬКО с интерфейсами
+>   - Использует `java.lang.reflect.Proxy`
+>   - Быстрее CGLIB
+>   - Используется Spring по умолчанию (если есть интерфейс)
+>   - Название класса: `com.sun.proxy.$ProxyXXX`
+>
+> - **CGLIB Dynamic Proxy** (библиотека):
+>   - Работает с классами БЕЗ интерфейсов
+>   - Создает подкласс через наследование
+>   - Используется Spring для @Configuration и классов без интерфейсов
+>   - Название класса: `YourClass$$EnhancerBySpringCGLIB$$XXX`
+>
+> **В случае Spring Data JPA:**
+> - Spring создает **JDK Dynamic Proxy** (`com.sun.proxy.$ProxyXXX`)
+> - Прокси делегирует вызовы:
+>   - В `SimpleJpaRepository` для JPA методов
+>   - В `JudgeRoundScoreRepositoryCustomImpl` для кастомных методов
+
+>[!question]- Что из прокси является AOP и рефлексией?
+> ## Рефлексия (Reflection)
+>
+> **Рефлексия** - это механизм Java, который позволяет **во время выполнения (runtime)** получать информацию о классах, методах, полях и вызывать их динамически.
+>
+> ### Где используется рефлексия в прокси:
+>
+> **JDK Dynamic Proxy - ИСПОЛЬЗУЕТ РЕФЛЕКСИЮ:**
+>
+> ```java
+> public class LoggingHandler implements InvocationHandler {
+>     private Object target;
+>
+>     @Override
+>     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+>         System.out.println("BEFORE: " + method.getName());
+>
+>         // ← ЭТО РЕФЛЕКСИЯ!
+>         // method - это объект java.lang.reflect.Method
+>         // invoke вызывает метод через рефлексию
+>         Object result = method.invoke(target, args);
+>
+>         System.out.println("AFTER: " + method.getName());
+>         return result;
+>     }
+> }
+> ```
+>
+> **Ключевые моменты:**
+> - `Method method` - получен через рефлексию
+> - `method.invoke(target, args)` - вызов метода через рефлексию (медленнее обычного вызова)
+> - `method.getName()` - получение имени метода через рефлексию
+>
+> **CGLIB - НЕ ИСПОЛЬЗУЕТ РЕФЛЕКСИЮ напрямую:**
+>
+> ```java
+> public class LoggingInterceptor implements MethodInterceptor {
+>     @Override
+>     public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+>         System.out.println("BEFORE: " + method.getName());
+>
+>         // ← ЭТО НЕ РЕФЛЕКСИЯ!
+>         // proxy.invokeSuper вызывает родительский метод напрямую (через байткод)
+>         // Быстрее чем method.invoke()
+>         Object result = proxy.invokeSuper(obj, args);
+>
+>         System.out.println("AFTER: " + method.getName());
+>         return result;
+>     }
+> }
+> ```
+>
+> **Ключевые моменты:**
+> - CGLIB генерирует байткод (bytecode generation) во время выполнения
+> - `proxy.invokeSuper()` - прямой вызов через сгенерированный байткод (БЫСТРЕЕ рефлексии)
+> - Но `Method method` все равно доступен для получения метаданных (это рефлексия)
+>
+> ## AOP (Aspect-Oriented Programming)
+>
+> **AOP** - это **парадигма программирования**, которая позволяет выделить сквозную функциональность (cross-cutting concerns) в отдельные модули (аспекты).
+>
+> ### Все прокси - это механизмы реализации AOP!
+>
+> **И JDK Dynamic Proxy, и CGLIB - оба являются техниками реализации AOP в Spring.**
+>
+> **Пример AOP концепций:**
+>
+> ```java
+> @Service
+> public class UserService {
+>
+>     @Transactional  // ← AOP аспект (транзакции)
+>     @Cacheable      // ← AOP аспект (кеширование)
+>     public void saveUser(String name) {
+>         // Бизнес-логика
+>         System.out.println("Saving user: " + name);
+>     }
+> }
+> ```
+>
+> **Что происходит под капотом (AOP через прокси):**
+>
+> ```java
+> // Spring создает ПРОКСИ (через JDK или CGLIB)
+> UserService proxy = createProxy(new UserServiceImpl());
+>
+> // Когда вы вызываете:
+> proxy.saveUser("Igor");
+>
+> // Прокси выполняет (это и есть AOP):
+> 1. BEFORE (advice): Открыть транзакцию      ← Аспект @Transactional
+> 2. BEFORE (advice): Проверить кеш            ← Аспект @Cacheable
+> 3. TARGET: Вызвать реальный метод saveUser() ← Бизнес-логика
+> 4. AFTER (advice): Сохранить в кеш           ← Аспект @Cacheable
+> 5. AFTER (advice): Закоммитить транзакцию    ← Аспект @Transactional
+> ```
+>
+> **Терминология AOP:**
+>
+> ```java
+> // Join Point - точка в программе, где можно применить аспект (вызов метода)
+> proxy.saveUser("Igor");  // ← Join Point
+>
+> // Advice - дополнительная логика, которую нужно выполнить
+> // Типы Advice:
+> @Before           // Перед вызовом метода
+> @After            // После вызова метода
+> @Around           // Вокруг вызова метода (контроль ДО и ПОСЛЕ)
+> @AfterReturning   // После успешного выполнения
+> @AfterThrowing    // После исключения
+>
+> // Pointcut - выражение, которое определяет, к каким методам применять аспект
+> @Pointcut("execution(* com.example.service.*.*(..))")  // Все методы в service пакете
+>
+> // Aspect - модуль, который объединяет Advice + Pointcut
+> @Aspect
+> @Component
+> public class LoggingAspect {
+>
+>     @Around("execution(* com.example.service.*.*(..))")  // ← Pointcut
+>     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {  // ← Advice
+>         long start = System.currentTimeMillis();
+>
+>         Object result = joinPoint.proceed();  // Вызов реального метода
+>
+>         long executionTime = System.currentTimeMillis() - start;
+>         System.out.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+>         return result;
+>     }
+> }
+> ```
+>
+> ## Визуализация: Рефлексия vs AOP
+>
+> ```
+> ┌─────────────────────────────────────────────────────────────┐
+> │                    РЕФЛЕКСИЯ (Reflection)                   │
+> │  Механизм Java для работы с классами в runtime              │
+> ├─────────────────────────────────────────────────────────────┤
+> │  • java.lang.reflect.Method                                 │
+> │  • method.invoke(target, args)                              │
+> │  • Class.forName("...")                                     │
+> │  • field.get(object), field.set(object, value)              │
+> │                                                              │
+> │  ИСПОЛЬЗУЕТСЯ В:                                            │
+> │  ✅ JDK Dynamic Proxy (напрямую)                            │
+> │  ⚠️ CGLIB (частично, для метаданных)                       │
+> └─────────────────────────────────────────────────────────────┘
+>
+> ┌─────────────────────────────────────────────────────────────┐
+> │              AOP (Aspect-Oriented Programming)              │
+> │  Парадигма программирования для модуляризации               │
+> │  сквозной функциональности                                  │
+> ├─────────────────────────────────────────────────────────────┤
+> │  Концепции AOP:                                             │
+> │  • Aspect (аспект)                                          │
+> │  • Advice (совет: @Before, @After, @Around)                 │
+> │  • Join Point (точка соединения)                            │
+> │  • Pointcut (точка среза)                                   │
+> │                                                              │
+> │  РЕАЛИЗУЕТСЯ ЧЕРЕЗ:                                         │
+> │  ✅ JDK Dynamic Proxy (для интерфейсов)                     │
+> │  ✅ CGLIB Proxy (для классов без интерфейсов)               │
+> │  ✅ AspectJ (compile-time weaving)                          │
+> └─────────────────────────────────────────────────────────────┘
+> ```
+>
+> ## Примеры в Spring
+>
+> ### 1. Spring AOP через JDK Dynamic Proxy
+>
+> ```java
+> // Интерфейс
+> public interface PaymentService {
+>     void processPayment(double amount);
+> }
+>
+> // Реализация
+> @Service
+> public class PaymentServiceImpl implements PaymentService {
+>
+>     @Transactional  // ← AOP аспект
+>     @Override
+>     public void processPayment(double amount) {
+>         System.out.println("Processing payment: " + amount);
+>     }
+> }
+>
+> // Spring создаст JDK Dynamic Proxy:
+> // com.sun.proxy.$Proxy123 implements PaymentService
+>
+> // Прокси перехватит вызов и добавит:
+> // 1. Открытие транзакции (BEFORE)
+> // 2. Вызов метода через рефлексию
+> // 3. Коммит транзакции (AFTER)
+> ```
+>
+> ### 2. Spring AOP через CGLIB
+>
+> ```java
+> // Класс БЕЗ интерфейса
+> @Service
+> public class PaymentService {  // Нет интерфейса!
+>
+>     @Transactional  // ← AOP аспект
+>     public void processPayment(double amount) {
+>         System.out.println("Processing payment: " + amount);
+>     }
+> }
+>
+> // Spring создаст CGLIB Proxy:
+> // PaymentService$$EnhancerBySpringCGLIB$$12345678 extends PaymentService
+>
+> // Прокси перехватит вызов и добавит:
+> // 1. Открытие транзакции (BEFORE)
+> // 2. Вызов родительского метода через байткод (НЕ рефлексия!)
+> // 3. Коммит транзакции (AFTER)
+> ```
+>
+> ### 3. Кастомный AOP аспект
+>
+> ```java
+> @Aspect
+> @Component
+> public class PerformanceAspect {
+>
+>     // Pointcut - где применять
+>     @Pointcut("execution(* com.example.service.*.*(..))")
+>     public void serviceMethods() {}
+>
+>     // Advice - что делать
+>     @Around("serviceMethods()")  // ← Это AOP!
+>     public Object measureExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+>         long start = System.currentTimeMillis();
+>
+>         // Вызов реального метода
+>         Object result = joinPoint.proceed();
+>
+>         long time = System.currentTimeMillis() - start;
+>         System.out.println(joinPoint.getSignature() + " took " + time + "ms");
+>
+>         return result;
+>     }
+> }
+> ```
+>
+> ## Итого
+>
+> | Концепция | Что это | Где используется в прокси |
+> |-----------|---------|---------------------------|
+> | **Рефлексия** | Механизм Java для работы с классами в runtime | ✅ JDK Dynamic Proxy (напрямую через `method.invoke()`)<br>⚠️ CGLIB (частично, для метаданных) |
+> | **AOP** | Парадигма программирования для модуляризации сквозной функциональности | ✅ JDK Dynamic Proxy (механизм реализации)<br>✅ CGLIB (механизм реализации)<br>✅ AspectJ (compile-time weaving) |
+>
+> **Прокси - это инструмент для реализации AOP:**
+> - `@Transactional` - AOP через прокси
+> - `@Cacheable` - AOP через прокси
+> - `@Async` - AOP через прокси
+> - Spring Security - AOP через прокси
+>
+> **Рефлексия - это механизм вызова методов в JDK Dynamic Proxy:**
+> - `method.invoke()` - рефлексия (медленнее)
+> - `proxy.invokeSuper()` в CGLIB - НЕ рефлексия (быстрее)
 
 
