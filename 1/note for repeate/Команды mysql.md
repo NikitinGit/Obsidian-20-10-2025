@@ -18,6 +18,12 @@
 >--no-tablespaces \
 >strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 >```
+>если хотим выидеть процесс (не проверял - надо смотреть)
+>```
+>mariadb-dump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' \
+  --skip-ssl --no-tablespaces --verbose \
+  strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
+>```
 >Исправление кодирвки
 >```
 >sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
@@ -190,91 +196,128 @@ SELECT CASE WHEN COUNT(t) > 0 THEN true ELSE false END FROM JudgeScore t
 
 
 
-# Индексы 
- Как работают индексы                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                    
-  Аналогия с книгой:                                                                                                                                                                                                                                                                                                
-  - Без индекса = книга без оглавления. Чтобы найти информацию, нужно пролистать все страницы подряд (Full Table Scan)                                                                                                                                                                                              
-  - С индексом = книга с оглавлением. Вы сразу видите на какой странице нужная информация и переходите туда напрямую                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                    
-  Пример: поиск боев по времени                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                    
-  Без индекса на predicted_start_time:                                                                                                                                                                                                                                                                              
-  SELECT * FROM battles WHERE predicted_start_time > '2026-02-03 10:00:00';                                                                                                                                                                                                                                         
-  MySQL должен просканировать ВСЕ строки таблицы battles (например, 100 000 боев) и проверить каждую строку: подходит ли она по условию.                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                    
-  С индексом на predicted_start_time:                                                                                                                                                                                                                                                                               
-  MySQL использует индекс (отсортированную структуру данных - B-Tree), который хранит все значения predicted_start_time в отсортированном виде с указателями на строки. MySQL сразу находит нужный диапазон времени и извлекает только подходящие строки.                                                           
-                                                                                                                                                                                                                                                                                                                    
-  Техническая реализация                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                    
-  Индекс в MySQL (B-Tree) работает как отсортированное дерево:                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                    
-                      [12:00]                                                                                                                                                                                                                                                                                       
-                     /       \                                                                                                                                                                                                                                                                                      
-              [10:00]         [14:00]                                                                                                                                                                                                                                                                               
-             /      \         /      \                                                                                                                                                                                                                                                                              
-         [09:00] [11:00] [13:00] [15:00]                                                                                                                                                                                                                                                                            
-           ↓       ↓       ↓       ↓                                                                                                                                                                                                                                                                                
-        строка1  строка2 строка3 строка4                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                    
-  Поиск в дереве = O(log N), сканирование таблицы = O(N)                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                    
-  Когда индексы полезны                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                    
-  ✅ Полезны:                                                                                                                                                                                                                                                                                                       
-  - Частые SELECT с WHERE по этим полям                                                                                                                                                                                                                                                                             
-  - ORDER BY по этим полям                                                                                                                                                                                                                                                                                          
-  - JOIN по этим полям                                                                                                                                                                                                                                                                                              
-  - GROUP BY по этим полям                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                    
-  Пример:                                                                                                                                                                                                                                                                                                           
-  -- Быстро с индексом                                                                                                                                                                                                                                                                                              
-  SELECT * FROM battles                                                                                                                                                                                                                                                                                             
-  WHERE predicted_start_time BETWEEN '2026-02-03 10:00' AND '2026-02-03 12:00'                                                                                                                                                                                                                                      
-  ORDER BY predicted_start_time;                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                    
-  Когда индексы НЕ нужны / вредны                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                    
-  ❌ Вредны:                                                                                                                                                                                                                                                                                                        
-  - Замедляют INSERT/UPDATE/DELETE (нужно обновлять индекс)                                                                                                                                                                                                                                                         
-  - Занимают дополнительное место на диске                                                                                                                                                                                                                                                                          
-  - Если колонка редко используется в WHERE/ORDER BY                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                    
-  Разница между вариантами                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                    
-  Вариант 1: Три отдельных индекса                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                    
-  CREATE INDEX idx_battles_predicted_start_time ON battles(predicted_start_time);                                                                                                                                                                                                                                   
-  CREATE INDEX idx_battles_planned_start_time ON battles(planned_start_time);                                                                                                                                                                                                                                       
-  CREATE INDEX idx_battles_fact_start_time ON battles(fact_start_time);                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                    
-  Хорошо для запросов:                                                                                                                                                                                                                                                                                              
-  -- Каждый запрос использует свой индекс                                                                                                                                                                                                                                                                           
-  SELECT * FROM battles WHERE predicted_start_time > '2026-02-03 10:00';                                                                                                                                                                                                                                            
-  SELECT * FROM battles WHERE planned_start_time < '2026-02-03 12:00';                                                                                                                                                                                                                                              
-  SELECT * FROM battles WHERE fact_start_time IS NOT NULL;                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                    
-  Вариант 2: Составной индекс                                                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                                                                    
-  CREATE INDEX idx_battles_event_times                                                                                                                                                                                                                                                                              
-  ON battles(event_id, predicted_start_time, planned_start_time, fact_start_time);                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                    
-  Хорошо для запросов с комбинацией:                                                                                                                                                                                                                                                                                
-  -- Использует составной индекс эффективно                                                                                                                                                                                                                                                                         
-  SELECT * FROM battles                                                                                                                                                                                                                                                                                             
-  WHERE event_id = 123                                                                                                                                                                                                                                                                                              
-    AND predicted_start_time > '2026-02-03 10:00'                                                                                                                                                                                                                                                                   
-  ORDER BY planned_start_time;                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                    
-  Правило левой части индекса: составной индекс работает только если запрос использует колонки слева направо:                                                                                                                                                                                                       
-  - ✅ event_id → работает                                                                                                                                                                                                                                                                                          
-  - ✅ event_id, predicted_start_time → работает                                                                                                                                                                                                                                                                    
-  - ❌ predicted_start_time (без event_id) → НЕ работает                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                    
-  Рекомендация для вашего случая                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                    
-  Если вы часто ищете бои по event_id + время, используйте составной индекс:                                                                                                                                                                                                                                        
-  CREATE INDEX idx_battles_event_predicted_time                                                                                                                                                                                                                                                                     
-  ON battles(event_id, predicted_start_time);  
+>[!question]- Как работают индексы в MySQL? Зачем они нужны?
+>## Что такое индекс?
+>**Индекс** = ускорение выборки данных (SELECT с WHERE/ORDER BY/JOIN/GROUP BY)
+>
+>### Аналогия с книгой:
+>- **Без индекса** = книга без оглавления. Чтобы найти информацию, нужно пролистать все страницы подряд (**Full Table Scan**)
+>- **С индексом** = книга с оглавлением. Вы сразу видите на какой странице нужная информация и переходите туда напрямую
+>
+>---
+>
+>## Пример: поиск боев по времени
+>
+>### Без индекса на `predicted_start_time`:
+>```sql
+>SELECT * FROM battles WHERE predicted_start_time > '2026-02-03 10:00:00';
+>```
+>MySQL должен **просканировать ВСЕ строки** таблицы `battles` (например, 100 000 боев) и проверить каждую строку: подходит ли она по условию.
+>
+>### С индексом на `predicted_start_time`:
+>MySQL использует индекс (отсортированную структуру данных - **B-Tree**), который хранит все значения `predicted_start_time` в отсортированном виде с указателями на строки. MySQL **сразу находит** нужный диапазон времени и извлекает только подходящие строки.
+>
+>---
+>
+>## Техническая реализация
+>
+>Индекс в MySQL (B-Tree) работает как отсортированное дерево:
+>
+>```
+>                [12:00]
+>               /       \
+>        [10:00]         [14:00]
+>       /      \         /      \
+>   [09:00] [11:00] [13:00] [15:00]
+>     ↓       ↓       ↓       ↓
+>  строка1  строка2 строка3 строка4
+>```
+>
+>**Сложность:**
+>- Поиск в дереве = **O(log N)** (быстро)
+>- Сканирование таблицы = **O(N)** (медленно)
+>
+>---
+>
+>## ✅ Когда индексы ПОЛЕЗНЫ
+>
+>Индексы ускоряют:
+>- Частые **SELECT с WHERE** по этим полям
+>- **ORDER BY** по этим полям
+>- **JOIN** по этим полям
+>- **GROUP BY** по этим полям
+>
+>**Пример:**
+>```sql
+>-- Быстро с индексом
+>SELECT * FROM battles
+>WHERE predicted_start_time BETWEEN '2026-02-03 10:00' AND '2026-02-03 12:00'
+>ORDER BY predicted_start_time;
+>```
+>
+>---
+>
+>## ❌ Когда индексы ВРЕДНЫ
+>
+>Индексы замедляют:
+>- **INSERT/UPDATE/DELETE** (нужно обновлять индекс)
+>- Занимают **дополнительное место на диске**
+>- Если колонка **редко используется** в WHERE/ORDER BY
+>
+>---
+>
+>## Варианты создания индексов
+>
+>### Вариант 1: Три отдельных индекса
+>```sql
+>CREATE INDEX idx_battles_predicted_start_time ON battles(predicted_start_time);
+>CREATE INDEX idx_battles_planned_start_time ON battles(planned_start_time);
+>CREATE INDEX idx_battles_fact_start_time ON battles(fact_start_time);
+>```
+>
+>**Хорошо для запросов:**
+>```sql
+>-- Каждый запрос использует свой индекс
+>SELECT * FROM battles WHERE predicted_start_time > '2026-02-03 10:00';
+>SELECT * FROM battles WHERE planned_start_time < '2026-02-03 12:00';
+>SELECT * FROM battles WHERE fact_start_time IS NOT NULL;
+>```
+>
+>---
+>
+>### Вариант 2: Составной индекс
+>```sql
+>CREATE INDEX idx_battles_event_times
+>ON battles(event_id, predicted_start_time, planned_start_time, fact_start_time);
+>```
+>
+>**Хорошо для запросов с комбинацией:**
+>```sql
+>-- Использует составной индекс эффективно
+>SELECT * FROM battles
+>WHERE event_id = 123
+>  AND predicted_start_time > '2026-02-03 10:00'
+>ORDER BY planned_start_time;
+>```
+>
+>**⚠️ Правило левой части индекса:**
+>Составной индекс работает **только если запрос использует колонки слева направо**:
+>- ✅ `event_id` → работает
+>- ✅ `event_id, predicted_start_time` → работает
+>- ❌ `predicted_start_time` (без event_id) → **НЕ работает**
+>
+>---
+>
+>## 💡 Рекомендация
+>
+>**Если часто ищете бои по `event_id + время`:**
+>```sql
+>CREATE INDEX idx_battles_event_predicted_time
+>ON battles(event_id, predicted_start_time);
+>```
+>
+>**Если ищете бои только по времени (без event_id):**
+>```sql
+>CREATE INDEX idx_battles_predicted_start_time ON battles(predicted_start_time);
+>```  
 

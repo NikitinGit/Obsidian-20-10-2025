@@ -16,6 +16,14 @@
 > cd /home/igor/IdeaProjects/strikerstat && git clean -fd && git reset --hard HEAD    
 > ```
 
+>[!question]- git cherry pick
+> Переносит изменения выбранного коммита коммита , можнор перенсти с автоматическим коммитом или без коммита через гуи интелидж с помощью  Cherry-pick selected changed
+> Если предыдущие коммиты меняли файл текущео коммита - то  переносятся коммиты всех предыдущих коммитов, а если добавляются новые файлы и ли удалются файлы то нет 
+> ```
+> cd /home/igor/IdeaProjects/strikerstat && git clean -fd && git reset --hard HEAD    
+> ```
+
+
 >[!question]- ветки локального репозитория при git pull меняюся ?
 >Нет 
 >одна ветка Меняется только после чекаута удаленной ветки 

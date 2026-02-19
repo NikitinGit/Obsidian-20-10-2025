@@ -34,6 +34,9 @@
 33. [ ] Подключения к БД:  credentials, pool settings
 34. [ ] елк стек, актуатор , графана 
 
+>[!question]- AopUtils
+> в нем находятся ошибки и чаще всего вызываются при ошибках в таблицах , отстутсвие таблицы в БД 
+
 >[!question]- Когда происходит не явный inner join при выборке 
 >```
 >@Query("SELECT new com.strikerstat.webapp.dto.olympic_events.CityDto(c.country, c.region) "
