@@ -78,7 +78,8 @@
               "title": "SSH"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -169,7 +170,8 @@
               "title": "АНГЛИЙСКИЕ СЛОВА"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -316,8 +318,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "77727c41c33da3b0",
+  "active": "bf5234dc59216150",
   "lastOpenFiles": [
+    "1/Задачи на день.md",
+    "1/note for repeate/JavaCore.md",
+    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
+    "1/КУБИК РУБИК/Задачи на день по кубику.md",
+    "1/СТЕНДАП.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/English/Грамматика.md",
     "1/note for repeate/Kotlin.md",
@@ -326,13 +333,8 @@
     "1/note for repeate/ELK stack.md",
     "1/note for repeate/Команды mysql.md",
     "1/note for repeate/Spring основы.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/Деплой на хостинге.md",
     "BEGIN/свое приложенгие на java например.md",
-    "1/note for repeate/JavaCore.md",
-    "1/Задачи на день.md",
-    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/HTTPS.md",
     "1/note for repeate/RabbitMQ.md",
     "1/note for repeate/Untitled.md",
