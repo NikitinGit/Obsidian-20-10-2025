@@ -64,7 +64,6 @@
 >FROM judges_round_scores GROUP BY event_id ORDER BY records_count ASC;
 >```
 
-
 >[!question]-  Удалить таблицу 
 > DROP TABLE IF EXISTS judges_scores;
 

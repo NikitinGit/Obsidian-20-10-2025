@@ -4,6 +4,16 @@
 3. [ ] индекс и стек это 
 4. [ ]  git merge --abort  - это 
 
+>[!question]- Есть ли в main коммиты, которых нет в develop (если пусто — main влит) 
+>git log origin/develop..origin/main --oneline   
+
+>[!question]- Есть ли в develop коммиты, которых нет в main (сколько develop опережает main)
+>git log origin/main..origin/develop --oneline   
+
+>[!question]- Показывает коммиты, которые есть в origin/develop, но отсутствуют в origin/main.    
+> git log origin/main..origin/develop --oneline       
+>Читается как: "коммиты начиная от main до develop" — то есть то, на сколько develop обогнал main.   
+
 >[!question]- ошибка при откате мержда
 >```
 >git -c credential.helper= -c core.quotepath=false -c log.showSignature=false merge --abort 
@@ -22,7 +32,6 @@
 > ```
 > cd /home/igor/IdeaProjects/strikerstat && git clean -fd && git reset --hard HEAD    
 > ```
-
 
 >[!question]- ветки локального репозитория при git pull меняюся ?
 >Нет 

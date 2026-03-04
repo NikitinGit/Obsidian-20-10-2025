@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
+                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "АНГЛИЙСКИЕ СЛОВА"
+              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
             }
           },
           {
@@ -78,8 +78,7 @@
               "title": "SSH"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -98,6 +97,18 @@
               },
               "icon": "lucide-file",
               "title": "СТЕНДАП"
+            }
+          },
+          {
+            "id": "5a1c8429e9d9e78e",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.12.4"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.12.4"
             }
           },
           {
@@ -171,7 +182,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -318,42 +329,42 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bf5234dc59216150",
+  "active": "3c3a96d67fef8084",
   "lastOpenFiles": [
-    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/Команды mysql.md",
-    "1/note for repeate/English/Грамматика.md",
-    "1/Задачи на день.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/JavaCore.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/GIT.md",
+    "1/note for repeate/JavaCore.md",
+    "1/note for repeate/Spring основы.md",
+    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
+    "1/note for repeate/общие знания IT.md",
+    "1/Дедлок/DEADLOCK - Spirit Items Tiers.md",
+    "1/note for repeate/IntelliJ IDEA.md",
+    "1/note for repeate/nixOS.md",
+    "1/note for repeate/Нейроагент.md",
+    "1/note for repeate/HTTPS.md",
+    "1/note for repeate/MAVEN.md",
+    "1/note for repeate/Stream api.md",
+    "1/note for repeate/Spring тесты.md",
+    "1/note for repeate/IoC Spring.md",
+    "1/note for repeate/Повторение того, что знаешь.md",
+    "1/СОБЕСЕДОВАНИЕ TS.md",
     "1/note for repeate/Kotlin.md",
     "1/note for repeate/GO LANG.md",
     "1/note for repeate/NGINX.md",
     "1/note for repeate/ELK stack.md",
-    "1/note for repeate/Spring основы.md",
-    "1/note for repeate/Деплой на хостинге.md",
-    "BEGIN/свое приложенгие на java например.md",
-    "1/note for repeate/HTTPS.md",
-    "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/Untitled.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/note for repeate/Spring cloud.md",
+    "1/Задачи на день.md",
+    "1/note for repeate/English/Грамматика.md",
+    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/English",
     "testFolder/demo canvas.canvas",
     "Untitled",
-    "1/Дневник работы.md",
-    "1/Сайт Александра.md",
-    "1/note for repeate/GIT.md",
-    "BEGIN/SSH.md",
     "1/note for repeate/Spring основы.md.tmp.9531.1769956513043",
     "1/note for repeate/Spring основы.md.tmp.9531.1769951513606",
     "1/note for repeate/Spring основы.md.tmp.9531.1769950355347",
     "1/Дедлок",
     "1/note for repeate/Spring основы.md.tmp.29561.1769501679757",
-    "1/КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
-    "1/КУБИК РУБИК/Необходимые условия.md",
-    "1/КУБИК РУБИК/Видоизменения.md",
-    "1/Дедлок/DEADLOCK - Spirit Items Tiers.md",
     "Pasted image 20260109165447.png",
     "Untitled 1.base",
     "Untitled.base",
