@@ -9,7 +9,7 @@ https://topjava.ru/blog/what-is-the-jre
 7. [x] Кастомизация чиловых типов - у всех макс-мин число отличается, как перевести long -> double ->  float, long -> int
 8. [x] при конвертации большого в малое что происходит
 9. [x] допиши побитовые операции 
-10. [ ] когда требуется кастомизация а когда нет в числовых типах и классах типах - https://www.perplexity.ai/search/java-est-spisok-na-dzhava-list-kQzm5P4UQQGJKFc6lSgkmg 
+10. [x] когда требуется кастомизация а когда нет в числовых типах и классах типах - https://www.perplexity.ai/search/java-est-spisok-na-dzhava-list-kQzm5P4UQQGJKFc6lSgkmg  - шпаргалка тут /home/igor/IdeaProjects/TestLinux/src/main/java/com/example/testlinux/customization/DigitType.java
 11. [ ] Function в стримах 
 12. [ ] Consumer
 13. [ ] BinaryOperator
@@ -33,125 +33,26 @@ https://topjava.ru/blog/what-is-the-jre
 31. [ ] Посмотри лямбда в стрим апи линекд хеш мап 
 32. [ ] Почему при создании хешмап сбивается сортировка   
 
-#   [[STREAM API]] 
+#   [[Stream api]] 
 
-1. [ ] что может находится в stream().map а что нет
-2. [ ] ```flatMap``` попробуй с списком объекты, внутри каждого из которых есть список или массив
-3. [ ] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой
-4. [ ] Collectors
-# Поразрядные опреации (**Bitwise Operators**)
-https://www.google.com/search?q=java+%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0+%26%26+%D0%B8+%26&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgIGB4yCAgCEAAYCBgeMggIAxAAGAgYHjIICAQQABgIGB4yCAgFEAAYCBgeMggIBhAAGAgYHjIICAcQABgIGB4yBggIEEUYQTIICAkQABgIGB4yCAgKEAAYCBgeMggICxAAGAgYHjIICAwQABgIGB4yCAgNEAAYCBgeMggIDhAAGAgYHtIBCjI4ODI5ajBqMTaoAgGwAgE&sourceid=chrome-mobile&ie=UTF-8&fbs=ADc_l-YWHxjctacVdI3-Iqscc_X6ZBg4CBYeUg71Nw4kHqUpT3Ykwrvi8PHco0mjTplrZGmvuoJNWYi3Iq0yH4mR3dknjy9lyjGqwqdIoH3hAn02rYfRm-px5NOj80sjoeOuCw5mGks2GQGF_idyM9mE7m4r7C3izLw0z7OdvFocOiuS3ST_4f1K9aFCVDANTrTQQTAnwDmPycN5VZOSy7MqCkkX7AMRy5J_dMHoS6v6CpvdVGHhizdyUDzhZAWIKXLT-V1_a2O9eB633e0rO6YJoM-gPm5-Lg&aep=10&ntc=1&mstk=AUtExfAjm-fLnKn4ueg8ZIl8m9QfKfrOn5PLmh7HS0VD2bi0mVIzArcdDhgy2vVDdvaYu_RVKGpjeK7pOEqAOkti9v_jdiWHn_KFcS63ocXh1UQ-A105MkSYk0athuT9ed9w0etc3Ui5bJZCNyQyI29EpbU75hFa6buI3dlQ7vEnZ_mmukMDnEbtPEBvvLM_OH-PgNJhCfaSk0uY08Fb8wq3EAqSYT4XAj1NalswhX61bQjX-Fx9nJs9X7APD_XQxTIqjbGlgO1s6FWF9exg1q85MX5f103qyg1Xj_vUNlpDsjk4auh3bkZYc1v6tAqb9AGLYA8kxkefqAPMKw&csuir=1&aioh=3&mtid=uoOeabD8Ds6M9u8PjbPP-Qo&udm=50#lfId=ChxjMe
+# [[Коллекции]]
+# Поразрядные опреации ([[Bitwise Operators]])
 
->[!question]- & это 
->«амперсанд» - побитовое И сумма всех  битов в двоичном предсталение числа -  если оба бита 1 - то в результате получается 1, иначе  0
->```
->0101
->1101
->=
->0101
->```
-
->[!question]- | это 
->пайп - побитовое ИЛИ 0 сумма всех  битов в двоичном предсталение числа -  если хотя бы один бит = 1 - то в результате получается 1, иначе  0
->```
->0101
->1101
->=
->1101
->```
-
->[!question]- ^ это 
-> каретка - исключающее побитовое ИЛИ  (часто называют "контролем различий") -  сли биты разные- то в результате получается 1, иначе  0
->```
->0101
->1101
->=
->1000
->```
-
->[!question]- ~ это 
->тильда - Оператор **Bitwise Complement** (`~`) — это унарная операция, которая инвертирует каждый бит в двоичном представлении числа. Простыми словами: **0 превращается в 1, а 1 — в 0**.
->```
->0101
-> "~"
->=
->1010
->```
-
->[!question]- '>>'
->сдвиг всех битов  на 1 вправо (деление на 2)
->```
->1010
->   ">>"
->=
->0101
->```
->если не четное то  - остаток отбрасывается (-1)
-
->[!question]- '<<' это 
->сдвиг всех битов  на 1 влево (умножение на 2)
->```
->0101
->   "<<"
->=
->1010
->```
->1. Скорость - процессору сдвинуть биты быстрее  чем  выполнить полноценое деление
->2. Упаковка данных - Можно запихнуть несколько маленьких чисел в одно большое - например упаковать 2 цвета (rgb)
-
->[!question]- '>>>' это 
-> беззнаковый сдвиг - при сдвиге вправо всегда вставляется 0 слева игнрорируя знак числа - плюс минус - пример 
->```
-> int a = 8; // В битах: 0000...00001000
-int b = a >>> 2; 
-// Результат: 2 (0000...00000010)
->```
-
->[!question]- где исползуется 
->  в rgb - & , | - в одном int сохраняются все 3 цвета (0 - 255) 
->```
-> int red = 255;  
-> int green = 128;
-> int blue = 64;
-> int rgb1 = (red << 16) | (green << 8) | blue;
-> int green2 = (rgb1 >> 8) & 0xFF;
->```
-
->[!question]- правила инициализации 
->Используйте префикс **`0b`** для целых чисел. Для `boolean` и дробных чисел используйте стандартные значения, так как их битовая структура скрыта за правилами виртуальной машины Java. В Java есть несколько способов записи чисел: **двоичный** (binary), **шестнадцатеричный** (hex). Восьмеричная система в Java задается ведущим **нулем**. Она почти не используется в современном Spring/Enterprise, в отличие от **шестнадцатеричной (`0x`)**, которая повсеместна. 
-# JVM
-1. [ ] типы jvm - open jdk, ...
-2. [ ] допиши когда какой сборщик мусора использовать https://www.perplexity.ai/search/jvm-kogda-kakoi-sborshchik-isp-cbnJ27T3TBWH6Bhdkd3zFg 
-
->[!question]- JVM это 
-> виртуальная машина , которая интерпретирует байт-код, с помощью JIT компилирует его в машинный код. Jit анализирует код и находит в нем горячие участки кода - которые чаще всего исполняются и компилирует их в машинный код ускоряя выполнение программы. 
-   Существует 2 вида JIT -  C1 (3 уровня компиляции - флаг -client) и  C2 (4-ый уровень компиляции - флаг -server). Клиентский быстрее запускает но работает медленнее. 
-   На ОС x64  флаг -server отсутствует
-
->[!question]- `classpath` — это 
->**список путей**, где JVM ищет _скомпилированный байткод_ (`.class`-файлы).  Он **не хранит** байткод, а просто **указывает, где его искать** необходимые классы и ресурсы для запуска или компиляции Java-приложений.
->В командной строке при запуске Java-программы с помощью параметра `-cp` или `-classpath`. Например: 
->```
->java -cp /path/to/classes:/path/to/lib.jar com.example.Main
->```
->Example 
->```<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-<<classpathentry kind="src" path="src"/>
-< <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
- <  <classpathentry kind="lib" path="lib/mysql-connector-j-8.0.33.jar"/>
-<<classpathentry kind="lib" path="lib/gson-2.10.jar"/>
-<    <classpathentry kind="output" path="bin"/>
-</classpath>
->```
-
->[!question]-  компиляция 
-> преолразования кода в байт код , используется javac  и его аналоги в jdk
-> обратный процесс - декомпиляция 
+# [[JVM]]
 
 # BASE
+>[!question]- как хранятся числа с плавающей точкой 
+>```- float (32 бита, binary32 по IEEE‑754):
+>- 1 бит — знак - самый левый бит>
+>- **8 бит — экспонента** 
+>- 23 бита — мантисса (фракция)
+> - double (64 бита, binary64 по IEEE‑754):
+> - 1 бит — знак - самый левый бит
+>- **11 бит — экспонента**
+>- 52 бита — мантисса
+>```
 
->[!question]- когда нужен каст 
+>[!question]- когда нужен каст  в примитивных типах
 >при сужении типов - 
 >```
 >long → int → short → byte
@@ -192,11 +93,6 @@ int b = a >>> 2;
 >[!question]- while(test()); может быть ?
 >Да
 
->[!question]- запустить отдельный класс в программе в терминале через мавен
->cd /home/igor/IdeaProjects/TestLinux
->mvn exec:java -Dexec.mainClass="com.example.testlinux.blind.seal.BlindSeal"
->чтобы обновить приложение надо сделать mvn clean compile - при этом надо находится в папек где расположен .pom
-
 >[!question]- Классы для интерактивного приложения - способы читать ввод из командной строки 
 > Scanner scanner = new Scanner(System.in); 
 > String input = scanner.nextLine();
@@ -209,9 +105,6 @@ int b = a >>> 2;
 > terminal.writer().println("Нажмите Backspace для выхода\n");  
 > terminal.flush();
 > ```
-
->[!question]- Set.of() когда вызывает исключения 
->при дублях если есть 
 
 >[!question]- методы Object
 >```
@@ -303,7 +196,9 @@ int b = a >>> 2;
 > ```
 
 >[!question]-  Как проверить тип  объекта 
+>```
 >if (bean instanceof MyBean) 
+>```
 
 >[!question]- полиморфизм
 >способность базового класса принимать  форму своих наследников, но не наоборот
@@ -376,33 +271,8 @@ int b = a >>> 2;
   >[!question]- хвостовая рекурсия 
  > Не ждет вызова остальных методов
  
-   >[!question]- увлечить стек 
-java -Xss512k TestLinuxApplication - 512  кб
- mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xss512k"  
- **IntelliJ IDEA** →  
-`Run > Edit Configurations > VM options`  
-→ впиши `-Xss2m`
-java -Xss1m TestLinuxApplication - с Мб
-
 >[!question]- узнать глубину текущего стектрейса 
 >Thread.currentThread().getStackTrace().length 
-
->[!question]- что хранит куча
->объекты, строки, коллекции , массивы , все что создается через new 
->пример 
->``` 
->public class Example {
->public static void main(String[] args) {
->    int a = 10;                       // локальная переменная → стек
->        String s = "hello";               // строковый литерал → специальная область (String pool)
->            int[] arr = new int[5];           // сам объект массива → куча
->            User user = new User("Alice");    // объект User → куча
- >   }
->}
->```
-
->[!question]- установить размер кучи 
->java -Xms256m -Xmx2g MyProgram
 
 >[!question]- как создать int[]
 >int[] test = new int[]{1, 2};
@@ -428,22 +298,6 @@ java -Xss1m TestLinuxApplication - с Мб
 > фунциональный метод 
 > break |continue  не используются 
 
->[!question]- сделать из  int[] nums - Map
->boxed() превращает int  в Integer
->```
->Map<Integer, Integer> mapOfNums = IntStream.range(0, nums.length)
-.boxed().collect(Collectors.toMap(i -> i, i -> nums[i]));
->```
->```
->Map<Integer, Integer> mapOfNums = new HashMap<>(); Arrays.stream(nums).forEach(n -> mapOfNums.put(n, nums[n]));
->```
-> отсортировать по значению, без LinkedHashMap::new не сортируется ? 
-> ```
-> Map<Integer, Integer> mapOfNums = IntStream.range(0, nums.length).boxed()  
->.sorted(Comparator.comparingInt(i -> nums[i]))  
->.collect(Collectors.toMap(i -> i, i -> nums[i], (a, b) -> a, LinkedHashMap::new));
-> ```
-
 >[!question]- получить значение мап по индексу
 >```
 >Integer i2 = mapOfNums.entrySet().stream().filter(e -> value == e.getValue())
@@ -451,18 +305,12 @@ java -Xss1m TestLinuxApplication - с Мб
 .findFirst().orElse(null);
 >```
 
->[!question]- метод проверки существования ключа/значения Map
->containsKey
->containsValue 
 
 >[!question]- отличие интерфейса от абстрактного класса
 >у интерфейса не может быть состояния, у абстрактного класса может через поля его
 
 >[!question]- Optional это 
 контейнер который  может быть пустым
-
-
-
 
 # 👑 Итог — большая истина JVM
 

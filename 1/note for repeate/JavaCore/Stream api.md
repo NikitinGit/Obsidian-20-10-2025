@@ -1,3 +1,7 @@
+1. [ ] что может находится в stream().map а что нет
+2. [ ] ```flatMap``` попробуй с списком объекты, внутри каждого из которых есть список или массив
+3. [ ] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой
+4. [ ] Collectors
 
 https://metanit.com/java/tutorial/10.1.php 
 
@@ -6,8 +10,19 @@ https://metanit.com/java/tutorial/10.1.php
 >1. В основе лежат промежуточные операции и терминальные (после которых промежуточные не могут быть вызваны, так же как терминальные не могут быть вызваны)
 >2. Промежуточных операций может быть несколько - терминальная операция одна Использует отложение выполнение лямбда выражений - то есть при вызове терминальной операции 
  >3. Во всех коллекциях начиная с jdk 8 есть метод stream через который можно получать объект Stream<T> , так же его можно получить через Arrays.stream(T[] array), Stream.of("Nikitin", "Bin") , InStream.of() , LongStream.of(), DoubleStream.of() ```
+ 
+ 
 >[!question]- Отличие стрим потока от списка элементов
 >Пиши
+
+>[!question]- `map` —
+> это то, **как** мы меняем каждый элемент
+
+>[!question]- `Collectors` — 
+>это то, **во что** мы превращаем весь поток в самом конце.
+
+>[!question]- `flatMap` — 
+>разварачивает только один уровень вложенности, сколько уровней стлько раз надо вызвать этот метод - **нужен если нам надо получить у объекта не список , а каждый элемент списка**
 
 >[!question]- сделать из списка ассоциативную коллекцию 
 >Не убирая дубликаты
@@ -58,6 +73,22 @@ https://metanit.com/java/tutorial/10.1.php
 >        .flatMap(bs -> getFighterSortedList(fighterSortData, bs).stream())  .toList();
 >    }
 >```
+
+>[!question]- сделать из  int[] nums - Map
+>boxed() превращает int  в Integer
+>```
+>Map<Integer, Integer> mapOfNums = IntStream.range(0, nums.length)
+.boxed().collect(Collectors.toMap(i -> i, i -> nums[i]));
+>```
+>```
+>Map<Integer, Integer> mapOfNums = new HashMap<>(); Arrays.stream(nums).forEach(n -> mapOfNums.put(n, nums[n]));
+>```
+> отсортировать по значению, без LinkedHashMap::new не сортируется ? 
+> ```
+> Map<Integer, Integer> mapOfNums = IntStream.range(0, nums.length).boxed()  
+>.sorted(Comparator.comparingInt(i -> nums[i]))  
+>.collect(Collectors.toMap(i -> i, i -> nums[i], (a, b) -> a, LinkedHashMap::new));
+> ```
 
 
 
