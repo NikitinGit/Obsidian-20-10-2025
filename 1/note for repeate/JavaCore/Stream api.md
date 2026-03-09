@@ -1,7 +1,9 @@
+https://www.google.com/search?q=stream+api+%D1%87%D1%82%D0%BE+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82+%D0%B1%D1%8B%D1%82%D1%8C+%D0%B2+map&sca_esv=ad175a4a610f2e0b&sxsrf=ANbL-n55KnNEpQdNdLR6Pp5fStb1RH6Plg%3A1772653941597&fbs=ADc_l-Z6juH7r_7-8pNw5rPlE-L7lKX-xQDzwJouywX5Qr83x-wndlrxiB7XC753aUrOCsMw_45F-xS_9DgnjEXKZHlq78b_swAkVmiHWTCyU-0GSmWRc_F6uB_HEXgnPveaPwqIUcS9wvEHUBIrP4qPxk5VBIAyr2Ii1OzZ7GxHhmM6XWbL_azspV9xM1R2XVnXFULq1C1PD5KqHp6JuSgk9GQt-jCEl-Z8e6Nb2mWFC0vBoOfZuIKPpjRg_BYNOfa_4lu_lAN00vXHlhZfGIbwQ0erZXBjDA&aep=1&ntc=1&sa=X&ved=2ahUKEwjCnf7DgoeTAxVz_7sIHQKsB3IQ2J8OegQIFxAE&biw=2560&bih=1302&dpr=1&mstk=AUtExfBMIfQi4Kh4vMmyC73PxAA_VEz7YE3c_7lc5ktvZh2MaNiKP5BgMUAtoP3o1OQb5sFz1WH_TtFBhakR379AausR9bfbNn_AubAGP7Z8IhrCzu_acjFAeKTsJi4GWx3J0tboWs5EeojILG49bPylfgSnvRICHbRZVWABkd9s3jUlEEN9FpaRIT8Fu0L8BT1bifSsvQ-d8MEvnt6p1am7OSDR70XNfLphGgPz65jKnqFeGM74fHOI7UJ48V8O78uGgSEl4Eek0VGaJaNrjiDHbWX_4n_iz8IAi-0KZcCZgaFWdzUQvrq11o73wsJsmXWVptDHP47LB8-9zby4BydAVWRQ6Zne8p9aD84fOrTBmjddK4tZShQnyh3pg9zaBy1tG3br8wcyuhjU&csuir=1&mtid=eY2oaejyJ5269u8Puqr3yAM&udm=50 
 1. [ ] что может находится в stream().map а что нет
-2. [ ] ```flatMap``` попробуй с списком объекты, внутри каждого из которых есть список или массив
-3. [ ] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой
-4. [ ] Collectors
+2. [ ] стрим и полиморфизм
+3. [x] ```flatMap``` попробуй со списком объектов, внутри каждого из которых есть список или массив
+4. [ ] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой
+5. [ ] Collectors
 
 https://metanit.com/java/tutorial/10.1.php 
 
@@ -11,9 +13,12 @@ https://metanit.com/java/tutorial/10.1.php
 >2. Промежуточных операций может быть несколько - терминальная операция одна Использует отложение выполнение лямбда выражений - то есть при вызове терминальной операции 
  >3. Во всех коллекциях начиная с jdk 8 есть метод stream через который можно получать объект Stream<T> , так же его можно получить через Arrays.stream(T[] array), Stream.of("Nikitin", "Bin") , InStream.of() , LongStream.of(), DoubleStream.of() ```
  
- 
 >[!question]- Отличие стрим потока от списка элементов
->Пиши
+>- **Список (`List`)** — это структура данных. Он **хранит** элементы в памяти прямо сейчас. 
+>- **Стрим (`Stream`)** — это набор инструкций. Он **не хранит** элементы, а лишь «прокачивает» их через себя от источника к результату. 
+>- Стрим — ленив. Если вы написали `.map()`, Java не будет ничего делать, пока вы не вызовете `.collect()`. Элементы обрабатываются по одному только в момент необходимости.
+>- Список не может быть бесконечным 
+>- Стрим может быть бесконечным (например, стрим случайных чисел), так как он генерирует элементы «на лету».
 
 >[!question]- `map` —
 > это то, **как** мы меняем каждый элемент
@@ -51,6 +56,7 @@ https://metanit.com/java/tutorial/10.1.php
 >промежуточные вычисления вызываются при вызове терминальных
 
 >[!question]- Ленивые вычисления 
+>пиши 
 
 >[!question]- Отображение это 
 >Промежуточная операция map
