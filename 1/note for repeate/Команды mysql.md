@@ -4,11 +4,6 @@
 3. [ ] Что такое UNION ALL и его типы 
 4. [x] какой алгоритм используется в индексах 
 
->[!question]- индексы
-> ускоряют выборку, замедляют остальные операции  , используется алгоритм B‑tree 
-> ```
-> CREATE INDEX idx_battles_predicted_start_time ON battles(predicted_start_time);
-> ```
 
 >[!question]- Перенести данные с препродовой БД в локальную БД 
 >создаеам дамп и скачиваем 
@@ -54,6 +49,12 @@
 >[!question]- Создать дамп БД strikerstat_preprod
 > mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_preprod> /tmp/strikerstat_preprod_dump.sql 
 >  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
+
+>[!question]- индексы
+> ускоряют выборку, замедляют остальные операции  , используется алгоритм B‑tree 
+> ```
+> CREATE INDEX idx_battles_predicted_start_time ON battles(predicted_start_time);
+> ```
 
 >[!question]-  Переименовать таблицу 
 > RENAME TABLE judges_scores_new TO judges_scores; 
@@ -191,8 +192,6 @@ SELECT CASE WHEN COUNT(t) > 0 THEN true ELSE false END FROM JudgeScore t
 >[!question]-  COALESCE это 
 >Функция COALESCE принимает список значений и возвращает первое из них, которое не равно NULL:
 > `COALESCE``(выражение_1, выражение_2, выражение_N)` |
-
-
 
 
 >[!question]- Как работают индексы в MySQL? Зачем они нужны?
