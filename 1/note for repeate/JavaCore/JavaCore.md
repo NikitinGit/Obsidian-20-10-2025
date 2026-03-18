@@ -33,13 +33,6 @@ https://topjava.ru/blog/what-is-the-jre
 31. [ ] Посмотри лямбда в стрим апи линекд хеш мап 
 32. [ ] Почему при создании хешмап сбивается сортировка   
 
-#   [[Stream api]] 
-
-# [[Коллекции]]
-# Поразрядные опреации ([[Bitwise Operators]])
-
-# [[JVM]]
-
 # BASE
 >[!question]- как хранятся числа с плавающей точкой 
 >```- float (32 бита, binary32 по IEEE‑754):
@@ -283,34 +276,14 @@ https://topjava.ru/blog/what-is-the-jre
 >длинна массива array = mums.length 
 
 
-# лямбда 
+#   [[Stream api]] 
 
->[!question]-  что работает быстрее  - .forEach или просто for 
->```
->bidFighterList.forEach(bidFighter -> {
->bidFighter.setApproved(newStatus.num);
->bidFighter.setApproved(BidStatus.APPROVED.num);  
-});
->```
-> .forEach работает медленнее потому что  использует лямбд-выражение, то есть создает объект функционального интерфейса (Consumer)
-> из за вызова скрытого мтеода accept()
-> **.foreach Указывает  но то, что внутри должны менятся тольк оего элементы, но есть исеключения*
-> фунциональный метод 
-> break |continue  не используются 
+# [[Коллекции]]
+# Поразрядные опреации ([[Bitwise Operators]])
 
->[!question]- получить значение мап по индексу
->```
->Integer i2 = mapOfNums.entrySet().stream().filter(e -> value == e.getValue())
-.map(Map.Entry::getKey)
-.findFirst().orElse(null);
->```
+# [[JVM]]
 
-
->[!question]- отличие интерфейса от абстрактного класса
->у интерфейса не может быть состояния, у абстрактного класса может через поля его
-
->[!question]- Optional это 
-контейнер который  может быть пустым
+# [[Лямбда выражения]]
 
 # 👑 Итог — большая истина JVM
 

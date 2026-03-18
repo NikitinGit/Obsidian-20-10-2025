@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+                "file": "1/note for repeate/English/Грамматика.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
+              "title": "Грамматика"
             }
           },
           {
@@ -237,8 +237,7 @@
               "title": "MAVEN"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -385,9 +384,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "98421853c07cd2dd",
+  "active": "cf98cce18475547a",
   "lastOpenFiles": [
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/English/Грамматика.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/JavaCore/Stream api.md",
+    "1/note for repeate/JavaCore/JVM.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
+    "1/note for repeate/Лямбда выражения.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/Микросервисы.md",
     "1/note for repeate/общие знания IT.md",
     "1/note for repeate/nixOS.md",
@@ -398,21 +405,13 @@
     "1/note for repeate/Spring Kafka.md",
     "1/note for repeate/Шаблоны проектирования.md",
     "1/note for repeate/Повторение того, что знаешь.md",
-    "1/note for repeate/English/Грамматика.md",
     "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
     "1/note for repeate/NGINX.md",
     "1/note for repeate/ELK stack.md",
-    "1/note for repeate/Команды mysql.md",
     "1/note for repeate/Spring cloud.md",
     "1/note for repeate/Spring основы.md",
     "1/note for repeate/Деплой на хостинге.md",
     "BEGIN/свое приложенгие на java например.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
-    "1/Сайт Александра.md",
-    "1/note for repeate/Нейроагент.md",
-    "1/Задачи на день.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/JavaCore",
     "1/note for repeate/English",
     "testFolder/demo canvas.canvas",
