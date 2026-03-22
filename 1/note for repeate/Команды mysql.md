@@ -13,7 +13,7 @@
 >--no-tablespaces \
 >strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 >```
->если хотим видеть процесс (не проверял - надо смотреть)
+>если хотим видеть процесс 
 >```
 >mariadb-dump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' \
   --skip-ssl --no-tablespaces --verbose \

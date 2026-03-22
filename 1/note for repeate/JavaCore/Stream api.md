@@ -1,10 +1,11 @@
 https://www.google.com/search?q=stream+api+%D1%87%D1%82%D0%BE+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82+%D0%B1%D1%8B%D1%82%D1%8C+%D0%B2+map&sca_esv=ad175a4a610f2e0b&sxsrf=ANbL-n55KnNEpQdNdLR6Pp5fStb1RH6Plg%3A1772653941597&fbs=ADc_l-Z6juH7r_7-8pNw5rPlE-L7lKX-xQDzwJouywX5Qr83x-wndlrxiB7XC753aUrOCsMw_45F-xS_9DgnjEXKZHlq78b_swAkVmiHWTCyU-0GSmWRc_F6uB_HEXgnPveaPwqIUcS9wvEHUBIrP4qPxk5VBIAyr2Ii1OzZ7GxHhmM6XWbL_azspV9xM1R2XVnXFULq1C1PD5KqHp6JuSgk9GQt-jCEl-Z8e6Nb2mWFC0vBoOfZuIKPpjRg_BYNOfa_4lu_lAN00vXHlhZfGIbwQ0erZXBjDA&aep=1&ntc=1&sa=X&ved=2ahUKEwjCnf7DgoeTAxVz_7sIHQKsB3IQ2J8OegQIFxAE&biw=2560&bih=1302&dpr=1&mstk=AUtExfBMIfQi4Kh4vMmyC73PxAA_VEz7YE3c_7lc5ktvZh2MaNiKP5BgMUAtoP3o1OQb5sFz1WH_TtFBhakR379AausR9bfbNn_AubAGP7Z8IhrCzu_acjFAeKTsJi4GWx3J0tboWs5EeojILG49bPylfgSnvRICHbRZVWABkd9s3jUlEEN9FpaRIT8Fu0L8BT1bifSsvQ-d8MEvnt6p1am7OSDR70XNfLphGgPz65jKnqFeGM74fHOI7UJ48V8O78uGgSEl4Eek0VGaJaNrjiDHbWX_4n_iz8IAi-0KZcCZgaFWdzUQvrq11o73wsJsmXWVptDHP47LB8-9zby4BydAVWRQ6Zne8p9aD84fOrTBmjddK4tZShQnyh3pg9zaBy1tG3br8wcyuhjU&csuir=1&mtid=eY2oaejyJ5269u8Puqr3yAM&udm=50 
 1. [x] что может находится в stream().map а что нет
-2. [ ] стрим и полиморфизм
+2. [x] стрим и полиморфизм
 3. [ ] паралельный стрим, что в какой поток попадает
-4. [x] ```flatMap``` попробуй со списком объектов, внутри каждого из которых есть список или массив
-5. [ ] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой
-6. [ ] Collectors
+4. [ ] задачи по стримам 
+5. [x] ```flatMap``` попробуй со списком объектов, внутри каждого из которых есть список или массив
+6. [ ] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой
+7. [ ] Collectors
 
 https://metanit.com/java/tutorial/10.1.php 
 
