@@ -64,7 +64,8 @@
               "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -181,7 +182,8 @@
               "title": "Команды mysql"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -328,22 +330,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cf98cce18475547a",
+  "active": "5c7ddb2ad00afd79",
   "lastOpenFiles": [
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/Дневник работы.md",
+    "1/note for repeate/Лямбда выражения.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/English/Грамматика.md",
+    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
+    "1/Дневник работы.md",
     "1/СТЕНДАП.md",
     "1/note for repeate/Команды mysql.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/JavaCore/Коллекции.md",
     "BEGIN/SSH.md",
     "1/note for repeate/Spring основы.md",
     "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
     "1/Задачи на день.md",
     "1/КУБИК РУБИК/Задачи на день по кубику.md",
-    "1/note for repeate/Лямбда выражения.md",
     "1/note for repeate/JavaCore/Stream api.md",
     "1/note for repeate/JavaCore/JVM.md",
     "1/note for repeate/Микросервисы.md",
