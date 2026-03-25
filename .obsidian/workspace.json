@@ -65,7 +65,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -182,8 +182,7 @@
               "title": "Команды mysql"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -330,15 +329,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5c7ddb2ad00afd79",
+  "active": "57eb131df55f8c9b",
   "lastOpenFiles": [
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/English/Грамматика.md",
+    "1/СТЕНДАП.md",
     "1/note for repeate/Лямбда выражения.md",
     "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/English/Грамматика.md",
     "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
     "1/Дневник работы.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/Команды mysql.md",
     "1/note for repeate/JavaCore/Коллекции.md",
     "BEGIN/SSH.md",
