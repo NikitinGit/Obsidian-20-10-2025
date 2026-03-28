@@ -1,4 +1,10 @@
 
+1. [ ] ...createBattleMethods('/api/main-judge/battles') изучи в своем проекте
+
+
+
+# ts
+
 >[!question]- ?? это 
 > Оператор ?? (Nullish Coalescing) 
 > пример 

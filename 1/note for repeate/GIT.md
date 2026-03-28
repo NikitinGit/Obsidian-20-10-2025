@@ -2,7 +2,25 @@
 1. [ ] Чем отличается fetch от pull 
 2. [ ] При git pull меняются ли локальные ветки
 3. [ ] индекс и стек это 
-4. [ ]  git merge --abort  - это 
+4. [x]  git merge --abort  - это отмена мержда
+
+>[!question]- Отменить мержд
+>git merge --abort 
+>Вариант 3: Через IntelliJ IDEA 2025.3.3
+>Git → Resolve Conflicts... (в меню сверху)  - нет такого 
+>Выбрать все файлы (Ctrl+A)
+>Нажать правую кнопку → Accept Yours или Accept Theirs — в зависимости от того, чью версию оставить для всех файлов       
+
+>[!question]- убрать Unresolved Files
+># 1. Найти неотслеживаемые файлы и посчитать их                                                                                                                               
+>git ls-files --others --exclude-standard
+> # 2. Посмотреть что за файлы (первые 30)  
+> git ls-files --others --exclude-standard | head -30 
+> # 3. Добавить папку в .gitignore 
+> echo "out/" >> .gitignore  
+> # 4. Проверить что файлы больше не видны git'у     
+> git ls-files --others --exclude-standard | wc -l
+> Ключевая команда — git ls-files --others --exclude-standard — показывает все untracked файлы (те что git видит, но не отслеживает). Именно их IntelliJ показывала как "Unresolved Files".    
 
 >[!question]- Есть ли в main коммиты, которых нет в develop (если пусто — main влит) 
 >git log origin/develop..origin/main --oneline   
@@ -27,8 +45,8 @@
 > ```
 
 >[!question]- git cherry pick
-> Переносит изменения выбранного коммита коммита , можнор перенсти с автоматическим коммитом или без коммита через гуи интелидж с помощью  Cherry-pick selected changed
-> Если предыдущие коммиты меняли файл текущео коммита - то  переносятся коммиты всех предыдущих коммитов, а если добавляются новые файлы и ли удалются файлы то нет 
+> Переносит изменения выбранного коммита , можно перенсти с автоматическим коммитом или без коммита через гуи интелидж с помощью  Cherry-pick selected changed
+> Если предыдущие коммиты меняли файл текущего коммита - то  переносятся коммиты всех предыдущих коммитов, а если добавляются новые файлы и ли удалются файлы то нет 
 > ```
 > cd /home/igor/IdeaProjects/strikerstat && git clean -fd && git reset --hard HEAD    
 > ```
