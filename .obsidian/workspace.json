@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 43.76130198915009,
+        "dimension": 49.2845786963434,
         "children": [
           {
             "id": "cf98cce18475547a",
@@ -56,12 +56,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+                "file": "1/note for repeate/English/The exercize on page 7.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ"
+              "title": "The exercize on page 7"
             }
           },
           {
@@ -84,7 +84,7 @@
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
-        "dimension": 56.23869801084991,
+        "dimension": 50.71542130365659,
         "children": [
           {
             "id": "0c8ba3514b7a6b93",
@@ -253,7 +253,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 303.5
+    "width": 303.5,
+    "collapsed": true
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -345,15 +346,16 @@
   },
   "active": "a2fddc91b4a92225",
   "lastOpenFiles": [
-    "1/СТЕНДАП.md",
+    "1/note for repeate/English/Грамматика.md",
+    "1/note for repeate/English/The exercize on page 7.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/js-ts.md",
     "1/note for repeate/Spring.md",
     "1/note for repeate/IoC Spring.md",
     "1/note for repeate/GIT.md",
     "1/note for repeate/Spring cloud.md",
     "1/СОБЕСЕДОВАНИЕ TS.md",
-    "1/note for repeate/js-ts.md",
-    "1/note for repeate/English/Грамматика.md",
     "1/note for repeate/Лямбда выражения.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
@@ -370,7 +372,6 @@
     "1/note for repeate/общие знания IT.md",
     "1/note for repeate/nixOS.md",
     "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/HTTPS.md",
     "1/note for repeate/JavaCore",
     "1/note for repeate/English",
     "testFolder/demo canvas.canvas",
