@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 57.05244122965642,
+        "dimension": 40.6871609403255,
         "children": [
           {
             "id": "cf98cce18475547a",
@@ -70,7 +70,7 @@
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
-        "dimension": 42.94755877034358,
+        "dimension": 59.3128390596745,
         "children": [
           {
             "id": "0c8ba3514b7a6b93",
@@ -182,7 +182,8 @@
               "title": "Команды mysql"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -331,9 +332,11 @@
   },
   "active": "5c7ddb2ad00afd79",
   "lastOpenFiles": [
-    "1/note for repeate/English/The exercize on page 7.md",
+    "1/КУБИК РУБИК/Задачи на день по кубику.md",
+    "1/Задачи на день.md",
     "1/note for repeate/Лямбда выражения.md",
     "1/СТЕНДАП.md",
+    "1/note for repeate/English/The exercize on page 7.md",
     "1/note for repeate/Spring.md",
     "1/note for repeate/English/Грамматика.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
@@ -349,8 +352,6 @@
     "1/note for repeate/JavaCore/Коллекции.md",
     "BEGIN/SSH.md",
     "1/note for repeate/RabbitMQ.md",
-    "1/Задачи на день.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/JavaCore/Stream api.md",
     "1/note for repeate/JavaCore/JVM.md",
     "1/note for repeate/Микросервисы.md",
