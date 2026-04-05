@@ -70,12 +70,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/JavaCore/Коллекции.md",
+                "file": "1/note for repeate/JavaCore/Stream api.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Коллекции"
+              "title": "Stream api"
             }
           }
         ],
@@ -346,12 +346,13 @@
   },
   "active": "98421853c07cd2dd",
   "lastOpenFiles": [
-    "1/note for repeate/JavaCore/Коллекции.md",
+    "1/note for repeate/JavaCore/Stream api.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/JavaCore/Коллекции.md",
+    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/Spring.md",
     "1/note for repeate/English/The exercize on page 7.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/Лямбда выражения.md",
     "1/Задачи на день.md",
     "1/СТЕНДАП.md",
@@ -366,7 +367,6 @@
     "1/note for repeate/Команды mysql.md",
     "BEGIN/SSH.md",
     "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/JavaCore/Stream api.md",
     "1/note for repeate/JavaCore/JVM.md",
     "1/note for repeate/Микросервисы.md",
     "1/note for repeate/общие знания IT.md",

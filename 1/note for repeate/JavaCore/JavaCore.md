@@ -280,7 +280,7 @@ https://topjava.ru/blog/what-is-the-jre
 >длинна массива array = mums.length 
 
 
-#   [[Stream api]] 
+# [[Stream api]] 
 
 # [[Коллекции]]
 # Поразрядные опреации ([[Bitwise Operators]])
