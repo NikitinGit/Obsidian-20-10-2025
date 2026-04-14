@@ -1,7 +1,9 @@
 
 1. [ ] ...createBattleMethods('/api/main-judge/battles') изучи в своем проекте
 
-
+# css 
+>[!question]- выровнять кнопку по центру
+>justify-center в тайлвинде -  следует после контейнера flex 
 
 # ts
 
