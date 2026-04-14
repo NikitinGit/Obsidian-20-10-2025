@@ -1,23 +1,25 @@
 https://www.google.com/search?q=stream+api+%D1%87%D1%82%D0%BE+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82+%D0%B1%D1%8B%D1%82%D1%8C+%D0%B2+map&sca_esv=ad175a4a610f2e0b&sxsrf=ANbL-n55KnNEpQdNdLR6Pp5fStb1RH6Plg%3A1772653941597&fbs=ADc_l-Z6juH7r_7-8pNw5rPlE-L7lKX-xQDzwJouywX5Qr83x-wndlrxiB7XC753aUrOCsMw_45F-xS_9DgnjEXKZHlq78b_swAkVmiHWTCyU-0GSmWRc_F6uB_HEXgnPveaPwqIUcS9wvEHUBIrP4qPxk5VBIAyr2Ii1OzZ7GxHhmM6XWbL_azspV9xM1R2XVnXFULq1C1PD5KqHp6JuSgk9GQt-jCEl-Z8e6Nb2mWFC0vBoOfZuIKPpjRg_BYNOfa_4lu_lAN00vXHlhZfGIbwQ0erZXBjDA&aep=1&ntc=1&sa=X&ved=2ahUKEwjCnf7DgoeTAxVz_7sIHQKsB3IQ2J8OegQIFxAE&biw=2560&bih=1302&dpr=1&mstk=AUtExfBMIfQi4Kh4vMmyC73PxAA_VEz7YE3c_7lc5ktvZh2MaNiKP5BgMUAtoP3o1OQb5sFz1WH_TtFBhakR379AausR9bfbNn_AubAGP7Z8IhrCzu_acjFAeKTsJi4GWx3J0tboWs5EeojILG49bPylfgSnvRICHbRZVWABkd9s3jUlEEN9FpaRIT8Fu0L8BT1bifSsvQ-d8MEvnt6p1am7OSDR70XNfLphGgPz65jKnqFeGM74fHOI7UJ48V8O78uGgSEl4Eek0VGaJaNrjiDHbWX_4n_iz8IAi-0KZcCZgaFWdzUQvrq11o73wsJsmXWVptDHP47LB8-9zby4BydAVWRQ6Zne8p9aD84fOrTBmjddK4tZShQnyh3pg9zaBy1tG3br8wcyuhjU&csuir=1&mtid=eY2oaejyJ5269u8Puqr3yAM&udm=50 
 1. [x] что может находится в stream().map а что нет
 2. [x] стрим и полиморфизм
-3. [ ] почему подсчет количества идет в Long а не в Integer
-4. [ ] stream vs parallelStream() - и откуда цифра 10000 операций 
-5. [ ] immutable и mutable в паралельном стриме - как связано с потоками
-6. [ ] если стрим позволяет избегать промежуточных коллекций, то где хранаятся элементы стрима, чем отличается хранение элеементов в стриме от хранения их в колекции (например в списке)
-7. [ ] отличие stream от IntStream LongStream DoubleStream 
-8. [x]  почему у некоторых функциональных интерфейсов в jdk 2 метода
-9. [ ] когда parallelStream медленнее чем stream
-10. [ ] у разных коллекций разные стримы? (Set, HashMap, TreeMap...)
-11. [ ] отличие типовых стримов (IntStream, DoubleStream ....) от stream
-12. [ ] map vs mapObject (``mapToDouble() возвращает DoubleStream — это примитивный поток, не Stream<Double>.``)
-13. [ ] существует ли общее правило в reversed в sort
-14. [x] отличие Collectors.toMap от Collectors.groupingBy
-15. [ ] паралельный стрим, что в какой поток попадает
-16. [ ]  ```flatMap``` - как равзернуть 3 и более вложенных уровня
-17. [x] ```flatMap``` попробуй со списком объектов, внутри каждого из которых есть список или массив
-18. [x] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой, с тремя и более вложенностями
-19. [x] Collectors
+3. [ ] пример где стрим без доп коллекций а for с коллекциями
+4. [ ] сплтератор как учавствует в разделении списка и передачи в parallelStream 
+5. [ ] почему подсчет количества идет в Long а не в Integer
+6. [ ] stream vs parallelStream() - и откуда цифра 10000 операций 
+7. [ ] immutable и mutable в паралельном стриме - как связано с потоками
+8. [ ] если стрим позволяет избегать промежуточных коллекций, то где хранаятся элементы стрима, чем отличается хранение элеементов в стриме от хранения их в колекции (например в списке)
+9. [ ] отличие stream от IntStream LongStream DoubleStream 
+10. [x]  почему у некоторых функциональных интерфейсов в jdk 2 метода
+11. [ ] когда parallelStream медленнее чем stream
+12. [ ] у разных коллекций разные стримы? (Set, HashMap, TreeMap...)
+13. [ ] отличие типовых стримов (IntStream, DoubleStream ....) от stream
+14. [ ] map vs mapObject (``mapToDouble() возвращает DoubleStream — это примитивный поток, не Stream<Double>.``)
+15. [ ] существует ли общее правило в reversed в sort
+16. [x] отличие Collectors.toMap от Collectors.groupingBy
+17. [ ] паралельный стрим, что в какой поток попадает
+18. [ ]  ```flatMap``` - как равзернуть 3 и более вложенных уровня
+19. [x] ```flatMap``` попробуй со списком объектов, внутри каждого из которых есть список или массив
+20. [x] ```flatMap``` что может быть в качестве параметра, типизация и перевод одного типа в другой, с тремя и более вложенностями
+21. [x] Collectors
 
 https://metanit.com/java/tutorial/10.1.php 
 
@@ -25,7 +27,10 @@ https://metanit.com/java/tutorial/10.1.php
 >```
 >1. В основе лежат промежуточные операции и терминальные (после которых промежуточные не могут быть вызваны, так же как терминальные не могут быть вызваны)
 >2. Промежуточных операций может быть несколько - терминальная операция одна Использует отложение выполнение лямбда выражений - то есть при вызове терминальной операции 
- >3. Во всех коллекциях начиная с jdk 8 есть метод stream через который можно получать объект Stream<T> , так же его можно получить через Arrays.stream(T[] array), Stream.of("Nikitin", "Bin") , InStream.of() , LongStream.of(), DoubleStream.of() ```
+ >3. Во всех коллекциях начиная с jdk 8 есть метод stream через который можно получать объект Stream<T> , так же его можно получить через Arrays.stream(T[] array), Stream.of("Nikitin", "Bin") , InStream.of() , LongStream.of(), DoubleStream.of() 
+ >4. Нет промежуточных коллекций потому что используется lazy evaluation - промежуточный результат хранится в стэку вызовов (stack)
+ >5. каждый элемент прохдоит по одному или батчами чезез pepline ```
+ >Stream: - pipeline (конвейер операций), инструкция как получить данные а не структура. данные ни где не хранятся . Представляет собой pipeline операций над источником данных. Элементы остаются в источнике, например в коллекции, и обрабатываются лениво по мере выполнения terminal операции. В отличие от коллекций, Stream не является контейнером и не хранит данные."  В Stream API промежуточные результаты не сохраняются в коллекциях. Вместо этого элементы проходят через цепочку операций, реализованную через pipeline и Spliterator. Каждый элемент обрабатывается поэтапно, и промежуточные значения существуют только в стеке вызовов, а не в памяти как отдельные структуры
 
 >[!question]- это основная причина багов в многопоточке
 >shared mutable state (общем изменяемом состоянии объекта)
