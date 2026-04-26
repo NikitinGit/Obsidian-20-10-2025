@@ -232,7 +232,7 @@ List<Integer> result = list.stream()
 ```
 # English doc
 
-Possibly unbounded. While collections have a finite size, streams need not. Short-circuiting operations such as limit(n) or findFirst() can allow computations on infinite streams to complete in finite time.
+While collections have a finite size, streams need not. Short-circuiting operations such as limit(n) or findFirst() can allow computations on infinite streams to complete in finite time.
 Consumable. The elements of a stream are only visited once during the life of a stream. Like an java.util.Iterator, a new stream must be generated to revisit the same elements of the source.
 Streams can be obtained in a number of ways. Some examples include:
 From a java.util.Collection via the stream() and parallelStream() methods;
