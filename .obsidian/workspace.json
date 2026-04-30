@@ -56,12 +56,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/StrikerStat.md",
+                "file": "1/note for repeate/LINUX/LINUX.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "StrikerStat"
+              "title": "LINUX"
             }
           },
           {
@@ -79,7 +79,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -106,12 +106,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/СТЕНДАП.md",
+                "file": "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "СТЕНДАП"
+              "title": "Вопросы от chagpt Jun"
             }
           },
           {
@@ -197,9 +197,23 @@
               "icon": "lucide-file",
               "title": "Domen driven design"
             }
+          },
+          {
+            "id": "da3cd15bad6c79af",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Шаблоны-паттерны проектирования.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Шаблоны-паттерны проектирования"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -346,35 +360,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1975104c1c86600f",
+  "active": "da3cd15bad6c79af",
   "lastOpenFiles": [
-    "1/note for repeate/JavaCore/Stream api.md",
-    "1/note for repeate/StrikerStat.md",
-    "1/note for repeate/Spring.md",
-    "Стэк и куча/Отличиен стэка от кучи.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Шаблоны-паттерны проектирования.md",
     "1/note for repeate/Domen driven design.md",
-    "java core notes/многопоточность/Многопоточное программирование на java.md",
-    "1/note for repeate/English/The exercize on page 7.md",
-    "1/note for repeate/English/Грамматика.md",
-    "1/СТЕНДАП.md",
+    "1/note for repeate/js-ts.md",
     "1/note for repeate/Команды mysql.md",
     "1/note for repeate/MAVEN.md",
     "1/Задачи на день.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
     "1/note for repeate/Лямбда выражения.md",
-    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/js-ts.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "1/note for repeate/English/The exercize on page 7.md",
+    "1/note for repeate/English/Грамматика.md",
+    "1/note for repeate/LINUX/LINUX.md",
+    "JUN.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/ВОПРОСЫ ПО СОБЕЗУ.md",
+    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/JavaCore/Stream api.md",
+    "1/note for repeate/Spring.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/JavaCore/JVM.md",
+    "1/note for repeate/JavaCore/Bitwise Operators.md",
+    "1/КУБИК РУБИК/Задачи на день по кубику.md",
+    "1/note for repeate/Нейроагент.md",
+    "1/note for repeate/StrikerStat.md",
     "1/note for repeate/JavaCore/Stream api.md.tmp.18533.1775578399035",
-    "1/note for repeate/JavaCore/Коллекции.md",
-    "1/note for repeate/IoC Spring.md",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/Spring cloud.md",
-    "1/СОБЕСЕДОВАНИЕ TS.md",
-    "1/Дневник работы.md",
     "1/note for repeate/JavaCore",
     "1/note for repeate/English",
     "testFolder/demo canvas.canvas",

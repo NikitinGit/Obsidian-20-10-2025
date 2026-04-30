@@ -32,11 +32,14 @@ https://metanit.com/java/tutorial/10.1.php
  >5. каждый элемент прохдоит по одному или батчами чезез pepline ```
  >Stream: - pipeline (конвейер операций), инструкция как получить данные а не структура. данные ни где не хранятся . Представляет собой pipeline операций над источником данных. Элементы остаются в источнике, например в коллекции, и обрабатываются лениво по мере выполнения terminal операции. В отличие от коллекций, Stream не является контейнером и не хранит данные."  В Stream API промежуточные результаты не сохраняются в коллекциях. Вместо этого элементы проходят через цепочку операций, реализованную через pipeline и Spliterator. Каждый элемент обрабатывается поэтапно, и промежуточные значения существуют только в стеке вызовов, а не в памяти как отдельные структуры
 
+>[!question]- что используется для моков чаще всего
+>Stream.interate(startDate, date -> date.plusMonths(1)) - может быть бесконечным
+
 >[!question]- основная причина багов в многопоточке
 >shared mutable state (общем изменяемом состоянии объекта) - при паралельном стриме возникает такая ситуация если например reduce 
 
 >[!question]- что где  хранится в стриме
-> в операциях пайплаан не чего ни где не хранится  -стриминг опреации без буaера = map limit filter (либо пропускает, либо нет) , peek (либо пропускает, либо нет) - остальные опреации где надо пройтись по всем элементам хранят данные в буфере
+> в операциях пайплаан не чего ни где не хранится  - стриминг опреации без буфера = map limit filter (либо пропускает, либо нет) , peek (либо пропускает, либо нет) - остальные опреации где надо пройтись по всем элементам хранят данные в буфере
 
 >[!question]- Отличие стрим потока от списка элементов
 >- **Список (`List`)** — это структура данных. Он **хранит** элементы в памяти прямо сейчас. 
@@ -232,20 +235,6 @@ List<Integer> result = list.stream()
 ```
 # English doc
 
-While collections have a finite size, streams need not. Short-circuiting operations such as limit(n) or findFirst() can allow computations on infinite streams to complete in finite time.
-Consumable. The elements of a stream are only visited once during the life of a stream. Like an java.util.Iterator, a new stream must be generated to revisit the same elements of the source.
-Streams can be obtained in a number of ways. Some examples include:
-From a java.util.Collection via the stream() and parallelStream() methods;
-From an array via java.util.Arrays.stream(Object[]);
-From static factory methods on the stream classes, such as Stream.of(Object[]), IntStream.range(int, int) or Stream.iterate(Object, UnaryOperator);
-The lines of a file can be obtained from java.io.BufferedReader.lines();
-Streams of file paths can be obtained from methods in java.nio.file.Files;
-Streams of random numbers can be obtained from java.util.Random.ints();
-Numerous other stream-bearing methods in the JDK, including java.util.BitSet.stream(), java.util.regex.Pattern.splitAsStream(CharSequence), and java.util.jar.JarFile.stream().
-Additional stream sources can be provided by third-party libraries using these techniques.
-Stream operations and pipelines
-Stream operations are divided into intermediate and terminal operations, and are combined to form stream pipelines. A stream pipeline consists of a source (such as a Collection, an array, a generator function, or an I/O channel); followed by zero or more intermediate operations such as Stream.filter or Stream.map; and a terminal operation such as Stream.forEach or Stream.reduce.
-Intermediate operations return a new stream. They are always lazy; executing an intermediate operation such as filter() does not actually perform any filtering, but instead creates a new stream that, when traversed, contains the elements of the initial stream that match the given predicate. Traversal of the pipeline source does not begin until the terminal operation of the pipeline is executed.
 Terminal operations, such as Stream.forEach or IntStream.sum, may traverse the stream to produce a result or a side-effect. After the terminal operation is performed, the stream pipeline is considered consumed, and can no longer be used; if you need to traverse the same data source again, you must return to the data source to get a new stream. In almost all cases, terminal operations are eager, completing their traversal of the data source and processing of the pipeline before returning. Only the terminal operations iterator() and spliterator() are not; these are provided as an "escape hatch" to enable arbitrary client-controlled pipeline traversals in the event that the existing operations are not sufficient to the task.
 Processing streams lazily allows for significant efficiencies; in a pipeline such as the filter-map-sum example above, filtering, mapping, and summing can be fused into a single pass on the data, with minimal intermediate state. Laziness also allows avoiding examining all the data when it is not necessary; for operations such as "find the first string longer than 1000 characters", it is only necessary to examine just enough strings to find one that has the desired characteristics without examining all of the strings available from the source. (This behavior becomes even more important when the input stream is infinite and not merely large.)
 Intermediate operations are further divided into stateless and stateful operations. Stateless operations, such as filter and map, retain no state from previously seen element when processing a new element -- each element can be processed independently of operations on other elements. Stateful operations, such as distinct and sorted, may incorporate state from previously seen elements when processing new elements.
