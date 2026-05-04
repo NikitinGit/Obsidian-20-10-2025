@@ -79,7 +79,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -213,7 +213,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -360,11 +360,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "da3cd15bad6c79af",
+  "active": "e0a9d0e3b0f8ead3",
   "lastOpenFiles": [
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/Шаблоны-паттерны проектирования.md",
     "1/note for repeate/Domen driven design.md",
+    "1/note for repeate/Шаблоны-паттерны проектирования.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/js-ts.md",
     "1/note for repeate/Команды mysql.md",
     "1/note for repeate/MAVEN.md",
