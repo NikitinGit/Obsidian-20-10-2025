@@ -219,7 +219,7 @@
               "type": "markdown",
               "state": {
                 "file": "1/note for repeate/Шаблоны-паттерны проектирования.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -405,14 +405,15 @@
   "active": "98421853c07cd2dd",
   "lastOpenFiles": [
     "1/Задачи на день.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/JavaCore/Stream api.md",
-    "1/note for repeate/LINUX/LINUX.md",
+    "1/СТЕНДАП.md",
     "1/note for repeate/Шаблоны-паттерны проектирования.md",
+    "1/note for repeate/Шаблоны-паттерны проектирования.md.tmp.11233.9c7215f01f39",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/note for repeate/LINUX/LINUX.md",
     "1/note for repeate/Нейроагент.md",
     "1/note for repeate/GIT.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "1/note for repeate/Domen driven design.md",
     "1/note for repeate/Команды mysql.md",
     "1/note for repeate/MAVEN.md",
@@ -429,7 +430,6 @@
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/JavaCore/JVM.md",
     "1/note for repeate/JavaCore/Bitwise Operators.md",
-    "1/КУБИК РУБИК/Задачи на день по кубику.md",
     "1/note for repeate/JavaCore/Stream api.md.tmp.18533.1775578399035",
     "1/note for repeate/JavaCore",
     "1/note for repeate/English",
@@ -441,7 +441,6 @@
     "1/Дедлок",
     "1/note for repeate/Spring основы.md.tmp.29561.1769501679757",
     "Pasted image 20260109165447.png",
-    "Untitled 1.base",
     "Pasted image 20241202180935.png",
     "Untitled 1.canvas",
     "Untitled.canvas"
