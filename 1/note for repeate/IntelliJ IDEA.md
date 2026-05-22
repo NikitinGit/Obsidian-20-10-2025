@@ -27,3 +27,8 @@ java -Xss512k TestLinuxApplication - 512  кб
 → впиши `-Xss2m`
 java -Xss1m TestLinuxApplication - с Мб
 
+   >[!question]- переключиться на локальные настройки application.properties
+ **IntelliJ IDEA** →  
+`Run > Edit Configurations > Enveroumnt ...`  
+> вписать SPRING_PROFILES_ACTIVE=local 
+![[Pasted image 20260521204043.png]] 
