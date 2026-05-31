@@ -33,7 +33,7 @@ https://metanit.com/java/tutorial/10.1.php
  >Stream: - pipeline (конвейер операций), инструкция как получить данные а не структура. данные ни где не хранятся . Представляет собой pipeline операций над источником данных. Элементы остаются в источнике, например в коллекции, и обрабатываются лениво по мере выполнения terminal операции. В отличие от коллекций, Stream не является контейнером и не хранит данные."  В Stream API промежуточные результаты не сохраняются в коллекциях. Вместо этого элементы проходят через цепочку операций, реализованную через pipeline и Spliterator. Каждый элемент обрабатывается поэтапно, и промежуточные значения существуют только в стеке вызовов, а не в памяти как отдельные структуры
 
 >[!question]- что используется для моков чаще всего
->Stream.interate(startDate, date -> date.plusMonths(1)) - может быть бесконечным
+>Stream.iterate(startDate, date -> date.plusMonths(1)) - может быть бесконечным
 
 >[!question]- какие терминальные опреации не являются eager (не ленивым)
 > `iterator()` и `spliterator()` - они выполняются после их ручного использования 
@@ -224,7 +224,7 @@ next = 4
 >data.stream().filter(...).map(...).findFirst();
 >```
 
-## Задача без стрим есть доп коллекции ,  сним нет:
+## Задача без стрим есть доп коллекции ,  с ним нет:
 
 - взять список
 - отфильтровать
@@ -256,10 +256,7 @@ List<Integer> result = list.stream()
 ```
 # English doc
 
-(This behavior becomes even more important when the input stream is infinite and not merely large.)
-Intermediate operations are further divided into stateless and stateful operations. Stateless operations, such as filter and map, retain no state from previously seen element when processing a new element -- each element can be processed independently of operations on other elements. Stateful operations, such as distinct and sorted, may incorporate state from previously seen elements when processing new elements.
-Stateful operations may need to process the entire input before producing a result. For example, one cannot produce any results from sorting a stream until one has seen all elements of the stream. As a result, under parallel computation, some pipelines containing stateful intermediate operations may require multiple passes on the data or may need to buffer significant data. Pipelines containing exclusively stateless intermediate operations can be processed in a single pass, whether sequential or parallel, with minimal data buffering.
-Further, some operations are deemed short-circuiting operations. An intermediate operation is short-circuiting if, when presented with infinite input, it may produce a finite stream as a result. A terminal operation is short-circuiting if, when presented with infinite input, it may terminate in finite time. Having a short-circuiting operation in the pipeline is a necessary, but not sufficient, condition for the processing of an infinite stream to terminate normally in finite time.
+
 Parallelism
 Processing elements with an explicit for-loop is inherently serial. Streams facilitate parallel execution by reframing the computation as a pipeline of aggregate operations, rather than as imperative operations on each individual element. All streams operations can execute either in serial or in parallel. The stream implementations in the JDK create serial streams unless parallelism is explicitly requested. For example, Collection has methods java.util.Collection.stream and java.util.Collection.parallelStream, which produce sequential and parallel streams respectively; other stream-bearing methods such as IntStream.range(int, int) produce sequential streams but these streams can be efficiently parallelized by invoking their BaseStream.parallel() method. To execute the prior "sum of weights of widgets" query in parallel, we would do:
 int sumOfWeights = widgets.parallelStream()

@@ -94,7 +94,7 @@ org.springframework.cloud.loadbalancer.core.RandomLoadBalancer
 
 >[!question]-  Config
 >  Централизованное место управления  кофигурациями  (внешними свойстами приложений)
->  **Config Server** ты поднимаешь сам (это обычное Spring Boot приложение).  Может хранить конфиги в гит, игтхаб, файловой системе или в бзе 
+>  **Config Server** ты поднимаешь сам (это обычное Spring Boot приложение).  Может хранить конфиги в гит, гитхаб, файловой системе или в базе 
 
 >[!question]- Config -  server-side 
 > @EnableConfigServer  - ПОСРЕДНИК МЕЖДУ МЕСТОМ ХРАНЕНИЯ И ПРИЛОЖЕНИЯМИ -  позволяет создать конфиг сервер спринга как отдельное приложение, которое служит  посредником между приложениями и гит системой
@@ -177,7 +177,7 @@ org.springframework.cloud.loadbalancer.core.RandomLoadBalancer
 >сервер дискавери еврика,  через гет запрос который  атоматически (без перезагрузки) определяет какие серивисы работают  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>  </dependency>```
 
 >[!question]-  spring-cloud-netflix-client
->клиент секрвис, который может получать данные через сервер еврика от другого клиента сервиса  гет запрос  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> </dependency>```
+>клиент сервис, который может получать данные через сервер еврика от другого клиента сервиса  гет запрос  ```@EnableEurekaServer``` зависимость ```<dependency>  <groupId>org.springframework.cloud</groupId>  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> </dependency>```
 >Сам регистрируется в реестре еврика при старте
 >Пингует сервер раз в 3 0 секунд на heartbeat 
 >**периодически обновляют кэш** списка сервисов (по умолчанию раз в 30 секунд) 

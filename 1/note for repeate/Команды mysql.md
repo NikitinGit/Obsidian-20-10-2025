@@ -68,7 +68,6 @@ docker run --rm mysql:8.0 mysqldump `
 >    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
 >    ```
 
-
 >[!question]- Создать дамп БД strikerstat_test
 > mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_test > /tmp/strikerstat_test_dump.sql 
 > или

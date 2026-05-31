@@ -125,8 +125,6 @@ mvn not found
 >[!question]- версия wsl 
 >wsl --version
 
->[!question]- удалить директорию
-> rm -rf ~/idea/docker-compose-demo
 
  >[!question]- перенести файл
  mv /home/igor/Pictures/Screenshots/ANginx.png /home/igor/Music/2/
