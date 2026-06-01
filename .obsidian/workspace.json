@@ -84,16 +84,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/JavaCore/JAVA-TYPES.md",
+                "file": "1/note for repeate/Spring/Proxy Object.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JAVA-TYPES"
+              "title": "Proxy Object"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -246,7 +246,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring.md",
+                "file": "1/note for repeate/Spring/Spring.md",
                 "mode": "source",
                 "source": false
               },
@@ -255,7 +255,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -402,44 +402,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "79c7cf0b95175d20",
+  "active": "e0a9d0e3b0f8ead3",
   "lastOpenFiles": [
-    "1/note for repeate/JavaCore/JAVA-TYPES.md.tmp.19851.9d0aa9905388",
+    "1/note for repeate/Spring/Spring.md",
+    "1/note for repeate/Spring/Proxy Object.md",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.fd3a357ac088",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.096408814aa4",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.ac4440ba53e8",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.6025c0d068ee",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.924636a70305",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.8148ee7c2421",
+    "1/note for repeate/Domen driven design.md",
+    "1/note for repeate/Spring/Тестирование приложений.md",
+    "1/note for repeate/Микросервисы.md",
+    "1/note for repeate/Миграции.md",
+    "1/note for repeate/Spring/Spring тесты.md",
+    "1/note for repeate/Spring/Spring cloud.md",
+    "1/note for repeate/Spring/Spring Kafka.md",
+    "1/note for repeate/RabbitMQ.md",
+    "1/note for repeate/Spring/IoC Spring.md",
+    "1/note for repeate/JavaCore/Коллекции.md",
+    "1/note for repeate/JavaCore/JVM.md",
+    "1/note for repeate/JavaCore/Bitwise Operators.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/JavaCore/JAVA-TYPES.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Spring/JPA equals hashCode.md",
+    "1/note for repeate/Spring",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md",
     "1/Тестирование вызова.md",
+    "1/note for repeate/JavaCore/JPA equals hashCode.md.tmp.120983.694ccf6457fa",
+    "1/note for repeate/JavaCore/JPA equals hashCode.md.tmp.120983.b53f30a816b9",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md.tmp.120983.396d6259fdf0",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/Domen driven design.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/Лямбда выражения.md",
     "1/note for repeate/JavaCore/Stream api.md",
-    "1/note for repeate/Spring.md",
     "1/note for repeate/общие знания IT.md",
     "1/ГЛАВНОЕ.md",
-    "1/note for repeate/Команды mysql.md",
-    "1/note for repeate/English/Грамматика.md",
-    "1/note for repeate/English/The exercize on page 7.md",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/Шаблоны-паттерны проектирования.md",
-    "1/note for repeate/js-ts.md",
-    "1/Задачи на день.md",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/HTTPS.md",
-    "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/Spring Kafka.md",
-    "1/note for repeate/Spring тесты.md",
-    "1/note for repeate/IoC Spring.md",
-    "java core notes/Records.md",
-    "1/note for repeate/Шаблоны-паттерны проектирования.md.tmp.7870.88e6506b433d",
-    "1/Тестирование вызова.md.tmp.89526.0b64fc20ded2",
-    "1/Тестирование вызова.md.tmp.89526.9cd31a091f47",
-    "1/Тестирование вызова.md.tmp.89526.98b8e35e2a80",
-    "1/Тестирование вызова.md.tmp.89526.6ec6b1e189bb",
-    "1/Тестирование вызова.md.tmp.89526.cfea358cd0b2",
-    "1/Тестирование вызова.md.tmp.89526.ffef6565fbf3",
-    "1/Тестирование вызова.md.tmp.89526.a0671d6a06c6",
-    "1/Тестирование вызова.md.tmp.89526.4f2281a9dc55",
-    "1/Тестирование вызова.md.tmp.89526.e63b57b7544f",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",

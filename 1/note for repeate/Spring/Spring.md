@@ -10,7 +10,7 @@
 9. [x] Попробуй jOOQ https://www.jooq.org/ 
 10. [x] Когда происходит не явный inner join при выборке - допиши возникает ли если c.country это не сущность а int 
 11. [x] пропагатион - открывать новую транзакцию или использовать новую 
-12. [ ] equals / hashcode в @Entity 13/26 - 
+12. [x] equals / hashcode в @Entity 13/26 - 20 /34
 13. [ ] JPA / Hibernate VS Active Record 
 14. [ ] Active Record точно нарушает SRP ? 
 15. [ ] jpql к чему относится в  хайбернате
@@ -1901,4 +1901,6 @@ public class RussianGreetingService implements GreetingService {
 # [[Spring тесты]] 
 
 # [[Spring Kafka]] 
+
+# [[Proxy Object]]
 
