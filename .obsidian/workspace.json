@@ -42,16 +42,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring/Spring.md",
+                "file": "1/note for repeate/RabbitMQ.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spring"
+              "title": "RabbitMQ"
             }
           },
           {
             "id": "79c7cf0b95175d20",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Spring/Повторение того, что знаешь.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Повторение того, что знаешь"
+            }
+          },
+          {
+            "id": "ea40313bc1f3ded9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/MAVEN.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MAVEN"
+            }
+          },
+          {
+            "id": "95678450723a953d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -65,31 +93,17 @@
             }
           },
           {
-            "id": "da3cd15bad6c79af",
+            "id": "f578f49acebdccd8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Шаблоны-паттерны проектирования.md",
+                "file": "1/note for repeate/MAVEN.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Шаблоны-паттерны проектирования"
-            }
-          },
-          {
-            "id": "ea40313bc1f3ded9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/Команды mysql.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Команды mysql"
+              "title": "MAVEN"
             }
           }
         ],
@@ -115,17 +129,17 @@
             }
           },
           {
-            "id": "5c7ddb2ad00afd79",
+            "id": "d81c6715c3dcccf8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Лямбда выражения.md",
+                "file": "1/note for repeate/Spring/Spring.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Лямбда выражения"
+              "title": "Spring"
             }
           },
           {
@@ -241,21 +255,35 @@
             }
           },
           {
-            "id": "d81c6715c3dcccf8",
+            "id": "da3cd15bad6c79af",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring/Spring.md",
+                "file": "1/note for repeate/Kotlin.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spring"
+              "title": "Kotlin"
+            }
+          },
+          {
+            "id": "c8a8d3ffdaa372d9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/JavaCore/Коллекции.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Коллекции"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -287,7 +315,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Predicate",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -308,8 +336,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -403,44 +430,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5c7ddb2ad00afd79",
+  "active": "da3cd15bad6c79af",
   "lastOpenFiles": [
-    "1/note for repeate/Spring/Spring.md",
-    "1/note for repeate/Лямбда выражения.md",
-    "1/note for repeate/JavaCore/JVM.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/JavaCore/Коллекции.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Kotlin/KOTLIN-COLLECTIONS.md",
     "1/note for repeate/Kotlin.md",
-    "1/note for repeate/ELK stack.md",
-    "1/note for repeate/Команды mysql.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt Jun.md",
-    "ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
-    "JUN.md",
-    "1/note for repeate/общие знания IT.md",
+    "1/note for repeate/RabbitMQ.md",
+    "1/note for repeate/Spring/Spring AOP.md",
     "1/note for repeate/Соеседование/Сбер 04.05.2026.md",
-    "1/note for repeate/Шаблоны-паттерны проектирования.md",
-    "1/note for repeate/Spring/Spring cloud.md",
-    "1/note for repeate/Нейроагент.md",
-    "1/note for repeate/js-ts.md",
-    "1/note for repeate/JavaCore/Stream api.md",
-    "1/Тестирование вызова.md",
-    "1/note for repeate/English/The exercize on page 7.md",
+    "1/note for repeate/Kotlin/Kotlin JPA N+1 problem.md",
+    "1/note for repeate/Kotlin/Kotlin JPA N+1 problem.md.tmp.115154.079d3c7a9cec",
+    "1/note for repeate/Kotlin/Kotlin корутины.md",
+    "1/note for repeate/Kotlin/Kotlin корутины.md.tmp.115154.f5121c436bf0",
+    "1/note for repeate/Kotlin/Kotlin Лямбда выражения.md",
+    "1/note for repeate/Kotlin/Kotlin Лямбда выражения.md.tmp.115154.6f904431f6fe",
+    "1/note for repeate/Kotlin/Kotlin Bitwise Operators.md",
+    "1/note for repeate/Kotlin/Kotlin Bitwise Operators.md.tmp.115154.df38b782f528",
+    "1/note for repeate/Kotlin/Kotlin Sequences.md",
+    "1/note for repeate/Kotlin/Kotlin Sequences.md.tmp.115154.dba7c6588cd1",
+    "1/note for repeate/Kotlin/Kotlin JVM.md",
+    "1/note for repeate/Kotlin/Kotlin JVM.md.tmp.115154.45457cbed97d",
+    "1/note for repeate/Kotlin/KOTLIN-COLLECTIONS.md.tmp.115154.0a60634a26a5",
+    "1/note for repeate/Kotlin/KOTLIN-TYPES.md",
+    "1/note for repeate/Kotlin/KOTLIN-TYPES.md.tmp.115154.bd9ed697e268",
+    "1/note for repeate/Kotlin/KotlinCore.md",
+    "1/note for repeate/Kotlin/KotlinCore.md.tmp.115154.8bfedb2dc8af",
+    "1/note for repeate/MAVEN.md",
+    "1/note for repeate/Kotlin.md.tmp.115154.79b2cb3e1f3f",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/English/Грамматика.md",
-    "1/Задачи обучения.md",
-    "1/note for repeate/Соеседование",
-    "1/note for repeate/Spring/Spring Kafka.md",
-    "1/note for repeate/Spring/IoC Spring.md",
-    "1/note for repeate/Spring/JPA equals hashCode.md",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.fd3a357ac088",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.096408814aa4",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.ac4440ba53e8",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.6025c0d068ee",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.924636a70305",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.5801.8148ee7c2421",
-    "1/note for repeate/Spring",
-    "1/note for repeate/JavaCore/JPA equals hashCode.md.tmp.120983.694ccf6457fa",
-    "1/note for repeate/JavaCore/JPA equals hashCode.md.tmp.120983.b53f30a816b9",
+    "1/note for repeate/Spring/Повторение того, что знаешь.md",
+    "1/note for repeate/HTTPS.md",
+    "1/note for repeate/Шаблоны-паттерны проектирования.md",
+    "1/note for repeate/Микросервисы.md",
+    "1/note for repeate/Команды mysql.md",
+    "1/note for repeate/JavaCore/Коллекции.md",
+    "1/note for repeate/Spring/Spring.md",
+    "1/note for repeate/JavaCore/Bitwise Operators.md",
+    "1/note for repeate/JavaCore/JVM.md",
+    "Spring/ERROR.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",

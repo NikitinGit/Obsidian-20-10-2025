@@ -1,4 +1,4 @@
-1. [ ] типы jvm - open jdk, ...
+1. [x] типы jvm - open jdk - это не jvm, jvm самый известный это HotSpot
 2. [ ] допиши когда какой сборщик мусора использовать https://www.perplexity.ai/search/jvm-kogda-kakoi-sborshchik-isp-cbnJ27T3TBWH6Bhdkd3zFg 
 
 
