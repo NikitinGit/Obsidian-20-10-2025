@@ -1,3 +1,6 @@
+
+# Other approaches 
+https://www.google.com/search?udm=50&sourceid=chrome&ccb=1&cs=1&hl=en-US&q=JPA+%D0%B2+%D0%98%D0%A2+-+%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORigATIHCAEQIRigATIHCAIQIRigATIHCAMQIRigAdIBCTE1NzI5ajBqN6gCALACAA&ie=UTF-8&fbs=ADc_l-ZhZwqRfIRNTFz1njGTSUZt-oZYyuWjrWfVSrNYC75inD-_Me3mpmMgdLqScuUG0BYgCwSANBLUl65nb3ftlcxyx-hZmof37hC72qLsysxYuysmWs6XcjXHYFZ011MxBtWaBRTMv9xViLA3B__P35g8Q9oMcf44du1fEizuqWGs5QxF56Sa3YGEH4jBlJwZ4uazp5-mWbbUxGQT-_Dc2knF_5CNsGqu69LS2zQcZBnLgav6WrE0SMSqDw49iUMFqleAIAyEiXuU56PeUz616SP7dN4KcQ&aep=10&ntc=1&mstk=AUtExfCM8G_lh-Z281ZsbMccvtUr9Nt2oIjwoewBFq_1rhcHacGLR8pJXnmI_WX_XRRDxQa6-mluUY-zu4qHRCW7ALaX2JXU8MTOb2PukhJvZqaeeziUaMEBz1dsjnSrTZv4C4s4oLVVBO1429GdTBAT0Hbbr5sZcJaXRI3_6ODO57MjGwo8x3jONfn42uO7hjDsXaY_J7XBCvc_zxHrP1DJcgm6Vpm4fgxwTgrhTj_ZMUcZn93_1JRVRGYH3Kzt9N9Aez4hOJzp3p--kA&aioh=3&csuir=1&biw=2560&bih=1321&mtid=TPUaapnuLLay5NoPlo2p2Qc
 # equals / hashCode в JPA-сущностях
 
 ## Зачем нужен ручной equals/hashCode

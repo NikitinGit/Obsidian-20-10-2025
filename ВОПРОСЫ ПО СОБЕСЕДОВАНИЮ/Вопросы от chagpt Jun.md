@@ -4,10 +4,6 @@
 
 ### 1. **Основы Java**
 
-- [[JUN|Что такое Java? Чем отличается от других языков?]]
-- [[JUN#^jdk|Разница между JDK, JRE и JVM.]]
-- [[JUN#^bytecode|Что такое bytecode?]]
-- [[JUN#^types|Какие бывают примитивные типы данных в Java?]]
 - Что такое autoboxing и unboxing? - [[Autoboxing-Unboxing]]
 - Разница между `==` и `.equals()`.
 - Как работает `String`, `StringBuilder`, `StringBuffer`?
