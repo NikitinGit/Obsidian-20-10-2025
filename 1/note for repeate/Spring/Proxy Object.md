@@ -1,7 +1,7 @@
 # Proxy Object — что это и где встречается в Java/Spring/Hibernate
 
-1. [ ] How work @EqualsAndHashCode(of = "eventId") - write method
-2. [ ] Check with @EqualsAndHashCode(of = "eventId") your methods
+1. [x] How work @EqualsAndHashCode(of = "eventId") - write method
+2. [x] Check with @EqualsAndHashCode(of = "eventId") your methods
 3. [ ] Cash first level and other 
 
 ## Базовое понятие
