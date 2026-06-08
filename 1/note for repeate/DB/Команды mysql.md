@@ -4,6 +4,31 @@
 3. [ ] Что такое UNION ALL и его типы 
 4. [x] какой алгоритм используется в индексах 
 
+>[!question]- Перенести данные с препродовой БД в локальную БД черезе докер 
+>создаеам дамп и скачиваем 
+>если хотим видеть процесс 
+>```
+>docker run --rm mysql:8.0 mysqldump \ 
+>-h 188.225.76.97 -u dev_user -p"thah2Eolcet6gouJ" \ 
+>--ssl-mode=DISABLED --no-tablespaces --verbose \ 
+>strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
+>```
+>Пересоздание БД 
+>```
+>docker exec mysql_db_v2 mysql -uroot -p'passStrikerStat' -e "DROP DATABASE IF EXISTS strikerstat_local; CREATE DATABASE strikerstat_local;"
+>```
+> Импортируем  дамп 
+> ```
+> docker exec -i mysql_db_v2 mysql -uroot -p"passStrikerStat" strikerstat_local < /tmp/strikerstat_preprod_dump.sql
+>``` 
+>  Проверяем количество таблиц (не обязательно)
+>   ```
+>docker exec mysql_db_v2 mysql -uroot -p'passStrikerStat' strikerstat_local -e "SHOW TABLES;" | wc -l
+>   ```
+>  Удаление временных дампов (не обязательно)
+>    ```
+>    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
+>    ```
 
 >[!question]- Перенести данные с препродовой БД в локальную БД 
 >создаеам дамп и скачиваем 
@@ -35,33 +60,6 @@
 >   Проверяем количество таблиц (не обязательно)
 >   ```
 >    docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
->   ```
->  Удаление временных дампов (не обязательно)
->    ```
->    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
->    ```
-
->[!question]- Перенести данные с препродовой БД в локальную БД черезе докер 
->создаеам дамп и скачиваем 
->если хотим видеть процесс 
->```
-docker run --rm mysql:8.0 mysqldump `
-  -h 188.225.76.97 -u dev_user -p"thah2Eolcet6gouJ" `
-  --skip-ssl --no-tablespaces --verbose `
-  strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
->```
->Пересоздание БД 
->```
->docker exec mysql_db mysql -uroot -p'gtngtngtnN5' -e "DROP DATABASE IF EXISTS co34818_sign; CREATE DATABASE co34818_sign;"
->```
-> Импортируем  дамп 
-> ```
-> docker exec -i mysql_db_v2 mysql -uroot -p"passStrikerStat" strikerstat_local \
->  /tmp/strikerstat_preprod_dump.sql
->``` 
->  Проверяем количество таблиц (не обязательно)
->   ```
->docker exec mysql_db mysql -uroot -p'gtngtngtnN5' co34818_sign -e "SHOW TABLES;" | wc -l
 >   ```
 >  Удаление временных дампов (не обязательно)
 >    ```

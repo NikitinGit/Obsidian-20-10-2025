@@ -32,3 +32,13 @@ java -Xss1m TestLinuxApplication - с Мб
 `Run > Edit Configurations > Enveroumnt ...`  
 > вписать SPRING_PROFILES_ACTIVE=local 
 ![[Pasted image 20260521204043.png]] 
+
+>[!question]- во вкладке Commit куча лишних файлов в Unversioned Files (out/production/...)
+>Это вывод компилятора IntelliJ (артефакты сборки), коммитить не нужно. Удалить директорию и добавить в `.gitignore`:
+>```bash
+>rm -rf out/
+>echo '/out/' >> .gitignore
+>```
+>Чтобы не появлялись снова — `File > Project Structure > Project > Compiler output` (либо оставить `out/`, раз он теперь в `.gitignore`).
+
+

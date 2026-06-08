@@ -225,6 +225,70 @@
 > ```
 > Если когда-нибудь уберёшь JPA — AOP не сломается молча.
 
+>[!question]- Альтернатива AOP для гейта по URL — `HandlerInterceptor`
+> Когда нужно отрезать группу HTTP-ручек по простому условию (фича-флаг, право доступа на префикс, авторизация по заголовку), часто лучше **`HandlerInterceptor`**, а не аспект. Это нативный механизм Spring MVC, без прокси и pointcut'ов.
+>
+> **Реализация — `preHandle()` возвращает `false`, обработка дальше не идёт:**
+> ```java
+> @Component
+> @RequiredArgsConstructor
+> public class ChallengesFeatureFlagInterceptor implements HandlerInterceptor {
+>
+>     private final ChallengeFeatureFlagService challengeFeatureFlagService;
+>
+>     @Override
+>     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+>         if (challengeFeatureFlagService.isEnabled()) {
+>             return true;
+>         }
+>         response.setStatus(HttpStatus.NOT_FOUND.value());
+>         return false;   // контроллер вызван НЕ будет
+>     }
+> }
+> ```
+>
+> **Регистрация — в `WebMvcConfigurer`** с path-pattern и исключениями:
+> ```java
+> @Configuration
+> public class WebConfig implements WebMvcConfigurer {
+>
+>     @Autowired private ChallengesFeatureFlagInterceptor challengesFeatureFlagInterceptor;
+>
+>     @Override
+>     public void addInterceptors(InterceptorRegistry registry) {
+>         registry.addInterceptor(challengesFeatureFlagInterceptor)
+>                 .addPathPatterns("/api/fighter/challenges/**")
+>                 .excludePathPatterns("/api/fighter/challenges/feature-state");
+>     }
+> }
+> ```
+>
+> **Три метода жизненного цикла:**
+> | Метод | Когда вызывается | Зачем |
+> |---|---|---|
+> | `preHandle()` | до контроллера | гейт/авторизация; `return false` останавливает цепочку |
+> | `postHandle()` | после контроллера, до рендера view | дополнить `ModelAndView` (для MVC-views, не для REST) |
+> | `afterCompletion()` | после полного завершения запроса (включая исключения) | освободить ресурсы, метрики, логирование |
+>
+> **Когда interceptor лучше, чем `@Aspect`:**
+> - Условие — про **URL / HTTP**, а не про метод бизнес-логики.
+> - Нужен **path-pattern** (`/api/foo/**`) — это родная фича `InterceptorRegistry`, в AOP пришлось бы матчить через имена методов.
+> - Хочется чисто декларативно исключить отдельные пути (`.excludePathPatterns(...)`).
+> - Не хочется проксировать контроллер (CGLIB-прокси добавляет накладные).
+>
+> **Когда `@Aspect` лучше:**
+> - Условие — про **бизнес-метод**, а не про URL (например, гейт нужен и при внутреннем вызове сервиса из другого сервиса).
+> - Нужно перехватывать не только контроллеры, а любые бины (`@Service`, `@Component`).
+> - Хочется декларативный маркер аннотацией (`@RequiresFeature("xxx")`).
+>
+> **Что куда не дотягивается:**
+> - **`HandlerInterceptor`** срабатывает **только на HTTP-вход**. Если другой Spring-бин позовёт `service.doStuff()` напрямую — гейт не сработает. Это и плюс (контроллер чистый), и минус (нет защиты от внутренних вызовов).
+> - **`@Aspect`** не работает при **self-invocation** (`this.method()` обходит прокси — см. вопрос выше). Interceptor этим не страдает — он срабатывает на сам HTTP-запрос, а не на вызов метода.
+>
+> **Гибрид (если хочется и то и другое):**
+> 1. `HandlerInterceptor` — гейт на уровне HTTP (защита API).
+> 2. Дополнительная проверка в сервисе первой строкой публичного метода (как `requireMessagingFeatureAccess(...)` в `PrivateMessagingService`) — защита от внутренних вызовов в обход контроллера.
+
 ---
 
 ## Spring Boot и стартовые зависимости
