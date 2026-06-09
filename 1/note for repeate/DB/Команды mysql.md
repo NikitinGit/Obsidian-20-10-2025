@@ -8,10 +8,10 @@
 >создаеам дамп и скачиваем 
 >если хотим видеть процесс 
 >```
->docker run --rm mysql:8.0 mysqldump \ 
->-h 188.225.76.97 -u dev_user -p"thah2Eolcet6gouJ" \ 
->--ssl-mode=DISABLED --no-tablespaces --verbose \ 
->strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
+>docker run --rm mysql:8.0 mysqldump \
+>-h 188.225.76.97 -u dev_user -p"thah2Eolcet6gouJ" \
+> --ssl-mode=DISABLED --no-tablespaces --verbose \
+> strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 >```
 >Пересоздание БД 
 >```
