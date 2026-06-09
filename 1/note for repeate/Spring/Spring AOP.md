@@ -257,8 +257,8 @@
 >     @Override
 >     public void addInterceptors(InterceptorRegistry registry) {
 >         registry.addInterceptor(challengesFeatureFlagInterceptor)
->                 .addPathPatterns("/api/fighter/challenges/**")
->                 .excludePathPatterns("/api/fighter/challenges/feature-state");
+>                 .addPathPatterns("/api/fighter/challenges/**") // interceptor применится к любому HTTP-запросу, чей URL совпадает с паттерном по AntMatcher. Совершенно не важно, в каком контроллере объявлен метод.
+>                 .excludePathPatterns("/api/fighter/challenges/feature-state");// исключение - этот ендпоинт не будет перехватываться
 >     }
 > }
 > ```

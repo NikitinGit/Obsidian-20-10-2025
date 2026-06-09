@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 44.46452779032987,
+        "dimension": 70.40216900135563,
         "children": [
           {
             "id": "3ecf6f95398a7a27",
@@ -126,7 +126,7 @@
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
-        "dimension": 55.53547220967013,
+        "dimension": 29.597830998644376,
         "children": [
           {
             "id": "71d43a1704c06486",
@@ -315,7 +315,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "addPathPatterns",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -336,7 +336,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -430,10 +431,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2f0aa1a5a4c24794",
+  "active": "f578f49acebdccd8",
   "lastOpenFiles": [
-    "1/note for repeate/Spring/Spring AOP.md",
     "1/СТЕНДАП.md",
+    "1/note for repeate/Spring/Spring AOP.md",
     "1/note for repeate/Domen driven design.md",
     "1/note for repeate/Spring/Spring.md",
     "1/note for repeate/Spring/Spring AOP.md.tmp.45101.6a36fe65e93e",
