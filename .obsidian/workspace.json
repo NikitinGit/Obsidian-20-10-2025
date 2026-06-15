@@ -58,12 +58,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/LINUX/PROCESSES.md",
+                "file": "1/note for repeate/Spring/Spring.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PROCESSES"
+              "title": "Spring"
             }
           },
           {
@@ -72,12 +72,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/NGINX.md",
+                "file": "1/note for repeate/Spring/Spring Base.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "NGINX"
+              "title": "Spring Base"
             }
           },
           {
@@ -136,8 +136,7 @@
               "title": "IntelliJ IDEA"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -432,44 +431,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cf98cce18475547a",
+  "active": "3ecf6f95398a7a27",
   "lastOpenFiles": [
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/Spring/JPA equals hashCode.md",
+    "1/note for repeate/Spring/Spring AOP.md",
+    "1/note for repeate/Spring/Spring AOP.md.tmp.5541.1d3fe353def1",
+    "1/note for repeate/Spring/Spring Mvc.md",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5541.d4273601bf7c",
+    "1/note for repeate/MAVEN.md",
+    "1/note for repeate/Spring/application.properties.md",
+    "1/note for repeate/Spring/Proxy Object.md",
+    "1/note for repeate/Spring/ERROR.md",
+    "1/note for repeate/Spring/Тестирование приложений.md",
+    "1/note for repeate/Spring/Повторение того, что знаешь.md",
+    "1/note for repeate/Spring/Контроллер.md",
+    "1/note for repeate/Spring/Spring/ERROR.md.tmp.5541.8b105d52757a",
+    "1/note for repeate/Spring/Spring AOP.md.tmp.5541.6f48d96ce447",
+    "1/note for repeate/NGINX.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/ГЛАВНОЕ.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.305988.60403bae9f75",
+    "ENGLISH/forgotten words.md",
+    "1/note for repeate/LINUX/PROCESSES.md",
+    "1/note for repeate/Spring/Spring тесты.md",
+    "1/note for repeate/Spring/Spring cloud.md",
+    "1/note for repeate/Spring/Spring Kafka.md",
     "1/note for repeate/LINUX/FLAGS.md.tmp.10402.e38b6f44de82",
     "1/note for repeate/LINUX/FLAGS.md.tmp.10402.1a02caad28b8",
     "1/note for repeate/LINUX/BASE.md",
     "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.16080.67942131c806",
-    "1/note for repeate/LINUX/PROCESSES.md",
     "1/note for repeate/NGINX.md.tmp.16080.4b12fc9ae3d1",
     "1/note for repeate/LINUX/PROCESSES.md.tmp.10402.20061ff12931",
     "1/note for repeate/LINUX/FLAGS.md",
-    "1/note for repeate/LINUX/PROCESSES.md.tmp.10402.46ad78b2fbc8",
-    "1/note for repeate/LINUX/FLAGS.md.tmp.10402.957cc1819edb",
     "1/note for repeate/strikerStat/JWT.md",
-    "1/note for repeate/strikerStat/JWT.md.tmp.8888.6c37abc11748",
-    "1/note for repeate/strikerStat",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/RabbitMQ.md",
-    "1/note for repeate/DB/Ошибки и решения.md",
-    "1/note for repeate/English/Грамматика.md",
-    "1/ГЛАВНОЕ.md",
-    "1/note for repeate/NGINX.md",
-    "1/note for repeate/Собеседование/Сбер 04.05.2026.md",
-    "1/note for repeate/NGINX.md.tmp.8014.ec6907df84d9",
-    "1/note for repeate/NGINX.md.tmp.8014.09f3d8365ad1",
-    "1/note for repeate/Spring/Повторение того, что знаешь.md",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/Domen driven design.md",
-    "1/note for repeate/DB/Команды mysql.md",
-    "1/note for repeate/Spring/Spring.md",
-    "1/note for repeate/JavaCore/Коллекции.md",
-    "1/note for repeate/MAVEN.md",
-    "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/Spring/Spring AOP.md",
-    "1/Тестирование вызова.md",
-    "1/Задачи на день.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",

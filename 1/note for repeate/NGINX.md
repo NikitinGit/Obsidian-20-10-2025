@@ -66,7 +66,10 @@ https://sky.pro/wiki/html/kak-nastroit-https-na-vashem-sajte/
 > ```bash
 > nginx -T 2>/dev/null | grep -nE "server_name|location|proxy_pass|/ws"
 > ```
-> 
+> Через docker 
+> ```
+> docker exec -i nginx-proxy nginx  -T 2>/dev/null | grep -nE "server_name|location|proxy_pass|/ws"     
+> ```
 > **`nginx -s <signal>`** — **s**ignal. Шлёт сигнал уже **запущенному** мастер-процессу. Возможные сигналы:
 > - `nginx -s reload` — перечитать конфиг **без рестарта**; живые соединения не рвутся (старые воркеры дорабатывают). Основной способ применить изменения.
 > - `nginx -s stop` — немедленная остановка (жёстко, не дожидаясь запросов).
