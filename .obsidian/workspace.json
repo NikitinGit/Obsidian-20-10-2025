@@ -86,12 +86,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/MAVEN.md",
+                "file": "1/note for repeate/JavaCore/java core notes/Hash-функции.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MAVEN"
+              "title": "Hash-функции"
             }
           },
           {
@@ -136,7 +136,8 @@
               "title": "IntelliJ IDEA"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -431,43 +432,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3ecf6f95398a7a27",
+  "active": "ea40313bc1f3ded9",
   "lastOpenFiles": [
-    "1/note for repeate/Spring/Spring Base.md",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/Spring/JPA equals hashCode.md",
-    "1/note for repeate/Spring/Spring AOP.md",
+    "1/note for repeate/JavaCore/java core notes/Hash-функции.md.tmp.9349.00255619380f",
+    "1/note for repeate/JavaCore/JAVA-TYPES.md",
+    "1/note for repeate/JavaCore/java core notes/Hash-функции.md",
+    "1/note for repeate/JavaCore/JAVA-HASHMAP.md",
+    "1/note for repeate/JavaCore/java core notes/Hash-функции.md.tmp.9349.b1fb7af0a442",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Файловый дескриптор.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Состояние гонки.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Процесс.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Многопоточность.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Многопоточное программирование на java.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Консистентность.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/Конкуретность.md",
+    "1/note for repeate/JavaCore/java core notes/многопоточность/IPC.md",
+    "1/note for repeate/JavaCore/java core notes/ENUM.md",
+    "1/note for repeate/JavaCore/java core notes/Records.md",
+    "1/note for repeate/JavaCore/java core notes/throw and try catch.md",
+    "1/note for repeate/JavaCore/java core notes/Интерфейсы и наследование.md",
+    "1/note for repeate/JavaCore/java core notes/Лямбда.md",
+    "1/note for repeate/JavaCore/java core notes/Строки.md",
+    "1/note for repeate/JavaCore/java core notes/Типы данных.md",
+    "1/note for repeate/JavaCore/java core notes/композиция и агрегирование.md",
+    "1/note for repeate/JavaCore/java core notes/аннотоации.md",
+    "1/note for repeate/JavaCore/Коллекции.md",
+    "1/note for repeate/JavaCore/JVM.md",
+    "1/note for repeate/JavaCore/Bitwise Operators.md",
+    "1/note for repeate/JavaCore/Лямбда выражения.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
+    "_ПОВТОРЕНИЕ/00 КАРТА ЗНАНИЙ (MOC).md.tmp.9770.6df8e53f07a8",
+    "_ПОВТОРЕНИЕ",
     "1/note for repeate/Spring/Spring AOP.md.tmp.5541.1d3fe353def1",
-    "1/note for repeate/Spring/Spring Mvc.md",
     "1/note for repeate/Spring/Spring Mvc.md.tmp.5541.d4273601bf7c",
-    "1/note for repeate/MAVEN.md",
-    "1/note for repeate/Spring/application.properties.md",
-    "1/note for repeate/Spring/Proxy Object.md",
-    "1/note for repeate/Spring/ERROR.md",
-    "1/note for repeate/Spring/Тестирование приложений.md",
-    "1/note for repeate/Spring/Повторение того, что знаешь.md",
-    "1/note for repeate/Spring/Контроллер.md",
     "1/note for repeate/Spring/Spring/ERROR.md.tmp.5541.8b105d52757a",
     "1/note for repeate/Spring/Spring AOP.md.tmp.5541.6f48d96ce447",
-    "1/note for repeate/NGINX.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/ГЛАВНОЕ.md",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.305988.60403bae9f75",
-    "ENGLISH/forgotten words.md",
-    "1/note for repeate/LINUX/PROCESSES.md",
-    "1/note for repeate/Spring/Spring тесты.md",
-    "1/note for repeate/Spring/Spring cloud.md",
-    "1/note for repeate/Spring/Spring Kafka.md",
     "1/note for repeate/LINUX/FLAGS.md.tmp.10402.e38b6f44de82",
     "1/note for repeate/LINUX/FLAGS.md.tmp.10402.1a02caad28b8",
-    "1/note for repeate/LINUX/BASE.md",
-    "1/note for repeate/English/АНГЛИЙСКИЕ СЛОВА.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.16080.67942131c806",
-    "1/note for repeate/NGINX.md.tmp.16080.4b12fc9ae3d1",
-    "1/note for repeate/LINUX/PROCESSES.md.tmp.10402.20061ff12931",
-    "1/note for repeate/LINUX/FLAGS.md",
-    "1/note for repeate/strikerStat/JWT.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",
