@@ -1,8 +1,9 @@
 # GIT 
-1. [ ] Чем отличается fetch от pull 
-2. [ ] При git pull меняются ли локальные ветки
-3. [ ] индекс и стек это 
-4. [x]  git merge --abort  - это отмена мержда
+1. [ ] mvn -o -q dependency:tree -Dincludes=commons-codec:commons-codec 2>&1 | grep -E "commons-codec|---|\.jar|:compile|:runtime" | head -40  - что делает ?
+2. [ ] Чем отличается fetch от pull - fetch не изменяет ветку при получении удаленных данных , а  pull меняет через merge / rebase
+3. [ ] При git pull меняются ли локальные ветки
+4. [ ] индекс и стек это 
+5. [x]  git merge --abort  - это отмена мержда
 
 >[!question]- Отменить мержд
 >git merge --abort 
