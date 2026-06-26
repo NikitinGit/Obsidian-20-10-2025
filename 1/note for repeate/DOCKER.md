@@ -1,5 +1,9 @@
 
 1. [ ] смотреть логи - https://www.google.com/search?udm=50&sourceid=chrome&ccb=1&cs=1&hl=en-US&q=%D0%BA%D0%B0%D0%BA+%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D1%82%D0%B8%D1%82%D1%8C+docker+logs+%D1%87%D1%82%D0%BE%D0%B1%D1%8B+%D0%B2%D0%B8%D0%B4%D0%B5%D1%82%D1%8C+%D0%BB%D0%BE%D0%B3%D0%B8+%D0%B2+%D1%80%D0%B0%D0%BD%D1%82%D0%B0%D0%B9%D0%BC%D0%B5&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBdIBCTE2NTE0ajBqN6gCALACAA&ie=UTF-8&fbs=ADc_l-bs2zYa4_vOddERTHH0rF8CDbOPXIO2Jmt3O1q1mG8sqIBodZU9EysgsK8u7QK6IWDOptN89aOQj40J5PwHNgDxoMwPOlM4YRGOS6sBFB0xNiWcJvUB9-984xVL_FDQJZMzwVuMMVdUmLm4_ytgIX8K0XjgtAjEWZmArpwSN1edSe-6XWT6DtruYUiIxSLLxS14rVxgzyc3HdOoTsnkDnzX6VEiqcb_m1m-eg7T96Y6D1cfe8VzDXcaNtyNN5MUGiSr63j-vxQ43gcbH4i3ctYDR5M88w&aep=10&ntc=1&mstk=AUtExfDFmhDstDShInzgHv7x1gt3dPpgwsYB1z9XLY4EZElujThzoiNbNmZW0jMsosKkto0J9OlwuBkybyIkUCEr8-8X44RjfNUMRTYzVfSesyPZeyQvY3lTsNgBrfm2lrHQlO5N3TmowxsBZlsHLzcEc0wTAn26CbnaqMlQ75T0vQXorAeBrNGiQxu4dSLfYTsP6O3X4RiErwTZnFEKNGRmbZsDAvAK7mOaXe-Cio2zrThLv_y0FfZTJhn7N2t1nsMKOwIifU75-1uH_g&aioh=3&csuir=1&biw=2048&bih=1056.800048828125&mtid=QDcparWFA8KlptQPoJ-F6QY 
+
+ > [!question]- посмотреть логи в рил тайме с момента запуска команды
+ > docker logs -f --since 0m <имя_контейнера>
+
  > [!question]- посмотреть логи содержаший искомый текст 
  > docker logs 9e4 | grep YooKassaService
  

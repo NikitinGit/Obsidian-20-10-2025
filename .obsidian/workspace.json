@@ -46,12 +46,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+                "file": "1/note for repeate/Domen driven design.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "StrikerStat-Plane"
+              "title": "Domen driven design"
             }
           },
           {
@@ -113,7 +113,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -224,12 +224,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/strikerStat/JWT.md",
+                "file": "1/note for repeate/Spring/Proxy Object.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JWT"
+              "title": "Proxy Object"
             }
           },
           {
@@ -279,7 +279,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "LEFT JOIN FETCH",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -394,43 +394,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c8a8d3ffdaa372d9",
+  "active": "032d4e1ca6af7765",
   "lastOpenFiles": [
-    "1/note for repeate/Spring/Spring Security.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/note for repeate/strikerStat/MAIL.md",
+    "1/note for repeate/strikerStat/MAIL.md.tmp.62375.54d9bc1c2726",
+    "1/note for repeate/strikerStat/MAIL.md.tmp.62375.bded9917b30d",
+    "1/note for repeate/strikerStat/SMS.md",
+    "1/note for repeate/strikerStat/SMS.md.tmp.62375.9fca0671120d",
+    "1/note for repeate/strikerStat/SMS.md.tmp.62375.284936ed6844",
+    "1/note for repeate/DB/Миграции.md",
+    "1/note for repeate/HTTPS.md",
+    "1/note for repeate/Spring/Proxy Object.md",
+    "1/note for repeate/DB/Команды mysql.md",
+    "1/note for repeate/strikerStat/SMS.md.tmp.62375.2c011b2be8b8",
+    "JPQL.md",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md",
+    "Цели на месяц/17-25 декабря.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/strikerStat/JWT.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.29716.06d886086493",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/DOCKER.md",
+    "1/note for repeate/SSH.md",
+    "1/note for repeate/Domen driven design.md",
+    "1/note for repeate/Spring/Spring Security.md",
     "1/note for repeate/Spring/Spring AOP.md.tmp.49288.6a947d2eea5b",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.e2d8a9bb2cc8",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.a869cf6aa1de",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.d979886f7b5f",
-    "1/note for repeate/strikerStat/JWT.md.tmp.49288.1b6c717c3659",
-    "1/note for repeate/strikerStat/JWT.md.tmp.49288.bab2d9d5206e",
-    "1/note for repeate/strikerStat/JWT.md.tmp.49288.6951d8886217",
-    "1/note for repeate/strikerStat/JWT.md.tmp.49288.5071c9fe897d",
-    "1/note for repeate/strikerStat/JWT.md.tmp.49288.a56d3a5e4de3",
-    "1/note for repeate/DOCKER.md",
-    "1/note for repeate/Spring/Spring Base.md",
-    "1/note for repeate/SSH.md",
-    "1/note for repeate/Spring/Spring AOP.md.tmp.49288.12a5425b2010",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/DB/Ошибки и решения.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/DB/Команды mysql.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/js-ts.md",
     "1/note for repeate/Spring/Spring AOP.md",
     "1/ГЛАВНОЕ.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
     "1/note for repeate/GIT.md",
     "1/note for repeate/VPS/железо.md",
-    "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/LINUX/BASE.md",
-    "Цели на месяц/17-25 декабря.md",
-    "DNS.md",
-    "JPQL.md",
-    "Цели на месяц/Список целей по Паше.md",
-    "1/note for repeate/LINUX/PROCESSES.md",
-    "Цели на месяц/9-14 декабря 2024 г.md",
-    "Цели на месяц/2-7 декабря 2024 г.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",
