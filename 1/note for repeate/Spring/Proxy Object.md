@@ -230,17 +230,6 @@
 > Можно — через `@ManyToOne(fetch = EAGER)` или `JOIN FETCH` в запросе — тогда связь грузится сразу реальным entity. Но это **обычно хуже**: EAGER тащит связь во ВСЕХ запросах, давая N+1 и `MultipleBagFetchException` на коллекциях. Лучше держать lazy + контролировать загрузку JOIN FETCH'ем там, где нужно (см. [[JPA N+1 problem]]).
 > Также есть `@Proxy(lazy = false)` на entity-классе (deprecated в Hibernate 6) — отключает прокси-генерацию для класса вообще. Почти никогда не нужно.
 
->[!question]- Чем `JOIN FETCH` отличается от обычного `JOIN` в JPQL
-> Разница — в слове `FETCH`: оно **жадно инициализирует** ассоциацию в граф объектов, а не просто соединяет таблицы.
-> - **`JOIN c.event`** (обычный): генерит SQL `JOIN`, нужен чтобы **фильтровать/сортировать/использовать в WHERE** поля связанной таблицы. Ассоциацию НЕ инициализирует — `EventChallenge.event` остаётся **ленивым прокси**, колонки event в проекцию не попадают. Обращение к `challenge.getEvent().getX()` потом → отдельный ленивый SELECT (N+1) внутри сессии, либо **`LazyInitializationException`** вне сессии / на detached-объекте.
-> - **`JOIN FETCH c.event`**: тот же SQL `JOIN`, **плюс** колонки event тянутся в этот же запрос и `EventChallenge.event` заполняется **реальной инициализированной сущностью** (не прокси). После этого доступ к полям event работает без доп. запросов и без LazyInit, даже на detached.
-> 
-> Формула: `JOIN` = «соедини для условий запроса, ассоциация остаётся ленивой»; `JOIN FETCH` = «соедини И загрузи ассоциацию в объект сразу».
-> 
-> **`LEFT` vs внутренний при FETCH:** `JOIN FETCH` (inner) **выкидывает** строки, где ассоциация `null`; `LEFT JOIN FETCH` их сохраняет (ассоциация останется `null`). Поэтому `LEFT JOIN FETCH` берут для **nullable**-связей: на `@ManyToOne optional=false` / NOT NULL FK → `JOIN FETCH`, на nullable → `LEFT JOIN FETCH`.
-> 
-> **Когда критично:** если entity обрабатывается **вне транзакции** (detached — например, фоновый воркер прочитал пачку и закрыл сессию), то всё, к чему полезешь через геттеры, обязано быть подтянуто через `JOIN FETCH` заранее, иначе `LazyInitializationException`. Это основной способ контролировать загрузку точечно вместо EAGER — см. [[JPA N+1 problem]].
-
 >[!question]- Почему lazy-связь `bid.getEvent()` иногда возвращает НЕ прокси, а реальный Event — эксперимент
 > Hibernate создаёт прокси **только если целевой entity ещё НЕ в persistence context**. Если Event уже в PC (identity map) — `bid.getEvent()` вернёт ту же managed-ссылку, прокси не нужен.
 > Проверяется напрямую в `EventServiceTest#demonstrateLazyAssociationProxyProblem` — достаточно закомментировать `entityManager.clear()`:

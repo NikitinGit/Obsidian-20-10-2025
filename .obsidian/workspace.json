@@ -46,12 +46,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Domen driven design.md",
+                "file": "1/note for repeate/Spring/Spring Base.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Domen driven design"
+              "title": "Spring Base"
             }
           },
           {
@@ -224,12 +224,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring/Proxy Object.md",
+                "file": "1/note for repeate/JavaCore/JPA N+1 problem.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Proxy Object"
+              "title": "JPA N+1 problem"
             }
           },
           {
@@ -279,7 +279,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "LEFT JOIN FETCH",
+                "query": "HATE",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -300,7 +300,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -394,8 +395,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "032d4e1ca6af7765",
+  "active": "c8a8d3ffdaa372d9",
   "lastOpenFiles": [
+    "1/note for repeate/Spring/Proxy Object.md",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/note for repeate/Собеседование/ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "1/note for repeate/Domen driven design.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/strikerStat/MAIL.md",
     "1/note for repeate/strikerStat/MAIL.md.tmp.62375.54d9bc1c2726",
@@ -405,21 +411,17 @@
     "1/note for repeate/strikerStat/SMS.md.tmp.62375.284936ed6844",
     "1/note for repeate/DB/Миграции.md",
     "1/note for repeate/HTTPS.md",
-    "1/note for repeate/Spring/Proxy Object.md",
     "1/note for repeate/DB/Команды mysql.md",
     "1/note for repeate/strikerStat/SMS.md.tmp.62375.2c011b2be8b8",
     "JPQL.md",
-    "1/note for repeate/JavaCore/JPA N+1 problem.md",
     "Цели на месяц/17-25 декабря.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/strikerStat/JWT.md",
     "1/note for repeate/strikerStat/WebSocketStomp.md",
     "1/note for repeate/Spring/Proxy Object.md.tmp.29716.06d886086493",
-    "1/note for repeate/Spring/Spring Base.md",
     "1/СТЕНДАП.md",
     "1/note for repeate/DOCKER.md",
     "1/note for repeate/SSH.md",
-    "1/note for repeate/Domen driven design.md",
     "1/note for repeate/Spring/Spring Security.md",
     "1/note for repeate/Spring/Spring AOP.md.tmp.49288.6a947d2eea5b",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.e2d8a9bb2cc8",

@@ -1,9 +1,10 @@
 # Проблема N+1 в JPA / Hibernate
+1. [ ] Если вообще не исопльзовать в @Entity связи - то проблема N+1 снимется ?
 
 >[!question]- Что такое N+1 проблема — одной фразой
 > Когда вместо одного SQL'я с JOIN'ом Hibernate выполняет **1 запрос за родительскими сущностями + ещё N запросов по одному на каждый дочерний объект**. Возникает на ровном месте при обращении к lazy-связям внутри цикла.
 
->[!question]- Откуда берутся 401 запрос в типичном цикле по bids
+>[!question]- Пример N+1 запросов
 > ```java
 > Event event = eventRepository.findEventByEventId(eventId).orElseThrow(...);   // 1 SELECT events
 > List<EventBidFighter> bids = event.getEventBidFighters();                     // 1 SELECT bids (lazy collection)
@@ -45,6 +46,17 @@
 > Optional<Event> findEventWithBidsAndFighters(@Param("eventId") Integer eventId);
 > ```
 > Один SELECT с двумя LEFT JOIN'ами. Hibernate сразу заполняет коллекцию `eventBidFighters` и для каждого bid'а — связанного `Fighter`. Никаких lazy-инициализаций потом не будет.
+
+>[!question]- Чем `JOIN FETCH` отличается от обычного `JOIN` в JPQL
+> Разница — в слове `FETCH`: оно **жадно инициализирует** ассоциацию в граф объектов, а не просто соединяет таблицы.
+> - **`JOIN c.event`** (обычный): генерит SQL `JOIN`, нужен чтобы **фильтровать/сортировать/использовать в WHERE** поля связанной таблицы. Ассоциацию НЕ инициализирует — `EventChallenge.event` остаётся **ленивым прокси**, колонки event в проекцию не попадают. Обращение к `challenge.getEvent().getX()` потом → отдельный ленивый SELECT (N+1) внутри сессии, либо **`LazyInitializationException`** вне сессии / на detached-объекте.
+> - **`JOIN FETCH c.event`**: тот же SQL `JOIN`, **плюс** колонки event тянутся в этот же запрос и `EventChallenge.event` заполняется **реальной инициализированной сущностью** (не прокси). После этого доступ к полям event работает без доп. запросов и без LazyInit, даже на detached.
+> 
+> Формула: `JOIN` = «соедини для условий запроса, ассоциация остаётся ленивой»; `JOIN FETCH` = «соедини И загрузи ассоциацию в объект сразу».
+> 
+> **`LEFT` vs внутренний при FETCH:** `JOIN FETCH` (inner) **выкидывает** строки, где ассоциация `null`; `LEFT JOIN FETCH` их сохраняет (ассоциация останется `null`). Поэтому `LEFT JOIN FETCH` берут для **nullable**-связей: на `@ManyToOne optional=false` / NOT NULL FK → `JOIN FETCH`, на nullable → `LEFT JOIN FETCH`.
+> 
+> **Когда критично:** если entity обрабатывается **вне транзакции** (detached — например, фоновый воркер прочитал пачку и закрыл сессию), то всё, к чему полезешь через геттеры, обязано быть подтянуто через `JOIN FETCH` заранее, иначе `LazyInitializationException`. Это основной способ контролировать загрузку точечно вместо EAGER — см. [[JPA N+1 problem]].
 
 >[!question]- Зачем `DISTINCT` в JPQL с JOIN FETCH коллекции
 > JOIN с коллекцией размножает строки родительской сущности: если у event'а 399 bid'ов, SQL вернёт 399 строк, каждая с тем же event'ом. Без `DISTINCT` Hibernate соберёт 399 ссылок на один и тот же Java-объект в результат.
