@@ -71,20 +71,6 @@
             }
           },
           {
-            "id": "79c7cf0b95175d20",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/Spring/Spring Base.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Spring Base"
-            }
-          },
-          {
             "id": "f578f49acebdccd8",
             "type": "leaf",
             "state": {
@@ -113,7 +99,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -177,20 +163,6 @@
             }
           },
           {
-            "id": "3692e429268f5478",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/js-ts.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "js-ts"
-            }
-          },
-          {
             "id": "e0a9d0e3b0f8ead3",
             "type": "leaf",
             "state": {
@@ -238,12 +210,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/DB/Команды mysql.md",
+                "file": "1/note for repeate/LINUX/BASE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Команды mysql"
+              "title": "BASE"
             }
           }
         ],
@@ -279,7 +251,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "HATE",
+                "query": "JWT",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -300,8 +272,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -395,14 +366,29 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c8a8d3ffdaa372d9",
+  "active": "8e84e6b07e545203",
   "lastOpenFiles": [
-    "1/note for repeate/Spring/Proxy Object.md",
-    "1/note for repeate/JavaCore/JPA N+1 problem.md",
-    "1/note for repeate/Spring/Spring Base.md",
-    "1/note for repeate/Собеседование/ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
-    "1/note for repeate/Domen driven design.md",
+    "1/note for repeate/LINUX/BASE.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/LINUX/CURL.md",
+    "1/note for repeate/strikerStat/JWT.md",
+    "1/note for repeate/SSH.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/note for repeate/Собеседование/ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
+    "1/note for repeate/Spring/Spring cloud.md",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/note for repeate/DB/Команды mysql.md",
+    "1/note for repeate/JavaCore/Stream api.md",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/note for repeate/Domen driven design.md",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md",
+    "1/note for repeate/GIT.md",
+    "1/Тестирование вызова.md",
+    "1/note for repeate/js-ts.md",
+    "1/note for repeate/Spring/Spring Security.md",
+    "1/note for repeate/Spring/application.properties.md",
+    "1/note for repeate/Spring/SPRING ЛОГИ ЗАПУСКА.md",
+    "1/note for repeate/Spring/Proxy Object.md",
     "1/note for repeate/strikerStat/MAIL.md",
     "1/note for repeate/strikerStat/MAIL.md.tmp.62375.54d9bc1c2726",
     "1/note for repeate/strikerStat/MAIL.md.tmp.62375.bded9917b30d",
@@ -411,28 +397,13 @@
     "1/note for repeate/strikerStat/SMS.md.tmp.62375.284936ed6844",
     "1/note for repeate/DB/Миграции.md",
     "1/note for repeate/HTTPS.md",
-    "1/note for repeate/DB/Команды mysql.md",
     "1/note for repeate/strikerStat/SMS.md.tmp.62375.2c011b2be8b8",
     "JPQL.md",
-    "Цели на месяц/17-25 декабря.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/strikerStat/JWT.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
     "1/note for repeate/Spring/Proxy Object.md.tmp.29716.06d886086493",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/DOCKER.md",
-    "1/note for repeate/SSH.md",
-    "1/note for repeate/Spring/Spring Security.md",
     "1/note for repeate/Spring/Spring AOP.md.tmp.49288.6a947d2eea5b",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.e2d8a9bb2cc8",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.a869cf6aa1de",
     "1/note for repeate/Spring/Spring Security.md.tmp.49288.d979886f7b5f",
-    "1/note for repeate/DB/Ошибки и решения.md",
-    "1/note for repeate/js-ts.md",
-    "1/note for repeate/Spring/Spring AOP.md",
-    "1/ГЛАВНОЕ.md",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/VPS/железо.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",
