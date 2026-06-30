@@ -1,20 +1,81 @@
 
 1. [x] @PreAuthorize @PostAuthorize - судя по @EnableMethodSecurity эти методы прдназначены дял методов, если так, то в чем их приемущество перед проверкой не в магии антоаций , а в коде? Все равно над каждым методом надо ставить. А потоом @PostAuthorize еще и  порядок написания операций нарушает - пишется над методом и вызывается в конце, тем самым запутывая программиста ? В каком случае такой аспект над методом может быть удобнее чем проверка в коде ? (см. «@PreAuthorize vs проверка в коде»)
-2. [ ] curl -i -u user:b00a4545-33b7-46cc-bb60-34afc99e70d6 http://localhost:8080/some/path - как набрать в браузере 
-3. [ ] Что такое HttpOnly куки
-4. [ ] какие бывают куки кроме HttpOnly 
-5. [ ] как спринг отправляет токен пользователю после захода на сайт 
-6. [ ] как фронт принимает и отправляет этот токен, как он его хранит и может ли управлять его хранением
-7. [ ] какие алгоритмы могут быть у jwt хедера
-8. [ ] сколько в хедере может хранится данных - определяется браузером и бэкендом
-9. [ ] в ServletRequest/doFilter находится только хедер ? как получить боди
-10. [ ] GenericFilterBean единственный способ перехватить запрос ?
-11. [ ] напиши приложение спринг секурити , в котором есть ендпоинт, конфиг, класс обработки  jwt , вспомни что такое crsf, cors 
-12. [ ] напиши фронт для посылки запросов с хедором jwt (есть ли в хедере мими типы)
-13. [ ] пример с сессиией 
-14. [ ]  @AfterReturning(pointcut = "@within(checkEventOwnership)", returning = "result") 
-15. [ ] сквозная функциональность - общая для всех методов ?
-16. [x] у нас в проекте секрет токена (сигнатура jwt) хранится в коде - это называется не соль а перец? - нет, это HMAC секрет
+2. [x] curl -i -u user:b00a4545-33b7-46cc-bb60-34afc99e70d6 http://localhost:8080/some/path - как набрать в браузере 
+3. [ ] куки сохраняются даже при запросе на другие сайты или на тот же сайт но другой порт (например localhost:3600)?
+4. [ ] Что такое HttpOnly куки
+5. [ ] какие бывают куки кроме HttpOnly 
+6. [ ] как спринг отправляет токен пользователю после захода на сайт 
+7. [ ] как фронт принимает и отправляет этот токен, как он его хранит и может ли управлять его хранением
+8. [ ] какие алгоритмы могут быть у jwt хедера
+9. [ ] сколько в хедере может хранится данных - определяется браузером и бэкендом
+10. [ ] в ServletRequest/doFilter находится только хедер ? как получить боди
+11. [ ] GenericFilterBean единственный способ перехватить запрос ?
+12. [ ] напиши приложение спринг секурити , в котором есть ендпоинт, конфиг, класс обработки  jwt , вспомни что такое crsf, cors 
+13. [ ] напиши фронт для посылки запросов с хедором jwt (есть ли в хедере мими типы)
+14. [ ] пример с сессиией 
+15. [ ]  @AfterReturning(pointcut = "@within(checkEventOwnership)", returning = "result") 
+16. [ ] сквозная функциональность - общая для всех методов ?
+17. [x] у нас в проекте секрет токена (сигнатура jwt) хранится в коде - это называется не соль а перец? - нет, это HMAC секрет
+
+>[!question]- Getting Started
+>```
+>@Configuration
+@EnableWebSecurity
+public class SpringSecurityConfig {
+}
+>```
+>при старте спринг секурити генерирует логин и пароль , чтобы в браузере их отправить надо ввести что то вроде 
+>```
+>http://user:f32a58a0-4abe-4306-9e87-74bac8f940db@localhost:8080/some/path
+>```
+>а через curl так 
+>```
+>curl -i -u user:f32a58a0-4abe-4306-9e87-74bac8f940db http://localhost:8080/some/path
+>```
+>чтобы генерировался свой лоин пароль нужно 
+>```
+>spring.security.user.name=user
+>spring.security.user.password=secret
+>```
+>
+>**Почему браузер `user:pass@host` не работает — и откуда берётся страница `/login`**
+>
+>Синтаксис `user:pass@localhost:8080/path` в адресной строке браузера — устаревший RFC 3986. Современные Chrome/Firefox **вырезают credentials** из URL как защиту от фишинга (злоумышленники маскировали реальный домен: `bank.ru@evil.com`). Запрос уходит без заголовка `Authorization` → Spring не видит Basic Auth → редиректит на логин.
+>
+>`curl -u` при этом работает, потому что явно добавляет заголовок `Authorization: Basic base64(user:pass)` — браузер этого не делает.
+>
+>Страница `/login` генерируется автоматически классом `DefaultLoginPageGeneratingFilter` — это **встроенный HTML** (конкатенация строк), не Thymeleaf-шаблон. Посмотреть можно через `Ctrl+N` → `DefaultLoginPageGeneratingFilter`, метод `generateLoginPageHtml`. Подправить встроенный HTML нельзя — только заменить полностью.
+>
+>Редирект делает `ExceptionTranslationFilter`: поймал `AuthenticationException` → вызвал `LoginUrlAuthenticationEntryPoint` → `response.sendRedirect("/login")`. Всё это происходит в цепочке фильтров до контроллера.
+>
+>**Как подменить страницу логина на свою:**
+>```java
+>// 1. В SecurityConfig объявить свой URL
+>http.formLogin(form -> form
+>    .loginPage("/login")
+>    .permitAll()
+>);
+>```
+>```java
+>// 2. Контроллер отдаёт твою страницу
+>@Controller
+>public class LoginController {
+>    @GetMapping("/login")
+>    public String loginPage() {
+>        return "login"; // templates/login.html (Thymeleaf)
+>    }
+>}
+>```
+>```html
+><!-- Форма ОБЯЗАНА слать POST /login с полями username и password -->
+><!-- th:action автоматически добавляет CSRF-токен -->
+><form th:action="@{/login}" method="post">
+>    <input type="text"     name="username"/>
+>    <input type="password" name="password"/>
+>    <button type="submit">Войти</button>
+></form>
+>```
+>Без Thymeleaf — добавь скрытое поле CSRF вручную или отключи CSRF (только для теста).
 
 >[!question]- Hello World Security (минимальный SecurityFilterChain)
 >`@EnableWebSecurity` + бин `SecurityFilterChain`. Каждый запрос проходит цепочку фильтров, в конце `AuthorizationFilter` проверяет правила `authorizeHttpRequests`.
@@ -88,17 +149,15 @@
 > -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Im9yZ2FuaXplciIsImV4cCI6MTc4OTQ3MjY2MH0._Z7nEOAmay-TgkWuv2H0XhmXsl_eUlmGJ_KxCSdT4O8"
 >```
 
-
-curl -i -X PUT "http://localhost:6300/event/update?eventId=175" \
---cookie "strikerstat_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Im9yZ2FuaXplciIsImV4cCI6MTc4OTQ3MjY2MH0._Z7nEOAmay-TgkWuv2H0XhmXsl_eUlmGJ_KxCSdT4O8"
-
-
-```
-curl -i -X PUT "http://localhost:6300/event/update-from-dto" \
-    -H "Content-Type: application/json" \
-    --cookie "strikerstat_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Im9yZ2FuaXplciIsImV4cCI6MTc4OTQ3MjY2MH0._Z7nEOAmay-TgkWuv2H0XhmXsl_eUlmGJ_KxCSdT4O8" \
-    -d '{"test": 0, "eventId": 175}'
-```
+>[!question]- curl запрос
+>```
+>curl -i -X PUT "http://localhost:6300/event/update-from-dto" \
+> -H "Content-Type: application/json" \
+> --cookie
+> "strikerstat_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Im9yZ2FuaXplciIsImV4cCI6MTc4OTQ3MjY2MH0._Z7nEOAmay
+> TgkWuv2H0XhmXsl_eUlmGJ_KxCSdT4O8" \
+> -d '{"test": 0, "eventId": 175}'
+> ```
 
 ---
 
