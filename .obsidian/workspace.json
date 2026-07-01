@@ -196,12 +196,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/strikerStat/WebSocketStomp.md",
+                "file": "1/note for repeate/nixOS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WebSocketStomp"
+              "title": "nixOS"
             }
           }
         ],
@@ -237,7 +237,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "stomp",
+                "query": "nixOS",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -355,8 +355,13 @@
   },
   "active": "da3cd15bad6c79af",
   "lastOpenFiles": [
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.28244.bafefe2bc9da",
+    "1/note for repeate/nixOS.md.tmp.10340.746041745a75",
+    "1/note for repeate/nixOS.md.tmp.7305.981686f28e4f",
     "1/СТЕНДАП.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.5877.bca3f3fde88a",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.28244.bafefe2bc9da",
     "1/note for repeate/FRONT/Stateless Vs Stateful.md",
     "1/note for repeate/strikerStat/JWT.md",
     "1/note for repeate/FRONT/Stateless Vs Stateful.md.tmp.6619.17abd8a1739e",
@@ -367,7 +372,6 @@
     "1/note for repeate/SSH.md",
     "1/note for repeate/Spring/Spring Security.md.tmp.6619.6ec2edb1adce",
     "1/note for repeate/LINUX/BASE.md",
-    "1/note for repeate/JavaCore/JPA N+1 problem.md",
     "1/note for repeate/Spring/Spring AOP.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "1/Сайт Александра.md",
@@ -386,11 +390,7 @@
     "1/note for repeate/LINUX/CURL.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/Собеседование/ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Вопросы от chagpt middle.md",
-    "1/note for repeate/Spring/Spring cloud.md",
     "1/note for repeate/strikerStat/MAIL.md.tmp.62375.54d9bc1c2726",
-    "1/note for repeate/strikerStat/MAIL.md.tmp.62375.bded9917b30d",
-    "1/note for repeate/strikerStat/SMS.md.tmp.62375.9fca0671120d",
-    "1/note for repeate/strikerStat/SMS.md.tmp.62375.284936ed6844",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",

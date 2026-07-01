@@ -266,3 +266,158 @@
 
 >[!question]- что выбрать для StrikerStat
 > **Вариант 1** (re-fetch при reconnect + `visibilitychange`). Природа уведомлений — «перечитай данные», а не «уникальное событие, которое нельзя потерять». Гарантировать надо **актуальность состояния**, а не доставку каждого сообщения. RabbitMQ — корректное промышленное решение для гарантированной доставки, но серьёзная переделка и здесь избыточно.
+
+---
+
+## Видео-оверлей в OBS (/ws-public) — таймер не запускался на препроде
+
+>[!question]- симптом: таймер оверлея запускается в OBS только на localhost, на препроде нужен ручной Refresh
+> OBS Browser Source указывает на страницу `pages/olympic_events/video-overlay.vue`. Таймер запускается **не сам по себе**, а по живому STOMP-пушу: оператор жмёт «Начать раунд» → бэк шлёт `timerControl`/`battleStarted` в `/topic/video-overlay/{eventId}` через WS-эндпоинт **`/ws-public`** → страница в OBS ловит и запускает таймер.
+> - **localhost работает:** `/ws-public` идёт напрямую в бэкенд `ws://localhost:6300` (без nginx/TLS/edge).
+> - **препрод не работает:** `wss://домен/ws-public` через nginx + edge Timeweb + Basic Auth.
+> - **почему Refresh помогает:** при перезагрузке `onMounted → loadVideoOverlay()` (REST) читает СОХРАНЁННОЕ состояние таймера и восстанавливает его (`restoreFromSettings`). То есть после Refresh таймер появляется из REST, а не из WS → значит живой WS-пуш до OBS не доходил.
+> 
+> **OBS как «браузер» тут ни при чём** — это CEF (Chromium), исполняет тот же JS и открывает тот же WebSocket, никакого особого подхода для STOMP-подписки не требует. Проблема в транспорте до препрода.
+
+>[!question]- диагностика по слоям (что выяснили)
+> 1. **Браузер (DevTools → Network → WS → `ws-public`):** «Provisional headers are shown», **нет Status Code** (ни 101, ни 200/401), бесконечный reconnect-цикл. Значит апгрейд не получает валидного HTTP-ответа — соединение рвётся до ответа. Это **не Basic Auth** (был бы 401) и **не баг фронта** (заголовки запроса корректные: `Upgrade: websocket`, `Sec-WebSocket-Key`, `Origin`).
+> 2. **Бэкенд напрямую (с сервера):** `websocat -v ws://127.0.0.1:6300/ws-public` → `101 Switching Protocols` + `Upgrade: websocket` + `Sec-WebSocket-Accept`. Бэкенд исправен, авторизации `/ws-public` не требует.
+> 3. **nginx-конфиг:** `nginx -T 2>/dev/null | awk '/# configuration file/{f=$0} /location \/ws|auth_basic|server_name/{print f": "$0}'` → виновник `/etc/nginx/sites-enabled/front.conf` (симлинк на `sites-available/front.conf`). В нём `server_name strikerstat-preprod.twc1.net`, `auth_basic "Restricted Area"`, есть `location /ws`, но **нет `location /ws-public`**.
+> 
+> **Вывод:** виноват слой nginx — `/ws-public` либо не маршрутизируется на бэкенд как WS, либо режется server-level `auth_basic` (браузерный `new WebSocket()` не несёт Basic-Auth из URL-кредов надёжно). Бэкенд и фронт исправны.
+> 
+> NB: `grep -rln "location /ws" /etc/nginx/sites-enabled/` дал пусто, потому что в `sites-enabled` симлинки, а `grep -r` их по умолчанию не разворачивает. Надёжнее искать через `nginx -T` (привязан к реальным путям).
+
+>[!question]- фикс nginx: добавить location /ws-public
+> В `server`-блок `front.conf` (где `auth_basic` и `location /ws`) добавить:
+> ```nginx
+> location /ws-public {
+>     auth_basic off;                       # оверлей публичный + WS из браузера не несёт URL-креды
+>     proxy_pass http://127.0.0.1:6300;
+>     proxy_http_version 1.1;
+>     proxy_set_header Upgrade $http_upgrade;
+>     proxy_set_header Connection 'upgrade';
+>     proxy_set_header Host $host;
+>     proxy_set_header X-Real-IP $remote_addr;
+>     proxy_read_timeout 3600s;             # против «тихого» обрыва долгого WS
+>     proxy_send_timeout 3600s;
+> }
+> ```
+> Безопасная вставка (правим цель симлинка `sites-available/front.conf`):
+> ```bash
+> cp /etc/nginx/sites-available/front.conf /root/front.conf.bak-ДАТА     # бэкап
+> cat > /root/ws-public.block <<'EOF'                                    # 'EOF' в кавычках!
+> 
+>     location /ws-public {
+>         auth_basic off;
+>         proxy_pass http://127.0.0.1:6300;
+>         proxy_http_version 1.1;
+>         proxy_set_header Upgrade $http_upgrade;
+>         proxy_set_header Connection 'upgrade';
+>         proxy_set_header Host $host;
+>         proxy_set_header X-Real-IP $remote_addr;
+>         proxy_read_timeout 3600s;
+>         proxy_send_timeout 3600s;
+>     }
+> EOF
+> cp /etc/nginx/sites-available/front.conf /tmp/front.conf.new
+> sed -i '/auth_basic_user_file/r /root/ws-public.block' /tmp/front.conf.new   # вставка после server-level строки
+> diff /etc/nginx/sites-available/front.conf /tmp/front.conf.new               # проверить, что добавилось 1 место
+> cp /tmp/front.conf.new /etc/nginx/sites-available/front.conf                 # применить
+> nginx -t && nginx -s reload                                                  # reload только если -t OK
+> websocat -v 'wss://strikerstat-preprod.twc1.net/ws-public'                   # ждём 101
+> ```
+> Откат: `cp /root/front.conf.bak-ДАТА /etc/nginx/sites-available/front.conf && nginx -t && nginx -s reload`.
+> 
+> Тонкость порядка `location`: nginx выбирает по **самому длинному префиксу**, не по порядку записи. `/ws-public` — более длинный префикс, чем `/ws`, поэтому свой блок перехватит запрос независимо от места вставки.
+> 
+> Вдогонку: в существующий `location /ws` тоже стоит добавить `auth_basic off;` — он защищён cookie-токеном на уровне приложения (`WebSocketHandshakeInterceptor`), Basic Auth там лишний и ломает судейский оверлей так же.
+
+>[!question]- прикладной фикс: re-fetch при (пере)подключении WS
+> В `connectOverlaySocket()` (video-overlay.vue), в колбэке успешного `connect`, добавлено `void loadVideoOverlay(); void loadFightList();` ПЕРЕД `subscribe`. SimpleBroker не переотправляет пуши, отправленные пока сокет был не подключён (первый коннект в OBS, обрыв edge/nginx, фоновая вкладка) — теперь при любом коннекте/реконнекте оверлей сам подтягивает актуальное состояние из REST, и пропущенный пуш больше не требует ручного Refresh. Это та же стратегия «re-fetch при reconnect», что в разделе про гарантию доставки.
+
+>[!question]- безопасность правок nginx (откат)
+> - `nginx -t` проверяет конфиг, **НЕ применяя** его. Битый синтаксис → ошибка, рабочий nginx продолжает на старом конфиге. Никогда не делать `reload`, если `-t` не зелёный.
+> - `nginx -s reload` — graceful: старые воркеры дослуживают, новые встают на новом конфиге; невалидный конфиг просто не применится, падения сайта нет.
+> - Перед правкой — бэкап файла (`cp … /root/…bak-ДАТА`). Откат = вернуть бэкап + `nginx -t && nginx -s reload`.
+> - Полный слепок активного конфига: `nginx -T > /root/nginx-full-ДАТА.txt 2>&1`.
+> - Падение возможно только при `restart`/`stop` с битым конфигом (не при `reload`): тогда `nginx -t` покажет строку ошибки → восстановить бэкап → `systemctl restart nginx`.
+
+>[!question]- почему `auth_basic off` в одиночку не спас (satisfy any + allow/deny)
+> Препрод-`server` (443) устроен так:
+> ```nginx
+> satisfy any;
+> allow 83.218.196.40; allow 37.201.116.45; allow 95.26.43.55; allow 178.69.179.253;
+> deny all;
+> auth_basic "Restricted Area";
+> auth_basic_user_file /etc/nginx/.htpasswd;
+> ```
+> `satisfy any` = доступ даётся, если прошёл **ЛИБО по IP** (allow-список), **ЛИБО по паролю** (auth_basic). Директивы `satisfy`, `allow/deny`, `auth_basic` **наследуются** в locations, если не переопределены.
+> - Страница грузится, т.к. браузер шлёт Basic Auth на обычный GET.
+> - WebSocket-рукопожатие **Basic Auth не несёт** (заголовки на WS из JS не задать) → если IP не в allow-списке, WS-путь не подтверждается ничем → доступ закрыт → обрыв без HTTP-статуса.
+> 
+> Поэтому `auth_basic off;` в `location /ws-public` при не-разрешённом IP даёт **403**: auth убрали, а `deny all` из наследованного access-модуля остался, и `satisfy any` больше нечем удовлетворить. Нужен ещё и доступ по access-модулю → `allow all;` (публично) **или** IP клиента в общем `allow`.
+
+>[!question]- два способа открыть `/ws-public` (публично vs по IP)
+> **A. Публично (не зависит от адреса клиента):**
+> ```nginx
+> location /ws-public {
+>     allow all;
+>     auth_basic off;
+>     # + proxy_pass 6300, http_version 1.1, Upgrade/Connection, X-Forwarded-*, timeouts 3600s
+> }
+> ```
+> Эндпоинт становится доступен любому, кто знает `eventId`. Данные там несекретные (имена/счёт/таймер для трансляции), бэкенд `/ws-public` авторизации не требует по дизайну → приемлемо. Остальной стенд остаётся под IP/паролем.
+> 
+> **B. Закрыто по IP (наш выбор на препроде — статический IP `213.191.26.29`):**
+> 1. добавить `allow 213.191.26.29;` в общий allow-список server (перед `deny all;`);
+> 2. в `location /ws-public` — только `auth_basic off;` (БЕЗ `allow all;`), тогда он наследует IP-список.
+> Твой IP в allow → `satisfy any` пускает по IP без пароля, WS проходит по IP. Бонус: с этого IP весь стенд открывается без ввода пароля.
+> Проверять WS надо **с клиентской машины** (`websocat -v 'wss://домен/ws-public'` → 101), а не с сервера — там source-IP = localhost.
+
+>[!question]- IP-allow годится только для СТАТИЧЕСКОГО адреса (динамический — сломается)
+> `allow <IP>` привязывает доступ к конкретному адресу. При **динамическом** IP провайдер его периодически меняет (переподключение роутера, аренда DHCP, обрыв). После смены:
+> - адрес не совпадёт с `allow` → по IP не пустит;
+> - страница снова спросит пароль, по паролю зайдёшь;
+> - но **WS опять отвалится** (пароль в рукопожатие не идёт).
+> Оверлей ломался бы «сам по себе» при каждой смене IP.
+> 
+> Правило: **IP-allow — только для статики.** Для динамического IP WS-доступ нельзя вешать на IP — надо либо публичный эндпоинт (вариант A), либо авторизация, которая ходит ВНУТРИ WebSocket (cookie/токен на уровне приложения, как у `/ws` через `WebSocketHandshakeInterceptor`, а не Basic Auth на nginx). Грубый паллиатив — разрешить подсеть провайдера `allow 213.191.26.0/24;` (открывает всю подсеть, ненадёжно).
+
+>[!question]- нужен ли `location /ws-public` на ПРОДЕ
+> Скорее всего **нет**. `location /ws` — префиксное совпадение, ловит все URI на `/ws`, включая `/ws-public` (nginx берёт самый длинный префикс, регэкспов нет). Значит `/ws-public` и так проксируется через существующий `location /ws` на `:6300` с апгрейд-заголовками. На препроде ломала **не маршрутизация, а авторизация** (satisfy any + IP + Basic Auth). На проде, где «все адреса доступны» (нет IP-фильтра и Basic Auth), этого блокатора нет.
+> 
+> **Сначала проверить, ничего не меняя:** `websocat -v 'wss://ПРОД_ДОМЕН/ws-public'` →
+> - `101` + `Upgrade: websocket` → уже работает, блок не нужен;
+> - не `101` → `location /ws` на проде задан иначе (`location = /ws` / регэксп) и `/ws-public` под него не попал → добавить блок (без `auth_basic off`/`allow all` — там нечего снимать, только proxy+upgrade+timeouts).
+> 
+> **Вдогонку (даже при 101):** проверить, есть ли у `location /ws` строка `proxy_read_timeout`. Если нет — nginx по умолчанию рвёт «тихое» соединение через **60с**. Для долгого WS оверлея дописать `proxy_read_timeout 3600s; proxy_send_timeout 3600s;` в `/ws` или в отдельный `/ws-public`.
+
+
+  1. Найти файл с препрод-фронтовым блоком:                                                                                                                                                                                                                                                                         
+  grep -rln "location /ws" /etc/nginx/sites-enabled/ /etc/nginx/conf.d/ 2>/dev/null                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                    
+  2. Открыть его и в ТОТ ЖЕ server { … } (где location /ws и auth_basic), рядом с location /ws, добавить:                                                                                                                                                                                                           
+  location /ws-public {                                                                                                                                                                                                                                                                                             
+      auth_basic off;                                                                                                                                                                                                                                                                                               
+      proxy_pass http://127.0.0.1:6300;                                                                                                                                                                                                                                                                             
+      proxy_http_version 1.1;                                                                                                                                                                                                                                                                                       
+      proxy_set_header Upgrade $http_upgrade;                                                                                                                                                                                                                                                                       
+      proxy_set_header Connection 'upgrade';                                                                                                                                                                                                                                                                        
+      proxy_set_header Host $host;                                                                                                                                                                                                                                                                                  
+      proxy_set_header X-Real-IP $remote_addr;                                                                                                                                                                                                                                                                      
+      proxy_read_timeout 3600s;                                                                                                                                                                                                                                                                                     
+      proxy_send_timeout 3600s;                                                                                                                                                                                                                                                                                     
+  }                                                                                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                    
+  3. Проверить конфиг и перезагрузить (только если nginx -t = OK):                                                                                                                                                                                                                                                  
+  nginx -t && nginx -s reload                                                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                    
+  4. Проверить апгрейд через домен (должно быть 101, без креды):                                                                                                                                                                                                                                                    
+  websocat -v 'wss://strikerstat-preprod.twc1.net/ws-public'                                                                                                                                                                                                                                                        
+  Ждём в ответе Upgrade: websocket + Sec-WebSocket-Accept. Если 101 — победа.                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                    
+  5. В OBS обновить Browser Source (Refresh один раз). Дальше таймер будет запускаться сам по живому пушу, без ручных рефрешей (плюс подстраховка — добавленный re-fetch при реконнекте).                                                                                                                           
+                                                                                                                                                                                                                                                                                                                    
+  Если после правки через домен всё ещё не 101                                                                                                                                                                                                                                                                      
+                                                       
