@@ -2,8 +2,86 @@
 установка сертифката 
 https://sky.pro/wiki/html/kak-nastroit-https-na-vashem-sajte/ 
 
+>[!question]- что такое nginx (в двух словах)
+> **nginx** — высокопроизводительный **веб-сервер** и **reverse-proxy** (обратный прокси). Обычно стоит «на входе» перед приложением и делает:
+> - **reverse-proxy** — принимает запросы снаружи и раздаёт их внутренним сервисам (`proxy_pass http://127.0.0.1:6300` и т.п.);
+> - **TLS-терминация** — держит HTTPS-сертификат, расшифровывает трафик, а к бэкенду ходит по голому HTTP на `127.0.0.1`;
+> - **единый вход (один домен/порт 443)** — по `location` разводит: `/` → фронт, `/ws` → бэкенд, `/api` → бэкенд… Один origin → нет CORS, наружу торчит только nginx;
+> - **раздача статики** (`root`/`alias`), gzip, кэш;
+> - **балансировка** между несколькими бэкендами (`upstream`), лимиты, access-фильтры (`allow`/`deny`, `auth_basic`).
+> 
+> Модель: **событийная, асинхронная** (не поток-на-соединение), поэтому держит десятки тысяч соединений дёшево — важно для долгих WebSocket-коннектов.
+> 
+> Конфиг: главный файл `/etc/nginx/nginx.conf`, он через `include` подтягивает сайты из `/etc/nginx/sites-enabled/*` (обычно [[LINUX/BASE#Симлинк|симлинки]] на `sites-available/`). Полный собранный конфиг: `nginx -T`.
+
+>[!question]- на каких протоколах работает nginx и как это настраивается (с примерами)
+> nginx ловит **не «любой протокол»**, а то, что описано в его блоках. Два разных мира:
+> 
+> **1. `http {}` — HTTP/HTTPS (L7).** Сюда входят HTTP/1.0, HTTP/1.1, HTTP/2, HTTPS и **WebSocket** (т.к. WS начинается как HTTP-запрос с `Upgrade`).
+> ```nginx
+> http {
+>     server {
+>         listen 443 ssl http2;          # HTTPS + HTTP/2
+>         server_name example.com;
+>         ssl_certificate     /path/fullchain.pem;
+>         ssl_certificate_key /path/privkey.pem;
+> 
+>         location / {                   # обычный HTTP-проксинг
+>             proxy_pass http://127.0.0.1:3000;
+>         }
+>         location /ws {                 # WebSocket = HTTP + Upgrade той же TCP-сессии
+>             proxy_pass http://127.0.0.1:6300;
+>             proxy_http_version 1.1;
+>             proxy_set_header Upgrade $http_upgrade;
+>             proxy_set_header Connection 'upgrade';
+>             proxy_read_timeout 3600s;  # не рубить «тихий» долгий WS (дефолт 60s)
+>         }
+>     }
+> }
+> ```
+> **WebSocket — не отдельный протокол на старте:** это HTTP/1.1-запрос с `Upgrade: websocket`, после чего **та же TCP-сессия** переключается в WS-фрейминг. Поэтому WS живёт внутри `http{}`/`location`, а не требует особого блока — нужны лишь `proxy_http_version 1.1` + `Upgrade`/`Connection`, чтобы nginx пропустил апгрейд.
+> 
+> **2. `stream {}` — сырой TCP/UDP (L4).** Для протоколов, которые НЕ HTTP: БД, SMTP, MQTT, игровые серверы, TCP-проброс, DNS(UDP). Здесь nginx работает как «тупой» TCP/UDP-балансировщик, не понимая содержимое.
+> ```nginx
+> stream {
+>     upstream db { server 127.0.0.1:5432; }
+>     server {
+>         listen 6432;                   # TCP по умолчанию
+>         proxy_pass db;
+>     }
+>     server {
+>         listen 53 udp;                 # UDP (например DNS)
+>         proxy_pass 127.0.0.1:5353;
+>     }
+> }
+> ```
+> **Итого:** HTTP/HTTPS/HTTP2/WS → `http{}`; произвольный TCP/UDP → `stream{}`. Чего нет ни в одном блоке — nginx не обрабатывает. `http{}` и `stream{}` — соседние секции верхнего уровня в `nginx.conf`.
+
+>[!question]- где в запросе IP-адрес клиента и почему allow/deny работает даже для WebSocket
+> IP клиента живёт **НЕ в HTTP-заголовке и не в MIME**, а на **сетевом уровне (L3, заголовок IP-пакета)** — это source-IP TCP-соединения. Его нельзя «не указать»: каждый пакет обязан нести src/dst IP, иначе нет маршрутизации.
+> - nginx берёт адрес **из сокета** (peer TCP-соединения) → переменная **`$remote_addr`**. По ней работают `allow`/`deny`.
+> - Заголовки `X-Forwarded-For`/`X-Real-IP` — **опциональные**, их добавляют **прокси** (не браузер), чтобы протащить исходный IP дальше; легко подделываются, для фильтрации nginx их НЕ использует. Строка `proxy_set_header X-Real-IP $remote_addr;` — это nginx сам прокидывает socket-IP бэкенду, чтобы Spring видел клиента, а не `127.0.0.1`.
+> - **Почему `allow` работает и для WS:** проверка идёт на уровне соединения (socket-IP), а WS использует **ту же TCP-сессию**, что и стартовый HTTP-запрос → тот же `$remote_addr`. Поэтому `allow 213.191.26.29;` действует одинаково на GET и на WS-апгрейд.
+> 
+> **Каверза с промежуточным прокси/edge (напр. edge Timeweb):** тогда `$remote_addr` = IP этого прокси, а не реального клиента, и `allow` по клиентскому IP сломается. Лечится модулем `real_ip`:
+> ```nginx
+> set_real_ip_from 10.0.0.0/8;        # доверенная подсеть edge/балансировщика
+> real_ip_header   X-Forwarded-For;   # взять реальный клиентский IP отсюда
+> ```
+
 >[!question]- как сделать так чтобы он запускался после ребутва автоматически 
 > sudo systemctl enable nginx.service
+
+>[!question]- Как преминить новые конфиги без остановки nginx
+>nginx -t && nginx -s reload
+>nginx -t --- проверяет файлы конфигурации
+>`nginx -s reload`, который отправляет сигнализатор **SIGHUP** рабочему процессу. 
+
+>[!question]- смотреть логи живом времени
+>```
+>tail -f /var/log/nginx/front.access.log /var/log/nginx/front.error.log
+>```
+
 
 >[!question]- как чинить обрывы WebSocket-соединения (STOMP) через nginx (code 1006)
 > **Симптом:** в браузере WS-соединение рвётся (`CloseEvent code: 1006`, `wasClean: false`), уведомления перестают приходить. В консоли webstomp — `WebSocket is already in CLOSING or CLOSED state` и растущий `did not receive server activity for the last ...ms`.
@@ -16,7 +94,7 @@ https://sky.pro/wiki/html/kak-nastroit-https-na-vashem-sajte/
 > nginx -T 2>/dev/null | grep -nE "server_name|listen|location|proxy_pass|/ws|6300"
 > grep -rnE "proxy_pass|/ws|6300" /etc/nginx/   # покажет файл и строку
 > ```
-> Файлы сайтов: `/etc/nginx/sites-enabled/` (симлинки на `/etc/nginx/sites-available/`).
+> Файлы сайтов: `/etc/nginx/sites-enabled/` ([[LINUX/BASE#Симлинк|симлинки]] на `/etc/nginx/sites-available/`).
 > Браузер ходит на `:443` → это `front.conf`, блок `location /ws`.
 > 
 > **Что нужно в блоке `location /ws`** (обязательный минимум для WS):
@@ -216,7 +294,6 @@ https://sky.pro/wiki/html/kak-nastroit-https-na-vashem-sajte/
 > **Важно:** обрыв `1006` — это аварийный разрыв TCP. Сообщение `WebSocket is already in CLOSING or CLOSED state` — это НЕ сам обрыв, а попытка клиента писать (heartbeat/DISCONNECT) в уже мёртвый сокет. И `SimpleBroker` Spring НЕ переотправляет сообщения, посланные в момент, когда клиент отключён — поэтому стабильность WS важна для доставки уведомлений.
 
 
-
 # To do 
 1. **Поиск по части имени**
 
@@ -290,7 +367,7 @@ sudo find / -type f -name "*parking*" 2>/dev/null
     
 - **Зачем**:
     
-    - В этой папке обычно лежат симлинки на модули Nginx (например, `ngx_http_geoip_module.conf`).
+    - В этой папке обычно лежат [[LINUX/BASE#Симлинк|симлинки]] на модули Nginx (например, `ngx_http_geoip_module.conf`).
         
     - Позволяет включать/отключать модули без правки основного `nginx.conf`.
 
