@@ -85,7 +85,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -182,12 +182,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md",
+                "file": "1/note for repeate/strikerStat/Ansible.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Виды сетевого взаимодействия"
+              "title": "Ansible"
             }
           },
           {
@@ -366,43 +366,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2f0aa1a5a4c24794",
+  "active": "f794679861a069d0",
   "lastOpenFiles": [
-    "1/note for repeate/NGINX.md",
+    "1/note for repeate/Spring/Spring Security.md",
     "1/СТЕНДАП.md",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/note for repeate/NGINX.md",
     "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/strikerStat/Ansible.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.5975.b20b9393d7af",
+    "1/note for repeate/strikerStat/Ansible.md.tmp.5975.f331937c81d5",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.35638.f411305132c4",
+    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.35638.31373129d17a",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.19c902c839a8",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.ca30d69adfd0",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.41faf4186efe",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.01ab1ee3e39a",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.500ebbe0da91",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.bedddea9f359",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.aa293431834d",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.adb7af9a6ece",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "Тестирование вызова.md",
     "1/note for repeate/GIT.md",
-    "1/note for repeate/Spring/Spring Security.md",
-    "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md.tmp.6823.109df7523edd",
     "1/note for repeate/LINUX/LINUX_BASE.md",
-    "1/note for repeate/NGINX.md.tmp.6823.d2cbb806c885",
     "_ПОВТОРЕНИЕ/00 КАРТА ЗНАНИЙ (MOC).md",
     "1/note for repeate/Kotlin/Kotlin корутины.md",
     "02 Многопоточность — обзор.md",
     "01 Java Core — обзор.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/strikerStat/JWT.md",
     "1/note for repeate/FRONT/Stateless Vs Stateful.md",
-    "1/note for repeate/Spring/Spring Base.md",
     "1/note for repeate/nixOS.md",
     "1/note for repeate/JavaCore/JPA N+1 problem.md",
     "1/note for repeate/FRONT/Coockie, local Storage.md",
     "1/note for repeate/SSH.md",
     "1/note for repeate/Spring/Spring AOP.md",
     "1/Сайт Александра.md",
-    "1/Тестирование вызова.md",
-    "1/Задачи на день.md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20260521204043.png",
     "Pasted image 20260109165447.png",

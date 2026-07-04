@@ -15,6 +15,7 @@
 12. [ ] Как работает jwt в спринг секурити 
 13. [ ] мавен - все параметры
 14. [ ] docker как устроены все элементы
+15. [ ] [[Ansible]]
 
 >[!question]- как использовать локальные настройки вместо application.properties
 >В IntelliJ IDEA: Run/Debug Configurations → Active profiles: local     
