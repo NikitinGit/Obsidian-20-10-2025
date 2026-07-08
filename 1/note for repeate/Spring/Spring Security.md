@@ -2,7 +2,7 @@
 1. [x] @PreAuthorize @PostAuthorize - судя по @EnableMethodSecurity эти методы прдназначены дял методов, если так, то в чем их приемущество перед проверкой не в магии антоаций , а в коде? Все равно над каждым методом надо ставить. А потоом @PostAuthorize еще и  порядок написания операций нарушает - пишется над методом и вызывается в конце, тем самым запутывая программиста ? В каком случае такой аспект над методом может быть удобнее чем проверка в коде ? (см. «@PreAuthorize vs проверка в коде»)
 2. [x] curl -i -u user:b00a4545-33b7-46cc-bb60-34afc99e70d6 http://localhost:8080/some/path - как набрать в браузере 
 3. [ ] куки сохраняются даже при запросе на другие сайты или на тот же сайт но другой порт (например localhost:3600)?
-4. [ ] Что такое HttpOnly куки
+4. [ ] Что такое HttpOnly куки - создается только сервером в загаловке set-Cookie, на разных ОС эти куки находятся в защищенном хранилище (не ясно как оно защищиается) и в зависимости от браузера / ОС по разному шифруются.
 5. [ ] какие бывают куки кроме HttpOnly 
 6. [ ] как спринг отправляет токен пользователю после захода на сайт 
 7. [ ] как фронт принимает и отправляет этот токен, как он его хранит и может ли управлять его хранением
@@ -194,6 +194,26 @@ public class SpringSecurityConfig {
 >3. `userTokenPresenceService.touchByRawToken(...)` — проверка токена по БД (whitelist).
 >4. `SecurityContextHolder.getContext().setAuthentication(authentication);` — ключевая строка: кладёт пользователя в контекст, откуда его возьмёт AuthorizationFilter.
 >Логи цепочки: `logging.level.org.springframework.security=DEBUG`.
+
+>[!question]- ЛОВУШКА: @Component-фильтр в security-цепочке регистрируется ДВАЖДЫ → doFilter 2× на запрос
+>**Симптом:** `TokenAuthenticationFilter.doFilter` выполняется **два раза** на каждый HTTP-запрос (в т.ч. на WS-хендшейк `/ws`). Проверено на **Spring Boot 3.1.1 / Security 6**.
+>**Причина** (документированная ловушка Boot + Security): фильтр — `@Component extends GenericFilterBean`, добавлен в цепочку через `.addFilterBefore(...)`, но `FilterRegistrationBean(...).setEnabled(false)` для него НЕТ. Тогда:
+>1. Boot авто-регистрирует **любой** бин типа `Filter` в сервлет-контейнере на `/*` (класс `ServletContextInitializerBeans`) — пропускает только если фильтр уже привязан к `RegistrationBean`.
+>2. Spring Security регистрирует в контейнере `FilterChainProxy` (через `DelegatingFilterProxyRegistrationBean`), а НЕ отдельные фильтры. Фильтр, добавленный `addFilterBefore`, живёт внутри цепочки, но для Boot остаётся «самостоятельным `Filter`-бином, не покрытым регистрацией» → вешается ещё и как обычный контейнерный фильтр.
+>
+>**Две регистрации → два прохода:**
+>- (A) внутри `FilterChainProxy` (Security-цепочка, порядок `-100`) — **вызов #1**;
+>- (B) отдельный контейнерный фильтр на `/*` (порядок `LOWEST_PRECEDENCE`) — **вызов #2**.
+>Порядок в одном запросе: Security-цепочка (#1) → следующий контейнерный фильтр = standalone-копия (#2) → `DispatcherServlet`. Оба — **до контроллера**.
+>
+>**Последствия** (не просто косметика): двойной `parseJwtToken`/`parseAuth`, двойной `userTokenPresenceService.touchByRawToken` (двойной «touch» presence в БД/кэше), и при `mustBeSwitchedToOriginal()` — потенциально **дважды** `restoreOriginalSession` + `applyCookies` (Set-Cookie). Функционально обычно «работает» (второй проход перезаписывает `SecurityContext`), но это перф-смелл + риск side-effects.
+>
+>**Как подтвердить в рантайме (без правок кода):**
+>1. Брейкпоинт на входе `doFilter`, **Suspend: Thread** (иначе Suspend:All рвёт WS-heartbeat → reconnect-шум) → один REST-запрос даёт **два** срабатывания. Отличить по стеку: вызов #1 содержит `FilterChainProxy$VirtualFilterChain.doFilter` (из Security-цепочки); вызов #2 идёт напрямую из `ApplicationFilterChain.internalDoFilter` **без** `FilterChainProxy` (standalone-копия).
+>2. Либо `logging.level.org.springframework.boot.web.servlet=DEBUG` на старте → в логах строка `Mapping filter: 'tokenAuthenticationFilter' to: [/*]` (это и есть копия B).
+>
+>**Фикс:** `@Bean FilterRegistrationBean<TokenAuthenticationFilter>` с `setEnabled(false)` — отключить авто-регистрацию, оставить только в Security-цепочке (минимальный, чистый). Либо убрать `@Component` и заводить фильтр как `@Bean`/`new` только для `addFilterBefore`. Дока Spring Security прямо советует `setEnabled(false)`, чтобы фильтр «не регистрировался дважды».
+>**Общий урок:** любой `@Component`-`Filter`, добавленный в security-цепочку, Boot по умолчанию вешает ещё и как контейнерный фильтр на `/*` → двойной прогон. Отличается от `filterChain(HttpSecurity)`, который выполняется один раз при старте (см. колаут выше).
 
 >[!question]- Правила authorizeHttpRequests — порядок и типы
 >Проверяются СВЕРХУ ВНИЗ, **срабатывает первое совпадение** → узкие правила выше общих.

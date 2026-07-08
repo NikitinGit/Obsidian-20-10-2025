@@ -360,7 +360,7 @@
 > 
 > Поэтому `auth_basic off;` в `location /ws-public` при не-разрешённом IP даёт **403**: auth убрали, а `deny all` из наследованного access-модуля остался, и `satisfy any` больше нечем удовлетворить. Нужен ещё и доступ по access-модулю → `allow all;` (публично) **или** IP клиента в общем `allow`.
 
->[!question]- два способа открыть `/ws-public` (публично vs по IP)
+>[!question]- два способа открыть `/ws-public` 
 > **A. Публично (не зависит от адреса клиента):**
 > ```nginx
 > location /ws-public {
@@ -395,10 +395,11 @@
 > 
 > **Вдогонку (даже при 101):** проверить, есть ли у `location /ws` строка `proxy_read_timeout`. Если нет — nginx по умолчанию рвёт «тихое» соединение через **60с**. Для долгого WS оверлея дописать `proxy_read_timeout 3600s; proxy_send_timeout 3600s;` в `/ws` или в отдельный `/ws-public`.
 
+>[!question]- Найти файл с препрод-фронтовым блоком:
+>grep -rln "location /ws" /etc/nginx/sites-enabled/ /etc/nginx/conf.d/ 2>/dev/null                                                                                                                      
 
-  1. Найти файл с препрод-фронтовым блоком:                                                                                                                                                                                                                                                                         
-  grep -rln "location /ws" /etc/nginx/sites-enabled/ /etc/nginx/conf.d/ 2>/dev/null                                                                                                                      
-  2. Открыть его и в ТОТ ЖЕ server { … } (где location /ws и auth_basic), рядом с location /ws, добавить:                                                                                                                                                                                                           
+  
+  Открыть его и в ТОТ ЖЕ server { … } (где location /ws и auth_basic), рядом с location /ws, добавить:                                                                                                                                                                                                           
   location /ws-public {                                                                                                                                                                                                                                                                                             
       auth_basic off;                                                                                                                                                                                                                                                                                               
       proxy_pass http://127.0.0.1:6300;                                                                                                                                                                                                                                                                             
