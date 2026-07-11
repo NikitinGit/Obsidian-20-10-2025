@@ -154,12 +154,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/JavaCore/socket/TCP.md",
+                "file": "1/note for repeate/Spring/Spring Mvc.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TCP"
+              "title": "Spring Mvc"
+            }
+          },
+          {
+            "id": "e8a5e109f330ffe5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/strikerStat/WebSocketStomp.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "WebSocketStomp"
             }
           }
         ],
@@ -196,7 +210,7 @@
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": false,
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -220,7 +234,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 299.5
+    "width": 303.5
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -310,17 +324,29 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8e84e6b07e545203",
+  "active": "c8a8d3ffdaa372d9",
   "lastOpenFiles": [
-    "1/note for repeate/JavaCore/socket/TCP.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Spring/Spring Mvc.md",
+    "1/note for repeate/FRONT/Coockie, local Storage.md",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.59262.d1601925ad94",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.59262.c40c03357d91",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.59262.0e3dc825ca72",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.59262.6a98bc5db6d2",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.59262.e80cc038d77b",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.59262.f19c90ff76e4",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/note for repeate/Spring/Spring AOP.md",
+    "1/note for repeate/JavaCore/socket/TCP.md",
+    "_ПОВТОРЕНИЕ/00 КАРТА ЗНАНИЙ (MOC).md",
+    "1/Задачи на день.md",
     "1/note for repeate/JavaCore/socket/TCP.md.tmp.22176.44acd89c5492",
     "1/note for repeate/JavaCore/socket/TCP.md.tmp.22176.fd7781c90919",
     "1/note for repeate/JavaCore/socket/OSI.md",
     "1/note for repeate/JavaCore/socket/OSI.md.tmp.22176.ecb452f689bd",
     "1/note for repeate/JavaCore/socket/TCP.md.tmp.22176.dd1e2a9c72ea",
     "1/note for repeate/JavaCore/JPA N+1 problem.md",
-    "1/note for repeate/JavaCore/socket",
     "1/note for repeate/JavaCore/Untitled.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/LINUX/LINUX_BASE.md",
@@ -330,25 +356,14 @@
     "1/note for repeate/FRONT/js-ts.md",
     "1/note for repeate/Spring/Spring Security.md",
     "1/СТЕНДАП.md",
-    "1/note for repeate/Spring/Spring Base.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/Spring/Spring AOP.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
     "Timeweb.md",
-    "Untitled 1.base",
-    "Untitled.base",
     "1/note for repeate/SSH.md",
     "Pasted image 20260109165447.png",
     "Pasted image 20260521204043.png",
     "02 Многопоточность — обзор.md",
     "01 Java Core — обзор.md",
     "1/note for repeate/Собеседование/СОБЕСЕДОВАНИЕ ts.md",
-    "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md",
-    "1/note for repeate/strikerStat/Ansible.md",
-    "1/note for repeate/FRONT/Coockie, local Storage.md",
-    "1/note for repeate/Spring/Spring Security.md.tmp.7870.9c2a610c626e",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.5975.b20b9393d7af",
-    "1/note for repeate/strikerStat/Ansible.md.tmp.5975.f331937c81d5",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "Untitled 1.canvas",

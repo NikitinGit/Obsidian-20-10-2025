@@ -1,3 +1,8 @@
+1. [ ]  как настраивать пул потоков в application.properties - как определить цифры 
+2. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
+3. [ ] Важное замечание о Виртуальных потоках (Java 21+) 
+4. [ ] **Асинхронные методы (`@Async`)**:
+5. [ ] Spring webflux
 # Spring MVC
 
 >[!question]- Что такое Spring MVC?
@@ -269,3 +274,214 @@
 >     // POST /api/test/body  + JSON в теле
 > }
 > ```
+
+# Пул потоков
+
+>[!question]- Как Spring абстрагирует пулы потоков — `TaskExecutor` / `ThreadPoolTaskExecutor`
+> Управление пулами потоков в Spring абстрагировано через интерфейс **`TaskExecutor`** (аналог стандартного Java `Executor`). Главная и самая часто используемая реализация — **`ThreadPoolTaskExecutor`**, которая оборачивает обычный `java.util.concurrent.ThreadPoolExecutor` и позволяет настраивать его декларативно через IoC-контейнер (бином или через `application.properties`), а не императивным кодом.
+
+>[!question]- Три ключевых параметра `ThreadPoolTaskExecutor`
+> - **`CorePoolSize`** — стартовое и минимальное число постоянно живущих потоков в пуле.
+> - **`QueueCapacity`** — ёмкость очереди задач. Когда все core-потоки заняты, новые задачи встают сюда.
+> - **`MaxPoolSize`** — максимально допустимое число потоков. Пул расширяется до этого значения **только когда очередь уже полностью заполнена**, а новые задачи продолжают поступать.
+>
+> Порядок роста: сначала занимаются core-потоки → потом заполняется очередь → и только когда очередь переполнена, создаются дополнительные потоки сверх core (вплоть до max). Если и max занят, и очередь полна — задача отклоняется (`RejectedExecutionException` по умолчанию).
+
+>[!question]- Настройка пула как Spring-бин
+> ```java
+> @Configuration
+> public class AsyncConfig {
+>
+>     @Bean(name = "customTaskExecutor")
+>     public Executor taskExecutor() {
+>         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+>         executor.setCorePoolSize(5);
+>         executor.setMaxPoolSize(10);
+>         executor.setQueueCapacity(25);
+>         executor.setThreadNamePrefix("MyAsyncThread-");
+>         executor.initialize();
+>         return executor;
+>     }
+> }
+> ```
+
+>[!question]- Настройка через `application.properties` (Spring Boot)
+> ```properties
+> # Для асинхронных задач (@Async)
+> spring.task.execution.pool.core-size=5
+> spring.task.execution.pool.max-size=10
+> spring.task.execution.pool.queue-capacity=25
+> spring.task.execution.thread-name-prefix=async-task-
+>
+> # Для планировщика задач (@Scheduled)
+> spring.task.scheduling.pool.size=2
+> spring.task.scheduling.thread-name-prefix=scheduling-
+> ```
+
+>[!question]- Где в Spring реально используются пулы потоков
+> - **`@Async`** — вынос тяжёлых/долгих операций (отправка писем, генерация отчётов) в фоновые потоки. Требует `@EnableAsync` на конфигурации.
+> - **`@Scheduled`** — регулярное выполнение задач по расписанию/cron. Требует `@EnableScheduling`.
+> - **Обработка HTTP-запросов** — этим управляет не сам Spring, а встроенный веб-сервер (Tomcat по умолчанию в Spring Boot). У Tomcat свой пул потоков (по умолчанию до ~200 воркеров, `server.tomcat.threads.max`), и именно поэтому **`@Service`/`@Controller`-бины должны быть stateless**: это singleton-экземпляры, которые параллельно вызываются разными потоками из пула Tomcat на разных запросах — изменяемое **поле** такого бина (не путать с локальной переменной метода — она у каждого потока своя на стеке) станет общим ресурсом и источником гонки данных.
+
+>[!question]- Виртуальные потоки (Java 21+, Project Loom)
+> На Java 21+ вместо классического ограниченного пула можно включить виртуальные потоки — они очень лёгкие, создаются динамически под каждую задачу и не требуют лимита пулом:
+> ```properties
+> spring.threads.virtual.enabled=true
+> ```
+
+>[!question]- Как эта модель выглядит "изнутри" — пример на сырых сокетах в проекте
+> В `SocketBegin` есть пара классов, которая на голых `ServerSocket`/`ThreadPoolExecutor` (без Spring) воспроизводит именно то, что делает Tomcat + Spring MVC под капотом:
+> - `org.example.server.TomcatLikeServer` — Acceptor-цикл (`serverSocket.accept()`) только принимает соединения и диспетчеризует каждое в `ThreadPoolExecutor` с параметрами `CorePoolSize/MaxPoolSize/QueueCapacity`, один в один как у `ThreadPoolTaskExecutor`. Обработка запроса (`handleRequest`) выполняется уже на потоке `http-exec-N` — аналог `DispatcherServlet → Controller → Service`.
+> - Внутри — `RequestCountingService`, статический singleton-объект (как Spring-бин с default scope), к которому параллельно обращаются все `http-exec-N` потоки. Счётчик сделан на `AtomicInteger`, а не на обычном `int`-поле — именно чтобы не словить ту самую гонку данных, о которой калаут выше.
+> - `org.example.client.TomcatLikeClient` — имитирует "наплыв пользователей": через `CountDownLatch` одновременно стартует несколько потоков-клиентов, каждый открывает своё TCP-соединение и шлёт "запрос", чтобы наглядно увидеть в логе сервера, как пул раздаёт конкурентные запросы по воркерам.
+>
+> Про сам сокет/TCP слой, на котором это всё построено (буферы, `accept()`, потоковая модель клиент-сервера) — см. [[TCP]].
+
+# Tomcat, Servlet и DispatcherServlet
+
+>[!question]- `DispatcherServlet` — это и есть Tomcat?
+> Нет, это разные вещи на разных уровнях.
+>
+> **Tomcat** — сервлет-контейнер (реализация Servlet API), написан на чистой Java, отдельный от Spring проект (Apache). В Spring Boot это тот же самый Apache Tomcat, просто подключён как embedded-библиотека. Его работа — низкоуровневая: принимать TCP-соединения, парсить сырые HTTP-байты в `HttpServletRequest`/`HttpServletResponse`, управлять пулом воркеров (`http-nio-8080-exec-N`, `server.tomcat.threads.max`), вызывать зарегистрированный `Servlet`.
+>
+> **`DispatcherServlet`** — класс из `spring-webmvc`, тоже Java, но не имеет отношения к кодовой базе Tomcat. Это обычный `Servlet`, который Spring Boot регистрирует в Tomcat как единственный сервлет на паттерн `/`. Tomcat не знает про `@Controller`/`@RequestMapping` — весь роутинг по контроллерам целиком внутри `DispatcherServlet`.
+>
+> ```
+> Tomcat (accept() + пул потоков + парсинг HTTP)
+>     → находит зарегистрированный Servlet для пути "/"
+>     → вызывает DispatcherServlet.service(request, response)
+>         → HandlerMapping находит нужный @Controller-метод
+>         → HandlerAdapter вызывает его
+> ```
+>
+> В `org.example.server.TomcatLikeServer` из проекта: цикл `accept()` + `ThreadPoolExecutor` — аналог работы Tomcat; всё, что внутри `handleRequest()`, для простоты слито в одно — в реальности это два разных слоя (вызов Tomcat'ом сервлета + внутренний роутинг `DispatcherServlet`'а).
+
+>[!question]- Что такое Servlet — тоже просто "обработчик запроса"?
+> Да, но формализованный: Servlet — Java-класс, реализующий интерфейс `jakarta.servlet.Servlet` (обычно через `extends HttpServlet`), с методами жизненного цикла `init()` → `service()`/`doGet()`/`doPost()` → `destroy()`. Контейнер сам создаёт **один экземпляр** (синглтон, как и Spring-бин) и сам вызывает `service()` на каждый подходящий по URL-паттерну запрос, на своём worker-потоке.
+>
+> Метод `@Controller`-класса — обработчик запроса *по факту*, но не Servlet в строгом смысле: не реализует интерфейс `Servlet`, не регистрируется в Tomcat напрямую, вызывается через рефлексию самим `DispatcherServlet` (единственным настоящим Servlet'ом приложения).
+>
+> **Два независимых слоя маппинга:**
+> ```
+> Tomcat: URL → Servlet                          (грубо, обычно только "/" → DispatcherServlet)
+>                 ↓
+> DispatcherServlet: URL → @Controller-метод      (тонко, через HandlerMapping/аннотации)
+> ```
+> Правило: всякий Servlet — обработчик запроса, но не всякий обработчик запроса — Servlet.
+
+>[!question]- Какой контракт реализует `DispatcherServlet` и когда вызывается `destroy()`
+> Цепочка наследования:
+> ```
+> Servlet (интерфейс, jakarta.servlet)
+>   └─ GenericServlet (Servlet API — базовая реализация init/destroy/getServletConfig)
+>        └─ HttpServlet (Servlet API — service(), doGet/doPost/doPut/doDelete)
+>             └─ HttpServletBean (Spring — init-параметры сервлета → bean-свойства)
+>                  └─ FrameworkServlet (Spring — поднимает WebApplicationContext, сводит все HTTP-методы в processRequest())
+>                       └─ DispatcherServlet (Spring — HandlerMapping, HandlerAdapter, ViewResolver, роутинг по контроллерам)
+> ```
+>
+> Жизненный цикл одного экземпляра:
+> - `init()` — один раз, обычно **при старте приложения** (Spring Boot использует `load-on-startup`, не ленивую инициализацию на первый запрос);
+> - `service()` — на **каждый** запрос, много раз;
+> - `destroy()` — один раз, при **штатной остановке** контейнера (`ApplicationContext.close()`, обработанный `SIGTERM` и т.д.). Внутри `FrameworkServlet.destroy()` закрывает `WebApplicationContext` → триггерит `@PreDestroy`/`DisposableBean.destroy()` у всех бинов (закрыть пул потоков, соединения к БД и т.п.).
+>
+> **При зависании (дедлок, бесконечный цикл) `destroy()` не вызывается** — это не сигнал остановки. При жёстком `kill -9`/OOM-killer — тоже не вызывается, JVM не успевает выполнить вообще никакой код.
+
+>[!question]- `destroy()` участвует в бизнес-логике?
+> Нет. Это чисто инфраструктурный хук: не получает `request`/`response`, не знает, какие запросы обрабатывались — вызывается вне контекста конкретного пользовательского запроса, просто как сигнал "контейнер завершает работу, освободи ресурсы".
+>
+> Если в `@Service`/`@Repository` есть свой `@PreDestroy` (например, "доотправить накопленные в буфере события") — это выглядит близко к бизнес-логике, но категориально всё равно не обработка чьего-то запроса, а разовая операция при остановке приложения.
+
+>[!question]- Когда `destroy()`/graceful shutdown реально нужен на практике
+> Смысл не в том, что "сервер ещё нужен", а в том, чтобы **не оставить грязь снаружи процесса**, когда он умирает:
+> - **Незавершённые запросы** — штатный shutdown сначала перестаёт принимать новые соединения, но даёт уже начатым запросам доработать (grace period), вместо обрыва запроса посреди транзакции.
+> - **Ресурсы на стороне других систем** — пул соединений к БД при `destroy()` явно закрывает каждое соединение (TCP FIN); при `kill -9` сервер БД считает соединение живым до своего таймаута.
+> - **Consumer'ы очередей (Kafka/RabbitMQ)** — graceful shutdown может явно покинуть consumer-группу, ребалансировка партиций происходит мгновенно; иначе брокер ждёт `session.timeout.ms` (10–30 сек), в течение которых часть партиций никем не обрабатывается.
+> - **Буферизованные данные** — шанс форсированно сбросить накопленный в памяти буфер (метрики, batch-insert) перед смертью процесса.
+> - **Rolling deploy в Kubernetes** — самый частый практический триггер `SIGTERM` в облачных системах. K8s ждёт `terminationGracePeriodSeconds`, прежде чем добить `SIGKILL`. Без graceful shutdown **каждый деплой** будет обрывать реальные пользовательские запросы в момент переключения.
+>
+> Важно: это не про "новая версия убивает данные старой" — старая версия сама аккуратно доделывает свою работу перед смертью, никакого прямого взаимодействия между версиями нет. Та же логика работает и без всякого деплоя — при обычном рестарте, scale-down, обслуживании ноды. Деплои и автоскейлинг просто самый частый повод, по которому в облаке вообще прилетает `SIGTERM`.
+
+>[!question]- Кроме WebSocket, Tomcat/Jetty/Undertow умеют Server-Sent Events (SSE)?
+> Да, и тут даже проще, чем с WebSocket — **SSE не отдельный протокол, а частный случай обычного HTTP**. Клиент делает обычный `GET`, сервер отвечает с `Content-Type: text/event-stream` и держит соединение открытым, дописывая новые события в тело ответа по мере появления. Никакого handshake/upgrade, как у WebSocket — это тот же HTTP/1.1 запрос-ответ, просто растянутый во времени. Поэтому для SSE не нужен отдельный контракт вроде `jakarta.websocket`.
+>
+> **Нюанс:** если бы соединение держалось обычным блокирующим `service()`, поток контейнера (`http-exec-N`) был бы занят на всё время жизни SSE-соединения (минуты/часы) — при множестве клиентов пул быстро исчерпался бы (та же проблема "поток на запрос").
+>
+> Решается через **Servlet 3.0+ Async API** (`request.startAsync()` / `AsyncContext`) — третий значимый контракт контейнера, отдельный и от базового `service()`, и от `jakarta.websocket`. Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные.
+>
+> В Spring MVC это обёрнуто в `SseEmitter` (наследник `ResponseBodyEmitter`):
+> ```java
+> @GetMapping("/stream")
+> public SseEmitter stream() {
+>     SseEmitter emitter = new SseEmitter();
+>     // где-то в другом потоке/колбэке: emitter.send("event data");
+>     return emitter;
+> }
+> ```
+>
+> Ключевое отличие от WebSocket: SSE **однонаправленный** (только сервер → клиент), поверх обычного HTTP, с автопереподключением из коробки через браузерный `EventSource`. WebSocket — полный дуплекс со своим протоколом фреймов после отдельного handshake и отдельного контракта `jakarta.websocket`.
+
+
+>[!question]- Spring Security — это часть Spring MVC или отдельный модуль?
+> Отдельный модуль, не часть Spring MVC.
+>
+> - **Spring MVC** (`spring-webmvc`) — часть самого Spring Framework: `DispatcherServlet`, `@Controller`, `HandlerMapping`.
+> - **Spring Security** — самостоятельный top-level проект в экосистеме Spring (как Spring Boot, Spring Data, Spring Cloud), со своим репозиторием и версионированием. Модули: `spring-security-core`, `spring-security-web`, `spring-security-config`.
+>
+> Видно и на уровне зависимостей: `spring-boot-starter-web` (Spring MVC) **не тянет** Spring Security — нужен отдельный `spring-boot-starter-security`.
+>
+> **Доказательство независимости:** Spring Security не требует Spring MVC для работы — она встраивается на уровне обычного `Filter` из Servlet API (см. калауты выше), а значит может защищать любое сервлетное приложение вообще без единого `@Controller` (чистое JSP, голые сервлеты). Плюс есть отдельный механизм — **method security** (`@PreAuthorize`, `@Secured`) через Spring AOP на уровне вызовов методов `@Service`, без всякой привязки к вебу.
+>
+> Связь между модулями — это **интеграция**, а не вложенность: Spring Security добавляет удобства специально под Spring MVC (`@AuthenticationPrincipal` как параметр метода контроллера, автопрокидка CSRF-токена в Thymeleaf), но фундаментально это два независимых модуля.
+
+
+>[!question]- Spring Security работает внутри `DispatcherServlet`, то есть до попадания в контроллер?
+> Не внутри — **до**, на отдельном, более раннем уровне контейнера. Механизм — ещё один контракт Servlet API: **`jakarta.servlet.Filter`**, отдельная сущность от `Servlet`. У фильтра есть метод `doFilter(request, response, chain)`, он оборачивает вызов сервлета снаружи и может:
+> 1. посмотреть/изменить запрос **до** сервлета;
+> 2. **не вызвать** `chain.doFilter(...)` вообще — тогда сервлет (`DispatcherServlet`) даже не запустится;
+> 3. посмотреть/изменить ответ **после** того, как сервлет отработал.
+>
+> Spring Security регистрируется как один такой `Filter` — бин `springSecurityFilterChain` (через `DelegatingFilterProxy`), который сам внутри себя прогоняет запрос через цепочку внутренних security-фильтров (`SecurityContextPersistenceFilter`, `UsernamePasswordAuthenticationFilter`, `ExceptionTranslationFilter`, `AuthorizationFilter`/`FilterSecurityInterceptor` и т.д.).
+>
+> Реальный порядок прохождения запроса:
+> ```
+> Tomcat
+>   → цепочка Filter'ов (в т.ч. springSecurityFilterChain)   ← Spring Security здесь
+>   → DispatcherServlet.service()
+>       → HandlerMapping → Controller → Service
+> ```
+> Если пользователь не аутентифицирован/не авторизован — `AuthorizationFilter` может прервать цепочку и сразу вернуть `401`/`403`/редирект, и **ни `DispatcherServlet`, ни код контроллера вообще не выполнятся**.
+
+>[!question]- `Filter` (и Spring Security) — это тоже обрабатывает сам контейнер (Tomcat), или это надстройка Spring?
+> `Filter` — не надстройка Spring поверх Tomcat, а **такая же часть спецификации Servlet API**, как и сам `Servlet`. Оба контракта (`jakarta.servlet.Servlet` и `jakarta.servlet.Filter`) реализует и оркестрирует один и тот же контейнер.
+>
+> Как это происходит технически:
+> 1. При старте embedded Tomcat автонастройка Spring Security регистрирует фильтр `springSecurityFilterChain` через `FilterRegistrationBean` (или Boot сам подхватывает любой бин типа `Filter`) — регистрация идёт через тот же API контейнера, что и регистрация `DispatcherServlet`, на URL-паттерн `/*` ("для любого запроса").
+> 2. Дальше уже сам **Tomcat**, а не Spring, на каждый входящий запрос читает список замапленных фильтров, строит `FilterChain` и сам вызывает `doFilter()` первого фильтра — именно контейнер решает "сначала прогнать через фильтры, потом отдать сервлету".
+> 3. Spring Security просто пользуется этим штатным механизмом контейнера — её единственный `Filter` уже сам, средствами Spring, прогоняет запрос через свою внутреннюю цепочку security-фильтров.
+>
+> Правильная формулировка: не "Spring Security перехватывает запрос до Tomcat", а "**Tomcat сам вызывает Spring Security как часть своей собственной, штатной фильтр-машинерии**, ещё до того, как решит, какому сервлету отдать запрос".
+>
+> Полная картина уровней:
+> ```
+> Tomcat: accept() + пул потоков
+>   → Filter chain (Tomcat вызывает каждый фильтр по URL-паттерну; здесь Spring Security)
+>       → Servlet (Tomcat вызывает единственный DispatcherServlet)
+>           → HandlerMapping → Controller → Service
+> ```
+
+>[!question]- `application.properties` появляется только когда подключаем Spring MVC?
+> Нет, никак не связано с Spring MVC — файл доступен в **любом** Spring Boot проекте, даже без единого веб-стартера.
+>
+> Механизм его чтения — часть **ядра Spring Boot** (`spring-boot` + `spring-boot-autoconfigure`), а не `spring-webmvc`. `SpringApplication` при старте сам сканирует `src/main/resources/` на предмет этого файла — независимо от подключённых стартеров.
+>
+> Проверяется легко: проект через Spring Initializr вообще без веб-зависимостей (только `spring-boot-starter`) всё равно получает пустой `application.properties` по умолчанию. Даже консольное приложение (например, Kafka-консьюмер без единого HTTP-эндпоинта) им пользуется — для логирования, кастомных свойств, датасорса и т.д.
+>
+> Что реально зависит от стартера — не сам файл, а **какие свойства в нём что-то значат**:
+> - `server.tomcat.threads.max=200` — заработает, только если есть `spring-boot-starter-web` (иначе нет embedded-сервера, который бы это читал);
+> - `spring.jpa.hibernate.ddl-auto=update` — только с `spring-boot-starter-data-jpa`;
+> - `spring.task.execution.pool.core-size=5` — только если реально используется `@Async`/`TaskExecutor`.
+>
+> Файл и механизм его подхвата — универсальны для Spring Boot; набор осмысленных свойств внутри растёт с каждым добавленным стартером, потому что каждый регистрирует свою auto-configuration, которая эти свойства читает.
+
+
