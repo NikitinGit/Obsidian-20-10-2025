@@ -11,6 +11,8 @@
 >[!question]- как открыть диспетчер задач на винде (Паша попросил написать )
 > ctrl+shift+esc
 
+>[!question]- посмотреть ip адрес сайта 
+>getent hosts strikerstat-test.twc1.net 94.241.171.236 strikerstat-test.twc1.net 
 
 
 Готово! Я добавил конфигурацию WireGuard в /home/igor/dotfiles/hosts/desktop/default.nix:44-49.
@@ -34,7 +36,7 @@
 
   Пакет wireguard-tools уже установлен в вашей системе (строка 80), поэтому все команды wg будут доступны.
 
-как запустить китти - попроситт ь пашу 
+как запустить китти - попросить пашу 
 
 ---
 

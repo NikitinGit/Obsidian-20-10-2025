@@ -154,58 +154,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/JavaCore/JPA N+1 problem.md",
+                "file": "1/note for repeate/JavaCore/socket/TCP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JPA N+1 problem"
-            }
-          },
-          {
-            "id": "da3cd15bad6c79af",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/strikerStat/WebSocketStomp.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "WebSocketStomp"
-            }
-          },
-          {
-            "id": "d6bb68871e10d4ce",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/FRONT/js-ts.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "js-ts"
-            }
-          },
-          {
-            "id": "305e0d3f56cd8675",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "DNS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "DNS"
+              "title": "TCP"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -237,8 +195,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "STOMP",
-                "matchingCase": true,
+                "query": "",
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -354,44 +312,43 @@
   },
   "active": "8e84e6b07e545203",
   "lastOpenFiles": [
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/JavaCore/socket/TCP.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/JavaCore/socket/TCP.md.tmp.22176.44acd89c5492",
+    "1/note for repeate/JavaCore/socket/TCP.md.tmp.22176.fd7781c90919",
+    "1/note for repeate/JavaCore/socket/OSI.md",
+    "1/note for repeate/JavaCore/socket/OSI.md.tmp.22176.ecb452f689bd",
+    "1/note for repeate/JavaCore/socket/TCP.md.tmp.22176.dd1e2a9c72ea",
+    "1/note for repeate/JavaCore/JPA N+1 problem.md",
+    "1/note for repeate/JavaCore/socket",
+    "1/note for repeate/JavaCore/Untitled.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
+    "1/note for repeate/LINUX/LINUX_BASE.md",
+    "1/note for repeate/GIT.md",
     "DNS.md",
+    "1/note for repeate/nixOS.md",
+    "1/note for repeate/FRONT/js-ts.md",
+    "1/note for repeate/Spring/Spring Security.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/note for repeate/Spring/Spring AOP.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
     "Timeweb.md",
     "Untitled 1.base",
     "Untitled.base",
     "1/note for repeate/SSH.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "Pasted image 20260109165447.png",
     "Pasted image 20260521204043.png",
     "02 Многопоточность — обзор.md",
     "01 Java Core — обзор.md",
     "1/note for repeate/Собеседование/СОБЕСЕДОВАНИЕ ts.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/JavaCore/JPA N+1 problem.md",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/FRONT/js-ts.md",
     "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md",
     "1/note for repeate/strikerStat/Ansible.md",
     "1/note for repeate/FRONT/Coockie, local Storage.md",
-    "1/note for repeate/FRONT/Stateless Vs Stateful.md",
-    "1/note for repeate/FRONT/SSR.md",
-    "1/note for repeate/Spring/Spring AOP.md",
-    "1/note for repeate/Spring/Spring Security.md",
     "1/note for repeate/Spring/Spring Security.md.tmp.7870.9c2a610c626e",
-    "1/note for repeate/NGINX.md",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/Spring/Spring Base.md",
     "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.5975.b20b9393d7af",
     "1/note for repeate/strikerStat/Ansible.md.tmp.5975.f331937c81d5",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.35638.f411305132c4",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.35638.31373129d17a",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.19c902c839a8",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.ca30d69adfd0",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.9003.41faf4186efe",
-    "Тестирование вызова.md",
-    "1/note for repeate/LINUX/LINUX_BASE.md",
-    "_ПОВТОРЕНИЕ/00 КАРТА ЗНАНИЙ (MOC).md",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "Untitled 1.canvas",
