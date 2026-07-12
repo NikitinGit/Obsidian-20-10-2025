@@ -1,7 +1,8 @@
 
 1. [x] при подписке фронта на топик что происходит - 1) запрос на подключение к серверу по http 1.1 , nginx меняет протокол http и перенаправляет на подключение на бэк java, бэк java отправляет обратно на прямик на фронт ответ на подключение и после удачного подключения  коннект держится метежду фронтом и бэком без участия nginx и пакеты от фронта на бэк java  и обратно отправляются на прямик минуя nginx ? - нет , бэк общается только с nginx , коннект  начинается с запроса на апгрейд протокола по http протоколу один раз - запрос на переход с http протокола на websocket протокол 
-2. [ ] отличие сокета от файлового дескритора (file descriptor, сокращённо fd)
-3. [ ] в UDP в отличие от TCP  четверка чисел не прописывается ? - прописывается, но все идет через 1 сокет, из за этого могут образываться очереди, которые программы могут рассинхронить по разному https://www.google.com/search?q=NAT-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80+%D1%8D%D1%82%D0%BE&sca_esv=54115217ab2de605&sxsrf=APpeQnteQyYnvOOr2NTGf3XyJH0UMlHNZA%3A1783582813376&ei=XVBParzHFpWi5NoPmfGOiQM&biw=2048&bih=1056.800048828125&uact=5&sclient=gws-wiz-serp&udm=50&fbs=ABfTbFXwfYg-AsVmc75aAkBispm6k7RIMh52cWHUntfypj3niv0vpWpy8F5Hmr7ocaLGY8zUL5O98WT_CGJdARopDKh1yxQA0iVzrTt4z8YDG8Zo88Gwz3RysTUhWStDqHZ0sAnM7tRk0dnp9IstGV5X3-Y6Cixu3Qz5-Q2fzZAU2KXuzp14QOKF1Z1y3rjP0cWtaUHG1feCZUgtiediLBzvgzkV3gJWYF8WPlZanCftSyqmcU_Gw9UcGd-qVrXF6amaNUeJ3DQVgEoDvRhgmAEO6UYLPd7geA&aep=10&ntc=1&mstk=AUtExfDnChWJX0QtG61uuNnwrjcHvhKXpQ0FP6vJoKSRHp1ZX0inP8Ah2woov5J2MK21pB8EF8fzwP2vPOjte6Ubs9UxfbRihueid84rBAWP5-sNXEQ-BwktjM3ZK1YoxxVe1w_sDMhTpl1747QiPSuImruKjYJpEyt_eZ58weJSeyJmDlR31FsP37mlCKwzSpPuURMkEWxlKiiiWE8jmRygxWWmb8FdmzWdWf4hEnjgCUSzT5ClteLcAcoCSf540eA0hkrhP2eaNunX5g&aioh=3&csuir=1&cs=1&sourceid=chrome&ccb=1&hl=en-US&mtid=t1VPasvSEf7m5NoPuq3CoAw&lns_mode=cvst 
+2. [ ] отличие "HTTP-заголовки/тело" от "WebSocket-фреймы (свой бинарный формат кадров)" - сколько что занимает в "пакете" ?
+3. [ ] отличие сокета от файлового дескритора (file descriptor, сокращённо fd)
+4. [x] в UDP в отличие от TCP  четверка чисел не прописывается ? - прописывается, но все идет через 1 сокет, из за этого могут образываться очереди, которые программы могут рассинхронить по разному https://www.google.com/search?q=NAT-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80+%D1%8D%D1%82%D0%BE&sca_esv=54115217ab2de605&sxsrf=APpeQnteQyYnvOOr2NTGf3XyJH0UMlHNZA%3A1783582813376&ei=XVBParzHFpWi5NoPmfGOiQM&biw=2048&bih=1056.800048828125&uact=5&sclient=gws-wiz-serp&udm=50&fbs=ABfTbFXwfYg-AsVmc75aAkBispm6k7RIMh52cWHUntfypj3niv0vpWpy8F5Hmr7ocaLGY8zUL5O98WT_CGJdARopDKh1yxQA0iVzrTt4z8YDG8Zo88Gwz3RysTUhWStDqHZ0sAnM7tRk0dnp9IstGV5X3-Y6Cixu3Qz5-Q2fzZAU2KXuzp14QOKF1Z1y3rjP0cWtaUHG1feCZUgtiediLBzvgzkV3gJWYF8WPlZanCftSyqmcU_Gw9UcGd-qVrXF6amaNUeJ3DQVgEoDvRhgmAEO6UYLPd7geA&aep=10&ntc=1&mstk=AUtExfDnChWJX0QtG61uuNnwrjcHvhKXpQ0FP6vJoKSRHp1ZX0inP8Ah2woov5J2MK21pB8EF8fzwP2vPOjte6Ubs9UxfbRihueid84rBAWP5-sNXEQ-BwktjM3ZK1YoxxVe1w_sDMhTpl1747QiPSuImruKjYJpEyt_eZ58weJSeyJmDlR31FsP37mlCKwzSpPuURMkEWxlKiiiWE8jmRygxWWmb8FdmzWdWf4hEnjgCUSzT5ClteLcAcoCSf540eA0hkrhP2eaNunX5g&aioh=3&csuir=1&cs=1&sourceid=chrome&ccb=1&hl=en-US&mtid=t1VPasvSEf7m5NoPuq3CoAw&lns_mode=cvst 
 # WebSocket / STOMP в StrikerStat
 
 Уведомления судьям/организаторам (старт боя, результат, добавлен/удалён бой следующего раунда и т.д.) идут по WebSocket поверх протокола STOMP. Ниже — разбор фронта и бэка в формате вопрос/ответ.
@@ -60,6 +61,8 @@
 > proxy_read_timeout 3600s;   # иначе закроет "тихое" долгое соединение
 > ```
 > Можно было бы пустить WS мимо nginx (отдельный порт+TLS на бэке), но это сломало бы единый origin и потребовало сертификаты на бэке — так не делают.
+>
+> Почему именно `Upgrade`/`Connection` надо дублировать вручную (а не `Content-Type`/`Cookie`), кто в связке client↔nginx↔бэкенд реально шлёт `101 Switching Protocols`, и что это два независимых TCP-соединения, а не одно сквозное — подробный разбор в [[NGINX]].
 
 ---
 
