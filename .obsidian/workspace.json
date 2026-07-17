@@ -112,12 +112,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Spring/Spring AOP.md",
+                "file": "1/note for repeate/Микросервисы.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spring AOP"
+              "title": "Микросервисы"
             }
           },
           {
@@ -191,7 +191,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -223,7 +223,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "application.properties",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -244,11 +244,13 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 303.5
+    "width": 303.5,
+    "collapsed": true
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -338,44 +340,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "39445da31d7a79ff",
+  "active": "71d43a1704c06486",
   "lastOpenFiles": [
-    "1/note for repeate/Spring/Spring Mvc.md.tmp.31402.e393bc650333",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/FRONT/Coockie, local Storage.md",
+    "1/note for repeate/Микросервисы.md",
     "1/note for repeate/Spring/Spring Mvc.md",
+    "1/note for repeate/Микросервисы.md.tmp.5513.abc54d1d34c9",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.ee1eb0a7415a",
+    "1/note for repeate/Spring/Spring AOP.md",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.d1ac391244c1",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.e9dca65c53fe",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.d4de91802d53",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.ac8e51294bef",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.fccb7f8e62a8",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.9a483c31b58d",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.e9a66dcad1a6",
+    "1/note for repeate/Spring/Spring Mvc.md.tmp.5513.13ee25dae885",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/note for repeate/Domen driven design.md",
+    "1/Задачи на день.md",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
     "1/note for repeate/Spring/HikariCP.md",
     "1/СТЕНДАП.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
-    "1/Задачи на день.md",
     "1/note for repeate/FRONT/SSR.md",
     "1/note for repeate/Spring/Spring Security.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/Spring/Spring AOP.md",
-    "1/note for repeate/Domen driven design.md",
     "1/note for repeate/Мониторинг/ELK Stack.md",
     "1/note for repeate/Мониторинг/Grafana.md",
     "1/note for repeate/Мониторинг/Kibana.md",
     "1/note for repeate/Мониторинг/План действий.md",
-    "1/note for repeate/Мониторинг",
     "1/note for repeate/strikerStat/JWT.md",
-    "1/note for repeate/Spring/HikariCP.md.tmp.4391.b977ab3eb5fd",
-    "1/note for repeate/Spring/HikariCP.md.tmp.4391.e2eabcc37aba",
-    "1/note for repeate/Spring/Spring Mvc.md.tmp.4391.7e00fe656ed6",
-    "1/note for repeate/Spring/Spring Mvc.md.tmp.4391.cf0004046d4d",
     "1/note for repeate/NGINX.md",
-    "1/note for repeate/NGINX.md.tmp.4391.c91ced52ec5c",
     "LINUX/BASE.md",
-    "LINUX",
-    "1/note for repeate/strikerStat/WebSocketStomp.md.tmp.4391.17f3762302f0",
-    "1/note for repeate/NGINX.md.tmp.4391.18c86b12cb10",
-    "1/note for repeate/Spring/Spring Mvc.md.tmp.4391.a3deb8d01073",
-    "1/note for repeate/FRONT/Coockie, local Storage.md",
     "1/note for repeate/Spring/Spring Base.md",
     "1/note for repeate/JavaCore/socket/TCP.md",
     "_ПОВТОРЕНИЕ/00 КАРТА ЗНАНИЙ (MOC).md",
     "1/note for repeate/JavaCore/socket/OSI.md",
     "1/note for repeate/JavaCore/JPA N+1 problem.md",
-    "1/note for repeate/JavaCore/Untitled.md",
     "Pasted image 20260109165447.png",
     "Pasted image 20260521204043.png",
     "testFolder/demo canvas.canvas",

