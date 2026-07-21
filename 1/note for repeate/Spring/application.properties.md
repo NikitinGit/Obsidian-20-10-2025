@@ -1,5 +1,6 @@
 >[!question]- Как включить/выключить логи отображения сложности скл статистики по запросов
 >spring.jpa.properties.hibernate.generate_statistics=true/false
+^jpa-stat-log
 
 >[!question]- как включить/выключить отображенгие скл запросов
 >spring.jpa.show-sql=false/true

@@ -2,6 +2,12 @@
 1. [ ] проверь **` LEFT JOIN FETCH`** по числу подзапросов - сравни с LEFT JOIN
 2. [ ] Cash first level and other 
 # База 
+>[!question]- что это 
+>JPA - спецификация ORM. Состоит из аннотаций, интерфейсов и контрактов EntityManager - кода который ходит в БД нет.
+
+>[!question]- Hibernate  это
+>одна из реализаций JPA. У Hibernate так же есть свое родное API (HQL, Session, Criteria
+>
 
 >[!question]- добавить jpa в maven .pom
 >```xml
@@ -18,8 +24,7 @@
 >```
 
 >[!question]- логи статистики jpa/hibernate
-> spring.jpa.properties,hubernate.generate_statistics=false
-> spring.jpa.properties.hibernate.generate_statistics=true
+> см. [[application.properties#^jpa-stat-log]]
 # Оптимизация запросов 
 
 >[!question]- Как избежать дублирования конструктора DTO в JPA запросах?
@@ -266,6 +271,62 @@
 > - ✅ Не хочется добавлять QueryDSL
 > - ✅ Нужна типобезопасность без сторонних библиотек
 > - ✅ Переиспользование общей логики проекций
+
+>[!question]- Почему IntelliJ не видит usage конструктора DTO в Criteria API?
+> **Проблема:** После рефакторинга на Criteria API, IntelliJ показывает "No usages" для конструктора DTO
+>
+> **Причина:**
+> В Criteria API конструктор вызывается через рефлексию в runtime:
+> ```java
+> query.select(cb.construct(
+>     RoundScoresDto.class,  // ← Класс передается как параметр
+>     root.get("id"),
+>     // ...
+> ));
+> ```
+> `cb.construct()` принимает `Class<?>` и вызывает конструктор **в runtime через рефлексию**.
+> IntelliJ не может статически проанализировать такие вызовы.
+>
+> **В JPQL (старый вариант) работало:**
+> ```java
+> @Query("SELECT new com.example.dto.RoundScoresDto(...)")
+> ```
+> IntelliJ парсит JPQL-строки и находит конструкторы в выражении `new ...()`.
+>
+> **Решения:**
+>
+> 1. **Подавить предупреждение (рекомендуется):**
+> ```java
+> @SuppressWarnings("unused")
+> public RoundScoresDto(Long id, Integer judgeId, ...) {
+>     // ...
+> }
+> ```
+>
+> 2. **Добавить фиктивное использование в тестах:**
+> ```java
+> @Test
+> void constructorUsedByCriteriaAPI() {
+>     new RoundScoresDto(1L, 2, 3L, "name", "slug", 4, 5.0, 6, 7.0, 8, 9);
+> }
+> ```
+>
+> 3. **Использовать Blaze-Persistence Entity Views** (если уже есть в проекте):
+> ```java
+> @EntityView(JudgeRoundScore.class)
+> public interface RoundScoresDto {
+>     Long getId();
+>     @Mapping("judge.id")
+>     Integer getJudgeId();
+>     // ...
+> }
+> ```
+>
+> 4. **Вернуться к JPQL + константа:**
+> ```java
+> private static final String DTO_PROJECTION =
+>     "new com.example.dto.RoundScoresDto(t.id, t.judge.id, ...)";
+> ```
 
 >[!question]- QueryDSL - что это такое?
 > **QueryDSL** = **Query Domain Specific Language** (Язык специфичный для предметной области запросов)
@@ -953,7 +1014,8 @@
 > ```
 > Spring не найдет реализацию и методы не будут доступны в прокси!
 
-
+# Подводные камни
+[[JPA equals hashCode]] 
 
 # Подходы к работе 
 >[!question]- Можно ли использовать @Entity как класс с полями , а действия над ними (бизнес логику) проводить в другом классе который от него наследуется - нормальный ли это подход ? Или обычно методы бизнес логики находятся в том же @Entity  классе ?

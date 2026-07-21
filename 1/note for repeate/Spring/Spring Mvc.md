@@ -7,11 +7,12 @@
 7. [x] как настраивать пул потоков в application.properties - как определить цифры 
 8. [x] то есть чтобы определить какие настройки надо написать application.properties надо определить на какой машине будет работать спринг приложение, какая архитектура приложения (какая БД, какие протоколы используется по мимо http (websocket), какие требования по обработке запроса (за какое время он должен исполняться), промониторить логи (елк стек, графана) ?
 9. [x] у каждого микросервиса на Spring должен обслуживаться своим встроенным в спринг сервлет контейнером (томкат например) или они могут обслуживаться оддним токатом? Как это принято делать ? - принято для каджого свой томкат
-10. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
-11. [ ] Важное замечание о Виртуальных потоках (Java 21+) и прочти статью https://medium.com/@gaddamnaveen192/we-replaced-500-tomcat-threads-with-virtual-threads-the-results-shocked-us-12cd9afe4a15 
-12. [ ] **Асинхронные методы (`@Async`)**:
-13. [ ] application.properties - https://habr.com/ru/articles/740802/ 
-14. [ ] Spring webflux 
+10. [ ] когда в get запросе стоит использовать дто а когда список парамтеров 
+11. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
+12. [ ] Важное замечание о Виртуальных потоках (Java 21+) и прочти статью https://medium.com/@gaddamnaveen192/we-replaced-500-tomcat-threads-with-virtual-threads-the-results-shocked-us-12cd9afe4a15 
+13. [ ] **Асинхронные методы (`@Async`)**:
+14. [ ] application.properties - https://habr.com/ru/articles/740802/ 
+15. [ ] Spring webflux 
 # Spring MVC
 
 >[!question]- Что такое Spring MVC?
@@ -43,6 +44,22 @@
 >     public ResponseEntity<String> endPointN1() { ... }
 > }
 > ```
+
+>[!question]- Как в котроллере преобразовать в GET запросе его параметры в DTO
+>FRONT
+>```
+>const params = {  
+  eventId: this.eventBus.getEventId(),  
+  firstName: newPcpForm.firstName,  
+  lastName: newPcpForm.lastName  
+};  
+>const res = await instance.get('/open_events/get_fighters_with_this_full_name', { params });
+>```
+>BACK
+>```
+>@GetMapping("/get_fighters_with_this_full_name")  
+>public StatusResponseDto getFightersWithThisFullName(@Valid @ModelAttribute FighterFullNameDto dto)
+>```
 
 >[!question]- Что такое URL placeholder и как читать `/3/{eventId}/4/{userId}`?
 > **Placeholder** в URL-паттерне — это **фигурные скобки `{...}`**, обозначающие "сюда подставится значение из реального URL".

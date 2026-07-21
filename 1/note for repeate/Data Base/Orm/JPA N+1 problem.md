@@ -1,5 +1,7 @@
 # Проблема N+1 в JPA / Hibernate
 1. [ ] Если вообще не исопльзовать в @Entity связи - то проблема N+1 снимется ?
+2. [ ] проверь **`LEFT JOIN FETCH`** по числу подзапросов - сравни с LEFT JOIN
+3. [ ] всегда ли есть смысл делать связь на уровне Entity, а не только в БД (см. также [[Spring Base]])
 
 >[!question]- Что такое N+1 проблема — одной фразой
 > Когда вместо одного SQL'я с JOIN'ом Hibernate выполняет **1 запрос за родительскими сущностями + ещё N запросов по одному на каждый дочерний объект**. Возникает на ровном месте при обращении к lazy-связям внутри цикла.
@@ -140,6 +142,50 @@
 >[!question]- К equals/hashCode N+1 имеет отношение
 > **Нет.** Это отдельная проблема — стратегия загрузки. Решается через JOIN FETCH / EntityGraph / BatchSize. `@EqualsAndHashCode` или его отсутствие на количество запросов не влияет.
 > Однако если в `equals`/`hashCode`/`toString` Lombok включит lazy-коллекции — это **триггерит** N+1 на ровном месте, и тогда `@EqualsAndHashCode.Exclude` / `@ToString.Exclude` на коллекциях критичны.
+
+## Смежные вопросы про JOIN
+
+>[!question]- Неявный inner join при выборке — что происходит, если связанная сущность в проекции равна null
+> ```java
+> @Query("SELECT new com.example.dto.CityDto(c.country, c.region) " +
+>        "FROM Event e " +
+>        "WHERE e.eventId = :eventId")
+> ```
+> Если `e.country` — это **объект-сущность** (`@ManyToOne`), а не примитив/int, и он `null` для какой-то строки, эта строка **выпадет из выборки** — Hibernate генерит `INNER JOIN` неявно, как только в проекции/условии участвует поле связанной сущности.
+>
+> Решение — явный `LEFT JOIN`:
+> ```java
+> @Query("SELECT new com.example.dto.EventPageDto(" +
+>        "e.nameEvent, e.aboutEvent, c.name) " +
+>        "FROM Event e " +
+>        "LEFT JOIN Country c ON e.country.id = c.id " +
+>        "WHERE e.eventId = :eventId")
+> Optional<EventPageDto> getEventPageDto(@Param("eventId") Integer eventId);
+> ```
+> Если же `e.country` — не сущность, а обычный int/примитив (просто колонка), неявного JOIN не возникает вообще: примитивные поля не тянут связанные таблицы.
+
+>[!question]- `LEFT OUTER JOIN` без FETCH — когда полезен
+> ```java
+> LEFT OUTER JOIN FighterRating fr ON b.idBattle = fr.idBattle
+> ```
+> Возвращает **все** строки `Battle`, даже если для battle нет ни одной записи в `FighterRating` (в этом случае поля `fr.*` будут `null`). Обычный `JOIN`/`INNER JOIN` такие battle-строки бы выкинул. Используется, когда нужна вся левая таблица независимо от наличия связи, а не для инициализации lazy-ассоциации (для этого — `JOIN FETCH`, см. выше).
+
+>[!question]- `JOIN` без указания типа — это всегда `INNER JOIN`?
+> Да, в JPQL (как и в обычном SQL) голый `JOIN` — синоним `INNER JOIN`. Чтобы сохранить строки без совпадения, нужно писать `LEFT JOIN` (`LEFT OUTER JOIN`) явно.
+
+>[!question]- `@Modifying @Query("DELETE FROM ...")` быстрее, чем `findAll` + `deleteAll` — и что при этом теряется
+> ```java
+> @Modifying
+> @Query("DELETE FROM FighterRating f WHERE f.battleId = :battleId")
+> void deleteByBattleId(@Param("battleId") Long battleId);
+> ```
+> vs
+> ```java
+> List<FighterRating> ratings = fighterRatingRepository.findRatesByBattleId(battleId);
+> fighterRatingRepository.deleteAll(ratings);
+> ```
+> `@Modifying`-запрос — **один SQL `DELETE`**, без загрузки сущностей в persistence context. Быстрее и не даёт N+1 при удалении.
+> Цена: он **обходит Hibernate полностью** — `cascade = CascadeType.ALL`, `orphanRemoval = true`, `@PreRemove`/`@PostRemove` колбэки и dirty checking **не срабатывают**, потому что удаление идёт прямым SQL мимо persistence context. Каскадное удаление связанных строк через `@Modifying` тоже не произойдёт — только через явный SQL/FK `ON DELETE CASCADE`, либо через обычный `deleteAll` по managed-сущностям. См. также пример из реальной ошибки в Spring ERROR (Cannot delete or update a parent row).
 
 >[!question]- Резюме одним абзацем
 > N+1 = `1 + N` SELECT'ов вместо одного с JOIN'ом. Возникает, когда после загрузки родительской сущности код в цикле трогает lazy-связи. В реальном проекте мгновенно превращает быстрый эндпоинт в десятки секунд. Лечится **на уровне запроса**: `JOIN FETCH` в JPQL, `@EntityGraph` декларативно, `@BatchSize` для компромисса. Native-запросы и `fetch = EAGER` — НЕ решения, а способы переложить проблему в другое место. Включите `hibernate.generate_statistics=true` — Session Metrics покажет реальное число SQL'ей и сразу выявит N+1.

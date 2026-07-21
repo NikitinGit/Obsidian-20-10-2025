@@ -1,49 +1,50 @@
 # Задачи
-1. [x] что можно сделать на спринг и что делают (мобильные приложения, десктопные приложения, веб приложения ... )
-2. [x] напиши прмер приложения с веб запросами , без @SpringBootApplication 
-3. [x] может ли @Configuration класс просканировать бины в других пакетах с помощью @ComponentScan - да
-4. [x] в каком порядке инициализируются бины - ДОПИШИ здесь и пример  с инициализацией и логами  18.05 - 19.41
-5. [x] чем отличается @Bean  созданный внутри @Configuration класса от просто внутри класса ?- ДОПИШИ пример из чатджпт 
-6. [x] что такое CGLIB 
-7. [x] Можно ли использовать @Entity как класс с полями , а действия над ними (бизнес логику) проводить в другом классе который от него наследуется - нормальный ли это подход ? Или обычно методы бизнес логики назодятся в том же @Entity  классе ? - нет
-8. [x] Попробуй jOOQ https://www.jooq.org/ 
-9. [x] Когда происходит не явный inner join при выборке - допиши возникает ли если c.country это не сущность а int 
-10. [x] пропагатион - открывать новую транзакцию или использовать новую 
-11. [x] equals / hashcode в @Entity 13/26 - 20 /34
-12. [ ] [[SPRING ЛОГИ ЗАПУСКА]] - РАЗБЕРИ 
-13. [ ] связи в Entity vs без связей 
-14. [ ] @EqualsAndHashCode.Exclude @ToString.Exclude - проверь в коде все проблемы с бесконечной рекурсией, не верным сравнением объектов и проблемой N+1
-15. [x] PreAutorize / Auth 
-16. [ ] JPA / Hibernate VS Active Record 
-17. [ ] Active Record точно нарушает SRP ? 
-18. [ ] jpql к чему относится в  хайбернате
-19. [ ] обязательно ли указывать в hibernate timezone и как принято хранить время с чаовым поясом в Spring (например фронт отправляет время и часовой пояс какого то события, а так же время с датой его  отправки ) - желательно - напиши памятку 
-20. [x] EntityManager - зачем нужен detach , когда исползуется и другие методы 
-21. [x] динамический прокси-объект - существует ли статический - да (самописный) , допиши 
-22. [ ] интерсептор и мидлвеар - допиши
-23. [x] детальнее про фабричный метод патерн - почему @Bean это он
-24. [x] Проблемы с Hibernate прокси:- как хайбернейт создает проки объект в которм equals | hashcode не работает - 
-25. [x] Безопасно ли при выборке делать сравнение с объектом сущостью или лучше с id - List\<JudgeScore> findAllByBattleAndJudge(Battle battle, Judge judge); \-  когда могут возникнуть проблеммы ?
-26. [ ]  Почему в JudgeScoreRepository можно делать выборку других сущностей не относящихся к этому репозиторию и правильно ли так делать 
-27. [ ] Прочитай https://docs.spring.io/spring-framework/reference/web.html и сравни со своим проектом
-28. [x] Попробуй вариант Решение 2: QueryDSL (IDE видит usage!) в клоде - который должен показывать usage  
-29. [ ] как кэшировать гет запросы 
-30. [ ] Domain-Driven Design (Доменно-ориентированное проектирование)  
-31. [ ] Всегда ли есть смысл делать связь на уровне ентити а не только на уровне БД ?
-32. [ ] какие аннотации надо знать на собеседовании 
-33. [ ] @Profile
-34. [ ] @ConditionProperty
-35. [ ] КЭШ первого и второго уровня
-36. [ ] возможно ли подлкючиться к бд без application.properties
-37. [ ] как запустить не ddl миграции в спринг - посмотри в MigrationService.java 
-38. [ ] встроенный серверы в Spring boot - Tomcat, Jetty 
-39. [ ] отличие @GetMapping("/hello") от @RequestMapping(value = "/hello", method = RequestMethod.GET)
-40. [ ] AOP в Spring 
-41. [ ] Как создается изолирванный контекст 
-42. [ ] hikary poll 
-43. [ ] Подключения к БД:  credentials, pool settings
-44. [ ] благодаря поддержке транзакций, интеграции с JMS, Kafka и другими сообщениями, Spring активно используется для создания банковских систем, страхования, складских систем и документооборота.
-45. [x] елк стек, актуатор , графана 
+> Чек-лист актуализирован после переноса JPA/ORM/IoC/Proxy-контента в отдельные файлы — ссылки ниже ведут на актуальное место ответа. ⚠️ = текст ответа не пережил переезд, нужно восстановить заново.
+
+1. [x] что можно сделать на спринг и что делают (мобильные, десктоп, веб) — см. «Основы → предназначение» ниже
+2. [x] пример приложения с веб-запросами без @SpringBootApplication — ⚠️ пример потерян, восстановить
+3. [x] может ли @Configuration просканировать бины в других пакетах через @ComponentScan — да
+4. [x] в каком порядке инициализируются бины — см. [[IoC Spring]]
+5. [x] чем отличается @Bean в @Configuration от обычного класса — см. [[IoC Spring]]
+6. [x] что такое CGLIB — см. [[IoC Spring]], детально [[Proxy Object]]
+7. [x] @Entity как класс с полями + бизнес-логика в наследнике — нет, не рекомендуется — см. [[JPA]] (раздел «Подходы к работе»)
+8. [x] jOOQ — см. [[JPA]]
+9. [x] когда происходит неявный inner join при выборке (c.country не сущность, а int) — ⚠️ пример потерян, восстановить
+10. [ ] propagation — открывать новую транзакцию или использовать текущую — ⚠️ ответ потерян, задача снова открыта
+11. [x] equals/hashcode в @Entity — см. [[JPA equals hashCode]]
+12. [ ] [[SPRING ЛОГИ ЗАПУСКА]] — разобрать
+13. [ ] @EqualsAndHashCode.Exclude / @ToString.Exclude — проверить код на бесконечную рекурсию, неверное сравнение объектов, N+1 — action item, см. [[JPA equals hashCode]]
+14. [x] PreAuthorize / Auth — см. [[Spring Security]]
+15. [x] JPA/Hibernate vs Active Record — см. [[ORM]]
+16. [x] Active Record точно нарушает SRP? — см. [[ORM]]
+17. [x] jpql к чему относится в хайбернате — см. [[ORM]]
+18. [ ] обязательно ли указывать в hibernate timezone, как принято хранить время с часовым поясом — открыто, памятка не написана
+19. [ ] EntityManager.detach — зачем нужен, другие методы — ⚠️ конкретный пример (Bracket) потерян, общая теория persistence context в [[Proxy Object]]
+20. [x] статический прокси vs динамический — см. [[Proxy Object]]
+21. [ ] интерсептор и мидлвеар — частично см. [[Spring AOP]] (HandlerInterceptor), дописать сравнение
+22. [x] фабричный метод паттерн, почему @Bean — это он — см. [[IoC Spring]]
+23. [x] проблемы Hibernate-прокси: equals/hashcode не работает — см. [[JPA equals hashCode]]
+24. [ ] безопасно ли сравнивать по entity вместо id при выборке (`findAllByBattleAndJudge(Battle, Judge)`) — ⚠️ ответ потерян, задача снова открыта
+25. [ ] почему в JudgeScoreRepository можно делать выборку чужих сущностей и правильно ли так делать — открыто, см. [[JPA]] (Custom Repository)
+26. [ ] прочитать https://docs.spring.io/spring-framework/reference/web.html и сравнить со своим проектом
+27. [x] QueryDSL — см. [[JPA]]
+28. [ ] как кэшировать GET-запросы
+29. [ ] всегда ли есть смысл делать связь на уровне Entity, а не только в БД — открыто, рядом с [[JPA N+1 problem]]
+30. [ ] какие аннотации знать на собеседовании — см. также «Собеседование/ВОПРОСЫ ПО СОБЕЗУ»
+31. [ ] @Profile — открыто, дом [[IoC Spring]]
+32. [ ] @ConditionalOnProperty — открыто, дом [[IoC Spring]]
+33. [x] кэш первого и второго уровня — см. [[Proxy Object]] (раздел «Кэши Hibernate»)
+34. [ ] можно ли подключиться к БД без application.properties
+35. [ ] как запустить не-DDL миграции — см. MigrationService.java, рядом «Миграции»
+36. [x] встроенные серверы Tomcat/Jetty — см. [[Spring Mvc]]
+37. [x] отличие @GetMapping от @RequestMapping(method=GET) — см. [[Spring Mvc]]
+38. [x] AOP в Spring — см. [[Spring AOP]]
+39. [ ] как создаётся изолированный контекст — частично см. [[IoC Spring]] (несколько IoC-контейнеров)
+40. [x] hikary pool — см. [[HikariCP]]
+41. [ ] подключения к БД: credentials, pool settings — частично [[HikariCP]], дописать про credentials
+42. [x] елк стек, актуатор, графана — см. Мониторинг/
+
+Удалены как дубли при актуализации: «связи в Entity vs без связей» (уже первый пункт в [[JPA N+1 problem]]), «Domain-Driven Design» (свой файл «Domen driven design»), фрагмент про банки/страхование (уже внутри ответа «предназначение» ниже).
 
 # Основы 
 >[!question]- контейнер зависимостей IoC
@@ -70,110 +71,6 @@
 
 >[!question]- запустить спринг проект
 >mvn spring-boot:run
-
->[!question]- отличие динамического прокси от аннтоации @Convert
->@Convert срабатыывает при  JDBC read/**write**  , прямой вызов конвертера (еще пример  @Enumerated )
->AOP при вызове метода бина , перехвать через прокси (примеры  @Transactional, @Cacheable )
-
->[!question]- какой метод срабатывает после инициализации всех бинов
->run , чтобы его использоватжь надо переопределить его в классе  помеченном @component и реализовать интерефейс ComandLineRunner
-
->[!question]- `CGLIB` это
->Code Generation Library
-> билиотека динамического создания классов и проксиобъектов в рантайме 
-> - подменять вызовы методов
-создавать прокси для @Configuration классов
-делать AOP (аспектно-ориентированное программирование)
-внедрять транзакции (@Transactional)
-реализовывать lazy loading
->- создавать бины без интерфейсов
-
->[!question]- `@Bean` это
-> своего рода фабричный метод - ставится только над методами 
-> без @Configuration над классом в котором находится этот бин Методы @Bean НЕ ПРОКСИРУЮТСЯ через CGLIB -  без @Configuration   возможна ошибка нарушения синглтон типа SELF-INVOKED CALL  - внедрение помеченной @Bean зависимости в конструктор 
-
->[!question]-  Порядок инициализации бина 
-> Чиcтые бины инициализируются позже тех, в которые они внедренны 
-> Сначала создаются бины, от которых зависят другие 
-> Spring строит граф зависимостей 
-> 1. Обнаружение компонента - логировать через бин не возможно 
-> 2. Вызов конструктора 
-> 3. BeanPostProcessor.postProcessBeforeInitialization 
-> 4. Вызов @PostConstruct
-> 5. InitializingBean.afterPropertiesSet  - Первая точка, где Spring ГАРАНТИРОВАННО внедрил все зависимости.
-> 6. BeanPostProcessor.postProcessAfterInitialization
-
->[!question]-  Название бинов могут совпадать ? 
-> В пределах одного контекста нет -   например в  ApplicationContext  , избавиться от дублей можно через @Bean(name = "bean1") . **В разных `ApplicationContext`** (например, в родителе и потомке) имена могут совпадать. 
-
->[!question]-  как получить все бины контекста
-> ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig1.class);
-> String[] beanNames = context.getBeanDefinitionNames(); 
-
->[!question]- импортировать один конфиг в другой 
-> @Configuration
-  @Import(AppConfig2.class)
-
->[!question]- @Configuration
->ОБЕСПЕЧИВАЕТ СИНГЛТОН  СВОИХ БИНОВ  - обеспечивает создание прокси класса конфигурации, благодаря чему вызовы методов с @Bean при инициализации других бинов возвращают управляемые синглтон-бины из контекста. Без @Configuration таких гарантий нет, и каждый метод с @Bean вызывается как обычный метод, создающий новый объект.
-
->[!question]- BeanFactory
->Базовый IoC контейнер — управляет созданием, хранением и выдачей бинов
->`BeanFactory` — это как "DI-двигатель" под капотом Spring.
-
->[!question]- ApplicationContext
->Расширяет `BeanFactory`, добавляет всё, что нужно в реальном приложении 
-
->[!question]- @Primary
->приоритет бина -  указывает, что данный bean должен быть приоритетным (основным) при внедрении зависимостей, когда существует несколько bean-ов одного типа.  
->без него ошибка 
->```
->NoUniqueBeanDefinitionException: expected single matching bean but found 2
->```
->пример 
->```
->public class EnglishGreetingService implements GreetingService {
->...
->public class RussianGreetingService implements GreetingService {
->...
->public interface GreetingService {
->```
-
->[!question]- @Component
-> внедряется автоматчиески при  запуске проги с помощью  @ComponentScan . его потомки(`@Service`, `@Repository`, `@Controller` и т.д.)
-
->[!question]- @Qualifier("russianGreetingService") 
->указывает какой бин использовать если дубль бина интерфейса
->```
->@Service
-public class RussianGreetingService implements GreetingService {
->```
-
->[!question]-  @ComponentScan это 
->**отвечает за поиск и регистрацию бинов**, созданных через аннотации вроде `@Component`, `@Service`, `@Repository`, `@Controller`  `@Configuration` и т. д. 
->просканирует все бины не зависимо от того над кем навешана аннотация 
->входит в  @SpringBootApplication  
->не сканирует @Bean если он не находится в `@Configuration` классе 
-
->[!question]- @SpringBootApplication
->  =  @Configuration
-@EnableAutoConfiguration
-@ComponentScan 
-> можно укзать пакет сканирования   @SpringBootApplication(scanBasePackages = "com.example.testlinux") 
-
->[!question]- @Bean зависимость когда содается
-> Если метод с аннтоацией @Bean находится в классе не помченном ни какой аннтоацией - то спринг его не увидит вообще (но достучаться до него можно через регистрацию его в контексте внутри метода main или через @Configuration @Import(HiddenConfig.class), а если помечен - то спринг просканирет его при старте приложения . 
-
->[!question]-  singleton может хранить состояние  ? 
-> Да, **синглтон может хранить состояние**  
-
->[!question]- @Lazy 
->линивая инициализация бина при первом обращение к нему во время выполнения проги - пример 
->```
->@Bean 
->@Lazy
-> public someMethod(){}
->```
 # Остальное 
 
 >[!question]- если @Transactionl не используется то в каких методах не нужен .save
@@ -182,62 +79,6 @@ public class RussianGreetingService implements GreetingService {
  >   battlesRepository.delete(battle);  
 >}
 >```
-
->[!question]- Почему IntelliJ не видит usage конструктора DTO в Criteria API?
-> **Проблема:** После рефакторинга на Criteria API, IntelliJ показывает "No usages" для конструктора DTO
->
-> **Причина:**
-> В Criteria API конструктор вызывается через рефлексию в runtime:
-> ```java
-> query.select(cb.construct(
->     RoundScoresDto.class,  // ← Класс передается как параметр
->     root.get("id"),
->     // ...
-> ));
-> ```
-> `cb.construct()` принимает `Class<?>` и вызывает конструктор **в runtime через рефлексию**.
-> IntelliJ не может статически проанализировать такие вызовы.
->
-> **В JPQL (старый вариант) работало:**
-> ```java
-> @Query("SELECT new com.example.dto.RoundScoresDto(...)")
-> ```
-> IntelliJ парсит JPQL-строки и находит конструкторы в выражении `new ...()`.
->
-> **Решения:**
->
-> 1. **Подавить предупреждение (рекомендуется):**
-> ```java
-> @SuppressWarnings("unused")
-> public RoundScoresDto(Long id, Integer judgeId, ...) {
->     // ...
-> }
-> ```
->
-> 2. **Добавить фиктивное использование в тестах:**
-> ```java
-> @Test
-> void constructorUsedByCriteriaAPI() {
->     new RoundScoresDto(1L, 2, 3L, "name", "slug", 4, 5.0, 6, 7.0, 8, 9);
-> }
-> ```
->
-> 3. **Использовать Blaze-Persistence Entity Views** (если уже есть в проекте):
-> ```java
-> @EntityView(JudgeRoundScore.class)
-> public interface RoundScoresDto {
->     Long getId();
->     @Mapping("judge.id")
->     Integer getJudgeId();
->     // ...
-> }
-> ```
->
-> 4. **Вернуться к JPQL + константа:**
-> ```java
-> private static final String DTO_PROJECTION =
->     "new com.example.dto.RoundScoresDto(t.id, t.judge.id, ...)";
-> ```
 
 Два механизма в Spring/Hibernate                                                                                                                                                                                                                                                                                  
    
@@ -287,6 +128,5 @@ public class RussianGreetingService implements GreetingService {
   - Конвертер — меняет представление данных
 
   Но это философское разграничение, а не техническое. Ты прав, что механически это работает аналогично.
-
 
 

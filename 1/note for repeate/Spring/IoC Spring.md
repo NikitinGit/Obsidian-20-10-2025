@@ -85,4 +85,106 @@
 >[!question]- Если используется scope singleton то когда лучше использовать статические утилитные классы, а когда бины 
 >когда нет зависмостей от репозитория и других зависимостей спринга - нет состояния которое нужно хранить с помощью этих зависимостей 
 
+## Создание и жизненный цикл бинов
+
+>[!question]- какой метод срабатывает после инициализации всех бинов
+>run , чтобы его использоватжь надо переопределить его в классе  помеченном @component и реализовать интерефейс ComandLineRunner
+
+>[!question]- `CGLIB` это
+>Code Generation Library
+> билиотека динамического создания классов и проксиобъектов в рантайме 
+> - подменять вызовы методов
+> - создавать прокси для @Configuration классов
+> - делать AOP (аспектно-ориентированное программирование)
+> - внедрять транзакции (@Transactional)
+> - реализовывать lazy loading
+> - создавать бины без интерфейсов
+> Детальный разбор JDK vs CGLIB прокси — [[Proxy Object]]
+
+>[!question]- `@Bean` это
+> своего рода фабричный метод - ставится только над методами 
+> без @Configuration над классом в котором находится этот бин Методы @Bean НЕ ПРОКСИРУЮТСЯ через CGLIB -  без @Configuration   возможна ошибка нарушения синглтон типа SELF-INVOKED CALL  - внедрение помеченной @Bean зависимости в конструктор 
+
+>[!question]-  Порядок инициализации бина 
+> Чиcтые бины инициализируются позже тех, в которые они внедренны 
+> Сначала создаются бины, от которых зависят другие 
+> Spring строит граф зависимостей 
+> 1. Обнаружение компонента - логировать через бин не возможно 
+> 2. Вызов конструктора 
+> 3. BeanPostProcessor.postProcessBeforeInitialization 
+> 4. Вызов @PostConstruct
+> 5. InitializingBean.afterPropertiesSet  - Первая точка, где Spring ГАРАНТИРОВАННО внедрил все зависимости.
+> 6. BeanPostProcessor.postProcessAfterInitialization
+
+>[!question]-  Название бинов могут совпадать ? 
+> В пределах одного контекста нет -   например в  ApplicationContext  , избавиться от дублей можно через @Bean(name = "bean1") . **В разных `ApplicationContext`** (например, в родителе и потомке) имена могут совпадать. 
+
+>[!question]-  как получить все бины контекста
+> ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig1.class);
+> String[] beanNames = context.getBeanDefinitionNames(); 
+
+>[!question]- импортировать один конфиг в другой 
+> @Configuration
+  @Import(AppConfig2.class)
+
+>[!question]- @Configuration
+>ОБЕСПЕЧИВАЕТ СИНГЛТОН  СВОИХ БИНОВ  - обеспечивает создание прокси класса конфигурации, благодаря чему вызовы методов с @Bean при инициализации других бинов возвращают управляемые синглтон-бины из контекста. Без @Configuration таких гарантий нет, и каждый метод с @Bean вызывается как обычный метод, создающий новый объект.
+
+>[!question]- BeanFactory
+>Базовый IoC контейнер — управляет созданием, хранением и выдачей бинов
+>`BeanFactory` — это как "DI-двигатель" под капотом Spring.
+
+>[!question]- ApplicationContext
+>Расширяет `BeanFactory`, добавляет всё, что нужно в реальном приложении 
+
+>[!question]- @Primary
+>приоритет бина -  указывает, что данный bean должен быть приоритетным (основным) при внедрении зависимостей, когда существует несколько bean-ов одного типа.  
+>без него ошибка 
+>```
+>NoUniqueBeanDefinitionException: expected single matching bean but found 2
+>```
+>пример 
+>```
+>public class EnglishGreetingService implements GreetingService {
+>...
+>public class RussianGreetingService implements GreetingService {
+>...
+>public interface GreetingService {
+>```
+
+>[!question]- @Component
+> внедряется автоматчиески при  запуске проги с помощью  @ComponentScan . его потомки(`@Service`, `@Repository`, `@Controller` и т.д.)
+
+>[!question]- @Qualifier("russianGreetingService") 
+>указывает какой бин использовать если дубль бина интерфейса
+>```
+>@Service
+public class RussianGreetingService implements GreetingService {
+>```
+
+>[!question]-  @ComponentScan это 
+>**отвечает за поиск и регистрацию бинов**, созданных через аннотации вроде `@Component`, `@Service`, `@Repository`, `@Controller`  `@Configuration` и т. д. 
+>просканирует все бины не зависимо от того над кем навешана аннотация 
+>входит в  @SpringBootApplication  
+>не сканирует @Bean если он не находится в `@Configuration` классе 
+
+>[!question]- @SpringBootApplication
+>  =  @Configuration
+@EnableAutoConfiguration
+@ComponentScan 
+> можно укзать пакет сканирования   @SpringBootApplication(scanBasePackages = "com.example.testlinux") 
+
+>[!question]- @Bean зависимость когда содается
+> Если метод с аннтоацией @Bean находится в классе не помченном ни какой аннтоацией - то спринг его не увидит вообще (но достучаться до него можно через регистрацию его в контексте внутри метода main или через @Configuration @Import(HiddenConfig.class), а если помечен - то спринг просканирет его при старте приложения . 
+
+>[!question]-  singleton может хранить состояние  ? 
+> Да, **синглтон может хранить состояние**  
+
+>[!question]- @Lazy 
+>линивая инициализация бина при первом обращение к нему во время выполнения проги - пример 
+>```
+>@Bean 
+>@Lazy
+> public someMethod(){}
+>```
 
