@@ -7,24 +7,16 @@
 4. [ ] SpringSecurity Autentification - как добавить в контекст или в HandlerInterxeptor , как вебсокеты и в рест доавляются jwt,  что такое мидлвеер 
 5. [ ] [[SMS]]
 6. [ ] [[MAIL]]
-7. [ ] кеш в ответе , где хранится, как создается зависимость , как добавить в код 
-8. [ ] транзакции оплаты юкассы и сохранение фоток при создании соревнования 
-9. [ ] applicatioin.properties - контейнер сервлетов - на что влияет число подключений, запросов ?
-10. [ ] в скл запросах можно менять COMMENT - AFTER местами ?
-11. [ ] как и где используется АОП - тесты, авторизация (можно ли ставить аннтоцию проверки прав надо классом сервиса)
-12. [ ] Как работает jwt в спринг секурити 
-13. [ ] мавен - все параметры
-14. [ ] docker как устроены все элементы
-15. [ ] [[Ansible]]
-
->[!question]- как использовать локальные настройки вместо application.properties
->В IntelliJ IDEA: Run/Debug Configurations → Active profiles: local     
->или в переменных окружения узказать 
->  1. Верхняя панель → кликнуть на название конфигурации (рядом с кнопками Run/Debug)
->  2. Edit Configurations...  
->  3. Выбрать вашу конфигурацию (Spring Boot приложение) 
->  4. Вкладка Environment (или в старых версиях это поле прямо на главной вкладке)  
->  5. Поле Environment variables → вписать SPRING_PROFILES_ACTIVE=local 
+7. [ ] [[Date and Time]]
+8. [ ] кеш в ответе , где хранится, как создается зависимость , как добавить в код 
+9. [ ] транзакции оплаты юкассы и сохранение фоток при создании соревнования 
+10. [ ] applicatioin.properties - контейнер сервлетов - на что влияет число подключений, запросов ?
+11. [ ] в скл запросах можно менять COMMENT - AFTER местами ?
+12. [ ] как и где используется АОП - тесты, авторизация (можно ли ставить аннтоцию проверки прав надо классом сервиса)
+13. [ ] Как работает jwt в спринг секурити 
+14. [ ] мавен - все параметры
+15. [ ] docker как устроены все элементы
+16. [ ] [[Ansible]]
 
 # Vue Nuxt
 1. [ ] type script - интерфейсы/ классы , методы, типы
@@ -54,3 +46,35 @@
 
 # [[Domen driven design]]
 1. [x] что в моем проекте следует ему и нет 
+
+#  entityManager.detach(winInformation.getBracket());
+Bracket — JPA-сущность с @OneToMany(cascade = CascadeType.ALL) на bracketEntries. Вот что делает detach:                                                                                                                                                                                                          
+  Зачем:                                                                                                                                                                                                                                               
+  После загрузки winInformation объект bracket находится под управлением Hibernate (managed state). Дальше по методу вызываются resetSuccessorEntry / resetWinnerEntry, которые модифицируют записи BracketEntry напрямую. Поскольку cascade = CascadeType.ALL, Hibernate при flush мог бы попытаться каскадно      
+  проsynкать изменения через bracket.getBracketEntries().                                                                                                                                                                                                                                                           
+  entityManager.detach(bracket) выводит bracket из контекста персистентности — теперь Hibernate не отслеживает изменения этого объекта и не будет каскадить его коллекцию.                                                                                                                                      
+  Аналогично для winnerBracketEntry — эту запись детачат, чтобы её текущее состояние (с установленным победителем) не было случайно resaved/overwritten в ходе той же транзакции.                                                                                                                                   
+  Конкретный риск без detach:                                                                                                                                                                                                                                                                                       
+  resetSuccessorEntry и resetWinnerEntry работают с winInformation.getBracketEntries() (те же объекты, что и в коллекции bracket). Без detach bracket'а Hibernate мог бы при flush обнаружить "грязные" записи через cascade = CascadeType.ALL и записать их в неправильном порядке или состоянии.                  
+
+  hasWinnerSuccessor после detach работает нормально — метод читает только in-memory дерево bracket'а, которое уже загружено, новых запросов к БД не делает.     
+# Notes
+>[!question]- Когда происходит не явный inner join при выборке 
+>```
+>@Query("SELECT new com.strikerstat.webapp.dto.olympic_events.CityDto(c.country, c.region) "
+>```
+> и country - это объект класса Country, если он null - то в  выборку не попадает
+> Работает только с сущностями - если просто поля объекта = null  то inner join не происходит, например 
+> ```
+> SELECT new com.strikerstat.webapp.dto.olympic_events.CityDto(c.id, c.name)
+> ```
+
+>[!question]- как использовать локальные настройки вместо application.properties
+>В IntelliJ IDEA: Run/Debug Configurations → Active profiles: local     
+>или в переменных окружения узказать 
+>  1. Верхняя панель → кликнуть на название конфигурации (рядом с кнопками Run/Debug)
+>  2. Edit Configurations...  
+>  3. Выбрать вашу конфигурацию (Spring Boot приложение) 
+>  4. Вкладка Environment (или в старых версиях это поле прямо на главной вкладке)  
+>  5. Поле Environment variables → вписать SPRING_PROFILES_ACTIVE=local 
+
