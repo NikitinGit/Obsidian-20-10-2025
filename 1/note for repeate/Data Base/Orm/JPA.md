@@ -9,6 +9,62 @@
 >одна из реализаций JPA. У Hibernate так же есть свое родное API (HQL, Session, Criteria
 >
 
+>[!question]- Иерархия слоёв от JPA до физического соединения с БД
+> ```
+> JPA (спецификация ORM)
+>   └── Hibernate (реализация JPA)
+>         └── JDBC (стандартный Java API для работы с БД — Connection, Statement, ResultSet)
+>               └── DataSource (поставщик JDBC-соединений)
+>                     └── HikariCP (конкретная реализация DataSource — управляет пулом соединений)
+> ```
+> Каждый слой не знает о деталях слоя выше: HikariCP ничего не знает про JPQL/Entity, Hibernate не знает, как именно HikariCP управляет пулом — он просто вызывает `dataSource.getConnection()`. Детально про Connection/Statement/ResultSet и про то, когда соединения реально открываются/закрываются — см. [[JDBC]].
+
+>[!question]- Пример Entity с аннотациями из трёх разных источников — как разобрать, кто чем владеет
+> ```java
+> import org.hibernate.annotations.CreationTimestamp;
+> import org.hibernate.annotations.UpdateTimestamp;
+> import org.springframework.data.annotation.CreatedBy;
+> import org.springframework.data.annotation.LastModifiedBy;
+> // ...
+>
+> @Entity
+> @EntityListeners(AuditingEntityListener.class)
+> @Table(name = "fighters")
+> public class Fighter {
+>     // ...
+>     @CreatedBy
+>     @Column(name = "created_by")
+>     private String createdBy;
+>
+>     @LastModifiedBy
+>     @Column(name = "modified_by")
+>     private String modifiedBy;
+>
+>     @CreationTimestamp
+>     @Temporal(TemporalType.TIMESTAMP)
+>     @Column(name = "created_at")
+>     private LocalDateTime createdAt;
+>
+>     @UpdateTimestamp
+>     @Temporal(TemporalType.TIMESTAMP)
+>     @Column(name = "modified_at")
+>     private LocalDateTime modifiedAt;
+> }
+> ```
+> Здесь смешаны **три** разных источника, не два:
+>
+> | Аннотация | Кому принадлежит | Пакет |
+> |---|---|---|
+> | `@Entity`, `@Table`, `@Column`, `@Temporal` | JPA | `jakarta.persistence.*` |
+> | `@EntityListeners` (сам механизм колбэков) | JPA | `jakarta.persistence.*` |
+> | `@CreationTimestamp`, `@UpdateTimestamp` | Hibernate (нет в спеке JPA) | `org.hibernate.annotations.*` |
+> | `@CreatedBy`, `@LastModifiedBy` | Spring Data (не JPA, не Hibernate) | `org.springframework.data.annotation.*` |
+> | `AuditingEntityListener` | Spring Data — класс-реализация | `org.springframework.data.auditing.*` |
+>
+> Ключевая механика: `@EntityListeners` — это **стандартный JPA extension point** для колбэков жизненного цикла (`@PrePersist`/`@PreUpdate` и т.п.). `AuditingEntityListener` — не Hibernate, а класс из `spring-data-commons`, который **встраивается в этот JPA-механизм** и на `@PrePersist`/`@PreUpdate` сам проставляет `@CreatedBy`/`@LastModifiedBy` (для этого дополнительно нужен бин `AuditorAware<String>`, который говорит Spring'у, кто текущий пользователь). То есть JPA даёт универсальную точку расширения, а Spring Data подключает в неё свою auditing-логику — Hibernate тут вообще ни при чём, у него параллельно свой, отдельный механизм авто-таймстампов через `@CreationTimestamp`/`@UpdateTimestamp`.
+>
+> Бонус-нюанс: `@Temporal(TemporalType.TIMESTAMP)` нужен только для legacy `java.util.Date`/`Calendar`. Для `LocalDateTime` (java.time, JPA 2.2+) он ничего не делает — тип и так маппится нативно, аннотация здесь мёртвая/избыточная.
+
 >[!question]- добавить jpa в maven .pom
 >```xml
 ><dependency>

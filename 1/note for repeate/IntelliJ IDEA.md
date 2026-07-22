@@ -41,4 +41,5 @@ java -Xss1m TestLinuxApplication - с Мб
 >```
 >Чтобы не появлялись снова — `File > Project Structure > Project > Compiler output` (либо оставить `out/`, раз он теперь в `.gitignore`).
 
-
+>[!question]- Включить / выключить автоимпорт 
+>Settings (Ctrl + Alt + S), Editor, General, Auto import ![[Pasted image 20260722201101.png]]

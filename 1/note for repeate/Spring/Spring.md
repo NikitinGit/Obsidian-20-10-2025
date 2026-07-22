@@ -24,4 +24,4 @@
 # [[Повторение того, что знаешь]]
 
 ## ORM / JPA / Hibernate
-См. отдельную ветку — [[ORM]], [[JPA]], [[JPA equals hashCode]], [[JPA N+1 problem]]
+См. отдельную ветку — [[ORM]], [[JPA]], [[JPA equals hashCode]], [[JPA N+1 problem]], [[JDBC]]
