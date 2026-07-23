@@ -4,6 +4,23 @@
 # База 
 >[!question]- что это 
 >JPA - спецификация ORM. Состоит из аннотаций, интерфейсов и контрактов EntityManager - кода который ходит в БД нет.
+>
+> **Аннотации** (`jakarta.persistence.*`): `@Entity`, `@Id`, `@GeneratedValue`, `@Column`, `@Table`, `@OneToMany`/`@ManyToOne`/`@ManyToMany`, `@JoinColumn`, `@Enumerated`, `@Temporal`, `@Embeddable`/`@Embedded`, `@EntityListeners`.
+>
+> **Интерфейсы/классы** (`jakarta.persistence.*`): `EntityManager`, `EntityManagerFactory`, `Query`/`TypedQuery`, `CriteriaBuilder`/`CriteriaQuery` (Criteria API), `PersistenceContext`, `PersistenceUnit`.
+>
+> **Контракты `EntityManager`** — то, что он обязан уметь предоставить любой JPA-реализации (Hibernate, EclipseLink, OpenJPA), не завися от конкретного провайдера:
+> ```java
+> entityManager.persist(entity);           // INSERT новой сущности
+> entityManager.find(Entity.class, id);    // SELECT по id (или из persistence context, если уже там)
+> entityManager.merge(detachedEntity);     // слияние detached-объекта обратно в managed
+> entityManager.remove(entity);            // DELETE managed-сущности
+> entityManager.getReference(Entity.class, id); // lazy-прокси без похода в БД
+> entityManager.detach(entity);            // вывести сущность из persistence context
+> entityManager.createQuery("SELECT e FROM Event e", Event.class); // JPQL
+> entityManager.getTransaction();          // управление транзакцией (вне Spring-контейнера)
+> ```
+> Ни один из этих вызовов не содержит SQL или упоминания конкретной БД — это и есть смысл "контракта": одинаковый код работает независимо от того, Hibernate под капотом или EclipseLink.
 
 >[!question]- Hibernate  это
 >одна из реализаций JPA. У Hibernate так же есть свое родное API (HQL, Session, Criteria
@@ -18,6 +35,26 @@
 >                     └── HikariCP (конкретная реализация DataSource — управляет пулом соединений)
 > ```
 > Каждый слой не знает о деталях слоя выше: HikariCP ничего не знает про JPQL/Entity, Hibernate не знает, как именно HikariCP управляет пулом — он просто вызывает `dataSource.getConnection()`. Детально про Connection/Statement/ResultSet и про то, когда соединения реально открываются/закрываются — см. [[JDBC]].
+
+>[!question]- Что содержит пакет `jakarta` — JDBC / Hibernate / JPA?
+> Только **JPA**. JDBC и родное API Hibernate в этот namespace не входят.
+>
+> - **`jakarta.persistence.*`** — это и есть JPA: `@Entity`, `@Id`, `@OneToMany`, `EntityManager`, `EntityManagerFactory`, `Query`, `CriteriaBuilder` и т.д. До версии JPA 3.0 (2020–2021) было `javax.persistence.*` — переименовали при переходе Java EE → Jakarta EE.
+> - **Hibernate (`org.hibernate.*`)** — НЕ jakarta. Отдельный namespace третьей стороны, не часть никакой Jakarta EE спеки. Родное API (`Session`, `SessionFactory`) живёт в `org.hibernate.*`. Hibernate просто **реализует** интерфейсы из `jakarta.persistence.*`, но пакет у него свой.
+> - **JDBC (`java.sql.*`)** — тоже НЕ jakarta, и никогда не было. JDBC — часть **Java SE** (ядро платформы), а не Java EE, поэтому переименование javax→jakarta его вообще не коснулось. `Connection`, `Statement`, `ResultSet` — всегда `java.sql.*`.
+>
+> Важный нюанс: **не весь `javax.*` стал `jakarta.*`** — переименовали только пакеты, принадлежавшие спецификациям Java EE/Jakarta EE. `javax.sql.DataSource` (см. раздел DataSource ниже) остаётся `javax.sql` навсегда — он часть Java SE, ship'ится прямо в JDK, и никогда не был частью Java EE.
+
+>[!question]- Почему javax → jakarta переименовали — и что означает само слово "Jakarta"
+> **Причина — товарный знак, политика Oracle:**
+> 1. В 2017 Oracle отдал Java EE в Eclipse Foundation (открытое сообщество), сам решив не тащить это направление.
+> 2. Но Oracle **сохранил права на торговую марку "Java"** — и не позволил Eclipse Foundation продолжать менять/эволюционировать API под namespace `javax.*` вне контролируемого Oracle процесса (JCP). Сообщество получило код, но не право дальше легально трогать пакеты с именем "javax" без Oracle.
+> 3. Из-за этого пришлось переименовать и проект (Java EE → нечто другое), и в перспективе пакеты (`javax.*` → что-то другое) — иначе развитие спецификаций было бы юридически заблокировано.
+>
+> **Откуда взялось "Jakarta":**
+> - Не акроним и не "код" — буквально **название столицы Индонезии**. Смысловой технической нагрузки в самом слове нет.
+> - Eclipse Foundation провёл публичное голосование сообщества по списку кандидатов в 2018 году — "Jakarta" победило, в том числе потому, что права на это название были **юридически свободны** и быстро доступны (в отличие от других вариантов с конфликтами торговых марок).
+> - Тематическое совпадение (не официальная причина выбора, но объясняет, почему имя "прижилось"): **Ява (Java)** — остров в Индонезии, а **Джакарта** — столица Индонезии. "Jakarta" звучит по духу близко к "Java" — обе про Индонезию.
 
 >[!question]- Пример Entity с аннотациями из трёх разных источников — как разобрать, кто чем владеет
 > ```java

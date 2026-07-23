@@ -97,6 +97,20 @@
               "icon": "lucide-file",
               "title": "Spring Security"
             }
+          },
+          {
+            "id": "286217a4fdd96507",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Data Base/Orm/ORM.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ORM"
+            }
           }
         ],
         "currentTab": 1
@@ -126,12 +140,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/IntelliJ IDEA.md",
+                "file": "1/note for repeate/Spring/Proxy Object.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "IntelliJ IDEA"
+              "title": "Proxy Object"
             }
           },
           {
@@ -237,7 +251,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Hika",
+                "query": "Кеши",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -354,43 +368,43 @@
   },
   "active": "ecc0a7fc6192e163",
   "lastOpenFiles": [
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Spring/Proxy Object.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/note for repeate/Data Base/Orm/ORM.md",
+    "1/note for repeate/Data Base/Транзакции.md",
+    "1/note for repeate/Data Base/Orm/Кэши JPA-Hibernate.md",
+    "1/note for repeate/Spring/Spring.md.tmp.20335.47956230d683",
+    "1/note for repeate/Spring/Spring Base.md.tmp.20335.38229a56d0ff",
+    "1/note for repeate/Spring/Proxy Object.md.tmp.20335.7b6602b654cc",
+    "1/note for repeate/Data Base/Orm/Кэши JPA-Hibernate.md.tmp.20335.de0fcce175c8",
+    "1/note for repeate/Data Base/Orm/JPA.md",
+    "КЭШ/Memcached.md",
+    "1/note for repeate/FRONT/Coockie, local Storage.md",
+    "1/note for repeate/Собеседование/ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
+    "Транзакции/Выводы.md",
+    "1/note for repeate/Data Base/Orm/JDBC.md",
+    "1/note for repeate/Spring/application.properties.md",
+    "1/note for repeate/Data Base/Orm/JPA.md.tmp.20335.feeb6f06765c",
+    "1/note for repeate/Spring/Spring.md",
+    "1/note for repeate/Spring/Spring Base.md",
+    "1/note for repeate/Spring/Повторение того, что знаешь.md",
+    "1/note for repeate/IntelliJ IDEA.md",
+    "1/note for repeate/Spring/Spring Mvc.md",
     "1/note for repeate/Data Base/Orm/JPA.md.tmp.20335.c7edec2c20d9",
     "Pasted image 20260722201101.png",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/Data Base/Orm/ORM.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/Spring/Повторение того, что знаешь.md",
-    "1/note for repeate/Spring/Spring Mvc.md",
     "1/note for repeate/Data Base/HikariCP.md",
     "1/note for repeate/Data Base/Orm/HikariCP.md",
     "1/note for repeate/NGINX.md",
-    "1/note for repeate/Data Base/Orm/JDBC.md",
     "1/note for repeate/GIT.md",
     "1/note for repeate/Data Base/Orm/JDBC.md.tmp.5351.15714bf994ed",
     "1/note for repeate/Data Base/База данных.md",
     "1/note for repeate/Data Base/Ошибки и решения.md",
     "1/note for repeate/Data Base/SQL.md",
-    "1/note for repeate/Data Base/Транзакции.md",
     "1/note for repeate/Data Base/Orm/JDBC.md.tmp.5351.d2d8ea981fda",
-    "1/ГЛАВНОЕ.md",
     "1/note for repeate/Spring/Spring.md.tmp.5351.969c50cd2826",
-    "1/note for repeate/Spring/Spring Base.md",
-    "1/note for repeate/Spring/Spring.md",
     "1/note for repeate/Data Base/Orm/JPA.md.tmp.5351.6ff50f969081",
-    "1/note for repeate/Data Base/Orm/JPA.md",
-    "1/note for repeate/Data Base/Orm/JDBC.md.tmp.5351.e1be199a322e",
-    "1/note for repeate/Spring/Spring AOP.md",
-    "1/note for repeate/Spring/Контроллер.md",
-    "1/note for repeate/Шаблоны-паттерны проектирования.md",
-    "1/note for repeate/Шаблоны-паттерны проектирования.md.tmp.9260.be09e58fc9e4",
-    "1/note for repeate/Spring/Proxy Object.md",
-    "1/note for repeate/Spring/SPRING ЛОГИ ЗАПУСКА.md",
-    "1/note for repeate/Data Base/Orm/ORM.md.tmp.9260.99226700db41",
-    "1/note for repeate/Data Base/Orm/ORM.md.tmp.9260.1c70fa78dd1d",
-    "1/note for repeate/Data Base/Orm/ORM.md.tmp.9260.482a6054355e",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
-    "1/note for repeate/Data Base/Orm/SQL Explain.md",
-    "1/note for repeate/Data Base/Orm/ORM.md.tmp.9260.e00251eda01d",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "Pasted image 20260109165447.png",

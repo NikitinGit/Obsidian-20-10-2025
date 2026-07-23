@@ -15,7 +15,6 @@
 # [[Spring ERROR]]
 
 # [[Spring Mvc]]
-# [[Контроллер]]
 
 # [[application.properties]]
 # [[HikariCP]]
@@ -24,4 +23,4 @@
 # [[Повторение того, что знаешь]]
 
 ## ORM / JPA / Hibernate
-См. отдельную ветку — [[ORM]], [[JPA]], [[JPA equals hashCode]], [[JPA N+1 problem]], [[JDBC]]
+См. отдельную ветку — [[ORM]], [[JPA]], [[JPA equals hashCode]], [[JPA N+1 problem]], [[JDBC]], [[Кэши JPA-Hibernate]]
