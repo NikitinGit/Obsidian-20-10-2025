@@ -7,12 +7,14 @@
 7. [x] как настраивать пул потоков в application.properties - как определить цифры 
 8. [x] то есть чтобы определить какие настройки надо написать application.properties надо определить на какой машине будет работать спринг приложение, какая архитектура приложения (какая БД, какие протоколы используется по мимо http (websocket), какие требования по обработке запроса (за какое время он должен исполняться), промониторить логи (елк стек, графана) ?
 9. [x] у каждого микросервиса на Spring должен обслуживаться своим встроенным в спринг сервлет контейнером (томкат например) или они могут обслуживаться оддним токатом? Как это принято делать ? - принято для каджого свой томкат
-10. [ ] когда в get запросе стоит использовать дто а когда список парамтеров 
-11. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
-12. [ ] Важное замечание о Виртуальных потоках (Java 21+) и прочти статью https://medium.com/@gaddamnaveen192/we-replaced-500-tomcat-threads-with-virtual-threads-the-results-shocked-us-12cd9afe4a15 
-13. [ ] **Асинхронные методы (`@Async`)**:
-14. [ ] application.properties - https://habr.com/ru/articles/740802/ 
-15. [ ] Spring webflux 
+10. [ ] с помощью ResponseEntity можно передать  шттпонли куки ?
+11. [ ] когда в get запросе стоит использовать дто а когда список парамтеров 
+12. [ ] **Практический метод — нагрузочное тестирование, а не формула наперёд.** Дефолт → `JMeter`/`Gatling`/`k6` - ИЩИ ВНИЗУ В ПАМЯТКЕ
+13. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
+14. [ ] Важное замечание о Виртуальных потоках (Java 21+) и прочти статью https://medium.com/@gaddamnaveen192/we-replaced-500-tomcat-threads-with-virtual-threads-the-results-shocked-us-12cd9afe4a15 
+15. [ ] **Асинхронные методы (`@Async`)**:
+16. [ ] application.properties - https://habr.com/ru/articles/740802/ 
+17. [ ] Spring webflux 
 # Spring MVC
 
 >[!question]- Что такое Spring MVC?
@@ -455,6 +457,61 @@
 > ```
 >
 > В `org.example.server.TomcatLikeServer` из проекта: цикл `accept()` + `ThreadPoolExecutor` — аналог работы Tomcat; всё, что внутри `handleRequest()`, для простоты слито в одно — в реальности это два разных слоя (вызов Tomcat'ом сервлета + внутренний роутинг `DispatcherServlet`'а).
+
+>[!question]- Tomcat какой класс использует под капотом 
+>Tomcat под капотом использует ThreadPoolExecutor — точнее, свой собственный подкласс org.apache.tomcat.util.threads.ThreadPoolExecutor extends java.util.concurrent.ThreadPoolExecutor. Но повдение отличается от ThreadPoolExecutor -  Отличается не сам класс и не его базовая
+>логика, а только одно поведение — порядок роста пула (core → очередь → max). 
+>То есть в ThreadPoolExecutor порядок такой core → очередь → max (после заполнения core запросы попадают в очередь) а в томкат такой core -> max -> очередь (после core создается новый поток и при так далее до max и только после этого запросы попадают в очередь
+
+>[!question]- Как влючить сразу все core потоки при старте приложения 
+>ThreadPoolExecutor -> 
+> ```
+> AtomicInteger threadCounter = new AtomicInteger(1);
+>        ThreadFactory namedThreadFactory = runnable ->
+>                new Thread(runnable, "http-exec-" + threadCounter.getAndIncrement());
+> 
+>ThreadPoolExecutor requestPool = new ThreadPoolExecutor(CORE_POOL_SIZE,MAX_POOL_SIZE,
+>60L, TimeUnit.SECONDS,          // столько живёт поток сверх core, пока простаивает
+>new LinkedBlockingQueue<>(QUEUE_CAPACITY),namedThreadFactory
+>);
+>
+>System.out.println("requestPool.prestartAllCoreThreads(); " + requestPool.prestartAllCoreThreads());
+>```
+> Tomcat - > 
+> ```
+>@Bean                                                                                                                                                                                                                                                                                                             
+>public TomcatConnectorCustomizer prestartThreadsCustomizer() {                                                                                                                                                                                                                                                    
+>return connector -> {                                                                                                                                                                                                                                                                                         
+>var protocolHandler = (AbstractProtocol<?>) connector.getProtocolHandler();                                                                                                                                                                                                                               
+>var executor = (org.apache.tomcat.util.threads.ThreadPoolExecutor) protocolHandler.getExecutor();                                                                                                                                                                                                         
+>executor.prestartAllCoreThreads();                                                                                                                                                                                                                                                                        
+>};                                                                                                                                   
+>}```
+>На практике это делают редко — прогрев на несколько потоков не даёт заметного выигрыша, а вот min-spare-threads (Tomcat всегда старается держать это число потоков наготове) уже частично закрывает эту потребность.  
+
+>[!question]- Что происходит с потоком после обработки запроса 
+>Поток не умирает, а зависает в IDLE, ожидая следующую задачу. И это касается только core потоков, остальные потоки уничтожаются после keepAliveTime
+
+>[!question]- Как увидеть, что IDLE-поток реально жив и висит на `take()` — что такое `jstack`
+> `jstack` — консольная утилита из комплекта JDK (`$JAVA_HOME/bin/jstack`), делает **thread dump**: снимок всех потоков живого JVM-процесса — имя, состояние (`RUNNABLE`/`WAITING`/`TIMED_WAITING`/`BLOCKED`) и полный стек вызовов на момент снимка.
+>
+> Для потока, спящего на `queue.take()`, дамп покажет что-то вроде:
+> ```
+> "http-exec-3" ... waiting on condition
+>    java.lang.Thread.State: WAITING (parking)
+>         at java.util.concurrent.locks.LockSupport.park
+>         at java.util.concurrent.LinkedBlockingQueue.take
+>         at java.util.concurrent.ThreadPoolExecutor.getTask
+>         at java.util.concurrent.ThreadPoolExecutor.runWorker
+>         at java.util.concurrent.ThreadPoolExecutor$Worker.run
+>         at java.lang.Thread.run
+> ```
+>
+> **Как посмотреть:**
+> - Терминал: `jps` (тоже из JDK) — узнать PID Java-процесса → `jstack <pid>` выведет дамп в консоль.**ЕСЛИ В РЕЖИМЕ ДЕБАГА , ТО НАДО ПЕРЕД ЭТОЙ КОМАНДОЙ ВОЗБНОВИТЬ ВЫПОЛНЕНИЕ ПРОГРАМЫ ЧЕРЕЗ f9 НАПРИМЕР**
+> - IntelliJ: запустить приложение через **Debug** (не Run) — во вкладке **Threads** нижней панели виден живой список потоков с состоянием и стеком, без сторонних утилит.
+> - VisualVM (`jvisualvm`, отдельная установка, в современных JDK не входит в поставку) — GUI, вкладка Threads показывает визуальную временную шкалу состояний каждого потока.
+
 
 >[!question]- Что такое Servlet — тоже просто "обработчик запроса"?
 > Да, но формализованный: Servlet — Java-класс, реализующий интерфейс `jakarta.servlet.Servlet` (обычно через `extends HttpServlet`), с методами жизненного цикла `init()` → `service()`/`doGet()`/`doPost()` → `destroy()`. Контейнер сам создаёт **один экземпляр** (синглтон, как и Spring-бин) и сам вызывает `service()` на каждый подходящий по URL-паттерну запрос, на своём worker-потоке.
