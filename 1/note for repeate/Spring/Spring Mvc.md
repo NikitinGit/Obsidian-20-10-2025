@@ -7,14 +7,13 @@
 7. [x] как настраивать пул потоков в application.properties - как определить цифры 
 8. [x] то есть чтобы определить какие настройки надо написать application.properties надо определить на какой машине будет работать спринг приложение, какая архитектура приложения (какая БД, какие протоколы используется по мимо http (websocket), какие требования по обработке запроса (за какое время он должен исполняться), промониторить логи (елк стек, графана) ?
 9. [x] у каждого микросервиса на Spring должен обслуживаться своим встроенным в спринг сервлет контейнером (томкат например) или они могут обслуживаться оддним токатом? Как это принято делать ? - принято для каджого свой томкат
-10. [ ] с помощью ResponseEntity можно передать  шттпонли куки ?
-11. [ ] когда в get запросе стоит использовать дто а когда список парамтеров 
-12. [ ] **Практический метод — нагрузочное тестирование, а не формула наперёд.** Дефолт → `JMeter`/`Gatling`/`k6` - ИЩИ ВНИЗУ В ПАМЯТКЕ
-13. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
-14. [ ] Важное замечание о Виртуальных потоках (Java 21+) и прочти статью https://medium.com/@gaddamnaveen192/we-replaced-500-tomcat-threads-with-virtual-threads-the-results-shocked-us-12cd9afe4a15 
-15. [ ] **Асинхронные методы (`@Async`)**:
-16. [ ] application.properties - https://habr.com/ru/articles/740802/ 
-17. [ ] Spring webflux 
+10. [ ] когда в get запросе стоит использовать дто а когда список парамтеров 
+11. [ ] **Практический метод — нагрузочное тестирование, а не формула наперёд.** Дефолт → `JMeter`/`Gatling`/`k6` - ИЩИ ВНИЗУ В ПАМЯТКЕ
+12. [ ] "Он отвязывает обработку запроса от конкретного потока: поток, принявший запрос, сразу возвращается в пул, а запись в открытый response происходит позже, из другого места, когда появляются новые данные." - где он хранится тогда ?
+13. [ ] Важное замечание о Виртуальных потоках (Java 21+) и прочти статью https://medium.com/@gaddamnaveen192/we-replaced-500-tomcat-threads-with-virtual-threads-the-results-shocked-us-12cd9afe4a15 
+14. [ ] **Асинхронные методы (`@Async`)**:
+15. [ ] application.properties - https://habr.com/ru/articles/740802/ 
+16. [ ] Spring webflux 
 # Spring MVC
 
 >[!question]- Что такое Spring MVC?
@@ -511,6 +510,50 @@
 > - Терминал: `jps` (тоже из JDK) — узнать PID Java-процесса → `jstack <pid>` выведет дамп в консоль.**ЕСЛИ В РЕЖИМЕ ДЕБАГА , ТО НАДО ПЕРЕД ЭТОЙ КОМАНДОЙ ВОЗБНОВИТЬ ВЫПОЛНЕНИЕ ПРОГРАМЫ ЧЕРЕЗ f9 НАПРИМЕР**
 > - IntelliJ: запустить приложение через **Debug** (не Run) — во вкладке **Threads** нижней панели виден живой список потоков с состоянием и стеком, без сторонних утилит.
 > - VisualVM (`jvisualvm`, отдельная установка, в современных JDK не входит в поставку) — GUI, вкладка Threads показывает визуальную временную шкалу состояний каждого потока.
+
+>[!question]- Можно ли посчитать число потоков по статусам (`RUNNING`/`WAITING`...) прямо в коде — и как это сделать для реального Tomcat
+> **Быстрая сводка от самого `ThreadPoolExecutor`** (без разбивки по `Thread.State`, только "занят/не занят"):
+> ```java
+> System.out.printf("pool=%d active=%d queued=%d completed=%d%n",
+>         requestPool.getPoolSize(),        // сколько потоков всего создано (core+non-core)
+>         requestPool.getActiveCount(),     // ПРИМЕРНО сколько сейчас выполняют задачу
+>         requestPool.getQueue().size(),    // сколько задач ждут в очереди
+>         requestPool.getCompletedTaskCount());
+> ```
+> Важно: `getActiveCount()` — это не то же самое, что реальный JVM-статус `RUNNABLE`. Поток, который спит в `Thread.sleep(300)` внутри `handleRequest`, тоже посчитается как "active", хотя его настоящий `Thread.State` — `TIMED_WAITING`.
+>
+> **Точная разбивка по реальным `Thread.State`** (то же самое, что видно в `jstack`/дебаггере) — через `ThreadMXBean`:
+> ```java
+> ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+> ThreadInfo[] allThreads = bean.dumpAllThreads(false, false);
+>
+> Map<Thread.State, Long> byState = Arrays.stream(allThreads)
+>         .filter(t -> t.getThreadName().startsWith("http-exec-"))
+>         .collect(Collectors.groupingBy(ThreadInfo::getThreadState, Collectors.counting()));
+>
+> System.out.println(byState); // например: {RUNNABLE=1, WAITING=4}
+> ```
+>
+> **Для реального Tomcat** — `ThreadPoolExecutor` спрятан внутри embedded-коннектора, Spring его не публикует как бин. Достать можно тем же `TomcatConnectorCustomizer`, что и для `prestartAllCoreThreads()` (см. выше), и применить тот же `ThreadMXBean`-подход, только с другим префиксом имени потоков:
+> ```java
+> @Bean
+> public TomcatConnectorCustomizer threadStateLoggerCustomizer() {
+>     return connector -> {
+>         var protocolHandler = (org.apache.coyote.AbstractProtocol<?>) connector.getProtocolHandler();
+>         var executor = (org.apache.tomcat.util.threads.ThreadPoolExecutor) protocolHandler.getExecutor();
+>
+>         var bean = ManagementFactory.getThreadMXBean();
+>         var byState = Arrays.stream(bean.dumpAllThreads(false, false))
+>                 .filter(t -> t.getThreadName().startsWith("http-nio")) // дефолтный префикс Tomcat
+>                 .collect(Collectors.groupingBy(ThreadInfo::getThreadState, Collectors.counting()));
+>
+>         System.out.println(byState); // {RUNNABLE=2, WAITING=8}
+>     };
+> }
+> ```
+> **Проще, без своего кода** — Tomcat сам публикует пул как **JMX MBean**: `org.apache.tomcat:type=ThreadPool,name="http-nio-8080"`, атрибуты `currentThreadsBusy`/`currentThreadCount`/`maxThreads`. Смотреть через `jconsole`/VisualVM (подключиться к PID → MBeans → `Catalina`/`Tomcat` → `ThreadPool`) без единой строчки кода. Actuator-метрики `tomcat.threads.busy`/`tomcat.threads.current` — это обёртка над этим же MBean, но там только "занят/не занят" (2 состояния), а не полная разбивка по `Thread.State`, как через `ThreadMXBean`.
+>
+> **В дебаге** — так же, как с `TomcatLikeServer`: запускаете Spring Boot через **Debug**, во вкладке **Threads** видите потоки `http-nio-8080-exec-N` (имя зависит от `server.port`), кликаете на конкретный — смотрите state и стек. `jstack` работает так же (PID процесса Spring Boot приложения; если стоите на брейкпоинте — сначала `F9`/Resume, иначе таймаут).
 
 
 >[!question]- Что такое Servlet — тоже просто "обработчик запроса"?
