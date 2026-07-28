@@ -57,40 +57,5 @@
 
 ## Граница JPA-спецификации и Hibernate-реализации
 
->[!question]- JPQL к чему относится в хайбернате — часть спеки JPA или Hibernate-фича
-> **JPQL — часть спецификации JPA**, не изобретение Hibernate. Любая JPA-реализация (Hibernate, EclipseLink, OpenJPA) обязана поддерживать JPQL и понимать одинаковый синтаксис.
->
-> Hibernate при этом имеет собственный **HQL (Hibernate Query Language)** — язык, который **исторически появился раньше JPQL** и является его надмножеством: весь JPQL-код — валидный HQL, но не наоборот (у HQL есть свои расширения: например, `insert into ... select`, некоторые функции, обращение к Hibernate-специфичным возможностям).
->
-> На практике когда пишешь `@Query("SELECT ...")` в Spring Data JPA — это JPQL (переносимо между провайдерами). Если используешь `session.createQuery(...)` через нативный Hibernate `Session` — это уже HQL-контекст (хотя синтаксически в 95% случаев неотличимо от JPQL).
-
->[!question]- Пример на Java: JPQL vs HQL
-> Простой SELECT синтаксически одинаков и работает через оба входа — это и есть смысл фразы "JPQL — подмножество HQL":
-> ```java
-> // JPQL — через EntityManager (JPA API, стандарт, переносим между Hibernate/EclipseLink/OpenJPA)
-> @Query("SELECT e FROM Event e WHERE e.eventDate > :date")
-> List<Event> findUpcoming(@Param("date") LocalDate date);
->
-> // то же самое напрямую через EntityManager
-> TypedQuery<Event> query = entityManager.createQuery(
->     "SELECT e FROM Event e WHERE e.eventDate > :date", Event.class);
-> query.setParameter("date", LocalDate.now());
-> List<Event> events = query.getResultList();
-> ```
-> А вот HQL-расширение, которого в спецификации JPA нет вообще — bulk `insert into ... select`. Через `EntityManager`/JPQL так не сделать, только через нативный Hibernate `Session`:
-> ```java
-> Session session = entityManager.unwrap(Session.class); // выход из JPA в родное Hibernate API
->
-> String hql = "insert into ArchivedEvent (id, name, archivedDate) " +
->              "select e.id, e.name, current_date() from Event e where e.eventDate < :cutoff";
->
-> int inserted = session.createMutationQuery(hql)
->         .setParameter("cutoff", LocalDate.now().minusYears(1))
->         .executeUpdate();
-> ```
-> `entityManager.createQuery(hql, ...)` с таким запросом просто не скомпилируется по контракту JPA — `insert ... select` не входит в грамматику JPQL. Это ровно тот случай, когда HQL "шире" JPQL: возможность есть только у Hibernate-реализации, и код перестаёт быть переносимым на другой JPA-провайдер. (см. также [[Proxy Object]] про похожий вопрос "кто обрабатывает — Spring или Hibernate"):
->
-> | Что | Кому принадлежит |
-> |---|---|
-> | JPQL, `@Entity`, `EntityManager`, Criteria API | JPA-спецификация |
-> | HQL, `Session`, HQL-расширения, механизм прокси/lazy loading как таковой | Hibernate-реализация (сверх контракта JPA) |
+>[!question]- JPQL vs HQL, пакет jakarta, иерархия слоёв — вынесено в JPA.md
+> Практический разбор границы "что принадлежит JPA-спеке, а что Hibernate/Spring Data" (JPQL vs HQL с примером на Java, пакет `jakarta.*`, иерархия JPA → Hibernate → JDBC → DataSource) — см. [[JPA]].

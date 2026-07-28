@@ -23,8 +23,110 @@
 > Ни один из этих вызовов не содержит SQL или упоминания конкретной БД — это и есть смысл "контракта": одинаковый код работает независимо от того, Hibernate под капотом или EclipseLink.
 
 >[!question]- Hibernate  это
->одна из реализаций JPA. У Hibernate так же есть свое родное API (HQL, Session, Criteria
+>одна из реализаций JPA. У Hibernate так же есть свое родное API — HQL, Session, и был свой родной **Criteria API** (`org.hibernate.Criteria`, `org.hibernate.criterion.Restrictions`) — но это **legacy**: deprecated с Hibernate 5.2, полностью удалён в Hibernate 6. Сегодня "Criteria API" в Hibernate-проекте — это уже JPA-версия (`jakarta.persistence.criteria.*`), см. каллаут ниже "Criteria API - что это такое?".
+
+>[!question]- В како методе создается прокси JpaRepository? 
+>в getObject() у JpaRepositoryFactoryBean (это FactoryBean) — внутри он вызывает RepositoryFactorySupport.getRepository(),      
+  который через ProxyFactory.getProxy() создаёт JDK-прокси. Добавть логи в готовый прокси можно в методе интерфейса BeanPostProcessor - postProcessAfterInitialization 
+
+>[!question]- Criteria API - что это такое?
+> **Criteria API** - это **стандартный JPA API** для построения типобезопасных запросов к базе данных через Java код (без строк JPQL)
 >
+> **Что это:**
+> - Часть спецификации JPA (не требует дополнительных библиотек)
+> - Позволяет строить запросы программно через объектную модель
+> - Альтернатива JPQL строкам
+> - Типобезопасность на этапе компиляции
+>
+> **Основные компоненты:**
+> ```java
+> // 1. EntityManager - точка входа в JPA
+> @PersistenceContext
+> private EntityManager entityManager;
+>
+> // 2. CriteriaBuilder - фабрика для построения запросов
+> CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+>
+> // 3. CriteriaQuery - сам запрос
+> CriteriaQuery<Entity> query = cb.createQuery(Entity.class);
+>
+> // 4. Root - FROM часть (главная таблица)
+> Root<Entity> root = query.from(Entity.class);
+>
+> // 5. Join - JOIN части (связанные таблицы)
+> Join<Entity, Related> join = root.join("relatedField");
+>
+> // 6. Predicate - WHERE условия
+> Predicate condition = cb.equal(root.get("field"), value);
+>
+> // 7. Выполнение
+> List<Entity> results = entityManager.createQuery(query).getResultList();
+> ```
+>
+> **Пример простого запроса:**
+> ```java
+> // JPQL:
+> @Query("SELECT t FROM JudgeRoundScore t WHERE t.battle.idBattle = :battleId")
+>
+> // Criteria API:
+> CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+> CriteriaQuery<JudgeRoundScore> query = cb.createQuery(JudgeRoundScore.class);
+> Root<JudgeRoundScore> root = query.from(JudgeRoundScore.class);
+>
+> Join<JudgeRoundScore, Battle> battleJoin = root.join("battle");
+> query.where(cb.equal(battleJoin.get("idBattle"), battleId));
+>
+> List<JudgeRoundScore> results = entityManager.createQuery(query).getResultList();
+> ```
+>
+> **Пример с проекцией в DTO:**
+> ```java
+> CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+> CriteriaQuery<RoundScoresDto> query = cb.createQuery(RoundScoresDto.class);
+> Root<JudgeRoundScore> root = query.from(JudgeRoundScore.class);
+>
+> Join<JudgeRoundScore, Judge> judgeJoin = root.join("judge");
+> Join<JudgeRoundScore, Battle> battleJoin = root.join("battle");
+>
+> // Маппинг на конструктор DTO
+> query.select(cb.construct(
+>     RoundScoresDto.class,
+>     root.get("id"),
+>     judgeJoin.get("id"),
+>     battleJoin.get("idBattle"),
+>     judgeJoin.get("fullName"),
+>     judgeJoin.get("slug"),
+>     root.get("fighter1Id"),
+>     root.get("fighter1Score"),
+>     root.get("fighter2Id"),
+>     root.get("fighter2Score"),
+>     root.get("roundNumber"),
+>     root.get("winnerId")
+> ));
+>
+> query.where(battleJoin.get("idBattle").in(battleIds));
+> return entityManager.createQuery(query).getResultList();
+> ```
+>
+> **Преимущества:**
+> - ✅ **Типобезопасность** - ошибки на этапе компиляции
+> - ✅ **Стандарт JPA** - не нужны дополнительные библиотеки
+> - ✅ **Переносимость** - работает с любым JPA провайдером (Hibernate, EclipseLink, etc)
+> - ✅ **Динамические запросы** - легко добавлять условия программно
+> - ✅ **Рефакторинг** - IDE видит использование полей
+>
+> **Недостатки:**
+> - ❌ **Многословный** - много кода для простых запросов
+> - ❌ **Сложно читать** - не похож на SQL
+> - ❌ **Нет автокомплита для полей** - нужно знать точные имена строками
+> - ❌ **Проблема с "Find Usages"** - `root.get("field")` - строка, IDE не видит usage
+>
+> **Когда использовать:**
+> - ✅ Динамические запросы с условными фильтрами
+> - ✅ Сложная бизнес-логика в репозиториях
+> - ✅ Не хочется добавлять QueryDSL
+> - ✅ Нужна типобезопасность без сторонних библиотек
+> - ✅ Переиспользование общей логики проекций
 
 >[!question]- Иерархия слоёв от JPA до физического соединения с БД
 > ```
@@ -55,6 +157,44 @@
 > - Не акроним и не "код" — буквально **название столицы Индонезии**. Смысловой технической нагрузки в самом слове нет.
 > - Eclipse Foundation провёл публичное голосование сообщества по списку кандидатов в 2018 году — "Jakarta" победило, в том числе потому, что права на это название были **юридически свободны** и быстро доступны (в отличие от других вариантов с конфликтами торговых марок).
 > - Тематическое совпадение (не официальная причина выбора, но объясняет, почему имя "прижилось"): **Ява (Java)** — остров в Индонезии, а **Джакарта** — столица Индонезии. "Jakarta" звучит по духу близко к "Java" — обе про Индонезию.
+
+>[!question]- JPQL к чему относится в хайбернате — часть спеки JPA или Hibernate-фича
+> **JPQL — часть спецификации JPA**, не изобретение Hibernate. Любая JPA-реализация (Hibernate, EclipseLink, OpenJPA) обязана поддерживать JPQL и понимать одинаковый синтаксис.
+>
+> Hibernate при этом имеет собственный **HQL (Hibernate Query Language)** — язык, который **исторически появился раньше JPQL** и является его надмножеством: весь JPQL-код — валидный HQL, но не наоборот (у HQL есть свои расширения: например, `insert into ... select`, некоторые функции, обращение к Hibernate-специфичным возможностям).
+>
+> На практике когда пишешь `@Query("SELECT ...")` в Spring Data JPA — это JPQL (переносимо между провайдерами). Если используешь `session.createQuery(...)` через нативный Hibernate `Session` — это уже HQL-контекст (хотя синтаксически в 95% случаев неотличимо от JPQL).
+
+>[!question]- Пример на Java: JPQL vs HQL
+> Простой SELECT синтаксически одинаков и работает через оба входа — это и есть смысл фразы "JPQL — подмножество HQL":
+> ```java
+> // JPQL — через EntityManager (JPA API, стандарт, переносим между Hibernate/EclipseLink/OpenJPA)
+> @Query("SELECT e FROM Event e WHERE e.eventDate > :date")
+> List<Event> findUpcoming(@Param("date") LocalDate date);
+>
+> // то же самое напрямую через EntityManager
+> TypedQuery<Event> query = entityManager.createQuery(
+>     "SELECT e FROM Event e WHERE e.eventDate > :date", Event.class);
+> query.setParameter("date", LocalDate.now());
+> List<Event> events = query.getResultList();
+> ```
+> А вот HQL-расширение, которого в спецификации JPA нет вообще — bulk `insert into ... select`. Через `EntityManager`/JPQL так не сделать, только через нативный Hibernate `Session`:
+> ```java
+> Session session = entityManager.unwrap(Session.class); // выход из JPA в родное Hibernate API
+>
+> String hql = "insert into ArchivedEvent (id, name, archivedDate) " +
+>              "select e.id, e.name, current_date() from Event e where e.eventDate < :cutoff";
+>
+> int inserted = session.createMutationQuery(hql)
+>         .setParameter("cutoff", LocalDate.now().minusYears(1))
+>         .executeUpdate();
+> ```
+> `entityManager.createQuery(hql, ...)` с таким запросом просто не скомпилируется по контракту JPA — `insert ... select` не входит в грамматику JPQL. Это ровно тот случай, когда HQL "шире" JPQL: возможность есть только у Hibernate-реализации, и код перестаёт быть переносимым на другой JPA-провайдер. (см. также [[Proxy Object]] про похожий вопрос "кто обрабатывает — Spring или Hibernate"):
+>
+> | Что | Кому принадлежит |
+> |---|---|
+> | JPQL, `@Entity`, `EntityManager`, Criteria API | JPA-спецификация |
+> | HQL, `Session`, HQL-расширения, механизм прокси/lazy loading как таковой | Hibernate-реализация (сверх контракта JPA) |
 
 >[!question]- Пример Entity с аннотациями из трёх разных источников — как разобрать, кто чем владеет
 > ```java
@@ -265,105 +405,6 @@
 > - Стандарт JPA (переносимость между провайдерами)
 > - Явно показывает намерение (работа с persistence context)
 > - Код остается переносимым между JPA-провайдерами
-
->[!question]- Criteria API - что это такое?
-> **Criteria API** - это **стандартный JPA API** для построения типобезопасных запросов к базе данных через Java код (без строк JPQL)
->
-> **Что это:**
-> - Часть спецификации JPA (не требует дополнительных библиотек)
-> - Позволяет строить запросы программно через объектную модель
-> - Альтернатива JPQL строкам
-> - Типобезопасность на этапе компиляции
->
-> **Основные компоненты:**
-> ```java
-> // 1. EntityManager - точка входа в JPA
-> @PersistenceContext
-> private EntityManager entityManager;
->
-> // 2. CriteriaBuilder - фабрика для построения запросов
-> CriteriaBuilder cb = entityManager.getCriteriaBuilder();
->
-> // 3. CriteriaQuery - сам запрос
-> CriteriaQuery<Entity> query = cb.createQuery(Entity.class);
->
-> // 4. Root - FROM часть (главная таблица)
-> Root<Entity> root = query.from(Entity.class);
->
-> // 5. Join - JOIN части (связанные таблицы)
-> Join<Entity, Related> join = root.join("relatedField");
->
-> // 6. Predicate - WHERE условия
-> Predicate condition = cb.equal(root.get("field"), value);
->
-> // 7. Выполнение
-> List<Entity> results = entityManager.createQuery(query).getResultList();
-> ```
->
-> **Пример простого запроса:**
-> ```java
-> // JPQL:
-> @Query("SELECT t FROM JudgeRoundScore t WHERE t.battle.idBattle = :battleId")
->
-> // Criteria API:
-> CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-> CriteriaQuery<JudgeRoundScore> query = cb.createQuery(JudgeRoundScore.class);
-> Root<JudgeRoundScore> root = query.from(JudgeRoundScore.class);
->
-> Join<JudgeRoundScore, Battle> battleJoin = root.join("battle");
-> query.where(cb.equal(battleJoin.get("idBattle"), battleId));
->
-> List<JudgeRoundScore> results = entityManager.createQuery(query).getResultList();
-> ```
->
-> **Пример с проекцией в DTO:**
-> ```java
-> CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-> CriteriaQuery<RoundScoresDto> query = cb.createQuery(RoundScoresDto.class);
-> Root<JudgeRoundScore> root = query.from(JudgeRoundScore.class);
->
-> Join<JudgeRoundScore, Judge> judgeJoin = root.join("judge");
-> Join<JudgeRoundScore, Battle> battleJoin = root.join("battle");
->
-> // Маппинг на конструктор DTO
-> query.select(cb.construct(
->     RoundScoresDto.class,
->     root.get("id"),
->     judgeJoin.get("id"),
->     battleJoin.get("idBattle"),
->     judgeJoin.get("fullName"),
->     judgeJoin.get("slug"),
->     root.get("fighter1Id"),
->     root.get("fighter1Score"),
->     root.get("fighter2Id"),
->     root.get("fighter2Score"),
->     root.get("roundNumber"),
->     root.get("winnerId")
-> ));
->
-> query.where(battleJoin.get("idBattle").in(battleIds));
-> return entityManager.createQuery(query).getResultList();
-> ```
->
-> **Преимущества:**
-> - ✅ **Типобезопасность** - ошибки на этапе компиляции
-> - ✅ **Стандарт JPA** - не нужны дополнительные библиотеки
-> - ✅ **Переносимость** - работает с любым JPA провайдером (Hibernate, EclipseLink, etc)
-> - ✅ **Динамические запросы** - легко добавлять условия программно
-> - ✅ **Рефакторинг** - IDE видит использование полей
->
-> **Недостатки:**
-> - ❌ **Многословный** - много кода для простых запросов
-> - ❌ **Сложно читать** - не похож на SQL
-> - ❌ **Нет автокомплита для полей** - нужно знать точные имена строками
-> - ❌ **Проблема с "Find Usages"** - `root.get("field")` - строка, IDE не видит usage
->
-> **Когда использовать:**
-> - ✅ Динамические запросы с условными фильтрами
-> - ✅ Сложная бизнес-логика в репозиториях
-> - ✅ Не хочется добавлять QueryDSL
-> - ✅ Нужна типобезопасность без сторонних библиотек
-> - ✅ Переиспользование общей логики проекций
 
 >[!question]- Почему IntelliJ не видит usage конструктора DTO в Criteria API?
 > **Проблема:** После рефакторинга на Criteria API, IntelliJ показывает "No usages" для конструктора DTO

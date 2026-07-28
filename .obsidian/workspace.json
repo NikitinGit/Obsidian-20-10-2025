@@ -99,7 +99,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -218,8 +218,7 @@
               "title": "WebSocketStomp"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -251,7 +250,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "jpa",
+                "query": "preInstantiateSingletons",
                 "matchingCase": false,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -367,45 +366,45 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "51a5178a1e779a1e",
+  "active": "ecc0a7fc6192e163",
   "lastOpenFiles": [
+    "1/note for repeate/Spring/IoC Spring.md.tmp.4874.7f8f7effcc6b",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Spring/IoC Spring.md",
+    "1/note for repeate/Spring/IoC Spring.md.tmp.4874.547626d98eb4",
+    "1/note for repeate/Spring/IoC Spring.md.tmp.4874.e7df7d643f5a",
+    "1/note for repeate/Spring/IoC Spring.md.tmp.4874.a16b3bd48a2f",
+    "1/note for repeate/Data Base/Orm/JPA.md",
+    "1/note for repeate/Spring/IoC Spring.md.tmp.15113.b18543ad6ade",
+    "1/note for repeate/Spring/IoC Spring.md.tmp.15113.bc85df6649d8",
+    "1/note for repeate/Data Base/Orm/JPA.md.tmp.7244.b3760c186872",
+    "1/note for repeate/Data Base/Orm/ORM.md.tmp.7244.c85df41c070b",
+    "1/note for repeate/Data Base/Orm/ORM.md",
+    "1/note for repeate/Data Base/Orm/JPA.md.tmp.7244.210b0d70db1a",
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/Задачи на день.md",
     "1/ГЛАВНОЕ.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/Data Base/Orm/JPA.md",
-    "1/note for repeate/Spring/IoC Spring.md",
     "1/note for repeate/Spring/Spring Mvc.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
     "1/note for repeate/Микросервисы.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/Spring/Proxy Object.md",
     "1/note for repeate/Spring/Spring Security.md",
     "1/note for repeate/Spring/Spring Mvc.md.tmp.5913.ca8514b2df3c",
     "1/note for repeate/Spring/Spring Mvc.md~",
     "1/note for repeate/Spring/Spring Base.md",
     "1/СТЕНДАП.md",
-    "1/note for repeate/Data Base/Orm/ORM.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/Data Base/Транзакции.md",
     "1/note for repeate/Data Base/Orm/Кэши JPA-Hibernate.md",
-    "1/note for repeate/Spring/Spring.md.tmp.20335.47956230d683",
-    "1/note for repeate/Spring/Spring Base.md.tmp.20335.38229a56d0ff",
-    "1/note for repeate/Spring/Proxy Object.md.tmp.20335.7b6602b654cc",
-    "1/note for repeate/Data Base/Orm/Кэши JPA-Hibernate.md.tmp.20335.de0fcce175c8",
     "КЭШ/Memcached.md",
     "1/note for repeate/FRONT/Coockie, local Storage.md",
     "1/note for repeate/Собеседование/ВОПРОСЫ ПО СОБЕСЕДОВАНИЮ/Autoboxing-Unboxing.md",
     "Транзакции/Выводы.md",
     "1/note for repeate/Data Base/Orm/JDBC.md",
     "1/note for repeate/Spring/application.properties.md",
-    "1/note for repeate/Data Base/Orm/JPA.md.tmp.20335.feeb6f06765c",
     "1/note for repeate/Spring/Spring.md",
     "1/note for repeate/Spring/Повторение того, что знаешь.md",
-    "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/Data Base/Orm/JPA.md.tmp.20335.c7edec2c20d9",
     "Pasted image 20260722201101.png",
-    "1/note for repeate/Data Base/HikariCP.md",
-    "1/note for repeate/Data Base/Orm/JDBC.md.tmp.5351.15714bf994ed",
-    "1/note for repeate/Data Base/Orm/JDBC.md.tmp.5351.d2d8ea981fda",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
     "Pasted image 20260109165447.png",
