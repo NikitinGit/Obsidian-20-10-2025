@@ -46,7 +46,7 @@
   --skip-ssl --no-tablespaces --verbose \
   strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 >```
->Исправление кодирвки
+>Исправление кодировки
 >```
 >sed 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g; s/utf8mb3/utf8/g' /tmp/strikerstat_preprod_dump.sql > /tmp/strikerstat_preprod_dump_fixed.sql
 >```

@@ -169,6 +169,90 @@
 >[!question]- какой метод срабатывает после инициализации всех бинов
 >run , чтобы его использоватжь надо переопределить его в классе  помеченном @component и реализовать интерефейс ComandLineRunner
 
+>[!question]- какой этап инициализации бина можно использовать для логирования и как это сделать через аспект
+> Ни `@PostConstruct`, ни `postProcessBeforeInitialization`/`postProcessAfterInitialization` **не подходят** для "залогировать каждый вызов метода бина" — все они срабатывают **один раз**, при создании бина, а не при каждом вызове `method1()`/`method2()`.
+>
+> `postProcessAfterInitialization` можно использовать только чтобы **один раз настроить** перехват на будущее — обернуть бин в прокси с `MethodInterceptor`. Сам лог пишется не в теле `postProcessAfterInitialization`, а внутри лямбды интерцептора — она и выполняется на каждый реальный вызов:
+> ```java
+> @Override
+> public Object postProcessAfterInitialization(Object bean, String beanName) {
+>     if (bean instanceof EventFightersService) {
+>         ProxyFactory pf = new ProxyFactory(bean);
+>         pf.addAdvice((MethodInterceptor) invocation -> {
+>             long start = System.nanoTime();
+>             Object result = invocation.proceed();
+>             log.info("{} выполнился за {} мкс", invocation.getMethod().getName(),
+>                     (System.nanoTime() - start) / 1000);
+>             return result;
+>         });
+>         return pf.getProxy(); // подмена бина на прокси — происходит один раз
+>     }
+>     return bean;
+> }
+> ```
+>
+> Но правильный, идиоматичный инструмент для этой задачи — **`@Aspect`**, а не ручной `BeanPostProcessor`:
+> ```java
+> @Aspect
+> @Component
+> public class TimingAspect {
+>     @Around("execution(* org.example.springbeans.bean.*.EventFightersService.*(..))")
+>     public Object logTiming(ProceedingJoinPoint pjp) throws Throwable {
+>         long start = System.nanoTime();
+>         try {
+>             return pjp.proceed();
+>         } finally {
+>             log.info("{} выполнился за {} мкс", pjp.getSignature().getName(),
+>                     (System.nanoTime() - start) / 1000);
+>         }
+>     }
+> }
+> ```
+> Pointcut `execution(* ...EventFightersService.*(..))` покрывает **все** методы класса, а тело `@Around` выполняется на **каждый** реальный вызов. Это по сути тот же механизм (`AbstractAutoProxyCreator` — тоже `BeanPostProcessor` под капотом), просто без ручного написания прокси-обёртки.
+
+>[!question]- Fail-fast валидация конфигурации через `BeanPostProcessor` (проверено запуском)
+> Пример реального (не библиотечного) use-case для своего `BeanPostProcessor`: проверить ВСЕ бины с определённым маркером ещё во время старта контекста — до того, как приложение начнёт принимать трафик.
+>
+> Маркер + бин:
+> ```java
+> @Retention(RetentionPolicy.RUNTIME)
+> @Target(ElementType.TYPE)
+> public @interface ExternalEndpoint {
+>     String url();
+> }
+>
+> @Component
+> @ExternalEndpoint(url = "https://api.example.com/pay")
+> public class PaymentGatewayClient { }
+> ```
+>
+> Валидатор:
+> ```java
+> @Component
+> public class ExternalEndpointValidator implements BeanPostProcessor {
+>     @Override
+>     public Object postProcessBeforeInitialization(Object bean, String beanName) {
+>         ExternalEndpoint a = bean.getClass().getAnnotation(ExternalEndpoint.class);
+>         if (a != null && a.url().isBlank()) {
+>             throw new IllegalStateException(
+>                 "Бин '%s' помечен @ExternalEndpoint, но url не задан".formatted(beanName));
+>         }
+>         return bean;
+>     }
+> }
+> ```
+>
+> Реальный результат запуска с пустым `url = ""`:
+> ```
+> BeanCreationException: Error creating bean with name 'brokenClient' ...
+> Caused by: IllegalStateException: Бин 'brokenClient' помечен @ExternalEndpoint, но url не задан
+> 	at ExternalEndpointValidator.postProcessBeforeInitialization(...)
+> 	at AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(...)
+> ```
+> Исключение, брошенное внутри `postProcessBeforeInitialization`, не проглатывается — Spring оборачивает его в `BeanCreationException` и **останавливает весь `refresh()` контекста**. Приложение не поднимется вообще — ошибка конфигурации обнаружена за секунды при старте, а не через час в проде на первом реальном вызове.
+>
+> Нюанс: атрибуты аннотаций — compile-time константы, `@ExternalEndpoint(url = "${payment.url}")` сам по себе не резолвится как `@Value`. Если нужно тянуть `url` из `application.yaml`, валидатору нужно самому резолвить плейсхолдер через `Environment.resolvePlaceholders(...)`.
+
 >[!question]-  Название бинов могут совпадать ? 
 > В пределах одного контекста нет -   например в  ApplicationContext  , избавиться от дублей можно через @Bean(name = "bean1") . **В разных `ApplicationContext`** (например, в родителе и потомке) имена могут совпадать. 
 
