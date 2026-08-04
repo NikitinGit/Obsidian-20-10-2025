@@ -32,7 +32,59 @@
 >    rm -f /tmp/strikerstat_preprod_dump.sql /tmp/strikerstat_preprod_dump_fixed.sql && echo "Временные файлы удалены"
 >    ```
 
->[!question]- Перенести данные с препродовой БД в локальную БД 
+>[!question]- Как сохранить дамп так, чтобы он не пропадал после перезагрузки
+>Проблема: `/tmp` считается временной директорией и может очищаться (например, `systemd-tmpfiles-clean.timer`), поэтому после ребута файла дампа там может не быть.
+>Решение — сохранять дамп в постоянном месте (например, в домашней директории), а не в `/tmp`
+>```
+>mkdir -p ~/dumps/strikerstat
+>
+>docker run --rm mysql:8.0 mysqldump \
+>-h 188.225.76.97 -u dev_user -p"thah2Eolcet6gouJ" \
+> --ssl-mode=DISABLED --no-tablespaces --verbose \
+> strikerstat_preprod > ~/dumps/strikerstat/strikerstat_preprod_dump.sql
+>```
+>Пересоздание БД
+>```
+>docker exec mysql_db_v2 mysql -uroot -p'passStrikerStat' -e "DROP DATABASE IF EXISTS strikerstat_local; CREATE DATABASE strikerstat_local;"
+>```
+>Импортируем дамп из постоянного пути (можно повторять сколько угодно раз, в том числе после перезагрузки)
+>```
+>docker exec -i mysql_db_v2 mysql -uroot -p"passStrikerStat" strikerstat_local < ~/dumps/strikerstat/strikerstat_preprod_dump.sql
+>```
+>Дамп больше не одноразовый, поэтому шаг удаления временных файлов для него не нужен. При желании можно сжать, чтобы не занимал место:
+>```
+>gzip ~/dumps/strikerstat/strikerstat_preprod_dump.sql
+>gunzip -k ~/dumps/strikerstat/strikerstat_preprod_dump.sql.gz
+>```
+
+>[!question]- Сохранить дамп локальной БД под своим именем и периодически импортировать именно его
+>Сделать дамп текущего состояния локальной БД (после своих изменений) под понятным именем — чтобы потом можно было в любой момент откатиться именно к этой точке
+>```
+>docker exec mysql_db_v2 mysqldump -uroot -p'passStrikerStat' --single-transaction strikerstat_local > ~/dumps/strikerstat/strikerstat_local_STR_1247_dynamic_time.sql
+>```
+>
+>Импортировать этот же дамп (можно повторять сколько угодно раз)
+>```
+>docker exec mysql_db_v2 mysql -uroot -p'passStrikerStat' -e "DROP DATABASE IF EXISTS strikerstat_local; CREATE DATABASE strikerstat_local;"
+>
+>docker exec -i mysql_db_v2 mysql -uroot -p"passStrikerStat" strikerstat_local < ~/dumps/strikerstat/strikerstat_local_STR_1247_dynamic_time.sql
+>```
+>Файл лежит в `~/dumps/strikerstat/` (не `/tmp`), поэтому переживает перезагрузку — можно держать там сколько угодно именованных снепшотов и переключаться между ними по имени файла.
+
+>[!question]- mysqldump: Got error 1449 "The user specified as a definer... does not exist" при LOCK TABLES
+>Причина: в БД есть VIEW с `DEFINER='some_user'@'some_host'` (обычно приехал вместе с дампом с препрода), а такого пользователя локально нет. `mysqldump` по умолчанию делает `LOCK TABLES`, и на этом шаге MySQL проверяет definer'а вьюхи — падает.
+>
+>Решение 1 (проще, ничего не меняет в БД) — добавить `--single-transaction`, тогда `mysqldump` не делает `LOCK TABLES` вовсе:
+>```
+>docker exec mysql_db_v2 mysqldump -uroot -p'passStrikerStat' --single-transaction strikerstat_local > ~/dumps/strikerstat/<имя>.sql
+>```
+>
+>Решение 2 (если ошибка всё равно вылезает) — создать локально "пустышку" этого пользователя, чтобы definer существовал:
+>```
+>docker exec mysql_db_v2 mysql -uroot -p'passStrikerStat' -e "CREATE USER IF NOT EXISTS 'strikerstat_user_preprod'@'192.168.0.4' IDENTIFIED BY 'x'; GRANT SELECT ON strikerstat_local.* TO 'strikerstat_user_preprod'@'192.168.0.4';"
+>```
+
+>[!question]- Перенести данные с препродовой БД в локальную БД  через CLI
 >создаеам дамп и скачиваем 
 >```
 >mariadb-dump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' \

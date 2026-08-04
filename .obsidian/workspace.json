@@ -232,7 +232,8 @@
               "title": "Изменения зеркальности плоскостей"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -380,13 +381,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ecc0a7fc6192e163",
+  "active": "39445da31d7a79ff",
   "lastOpenFiles": [
+    "1/note for repeate/Data Base/Команды mysql.md",
+    "1/note for repeate/Data Base/Команды mysql.md.tmp.22986.21e0ef1937a4",
+    "1/note for repeate/Data Base/Команды mysql.md.tmp.22986.76dd02b96f89",
+    "1/note for repeate/Data Base/Команды mysql.md.tmp.22986.a991c64923bb",
+    "1/note for repeate/Spring/Spring Mvc.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/Data Base/Транзакции.md",
+    "1/note for repeate/Spring/IoC Spring.md",
     "1/note for repeate/Spring/IoC Spring.md.tmp.34068.be15742117e8",
     "1/note for repeate/Spring/IoC Spring.md.tmp.34068.74291e022d22",
-    "1/note for repeate/Data Base/Команды mysql.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/Spring/IoC Spring.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "1/note for repeate/strikerStat/WebSocketStomp.md",
     "1/note for repeate/Spring/Spring Base.md",
@@ -397,19 +404,12 @@
     "1/note for repeate/Spring/IoC Spring.md.tmp.4874.a16b3bd48a2f",
     "1/note for repeate/Data Base/Orm/JPA.md",
     "1/note for repeate/Spring/IoC Spring.md.tmp.15113.b18543ad6ade",
-    "1/note for repeate/Spring/IoC Spring.md.tmp.15113.bc85df6649d8",
-    "1/note for repeate/Data Base/Orm/JPA.md.tmp.7244.b3760c186872",
-    "1/note for repeate/Data Base/Orm/ORM.md.tmp.7244.c85df41c070b",
     "1/note for repeate/Data Base/Orm/ORM.md",
-    "1/note for repeate/Data Base/Orm/JPA.md.tmp.7244.210b0d70db1a",
     "1/ГЛАВНОЕ.md",
-    "1/note for repeate/Spring/Spring Mvc.md",
     "1/note for repeate/Микросервисы.md",
     "1/note for repeate/Spring/Proxy Object.md",
     "1/note for repeate/Spring/Spring Security.md",
     "1/СТЕНДАП.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/Data Base/Транзакции.md",
     "1/note for repeate/Data Base/Orm/Кэши JPA-Hibernate.md",
     "КЭШ/Memcached.md",
     "1/note for repeate/FRONT/Coockie, local Storage.md",
