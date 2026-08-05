@@ -88,7 +88,19 @@
 > 7. BeanPostProcessor.postProcessAfterInitialization - в том же классе где BeanPostProcessor.postProcessBeforeInitialization 
 > 8. После того, как все бины прошли эти 6 шагов - срабатывает **`SmartInitializingSingleton.afterSingletonsInstantiated()`** 
 
->[!question]- Aware — что это (шаг между DI и `postProcessBeforeInitialization`)
+>[!question]- как указать какой бин от какого зависит явно если нет обычного механизма DI 
+> @DependsOn("infrastructureBean") над классом 
+
+>[!question]- отличие @PostConstruct от afterPropertiesSet
+>afterPropertiesSet старше (родной механизм Spring с самого начала), @PostConstruct — новее (пришёл как стандарт Java/JSR-250 и стал
+  предпочтительным).
+  @PostConstruct/@PreDestroy в Spring появились в Spring Framework 2.5 (2007 год) — именно в этом релизе добавили обширную поддержку аннотаций (@Autowired, @Qualifier,      
+  @PostConstruct, @PreDestroy, @Resource, сканирование @Component) через CommonAnnotationBeanPostProcessor.
+
+>[!question]- отличие @PostConstruct от afterSingletonsInstantiated
+>afterSingletonsInstantiated срабатывает когда все синглтон бины инициализировались
+
+>[!question]- Aware (Осведомленный, знающий)— что это (шаг между DI и `postProcessBeforeInitialization`)
 > Группа маркерных интерфейсов вида `XxxAware`, через которые бин получает доступ не к обычным бизнес-зависимостям (как через `@Autowired`), а к **внутренним объектам самого контейнера**.
 >
 > Самые частые:
@@ -102,6 +114,13 @@
 > Почему не через `@Autowired`: это не бины бизнес-логики, а сама "начинка" контейнера, поэтому механизм проще — Spring просто проверяет `if (bean instanceof BeanNameAware) { ((BeanNameAware) bean).setBeanName(...); }` и вызывает нужный сеттер напрямую.
 >
 > Тонкость по порядку: `BeanNameAware`/`BeanClassLoaderAware`/`BeanFactoryAware` вызываются контейнером **напрямую**, до вызова любого `BeanPostProcessor` — отдельный, самый первый под-шаг. А вот `ApplicationContextAware`/`EnvironmentAware`/остальные реализованы через специальный `BeanPostProcessor` (`ApplicationContextAwareProcessor`), зарегистрированный самым первым в очереди — формально они срабатывают уже **внутри** `postProcessBeforeInitialization`, а не строго до него.
+
+>[!question]- Bean "Отдан наружу" - это 
+>возвращён из getBean() кому-либо: другому бину, который его затем сохранит в своё поле, или вашему собственному коду в main(),
+>который вызовет на  нём метод. Например 
+>```
+>BusinessService service = context.getBean(BusinessService.class);
+>```
 
 >[!question]- Жизненный цикл бина на практике
 > Для каждого этапа — что писать и зачем.
