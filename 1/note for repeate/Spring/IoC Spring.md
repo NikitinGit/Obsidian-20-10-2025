@@ -302,6 +302,17 @@
 >[!question]- @Component
 > внедряется автоматчиески при  запуске проги с помощью  @ComponentScan . его потомки(`@Service`, `@Repository`, `@Controller` и т.д.)
 
+>[!question]- Аннотация сама по себе — это бин? (общий принцип)
+> Нет. Ни `@Component`/`@Service`/`@Controller`/`@Repository`, ни `@Bean`, ни `@Entity`, ни `@Transactional`/`@Cacheable` — сами по себе НЕ бины. Аннотация — это просто метаданные в `.class`-файле, инертные, пока их кто-то не прочитает через рефлексию.
+>
+> Бином становится **объект в памяти**, зарегистрированный в контейнере (доступный через `getBean()`), появляющийся **в результате** того, что аннотацию кто-то прочитал:
+> - `@Component`/`@Service`/`@Controller`/`@Repository` — читает `ClassPathBeanDefinitionScanner` (внутри `@ComponentScan`), строит `BeanDefinition`, контейнер создаёт объект через `new`.
+> - `@Bean` — метка на **методе** `@Configuration`-класса; `ConfigurationClassParser` строит `BeanDefinition` (с `factoryMethodName`), бином становится не сам метод, а то, что он вернёт при вызове контейнером.
+>
+> Проверка себе: класс с `@Component`, но без `@ComponentScan` на его пакет — так и останется просто классом с бесполезной аннотацией, бин никогда не появится.
+>
+> Тот же принцип и за пределами бинов Spring: `@Entity` инертна, пока её не прочитает сканирование Hibernate при бутстрапе `EntityManagerFactory` (см. калаут выше про `@Entity`).
+
 >[!question]- @Qualifier("russianGreetingService") 
 >указывает какой бин использовать если дубль бина интерфейса
 >```
