@@ -55,72 +55,29 @@
 >
 > Проверено на реальном запуске (`BeanDefinitionRegistryPostProcessor` + `addConstructorArgValue`): сразу после старта `getGenericArgumentValues()` пуст — Spring переносит значение в `getIndexedArgumentValues()` после того, как сопоставил его с конкретной позицией параметра конструктора.
 
->[!question]-  Порядок инициализации бина 
-> Чиcтые бины инициализируются позже тех, в которые они внедренны Сначала создаются бины, от которых зависят другие 
-> 1. Обнаружение компонента - `@ComponentScan`,  читает файлы `.class` на жестком диске (Сканирование classpath). 
-> Содается список-инструкция BeanDefinition , пока все бины не пройдут этот этап, следующий не начнутся.
-> Логировать можно через
->```
->application.properties /  logging.level.org.springframework.context=DEBUG
->```
->Пример вывода 
->```
->Identified candidate component class: file [/home/igor/IdeaProjects/sokcets/SpringBeans/target/classes/org/example/springbeans/bean/life/circle/BusinessService.class]
->//О, я нашел класс! Запишу его в список кандидатов на создание
->``` 
->Сам бин ещё не создан, это только "рецепт" — инструкция по его созданию (а не карта мест использования бина в проекте). `BeanDefinition` — низкоуровневый механизм, с которым бизнес-разработчики (банки, стартапы, не пишущие свои библиотеки/фреймворки для Spring) обычно не работают напрямую — для бизнес-логики, как правило, достаточно конструктора, `@PostConstruct`/`@PreDestroy`, и изредка `@Bean(initMethod=...)` при подключении чужих (сторонних) классов как бинов.
-> 2. Вызов Конструктора (`instance = new MyClass()`) (от сюда начинается Построение графа зависимостей - берет список инструкций из Шага 1 и  получает  информачию о том, какие бины  инциализировать первыми а какие потом.  
+>[!question]- Порядок инициализации бина (шпаргалка)
+> **1. Scanning** — `@ComponentScan` читает `.class`-файлы, строит `BeanDefinition` ("рецепт", не сам бин) для ВСЕХ кандидатов. Это отдельная **волна**: пока не просканированы все классы, ни один бин создаваться не начинает.
+> Лог (`logging.level.org.springframework.context=DEBUG`): `Identified candidate component class: ...`
+>
+> **2. Создание — per-bean конвейер (уже НЕ волна)**. Строится рекурсивно от корневого `getBean()`, вдоль графа зависимостей:
 > ```
-> граф зависимостей начинается с вызова конструктора бина А -> если в нем есть иньекция зависимости Б -> вызов конструтора         
-  зависимости Б (если в Б конструторе иньексия В зависимости - вызов конструтора В и т.д.) ,после (если есть) вызов @Autowired полей, после (если есть) вызов сеттеров методов иньекций. Б создаётся полностью, весь цикл (конструктор → DI → Aware → 
-  postProcessBeforeInitialization/@PostConstruct → afterPropertiesSet → postProcessAfterInitialization) и только после этого начинается создаваться следующая зависимость в А бине. Если бин А инициализирован, но есть бин Х, в котором есть зависимость А - то А не инициализируется и просто подставляется в зависиомть бина Х из кеша .
-  >Завершается посторение после populateBean — заполнение @Autowired-полей/сеттеров (внутри — разрешение ЭТИХ зависимостей) , перед postProcessBeforeInitialization (когда все нужные этому бину зависимости точно на месте)
+> A зависит от B → B создаётся ПОЛНОСТЬЮ (весь цикл ниже, до конца)
+>                → только потом A получает готовый B и продолжает свой цикл
 > ```
-> )
->    Пример системного лога 
->    ```
-> Creating shared instance of singleton bean 'infrastructureBean'
->    ```
-> 3. BeanNameAware.setBeanName - бину сообщается его уже назначенное имя
-> 4. BeanPostProcessor.postProcessBeforeInitialization - создается отдельный класс реализующий интерфейс BeanPostProcessor 
-> 5. Вызов @PostConstruct - Spring ГАРАНТИРОВАННО внедрил все зависимости ДАННОГО БИНА. (База данных / Сеть готовы) - это этап initialization callback — вызывается после конструктора и после внедрения всех зависимостей (DI) данного бина, но до того как бин станет доступен для  использования. 
-> 6. InitializingBean.afterPropertiesSet  - «родной» интерфейс самого Spring Framework, который существовал в нем **с самой первой версии (2003 год)**. Чтобы им воспользоваться, ваш класс _обязан_ наследоваться от интерфейса Spring (`implements InitializingBean`).
-> 7. BeanPostProcessor.postProcessAfterInitialization - в том же классе где BeanPostProcessor.postProcessBeforeInitialization 
-> 8. После того, как все бины прошли эти 6 шагов - срабатывает **`SmartInitializingSingleton.afterSingletonsInstantiated()`** 
-
->[!question]- как указать какой бин от какого зависит явно если нет обычного механизма DI 
-> @DependsOn("infrastructureBean") над классом 
-
->[!question]- отличие @PostConstruct от afterPropertiesSet
->afterPropertiesSet старше (родной механизм Spring с самого начала), @PostConstruct — новее (пришёл как стандарт Java/JSR-250 и стал
-  предпочтительным).
-  @PostConstruct/@PreDestroy в Spring появились в Spring Framework 2.5 (2007 год) — именно в этом релизе добавили обширную поддержку аннотаций (@Autowired, @Qualifier,      
-  @PostConstruct, @PreDestroy, @Resource, сканирование @Component) через CommonAnnotationBeanPostProcessor.
-
->[!question]- отличие @PostConstruct от afterSingletonsInstantiated
->afterSingletonsInstantiated срабатывает когда все синглтон бины инициализировались
-
->[!question]- Aware (Осведомленный, знающий)— что это (шаг между DI и `postProcessBeforeInitialization`)
-> Группа маркерных интерфейсов вида `XxxAware`, через которые бин получает доступ не к обычным бизнес-зависимостям (как через `@Autowired`), а к **внутренним объектам самого контейнера**.
+> Если A уже создан, а его просит X — A НЕ пересоздаётся, берётся из кеша синглтонов (`getSingleton()`).
 >
-> Самые частые:
-> - **`BeanNameAware`** — `setBeanName(String name)` — сообщает бину его собственное имя в контейнере.
-> - **`BeanFactoryAware`** — ссылка на сам `BeanFactory`, в котором бин зарегистрирован.
-> - **`ApplicationContextAware`** — ссылка на весь `ApplicationContext` (например, чтобы вручную вызвать `getBean()` изнутри бина).
-> - **`EnvironmentAware`** — доступ к `Environment` (профили, свойства `application.yaml`).
-> - **`ApplicationEventPublisherAware`** — публикация событий контейнера.
-> - **`ResourceLoaderAware`**, **`BeanClassLoaderAware`**, **`MessageSourceAware`** — аналогично, доступ к соответствующей инфраструктуре.
+> Полный цикл одного бина:
+> 1. **Конструктор** — `new MyClass(...)`. Лог: `Creating shared instance of singleton bean 'x'`
+> 2. **populateBean** — заполнение `@Autowired`-полей/сеттеров (внутри — рекурсивное разрешение ИХ зависимостей)
+> 3. **Aware** — `BeanNameAware`/`BeanClassLoaderAware`/`BeanFactoryAware` вызываются напрямую контейнером; `ApplicationContextAware`/`EnvironmentAware` и т.д. — формально уже часть шага 4, через `ApplicationContextAwareProcessor`
+> 4. **`BeanPostProcessor.postProcessBeforeInitialization`**
+> 5. **`@PostConstruct`** — все зависимости ЭТОГО бина гарантированно внедрены (БД/сеть готовы)
+> 6. **`InitializingBean.afterPropertiesSet`** — старый (2003, ещё до JSR-250) аналог `@PostConstruct`, родной для Spring
+> 7. **`BeanPostProcessor.postProcessAfterInitialization`** — здесь бин может подмениться на прокси (AOP/транзакции/`ProxyFactory`); именно этот объект (прокси или оригинал) остаётся в контейнере навсегда, все последующие `getBean()` отдают уже его
 >
-> Почему не через `@Autowired`: это не бины бизнес-логики, а сама "начинка" контейнера, поэтому механизм проще — Spring просто проверяет `if (bean instanceof BeanNameAware) { ((BeanNameAware) bean).setBeanName(...); }` и вызывает нужный сеттер напрямую.
+> **3. Только когда ВСЕ non-lazy синглтоны прошли весь цикл выше** → `SmartInitializingSingleton.afterSingletonsInstantiated()`
 >
-> Тонкость по порядку: `BeanNameAware`/`BeanClassLoaderAware`/`BeanFactoryAware` вызываются контейнером **напрямую**, до вызова любого `BeanPostProcessor` — отдельный, самый первый под-шаг. А вот `ApplicationContextAware`/`EnvironmentAware`/остальные реализованы через специальный `BeanPostProcessor` (`ApplicationContextAwareProcessor`), зарегистрированный самым первым в очереди — формально они срабатывают уже **внутри** `postProcessBeforeInitialization`, а не строго до него.
-
->[!question]- Bean "Отдан наружу" - это 
->возвращён из getBean() кому-либо: другому бину, который его затем сохранит в своё поле, или вашему собственному коду в main(),
->который вызовет на  нём метод. Например 
->```
->BusinessService service = context.getBean(BusinessService.class);
->```
+> **Уничтожение** (LIFO, обратный порядок создания): `@PreDestroy` → `DisposableBean.destroy()`. Никогда не вызывается для `@Scope("prototype")`.
 
 >[!question]- Жизненный цикл бина на практике
 > Для каждого этапа — что писать и зачем.
@@ -143,7 +100,7 @@
 >     this.httpClient = HttpClient.newHttpClient();
 > }
 > ```
-> Зачем: единственная точка, где гарантированно и зависимости внедрены, и бин ещё не отдан наружу — безопасно падать здесь (`IllegalStateException`), если конфигурация невалидна, чем ронять приложение позже на реальном запросе.
+> Зачем: единственная точка, где гарантированно и зависимости внедрены, и бин ещё не отдан наружу (getBean() начался (конструктор и DI уже прошли), но ещё не завершился (return))— безопасно падать здесь (`IllegalStateException`), если конфигурация невалидна, чем ронять приложение позже на реальном запросе.
 >
 > **3. Custom init-method — `@Bean(initMethod = "...")`**
 > Нужен только для **чужого класса**, в который нельзя добавить `@PostConstruct`.
@@ -184,6 +141,40 @@
 > }
 > ```
 > Зачем: если нужна логика, которая требует существования бинов, не являющихся прямыми зависимостями текущего — `@PostConstruct` для этого не подходит (см. пример с `@Lazy`-бином, который ещё не создан).
+
+>[!question]- как указать какой бин от какого зависит явно если нет обычного механизма DI 
+> @DependsOn("infrastructureBean") над классом 
+
+>[!question]- отличие @PostConstruct от afterPropertiesSet
+>afterPropertiesSet старше (родной механизм Spring с самого начала), @PostConstruct — новее (пришёл как стандарт Java/JSR-250 и стал
+  предпочтительным).
+  @PostConstruct/@PreDestroy в Spring появились в Spring Framework 2.5 (2007 год) — именно в этом релизе добавили обширную поддержку аннотаций (@Autowired, @Qualifier,      
+  @PostConstruct, @PreDestroy, @Resource, сканирование @Component) через CommonAnnotationBeanPostProcessor.
+
+>[!question]- отличие @PostConstruct от afterSingletonsInstantiated
+>afterSingletonsInstantiated срабатывает когда все синглтон бины инициализировались
+
+>[!question]- Aware (Осведомленный, знающий)— что это (шаг между DI и `postProcessBeforeInitialization`)
+> Группа маркерных интерфейсов вида `XxxAware`, через которые бин получает доступ не к обычным бизнес-зависимостям (как через `@Autowired`), а к **внутренним объектам самого контейнера**.
+>
+> Самые частые:
+> - **`BeanNameAware`** — `setBeanName(String name)` — сообщает бину его собственное имя в контейнере.
+> - **`BeanFactoryAware`** — ссылка на сам `BeanFactory`, в котором бин зарегистрирован.
+> - **`ApplicationContextAware`** — ссылка на весь `ApplicationContext` (например, чтобы вручную вызвать `getBean()` изнутри бина).
+> - **`EnvironmentAware`** — доступ к `Environment` (профили, свойства `application.yaml`).
+> - **`ApplicationEventPublisherAware`** — публикация событий контейнера.
+> - **`ResourceLoaderAware`**, **`BeanClassLoaderAware`**, **`MessageSourceAware`** — аналогично, доступ к соответствующей инфраструктуре.
+>
+> Почему не через `@Autowired`: это не бины бизнес-логики, а сама "начинка" контейнера, поэтому механизм проще — Spring просто проверяет `if (bean instanceof BeanNameAware) { ((BeanNameAware) bean).setBeanName(...); }` и вызывает нужный сеттер напрямую.
+>
+> Тонкость по порядку: `BeanNameAware`/`BeanClassLoaderAware`/`BeanFactoryAware` вызываются контейнером **напрямую**, до вызова любого `BeanPostProcessor` — отдельный, самый первый под-шаг. А вот `ApplicationContextAware`/`EnvironmentAware`/остальные реализованы через специальный `BeanPostProcessor` (`ApplicationContextAwareProcessor`), зарегистрированный самым первым в очереди — формально они срабатывают уже **внутри** `postProcessBeforeInitialization`, а не строго до него.
+
+>[!question]- Bean "Отдан наружу" - это 
+>возвращён из getBean() кому-либо: другому бину, который его затем сохранит в своё поле, или вашему собственному коду в main(),
+>который вызовет на  нём метод. Например 
+>```
+>BusinessService service = context.getBean(BusinessService.class);
+>```
 
 >[!question]- какой метод срабатывает после инициализации всех бинов
 >run , чтобы его использоватжь надо переопределить его в классе  помеченном @component и реализовать интерефейс ComandLineRunner
@@ -343,6 +334,9 @@ public class RussianGreetingService implements GreetingService {
 >@Lazy
 > public someMethod(){}
 >```
+
+>[!question]- @Entity спрингом проксируется при старте приложения 
+>Нет, Spring @Entity не проксирует вообще — этим занимается JPA-провайдер (в вашем случае Hibernate),  причём не при старте приложения, а лениво, по требованию (при вызове getReference() или при обращении к ленивой  @ManyToOne/@OneToMany-связи). При старте Spring лишь создаёт и регистрирует как бин entityManagerFactory (через  LocalContainerEntityManagerFactoryBean), который делегирует Hibernate построение Metamodel — реестра метаданных сущностей. Уже  через этот Metamodel можно получить информацию о @Entity-классах, аналогично тому, как через ApplicationContext получают информацию о бинах — но это два независимых, не связанных друг с другом каталога. проксирование по требованию, лениво" — сам факт создания entityManagerFactory и  его Metamodel происходит при старте, а вот конкретный прокси-объект для конкретной сущности (DemoEntity$HibernateProxy) создаётся   только в момент, когда вы реально запрашиваете ленивую ссылку — что мы и видели на вашем getReference(DemoEntity.class, 999L). @Entity это не бин. 
 
 ## Область видимости бина 
 >[!question]- scope (область видимости бина)
