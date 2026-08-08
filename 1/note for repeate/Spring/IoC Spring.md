@@ -14,7 +14,7 @@
 >[!question]- `@Bean` это
 > своего рода фабричный метод - ставится только над методами 
 > без @Configuration над классом в котором находится этот бин Методы @Bean НЕ ПРОКСИРУЮТСЯ через CGLIB -  без @Configuration   возможна ошибка нарушения синглтон типа SELF-INVOKED CALL  - внедрение помеченной @Bean зависимости в конструктор 
-	 
+
 >[!question]- Фабрика бина (factoryBeanName / factoryMethodName)
 > Когда бин создаётся не через `new SomeClass()`, а через вызов метода на другом объекте — в `BeanDefinition` вместо `beanClassName` хранится **ссылка на фабрику**: `factoryBeanName` (кто создаёт) + `factoryMethodName` (какой метод вызвать). Два основных случая:
 >
@@ -141,6 +141,14 @@
 > }
 > ```
 > Зачем: если нужна логика, которая требует существования бинов, не являющихся прямыми зависимостями текущего — `@PostConstruct` для этого не подходит (см. пример с `@Lazy`-бином, который ещё не создан).
+
+>[!question]- От порядка навешивания анотаций (например @Transactional @AspectTest или @AspectTest @Transactional ) над методом / классом зависит реузльтат в общем случае ?
+>Нет. Порядок зависит от того, как указан @Order(x) в подключаемом модуле maven (<dependency...), при его отсутствии алгоритмом сборки: родные Advisor-бины (@Transactional/@Cacheable/@Async), потом ваши @Aspect. @Retention(RetentionPolicy.SOURCE)  "меняет код раньше" чем  @Retention(RetentionPolicy.RUNTIME) , SOURCE сам по себе кода не меняет — это лишь метка «стереть после компиляции», код меняет «annotation  processor, а SOURCE — это просто уровень удержания», поэтому ломбок срабатывает до сканирования бинов (которое определяет порядок изменения кода через BeanDefinition). Бином может стать только аннтоация с @Retention(RetentionPolicy.RUNTIME). ((Advised) bean).getAdvisors() выведет весь  фактический список advisor'ов в порядке их применения.
+
+>[!question]- БЕЗ компонентскан бин не один бин небудет создан?
+>1. Нет. Spring Boot autoconfiguration. Все автосконфигурированные бины (DataSource, EntityManagerFactory, TransactionManager, DispatcherServlet, Jackson, RestTemplate...) создаются НЕ через @ComponentScan, а через @EnableAutoConfiguration → сотни @Configuration-классов с  @Bean-методами, перечисленных в META-INF/spring/...AutoConfiguration.imports. В вашем же проекте                    entityManagerFactory, dataSource, transactionManager пришли именно оттуда. А так же 
+>2. @Bean-методы в @Configuration. Мы это уже разбирали (greetingFromBeanMethod) — тут бин создаётся вызовом       
+  фабричного метода, а не сканированием класса.
 
 >[!question]- как указать какой бин от какого зависит явно если нет обычного механизма DI 
 > @DependsOn("infrastructureBean") над классом 
