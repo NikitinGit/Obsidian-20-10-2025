@@ -53,10 +53,21 @@
 > - **`AnnotationMetadata`** (только у `AnnotatedBeanDefinition`, т.е. у отсканированных `@Component`/`@Service`/`@Repository`) — полная информация обо всех аннотациях класса. У `@Bean`-бинов такого нет — там вместо этого фабрика.
 > - **`ConstructorArgumentValues`/`PropertyValues`** — значения конструктора/свойств, заданные **извне** (XML `<constructor-arg>`, либо программно через `BeanDefinitionBuilder.addConstructorArgValue(...)`). Обычная инициализация полей в Java-коде (`private int age = 5;`, присвоение в теле конструктора) сюда НЕ попадает — это просто байткод конструктора, который выполняется на шаге 3, а не хранится в рецепте. Для типичного `@Component` с `@Autowired` эти поля в `BeanDefinition`, как правило, вообще пустые — резолвинг зависимостей происходит динамически при создании бина, а не через заранее сохранённые значения.
 >
-> Проверено на реальном запуске (`BeanDefinitionRegistryPostProcessor` + `addConstructorArgValue`): сразу после старта `getGenericArgumentValues()` пуст — Spring переносит значение в `getIndexedArgumentValues()` после того, как сопоставил его с конкретной позицией параметра конструктора.
+> Проверено на реальном запуске (`BeanDefinitionRegistryPostProcessor` + `addConstructorArgValue`): `getGenericArgumentValues()` пуст, а значение лежит в `getIndexedArgumentValues()` (`{0=...}`). Причина НЕ в том, что "Spring переносит generic→indexed при создании бина" — значение индексировано **с самого начала**, потому что `BeanDefinitionBuilder.addConstructorArgValue(...)` под капотом делает `addIndexedArgumentValue(index++, value)`, а не `addGenericArgumentValue(...)`. Это видно уже в `postProcessBeanFactory` (`generic=[]`, `indexed={0=...}`), то есть ДО создания бина — никакого "переноса" не происходит. Generic-аргументы заполнялись бы только при явном вызове `addGenericArgumentValue(...)` (аргумент без привязки к позиции — Spring сам сопоставляет его с параметром конструктора при создании).
 
 >[!question]- Порядок инициализации бина (шпаргалка)
-> **1. Scanning** — `@ComponentScan` читает `.class`-файлы, строит `BeanDefinition` ("рецепт", не сам бин) для ВСЕХ кандидатов. Это отдельная **волна**: пока не просканированы все классы, ни один бин создаваться не начинает.
+> **0. Порядок на уровне контейнера — 3 яруса по РОЛИ бина** (не по аннотации `@Configuration`/`@Component`!). Проверено логами:
+> 1. **`BeanFactoryPostProcessor` / `BeanDefinitionRegistryPostProcessor`** — создаются и отрабатывают первыми (`invokeBeanFactoryPostProcessors`). Работают с **рецептами** (`BeanDefinition`), объектов ещё нет. Порядок методов: сначала все `postProcessBeanDefinitionRegistry` (регистрируют новые определения), потом все `postProcessBeanFactory` (правят существующие).
+> 2. **`BeanPostProcessor`-бины** — их КОНСТРУКТОРЫ отрабатывают вторыми (`registerBeanPostProcessors`), до обычных бинов, чтобы успеть их обрабатывать.
+> 3. **Обычные синглтоны** — создаются последними (`preInstantiateSingletons`), в порядке регистрации + по графу зависимостей.
+>
+> Важно различать **создание пост-процессора** и **вызов его методов**:
+> - `postProcessBeanDefinitionRegistry`/`postProcessBeanFactory` — срабатывают ОДНИМ БЛОКОМ в начале (ярус 1), до создания любого обычного бина.
+> - методы `BeanPostProcessor` (`postProcessBefore/AfterInitialization`) — НЕ блок: сам процессор создан рано (ярус 2), но его методы вызываются МНОГОКРАТНО, оборачивая инициализацию КАЖДОГО обычного бина (шаги 4 и 7 ниже).
+>
+> `@Configuration` — НЕ отдельный ярус, он в ярусе 3 наравне с `@Component`. Обычный `@Component`-`BeanPostProcessor` создаётся раньше `@Configuration`; порядок между `@Configuration` и `@Component` внутри яруса 3 — просто порядок регистрации (скана classpath), без приоритета.
+>
+> **1. Scanning** — `@ComponentScan` читает `.class`-файлы, строит `BeanDefinition` ("рецепт", не сам бин) для ВСЕХ кандидатов. Это отдельная **волна**: пока не просканированы все классы, ни один бин создаваться не начинает. (Технически сам скан запускает `ConfigurationClassPostProcessor` — это `BeanDefinitionRegistryPostProcessor` из яруса 1.)
 > Лог (`logging.level.org.springframework.context=DEBUG`): `Identified candidate component class: ...`
 >
 > **2. Создание — per-bean конвейер (уже НЕ волна)**. Строится рекурсивно от корневого `getBean()`, вдоль графа зависимостей:
@@ -149,6 +160,19 @@
 >1. Нет. Spring Boot autoconfiguration. Все автосконфигурированные бины (DataSource, EntityManagerFactory, TransactionManager, DispatcherServlet, Jackson, RestTemplate...) создаются НЕ через @ComponentScan, а через @EnableAutoConfiguration → сотни @Configuration-классов с  @Bean-методами, перечисленных в META-INF/spring/...AutoConfiguration.imports. В вашем же проекте                    entityManagerFactory, dataSource, transactionManager пришли именно оттуда. А так же 
 >2. @Bean-методы в @Configuration. Мы это уже разбирали (greetingFromBeanMethod) — тут бин создаётся вызовом       
   фабричного метода, а не сканированием класса.
+
+>[!question]- целевой объект (дял которого создается прокси) уже есть в ОЗУ до проксирования как в JDK Dynamic Proxy так и в CGLIB ?
+> Да. Проксированике начинается с postProcessAfterInitialization 
+> @Configuration-классы — там CGLIB работает по другому механизму (ConfigurationClassEnhancer, не AOP-advice): enhanced-объект не оборачивает отдельный target, а сам перехватывает вызовы @Bean-методов, чтобы возвращать синглтоны из контекста. Это не тот случай «прокси + отдельная цель», а именно подмена  самого объекта конфигурации.     
+> @Configuration сырой (raw) объект отдельно НЕ создаётся. Механизм принципиально    
+  отличается от AOP-проксирования:    - AOP-прокси (@Transactional/@Aspect) создаётся на шаге 7 (postProcessAfterInitialization) — то есть сырой бин   сперва полностью создаётся (конструктор → DI → @PostConstruct), и потом оборачивается/подменяется. Два объекта,   
+  target предшествует прокси.  @Configuration-enhancement происходит раньше и на другом уровне — на этапе BeanFactoryPostProcessor        
+  (ConfigurationClassPostProcessor.enhanceConfigurationClasses()), который отрабатывает до создания бинов вообще.   
+  Там Spring не создаёт объект, а подменяет beanClass прямо в BeanDefinition:                                       
+  beanDef.setBeanClass(enhancedSubclass). То есть меняется сам «рецепт». Когда контейнер позже доходит до создания  
+  бина greetingConfig, он на шаге 1 (конструктор) инстанцирует сразу enhanced-подкласс — никакого промежуточного    
+  «сырого GreetingConfig, а потом обёртки» не существует. Один объект, а не два.   
+
 
 >[!question]- как указать какой бин от какого зависит явно если нет обычного механизма DI 
 > @DependsOn("infrastructureBean") над классом 
