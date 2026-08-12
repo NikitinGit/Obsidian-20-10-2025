@@ -69,6 +69,21 @@
 >
 > **1. Scanning** — `@ComponentScan` читает `.class`-файлы, строит `BeanDefinition` ("рецепт", не сам бин) для ВСЕХ кандидатов. Это отдельная **волна**: пока не просканированы все классы, ни один бин создаваться не начинает. (Технически сам скан запускает `ConfigurationClassPostProcessor` — это `BeanDefinitionRegistryPostProcessor` из яруса 1.)
 > Лог (`logging.level.org.springframework.context=DEBUG`): `Identified candidate component class: ...`
+> Этот процесс сканирования можно отслеживать и (сразу после него) что то в нем менять с помощью `BeanDefinitionRegistryPostProcessor` (посмотреть / добавить / удалить / изменить уже готовые определения).
+> Важно: сам скан выполняет `ConfigurationClassPostProcessor` (`PriorityOrdered`, идёт первым). Ваш `@Component`-BDRPP сам обнаружен этим сканом, поэтому запускается ПОСЛЕ — и в `registry` уже видны ВСЕ отсканированные определения (проверено: `containsBeanDefinition("businessService")=true` ещё до создания объектов). Вы работаете с **результатом** скана, а не встраиваетесь в его процесс. Управлять тем, ЧТО сканируется (пакеты, include/exclude) — это НЕ BDRPP, а фильтры `@ComponentScan`/`TypeFilter`.
+>
+> **Как менять готовое определение** (в `postProcessBeanDefinitionRegistry`/`postProcessBeanFactory`, объектов ещё нет):
+> ```java
+> BeanDefinition bd = registry.getBeanDefinition("businessService"); // достать рецепт по имени
+> bd.setLazyInit(true);                        // = @Lazy (проверено: конструктор ушёл ЗА старт контекста)
+> bd.setPrimary(true);                         // = @Primary
+> bd.setScope(BeanDefinition.SCOPE_SINGLETON); // scope
+> bd.setDependsOn("infrastructureBean");       // = @DependsOn
+> bd.setBeanClassName("com.other.OtherImpl");  // ПОДМЕНИТЬ класс реализации целиком
+> bd.getPropertyValues().add("timeout", 5000); // значение свойства (setter injection)
+> bd.getConstructorArgumentValues().addIndexedArgumentValue(0, "новое"); // подменить аргумент конструктора
+> ```
+> Операции над реестром: `getBeanDefinition`/`containsBeanDefinition`/`getBeanDefinitionNames`/`getBeanDefinitionCount` (смотреть), `registerBeanDefinition` (добавить), `removeBeanDefinition` (удалить), сеттеры на `BeanDefinition` (изменить). Правка долетает до готового бина, потому что делается ДО его создания. Реальные примеры такого: `PropertySourcesPlaceholderConfigurer` (резолвит `${...}` в определениях), MyBatis mapper-scan / Feign (массово регистрируют определения своим сканером).
 >
 > **2. Создание — per-bean конвейер (уже НЕ волна)**. Строится рекурсивно от корневого `getBean()`, вдоль графа зависимостей:
 > ```
