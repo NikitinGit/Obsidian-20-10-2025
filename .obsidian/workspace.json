@@ -168,12 +168,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/Алгоритмы.md",
+                "file": "1/note for repeate/ВУЗ/Математика.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Алгоритмы"
+              "title": "Математика"
             }
           },
           {
@@ -210,12 +210,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/strikerStat/WebSocketStomp.md",
+                "file": "1/note for repeate/ВУЗ/Математика.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WebSocketStomp"
+              "title": "Математика"
             }
           },
           {
@@ -233,7 +233,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -382,10 +382,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "71d43a1704c06486",
+  "active": "e8a5e109f330ffe5",
   "lastOpenFiles": [
+    "1/note for repeate/strikerStat/WebSocketStomp.md",
+    "1/note for repeate/ВУЗ/Математика.md",
     "1/note for repeate/ВУЗ/Деревья.md",
     "1/note for repeate/ВУЗ/Алгоритмы.md",
+    "1/note for repeate/ВУЗ/Нормализация БД.md",
     "1/note for repeate/Data Base/Команды mysql.md",
     "1/note for repeate/ВУЗ",
     "1/note for repeate/Untitled.md",
@@ -417,9 +420,6 @@
     "1/note for repeate/Spring/IoC Spring.md.tmp.4687.a6a2af9598ce",
     "1/note for repeate/Data Base/Orm/HikariCP.md",
     "1/note for repeate/Spring/Повторение того, что знаешь.md",
-    "1/note for repeate/strikerStat/WebSocketStomp.md",
-    "1/Задачи на день.md",
-    "1/note for repeate/Data Base/Orm/ORM.md",
     "Pasted image 20260722201101.png",
     "testFolder/demo canvas.canvas",
     "Pasted image 20241202180935.png",
