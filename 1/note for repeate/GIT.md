@@ -1,9 +1,18 @@
 # GIT 
 1. [ ] mvn -o -q dependency:tree -Dincludes=commons-codec:commons-codec 2>&1 | grep -E "commons-codec|---|\.jar|:compile|:runtime" | head -40  - что делает ?
-2. [ ] Чем отличается fetch от pull - fetch не изменяет ветку при получении удаленных данных , а  pull меняет через merge / rebase
+2. [x] Чем отличается fetch от pull - fetch не изменяет ветку при получении удаленных данных , а  pull меняет через merge / rebase
 3. [ ] При git pull меняются ли локальные ветки
 4. [ ] индекс и стек это 
 5. [x]  git merge --abort  - это отмена мержда
+
+>[!question]- как посмотреть какие ветки были смерджены в develop
+> git log --merges --first-parent --oneline origin/develop выводит все коммиты
+> git log --merges --first-parent --oneline -20 origin/develop - последние 20 
+>  git log --merges --first-parent --oneline --since="2 weeks ago" origin/develop - за последние 2 недели 
+>  git log --merges --first-parent --oneline --after="2026-08-01" origin/develop - после 2026-08-01
+
+>[!question]- чем отличается fetch от pull - fetch
+> fetch не изменяет ветку при получении удаленных данных , а  pull меняет через merge / rebase
 
 >[!question]- Отменить мержд
 >git merge --abort 
@@ -278,8 +287,10 @@
 >[!question]- Операции отмены ИЗУЧИ
 >git restore, git reset 
 
->[!question]- Отличие ребэйс от мердж ПРОВЕРЬ
->merge  сохраняет коммиты локальной ветки разработчика - используется для публичной истории , rebase переносит их в другую ветку - используется для локальных изменений 
+>[!question]- Отличие ребэйс от мердж 
+>merge  сохраняет коммиты локальной ветки разработчика - используется для публичной истории , rebase переносит  коммиты ветки разработчика в ветку main после последнего коммита main, чтобы история осталась в main надо сделать git push force иначе придется вибирать merge / rebase . Меняется родитель коммитов ветки разработчика, точка - от которой растет ветка разработчика 
+>- С rebase: сломанное сочетание (твой код + C3) появляется в твоём рабочем каталоге сразу после rebase. Собрал проект / прогнал тесты — увидел. До пуша, до PR, до вливания.                                                                                                                                      
+>- Без rebase: твоя ветка компилируется прекрасно — в ней ещё старый printSeparator(). Ты пушишь, ревьюер смотрит diff и тоже ничего не замечает. Ломается всё в момент вливания, уже в общей ветке.
 
 >[!question]- checkout коммита
 >git checkout hash например   git checkout 9b066cbd  
