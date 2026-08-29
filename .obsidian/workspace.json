@@ -246,7 +246,8 @@
               "title": "Математика"
             }
           }
-        ]
+        ],
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -395,7 +396,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "af07f7b0f12ad293",
+  "active": "abf3912a7df751f7",
   "lastOpenFiles": [
     "1/СТЕНДАП.md",
     "1/note for repeate/Spring/IoC Spring.md",
