@@ -84,6 +84,67 @@
 >docker exec mysql_db_v2 mysql -uroot -p'passStrikerStat' -e "CREATE USER IF NOT EXISTS 'strikerstat_user_preprod'@'192.168.0.4' IDENTIFIED BY 'x'; GRANT SELECT ON strikerstat_local.* TO 'strikerstat_user_preprod'@'192.168.0.4';"
 >```
 
+>[!question]- Выборка записей fighters с registration_source = CREATED_BY_ORGANIZER у которых совпадают first_name и last_name
+>Все колонки дублирующихся записей
+>```
+>SELECT f1.*
+>FROM fighters f1
+>WHERE f1.registration_source = 'CREATED_BY_ORGANIZER'
+>  AND EXISTS (
+>      SELECT 1
+>      FROM fighters f2
+>      WHERE f2.registration_source = 'CREATED_BY_ORGANIZER'
+>        AND f2.first_name = f1.first_name
+>        AND f2.last_name = f1.last_name
+>        AND f2.id != f1.id
+>  )
+>ORDER BY f1.first_name, f1.last_name;
+>```
+>Только имена и число повторов
+>```
+>SELECT first_name, last_name, COUNT(*) AS duplicate_count
+>FROM fighters
+>WHERE registration_source = 'CREATED_BY_ORGANIZER'
+>GROUP BY first_name, last_name
+>HAVING COUNT(*) > 1;
+>```
+
+>[!question]- mysqldump: Got error: 2013 "Lost connection to MySQL server during query when trying to connect" при снятии дампа с препрода
+>Диагностика показала: `ping` до сервера — 0% потерь, стабильные ~43мс, но даже голый `SELECT 1` через `mysql` client иногда (не всегда) обрывается с той же ошибкой. Значит проблема не в локальной сети/докере, а рвётся на стороне самого MySQL-сервера препрода (или прокси/балансировщика перед ним) — соединение отваливается случайно сразу после коннекта, независимо от размера запроса.
+>
+>Не лечится с клиентской стороны. Варианты:
+>1. Сообщить админу препрода — проверить `SHOW GLOBAL STATUS LIKE 'Aborted_connects'`, `max_connections`, логи MySQL.
+>2. Обходить ретраями — скрипт `~/dumps/strikerstat/dump_preprod_retry.sh`, который гоняет `mysqldump` до 10 раз с паузой 5 сек, пока не получит дамп без ошибок в логе:
+>```
+>#!/usr/bin/env bash
+>set -uo pipefail
+>
+>OUT="${HOME}/dumps/strikerstat/strikerstat_preprod_dump.sql"
+>MAX_ATTEMPTS=10
+>
+>for i in $(seq 1 "$MAX_ATTEMPTS"); do
+>  echo "=== Попытка $i/$MAX_ATTEMPTS ==="
+>  docker run --rm mysql:8.0 mysqldump \
+>    -h 188.225.76.97 -u dev_user -p"thah2Eolcet6gouJ" \
+>    --ssl-mode=DISABLED --no-tablespaces \
+>    strikerstat_preprod > "$OUT" 2> "${OUT}.log"
+>
+>  if [ $? -eq 0 ] && ! grep -qi "error" "${OUT}.log"; then
+>    echo "Дамп успешно сохранён: $OUT"
+>    rm -f "${OUT}.log"
+>    exit 0
+>  fi
+>
+>  echo "Попытка $i не удалась, повтор через 5 сек..."
+>  tail -3 "${OUT}.log"
+>  sleep 5
+>done
+>
+>echo "Не удалось снять дамп за $MAX_ATTEMPTS попыток"
+>exit 1
+>```
+>Запуск: `~/dumps/strikerstat/dump_preprod_retry.sh`
+
 >[!question]- Перенести данные с препродовой БД в локальную БД  через CLI
 >создаеам дамп и скачиваем 
 >```
