@@ -113,8 +113,8 @@
 >Диагностика показала: `ping` до сервера — 0% потерь, стабильные ~43мс, но даже голый `SELECT 1` через `mysql` client иногда (не всегда) обрывается с той же ошибкой. Значит проблема не в локальной сети/докере, а рвётся на стороне самого MySQL-сервера препрода (или прокси/балансировщика перед ним) — соединение отваливается случайно сразу после коннекта, независимо от размера запроса.
 >
 >Не лечится с клиентской стороны. Варианты:
->1. Сообщить админу препрода — проверить `SHOW GLOBAL STATUS LIKE 'Aborted_connects'`, `max_connections`, логи MySQL.
->2. Обходить ретраями — скрипт `~/dumps/strikerstat/dump_preprod_retry.sh`, который гоняет `mysqldump` до 10 раз с паузой 5 сек, пока не получит дамп без ошибок в логе:
+>4. Сообщить админу препрода — проверить `SHOW GLOBAL STATUS LIKE 'Aborted_connects'`, `max_connections`, логи MySQL.
+>5. Обходить ретраями — скрипт `~/dumps/strikerstat/dump_preprod_retry.sh`, который гоняет `mysqldump` до 10 раз с паузой 5 сек, пока не получит дамп без ошибок в логе:
 >```
 >#!/usr/bin/env bash
 >set -uo pipefail
@@ -190,7 +190,7 @@
 > mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' strikerstat_preprod> /tmp/strikerstat_preprod_dump.sql 
 >  mysqldump -h 188.225.76.97 -u dev_user -p'thah2Eolcet6gouJ' --skip-ssl strikerstat_preprod > /tmp/strikerstat_preprod_dump.sql
 
->[!question]- индексы
+>[!question]- Индексы
 > ускоряют выборку, замедляют остальные операции  , используется алгоритм B‑tree 
 > ```
 > CREATE INDEX idx_battles_predicted_start_time ON battles(predicted_start_time);
