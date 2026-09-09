@@ -14,6 +14,41 @@
 >[!question]- посмотреть ip адрес сайта 
 >getent hosts strikerstat-test.twc1.net 94.241.171.236 strikerstat-test.twc1.net 
 
+>[!question]- как установить сертификат УЦ Минцифры (Chrome/Brave)
+>Зачем: сайты Сбера и госуслуг отдают TLS-сертификаты «Russian Trusted Sub CA», корня которого нет в хранилище Chrome → `ERR_CERT_AUTHORITY_INVALID`. Обойти предупреждение кнопкой нельзя: сайт шлёт `Strict-Transport-Security`, и Chrome при HSTS убирает ссылку «Перейти (небезопасно)».
+>
+>**1. Скачать корень.** Файл отдаётся с CRLF, `tr -d '\r'` обязателен — иначе OpenSSL его не распарсит:
+>```sh
+>mkdir -p ~/.local/share/certs
+>curl -sS https://gu-st.ru/content/lending/russian_trusted_root_ca_pem.crt \
+>  | tr -d '\r' > ~/.local/share/certs/russian_trusted_root_ca.pem
+>```
+>SHA-256 (DER): `D26D2D0231B7C39F92CC738512BA54103519E4405D68B5BD703E9788CA8ECF31`
+>
+>**2. Установить.** Chrome и Brave читают общую NSS-базу `~/.pki/nssdb`, а не `/etc/ssl/certs` — `security.pki.certificateFiles` в configuration.nix здесь не помогает:
+>```sh
+># закрыть браузер полностью
+>pkill chrome; pkill brave
+>
+># добавить корень в NSS-базу
+>nix-shell -p nssTools --run "certutil -d sql:$HOME/.pki/nssdb -A -t 'C,,' \
+>  -n 'Russian Trusted Root CA' -i $HOME/.local/share/certs/russian_trusted_root_ca.pem"
+>
+># убедиться, что появился
+>nix-shell -p nssTools --run "certutil -d sql:$HOME/.pki/nssdb -L" | grep -i russian
+>```
+>Флаг `-t 'C,,'` = доверять как CA только при проверке TLS-серверов, без доверия для почты и подписи кода — минимально необходимое.
+>
+>**3. Проверить.** `chrome://settings/certificates` → вкладка «Центры сертификации» → там будет `The Ministry of Digital Development and Communications`.
+>
+>**Откатить:**
+>```sh
+>nix-shell -p nssTools --run "certutil -d sql:$HOME/.pki/nssdb -D -n 'Russian Trusted Root CA'"
+>```
+>
+>⚠️ **Важно:** база `~/.pki/nssdb` общая для Chrome, Brave и Chromium, отдельным `--user-data-dir` не изолируется. Корень Минцифры может подписать сертификат на любой домен.
+>Без установки: в Firefox нажать «Дополнительно → Принять риск» (сохранит исключение на конкретный хост в `cert_override.txt`, слетит при ротации сертификата); в Chrome — набрать на странице ошибки `thisisunsafe`.
+
 
 Готово! Я добавил конфигурацию WireGuard в /home/igor/dotfiles/hosts/desktop/default.nix:44-49.
 
