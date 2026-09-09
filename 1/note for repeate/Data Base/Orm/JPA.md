@@ -26,8 +26,10 @@
 >одна из реализаций JPA. У Hibernate так же есть свое родное API — HQL, Session, и был свой родной **Criteria API** (`org.hibernate.Criteria`, `org.hibernate.criterion.Restrictions`) — но это **legacy**: deprecated с Hibernate 5.2, полностью удалён в Hibernate 6. Сегодня "Criteria API" в Hibernate-проекте — это уже JPA-версия (`jakarta.persistence.criteria.*`), см. каллаут ниже "Criteria API - что это такое?".
 
 >[!question]- В каком методе создается прокси JpaRepository? 
->в getObject() у JpaRepositoryFactoryBean (это FactoryBean) — внутри он вызывает RepositoryFactorySupport.getRepository(),      
-  который через ProxyFactory.getProxy() создаёт JDK-прокси. Добавть логи в готовый прокси можно в методе интерфейса BeanPostProcessor - postProcessAfterInitialization 
+>в ```getObject()```
+>у ```JpaRepositoryFactoryBean (это FactoryBean) ``` — внутри он вызывает RepositoryFactorySupport.getRepository(),      
+  который через ProxyFactory.getProxy() создаёт JDK-прокси.
+   Добавть логи в готовый прокси можно в методе интерфейса BeanPostProcessor - postProcessAfterInitialization 
 
 >[!question]- Criteria API - что это такое?
 > **Criteria API** - это **стандартный JPA API** для построения типобезопасных запросов к базе данных через Java код (без строк JPQL)
