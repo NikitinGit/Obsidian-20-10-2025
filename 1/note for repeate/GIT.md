@@ -5,6 +5,8 @@
 4. [x] как безопасно удалить ветку
 5. [ ] индекс и стек это 
 6. [x]  git merge --abort  - это отмена мержда
+>[!question]- посмотреть последние коммиты
+>git log -5 --all --pretty=format:"%h %ad %an %s"  # хеш, дата, автор, сообщение
 
 >[!question]- как посмотреть какие ветки были смерджены в develop
 > git log --merges --first-parent --oneline origin/develop выводит все коммиты
@@ -416,7 +418,6 @@ Hi NikitinGit! You've successfully authenticated, but GitHub does not provide sh
 >1 .git rebase -i HEAD~N
 >31. В гуи идеи **Squash Commits**
 >32. pick a1b2c3d Старый коммит , squash d4e5f6a Средний коммит , squash g7h8i9j Новый коммит
-
 
 >[!question]- Список Git команд для определения родительской ветки:  
 >  ```
