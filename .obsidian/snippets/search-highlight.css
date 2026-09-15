@@ -1,0 +1,33 @@
+/* Яркая подсветка результатов поиска Ctrl+F */
+
+/* Режим редактирования / Live Preview (CodeMirror 6) — все совпадения */
+.markdown-source-view .cm-searchMatch,
+.markdown-source-view .cm-searchMatch * {
+  background-color: rgba(255, 213, 0, 0.45) !important;
+  color: #000 !important;
+  border-radius: 2px;
+}
+
+/* Текущее совпадение (на которое перешли стрелками / Enter) */
+.markdown-source-view .cm-searchMatch.cm-searchMatch-selected,
+.markdown-source-view .cm-searchMatch.cm-searchMatch-selected * {
+  background-color: #ff8c00 !important;
+  color: #000 !important;
+  outline: 2px solid #ff3d00;
+  outline-offset: 1px;
+}
+
+/* Режим чтения — все совпадения */
+.markdown-preview-view .search-highlight > div {
+  background-color: rgba(255, 213, 0, 0.45) !important;
+  border: none !important;
+  border-radius: 2px;
+  mix-blend-mode: normal !important;
+}
+
+/* Режим чтения — текущее совпадение */
+.markdown-preview-view .search-highlight > div.is-active {
+  background-color: rgba(255, 140, 0, 0.6) !important;
+  outline: 2px solid #ff3d00;
+  outline-offset: 1px;
+}

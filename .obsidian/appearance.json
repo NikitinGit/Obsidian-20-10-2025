@@ -3,5 +3,8 @@
   "nativeMenus": false,
   "accentColor": "#4900f5",
   "theme": "obsidian",
-  "baseFontSize": 14
+  "baseFontSize": 14,
+  "enabledCssSnippets": [
+    "search-highlight"
+  ]
 }

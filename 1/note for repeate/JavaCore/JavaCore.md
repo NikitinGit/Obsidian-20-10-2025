@@ -72,6 +72,9 @@ https://topjava.ru/blog/what-is-the-jre
 >[!question]- CAS
 >Compare-and-swap - проверь и обнови если другой поток не обновил
 
+>[!question]- DCL в синглтонге
+>Double checking locking - блокировка с двойно проверкой для оптимизации и надеждности 
+
 >[!question]- for (int c = ctl.get(); ; ) - это
 >бесконечный цикл в котором conditin = true а update отсутствует ,  используется в многопоточке , напрример
 >```

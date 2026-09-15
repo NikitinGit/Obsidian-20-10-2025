@@ -1,6 +1,5 @@
 
-1. [ ] проверь **` LEFT JOIN FETCH`** по числу подзапросов - сравни с LEFT JOIN
-2. [ ] Cash first level and other 
+1. [ ] Cash first level and other 
 # База 
 >[!question]- что это 
 >JPA - спецификация ORM. Состоит из аннотаций, интерфейсов и контрактов EntityManager - кода который ходит в БД нет.
