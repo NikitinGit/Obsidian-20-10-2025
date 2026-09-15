@@ -28,6 +28,8 @@
 >fun findEventWithBidsAndFighters(@Param("eventId") eventId: Int): Optional<Event>
 >```
 >Multi-line string через `"""..."""` идиоматичен.
+>
+>**Про `DISTINCT`:** в **Hibernate 6** (проверено на 6.5) он для дедупликации корня при `JOIN FETCH` коллекции **НЕ нужен** — дубли `Event` убираются автоматически (в Hibernate 5 был обязателен). Здесь оставлен как legacy; можно убрать. Подробный разбор (и когда `distinct` всё же нужен — проекции/скаляры/агрегаты) — в [[JPA N+1 problem]].
 
 >[!question]- @EntityGraph
 >```kotlin

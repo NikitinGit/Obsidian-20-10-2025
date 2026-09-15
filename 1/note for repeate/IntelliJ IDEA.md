@@ -43,3 +43,9 @@ java -Xss1m TestLinuxApplication - с Мб
 
 >[!question]- Включить / выключить автоимпорт 
 >Settings (Ctrl + Alt + S), Editor, General, Auto import ![[Pasted image 20260722201101.png]]
+
+>[!question]- посмотреть зависимости и  их версию 
+>1. при старте приложения смотри Hibernate в поиске
+>2. в окне dependensies 
+>![[Pasted image 20260915115115.png]] 
+>3. в pom но там надо смотреть на то, какие транзитивные зависимости есть у стартер пакетов
