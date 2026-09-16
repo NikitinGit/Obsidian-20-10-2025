@@ -105,7 +105,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -225,7 +225,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -280,8 +280,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -375,48 +374,48 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0c370545142756fd",
+  "active": "413761c5a84a2a31",
   "lastOpenFiles": [
+    "1/note for repeate/ВУЗ/Информацционный менеджемент 08.09.2026.md",
+    "Pasted image 20260915184454.png",
+    "Pasted image 20260915182909.png",
+    "Pasted image 20260915182418.png",
+    "Pasted image 20260915182411.png",
+    "Pasted image 20260915181725.png",
+    "Pasted image 20260915180854.png",
+    "Pasted image 20260915180449.png",
+    "Pasted image 20260915175855.png",
+    "Pasted image 20260915175636.png",
+    "Pasted image 20260915175211.png",
+    "1/note for repeate/ВУЗ/РУПП.md",
+    "1/СТЕНДАП.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/ГЛАВНОЕ.md",
+    "1/note for repeate/ВУЗ/Задачи обучения.md",
+    "1/note for repeate/IntelliJ IDEA.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
     "1/note for repeate/ВУЗ/Математика.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/ВУЗ/Информацционный менеджемент 08.09.2026.md",
     "1/note for repeate/Data Base/Команды mysql.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.e9d7ff2e3e52",
-    "1/note for repeate/IntelliJ IDEA.md",
     "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md.tmp.4775.49c19edf5eb8",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.9ddae9f5c472",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.67f1134a9741",
     "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md",
-    "1/note for repeate/ВУЗ/РУПП.md",
     "1/note for repeate/Data Base/Orm/JPA.md",
     "1/note for repeate/JavaCore/JavaCore.md",
-    "Pasted image 20260915115115.png",
     "1/note for repeate/Data Base/Orm/SQL Explain.md",
     "1/note for repeate/Spring/Spring Base.md",
     "1/note for repeate/strikerStat/SQL операции/SELECT.md",
     "Цели на месяц/17-25 декабря.md",
-    "1/note for repeate/ВУЗ/Задачи обучения.md",
     "1/Задачи на день.md",
     "1/note for repeate/ВУЗ/Алгоритмы.md",
     "1/note for repeate/Spring/Proxy Object.md",
     "1/note for repeate/Data Base/Orm/JDBC.md",
     "1/note for repeate/Spring/Spring Security.md",
     "1/note for repeate/strikerStat/SQL операции/INSERT.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/ГЛАВНОЕ.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/note for repeate/Spring/IoC Spring.md",
     "1/note for repeate/strikerStat/STR-1195",
-    "Pasted image 20260908200628.png",
-    "Pasted image 20260908195255.png",
-    "Pasted image 20260908194929.png",
-    "Pasted image 20260908193904.png",
-    "Pasted image 20260908191642.png",
-    "Pasted image 20260908190254.png",
-    "Pasted image 20260908185642.png",
-    "Pasted image 20260908185326.png",
-    "Pasted image 20260908184255.png",
     "1/УРФУ",
     "1/note for repeate/Data Base/Транзакции.md.tmp.19466.8d24d2cfefa5",
     "1/note for repeate/Data Base/Команды mysql.md.tmp.6744.474d0e1f578a",
