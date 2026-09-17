@@ -105,7 +105,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -225,7 +225,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -374,8 +374,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "413761c5a84a2a31",
+  "active": "c439a0cc294d1b13",
   "lastOpenFiles": [
+    "1/note for repeate/ВУЗ/РУПП.md",
+    "1/note for repeate/Data Base/Команды mysql.md",
+    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
+    "1/note for repeate/ВУЗ/Задачи обучения.md",
     "1/note for repeate/ВУЗ/Информацционный менеджемент 08.09.2026.md",
     "Pasted image 20260915184454.png",
     "Pasted image 20260915182909.png",
@@ -387,24 +392,19 @@
     "Pasted image 20260915175855.png",
     "Pasted image 20260915175636.png",
     "Pasted image 20260915175211.png",
-    "1/note for repeate/ВУЗ/РУПП.md",
     "1/СТЕНДАП.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "1/ГЛАВНОЕ.md",
-    "1/note for repeate/ВУЗ/Задачи обучения.md",
     "1/note for repeate/IntelliJ IDEA.md",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
     "1/note for repeate/ВУЗ/Математика.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/Data Base/Команды mysql.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.e9d7ff2e3e52",
     "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md.tmp.4775.49c19edf5eb8",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.9ddae9f5c472",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.67f1134a9741",
     "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md",
     "1/note for repeate/Data Base/Orm/JPA.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/Data Base/Orm/SQL Explain.md",
     "1/note for repeate/Spring/Spring Base.md",
     "1/note for repeate/strikerStat/SQL операции/SELECT.md",
