@@ -5,8 +5,25 @@
 4. [x] как безопасно удалить ветку
 5. [ ] индекс и стек это 
 6. [x]  git merge --abort  - это отмена мержда
->[!question]- посмотреть последние коммиты
+>[!question]- посмотреть историю коммиты
 >git log -5 --all --pretty=format:"%h %ad %an %s"  # хеш, дата, автор, сообщение
+>git log --oneline --graph --all - посмотреть все коммиты
+
+>[!question]- убрать из индекса файлы
+>git restore --staged файл ← убирает из индекса, изменения остаются
+>git restore файл ← перезаписывает файл, изменения теряются 
+
+>[!question]- добавить в индекс часть файла
+>git add -p src/main/java/com/example/testlinux/domain/EventBidFighter.java
+>потом 
+>``` 
+>s - разбить на части 
+>n = пропустить
+>y - применить / добавить 
+>e - отредактировать
+>q - выйти
+>```
+
 
 >[!question]- как посмотреть какие ветки были смерджены в develop
 > git log --merges --first-parent --oneline origin/develop выводит все коммиты
