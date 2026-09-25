@@ -119,7 +119,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 3
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -146,12 +146,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/Информацционный менеджемент 08.09.2026.md",
+                "file": "1/note for repeate/ВУЗ/Карьерное развите молодого специалиста.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Информацционный менеджемент 08.09.2026"
+              "title": "Карьерное развите молодого специалиста"
             }
           },
           {
@@ -230,16 +230,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/GIT.md",
+                "file": "1/note for repeate/ВУЗ/java.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "java"
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -388,20 +388,30 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d7f7086d52348b84",
+  "active": "f578f49acebdccd8",
   "lastOpenFiles": [
+    "Pasted image 20260925195743.png",
+    "Pasted image 20260925195503.png",
+    "Pasted image 20260925195125.png",
     "1/note for repeate/ВУЗ/Информацционный менеджемент 08.09.2026.md",
-    "Pasted image 20260922203202.png",
-    "Pasted image 20260922201024.png",
-    "Pasted image 20260922200743.png",
-    "Pasted image 20260922200301.png",
-    "Pasted image 20260922195657.png",
-    "Pasted image 20260922193736.png",
-    "Pasted image 20260922193137.png",
-    "Pasted image 20260922191042.png",
-    "Pasted image 20260922190026.png",
-    "Pasted image 20260922185706.png",
+    "1/note for repeate/ВУЗ/java.md",
+    "Pasted image 20260925193838.png",
+    "Pasted image 20260925193236.png",
+    "Pasted image 20260925193210.png",
+    "Pasted image 20260925193057.png",
+    "Pasted image 20260925193005.png",
+    "Pasted image 20260925192544.png",
+    "Pasted image 20260925192448.png",
+    "Pasted image 20260925192055.png",
+    "1/note for repeate/ВУЗ/Карьерное развите молодого специалиста.md",
+    "1/note for repeate/ВУЗ/Методы и модели управления организационными системами.md",
     "1/note for repeate/ВУЗ/РУПП.md",
+    "1/note for repeate/GIT.md",
+    "1/note for repeate/Data Base/Команды mysql.md",
+    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
+    "1/note for repeate/ВУЗ/Математика.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "BEGIN/SSH.md",
     "1/note for repeate/Spring/MAVEN.md",
     "1/note for repeate/IntelliJ IDEA.md",
@@ -410,15 +420,8 @@
     "1/СТЕНДАП.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/ВУЗ/Карьерное развите молодого специалиста.md",
-    "1/note for repeate/ВУЗ/Методы и модели управления организационными системами.md",
-    "1/note for repeate/Data Base/Команды mysql.md",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/ВУЗ/Задачи обучения.md",
     "1/ГЛАВНОЕ.md",
-    "1/note for repeate/ВУЗ/Математика.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.e9d7ff2e3e52",
     "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md.tmp.4775.49c19edf5eb8",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.9ddae9f5c472",
@@ -427,8 +430,6 @@
     "1/note for repeate/Data Base/Orm/JPA.md",
     "1/note for repeate/Data Base/Orm/SQL Explain.md",
     "1/note for repeate/Spring/Spring Base.md",
-    "1/note for repeate/strikerStat/SQL операции/SELECT.md",
-    "Цели на месяц/17-25 декабря.md",
     "1/note for repeate/strikerStat/STR-1195",
     "1/УРФУ",
     "1/note for repeate/Data Base/Транзакции.md.tmp.19466.8d24d2cfefa5",
