@@ -80,3 +80,5 @@ Bracket — JPA-сущность с @OneToMany(cascade = CascadeType.ALL) на b
 >  4. Вкладка Environment (или в старых версиях это поле прямо на главной вкладке)  
 >  5. Поле Environment variables → вписать SPRING_PROFILES_ACTIVE=local 
 
+
+

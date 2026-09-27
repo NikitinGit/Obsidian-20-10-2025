@@ -25,6 +25,22 @@
             }
           },
           {
+            "id": "b87f68151347dce8",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/ВУЗ/Задачи.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Задачи"
+            }
+          },
+          {
             "id": "98421853c07cd2dd",
             "type": "leaf",
             "pinned": true,
@@ -109,17 +125,17 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/РУПП.md",
+                "file": "1/note for repeate/ВУЗ/РУПП словарь.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "РУПП"
+              "title": "РУПП словарь"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -216,16 +232,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/java.md",
+                "file": "1/note for repeate/ВУЗ/информацционный менеджемент/урок 2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "java"
+              "title": "урок 2"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -259,8 +275,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "elas",
-                "matchingCase": false,
+                "query": "RACI",
+                "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
                 "extraContext": true,
@@ -280,8 +296,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -375,54 +390,54 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0c8ba3514b7a6b93",
+  "active": "af07f7b0f12ad293",
   "lastOpenFiles": [
+    "1/note for repeate/ВУЗ/РУПП словарь.md",
+    "Стэк и куча/Статья про кучу на английском.md",
+    "1/note for repeate/ВУЗ/Задачи.md",
+    "1/note for repeate/ВУЗ/карьерное развитие/урок 3.md",
+    "1/note for repeate/Data Base/Команды mysql.md",
+    "1/note for repeate/ВУЗ/самообразование/Деревья.md",
+    "1/note for repeate/ВУЗ/самообразование",
+    "1/note for repeate/ВУЗ/самообразование/Алгоритмы.md",
+    "1/note for repeate/ВУЗ/самообразование/Нормализация БД.md",
+    "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
+    "1/note for repeate/ВУЗ/математика/Математика.md",
+    "1/note for repeate/ВУЗ/математика",
+    "1/note for repeate/ВУЗ/информацционный менеджемент/урок 2.md",
+    "1/note for repeate/ВУЗ/информацционный менеджемент/урок 3.md",
+    "1/note for repeate/ВУЗ/информацционный менеджемент",
+    "1/note for repeate/ВУЗ/java/урок 2.md",
+    "1/note for repeate/ВУЗ/java",
+    "1/note for repeate/ВУЗ/карьерное развитие/урок 2 - роли.md",
+    "1/note for repeate/ВУЗ/карьерное развитие",
+    "1/note for repeate/ВУЗ/Untitled.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "DNS.md",
+    "Pasted image 20260926234619.png",
+    "Pasted image 20260926232401.png",
+    "Pasted image 20260926231651.png",
+    "Pasted image 20260926231145.png",
+    "Pasted image 20260926225601.png",
+    "Pasted image 20260926224407.png",
+    "Pasted image 20260926223223.png",
+    "Pasted image 20260926222359.png",
+    "1/note for repeate/ELK stack.md",
     "Pasted image 20260926201539.png",
     "Pasted image 20260926201446.png",
-    "Pasted image 20260926201326.png",
-    "Pasted image 20260926201305.png",
-    "Pasted image 20260926201216.png",
-    "Pasted image 20260926201134.png",
-    "Pasted image 20260926201102.png",
-    "Pasted image 20260926200946.png",
-    "Pasted image 20260926200811.png",
-    "Pasted image 20260926200601.png",
-    "Pasted image 20260926200550.png",
-    "1/note for repeate/ВУЗ/Карьерное развите молодого специалиста.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/ВУЗ/Информацционный менеджемент 08.09.2026.md",
-    "1/note for repeate/ВУЗ/java.md",
-    "1/note for repeate/ВУЗ/Методы и модели управления организационными системами.md",
-    "1/note for repeate/ВУЗ/РУПП.md",
     "1/note for repeate/GIT.md",
-    "1/note for repeate/Data Base/Команды mysql.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
-    "1/note for repeate/ВУЗ/Математика.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "BEGIN/SSH.md",
     "1/note for repeate/Spring/MAVEN.md",
     "1/note for repeate/IntelliJ IDEA.md",
     "BEGIN/SSH задачи.md",
     "1/note for repeate/FRONT/Stateless Vs Stateful.md",
-    "1/СТЕНДАП.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/ВУЗ/Задачи обучения.md",
-    "1/ГЛАВНОЕ.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.e9d7ff2e3e52",
     "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md.tmp.4775.49c19edf5eb8",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.9ddae9f5c472",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.67f1134a9741",
-    "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md",
-    "1/note for repeate/Data Base/Orm/JPA.md",
-    "1/note for repeate/Data Base/Orm/SQL Explain.md",
-    "1/note for repeate/Spring/Spring Base.md",
     "1/note for repeate/strikerStat/STR-1195",
-    "1/УРФУ",
-    "1/note for repeate/Data Base/Транзакции.md.tmp.19466.8d24d2cfefa5",
-    "1/note for repeate/Data Base/Команды mysql.md.tmp.6744.474d0e1f578a",
-    "1/note for repeate/Data Base/Транзакции.md.tmp.11587.7b07793c28d7",
-    "1/note for repeate/strikerStat/SQL операции",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
