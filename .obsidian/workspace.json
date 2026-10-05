@@ -73,20 +73,6 @@
             }
           },
           {
-            "id": "0c8ba3514b7a6b93",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/ELK stack.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "ELK stack"
-            }
-          },
-          {
             "id": "2f0aa1a5a4c24794",
             "type": "leaf",
             "pinned": true,
@@ -103,35 +89,19 @@
             }
           },
           {
-            "id": "413761c5a84a2a31",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/ВУЗ/Задачи обучения.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Задачи обучения"
-            }
-          },
-          {
             "id": "0c370545142756fd",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/РУПП словарь.md",
+                "file": "1/note for repeate/ВУЗ/Словарь.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "РУПП словарь"
+              "title": "Словарь"
             }
           }
         ],
@@ -213,35 +183,21 @@
             }
           },
           {
-            "id": "d7f7086d52348b84",
+            "id": "07284c0e02b5aa5a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/информацционный менеджемент/урок 3.md",
+                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "урок 3"
-            }
-          },
-          {
-            "id": "06b6aeb9bc4a74dc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/ВУЗ/математика/Математика.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Математика"
+              "title": "1.1.2 Три класса проектов по неопределённости"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -275,7 +231,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "RACI",
+                "query": "Cynefin",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -296,11 +252,12 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 303.5
+    "width": 494.5
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -390,36 +347,45 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2f0aa1a5a4c24794",
+  "active": "07284c0e02b5aa5a",
   "lastOpenFiles": [
-    "1/note for repeate/ВУЗ/математика/Математика.md",
-    "1/note for repeate/ВУЗ/информацционный менеджемент/урок 3.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/Spring/IoC Spring.md",
-    "1/note for repeate/Data Base/Команды mysql.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/Глоссарий лекции 1.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4 Роль руководителя проекта.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.4 Шесть параметров PMI.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.3 Тройное ограничение.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.1 Проект и процесс.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.1 Проект и процесс/1.1 Проект и процесс.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.6 Чек-лист одобрения ИИ-инструмента.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.5 Утечки и ответственность за ИИ.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.4 Регуляторика и этика ИИ.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.3 ИИ-инструменты руководителя.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.2 Особенности ИИ-нативного проекта.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.1 Два типа проектов с ИИ.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5 Проекты с ИИ.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.5 Уровни руководителя.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.4 Рабочий день и окружение PM.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.3 Hard и soft skills.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.2 Лидер-слуга.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.1 Талантовый треугольник PMI.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов/1.3.4 Российская специфика.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов/1.3.3 Что отличает успешные проекты.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов/1.3.2 10 причин провалов.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов/1.3.1 Chaos Report — 30-50-20.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов/1.3 Статистика провалов и успехов.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.6 IT-проект vs другие отрасли.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.5 Технический долг.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.5 Проекты с ИИ",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.2 Особенности программного проекта",
     "Pasted image 20260929201407.png",
-    "1/СТЕНДАП.md",
-    "1/note for repeate/ВУЗ/Задачи.md",
-    "1/note for repeate/ВУЗ/информацционный менеджемент/урок 2.md",
-    "1/note for repeate/ВУЗ/информацционный менеджемент/урок 1.md",
-    "1/note for repeate/Data Base/Orm/SQL Explain.md",
-    "1/note for repeate/ВУЗ/РУПП словарь.md",
-    "Стэк и куча/Статья про кучу на английском.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/урок 3.md",
-    "1/note for repeate/ВУЗ/самообразование/Деревья.md",
-    "1/note for repeate/ВУЗ/самообразование",
-    "1/note for repeate/ВУЗ/самообразование/Алгоритмы.md",
-    "1/note for repeate/ВУЗ/самообразование/Нормализация БД.md",
-    "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
-    "1/note for repeate/ВУЗ/математика",
-    "1/note for repeate/ВУЗ/информацционный менеджемент",
-    "1/note for repeate/ВУЗ/java/урок 2.md",
-    "1/note for repeate/ВУЗ/java",
-    "1/note for repeate/ВУЗ/карьерное развитие/урок 2 - роли.md",
-    "1/note for repeate/ВУЗ/карьерное развитие",
-    "1/note for repeate/ВУЗ/Untitled.md",
-    "DNS.md",
     "Pasted image 20260926234619.png",
     "Pasted image 20260926232401.png",
     "Pasted image 20260926231651.png",
@@ -428,16 +394,7 @@
     "Pasted image 20260926224407.png",
     "Pasted image 20260926223223.png",
     "Pasted image 20260926222359.png",
-    "1/note for repeate/ELK stack.md",
     "Pasted image 20260926201539.png",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
-    "BEGIN/SSH.md",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.e9d7ff2e3e52",
-    "1/note for repeate/Data Base/Orm/Kotlin JPA N+1 problem.md.tmp.4775.49c19edf5eb8",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.9ddae9f5c472",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md.tmp.4775.67f1134a9741",
-    "1/note for repeate/strikerStat/STR-1195",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
