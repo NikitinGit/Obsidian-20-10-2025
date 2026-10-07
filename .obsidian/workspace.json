@@ -195,9 +195,23 @@
               "icon": "lucide-file",
               "title": "Spring Framework"
             }
+          },
+          {
+            "id": "c072ebaa3e30ec14",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/Нейроагент.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Нейроагент"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -346,11 +360,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "07284c0e02b5aa5a",
+  "active": "c072ebaa3e30ec14",
   "lastOpenFiles": [
+    "1/note for repeate/Нейроагент.md.tmp.12073.a0abd7cbadc8",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/note for repeate/ВУЗ/java/Spring Framework.md",
     "Pasted image 20261007133303.png",
     "1/note for repeate/ВУЗ/java/урок 2.md",
-    "1/note for repeate/ВУЗ/java/Spring Framework.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
     "1/note for repeate/Data Base/Команды mysql.md",
     "1/СТЕНДАП.md",
@@ -373,7 +389,6 @@
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.4 Рабочий день и окружение PM.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.3 Hard и soft skills.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.2 Лидер-слуга.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.1 Талантовый треугольник PMI.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
@@ -393,7 +408,6 @@
     "Pasted image 20260926224407.png",
     "Pasted image 20260926223223.png",
     "Pasted image 20260926222359.png",
-    "Pasted image 20260926201539.png",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
