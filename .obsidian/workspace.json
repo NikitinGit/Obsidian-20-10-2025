@@ -209,9 +209,23 @@
               "icon": "lucide-file",
               "title": "Нейроагент"
             }
+          },
+          {
+            "id": "523fcaa045f1fa94",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/GIT.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GIT"
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -360,8 +374,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c072ebaa3e30ec14",
+  "active": "523fcaa045f1fa94",
   "lastOpenFiles": [
+    "1/СТЕНДАП.md",
+    "1/note for repeate/GIT.md",
+    "1/note for repeate/GIT.md.tmp.12073.5c717ffc3c9c",
+    "1/note for repeate/GIT.md.tmp.12073.ce28c179a57d",
+    "1/note for repeate/Spring/IoC Spring.md",
+    "1/note for repeate/JavaCore/JavaCore.md",
+    "1/note for repeate/Нейроагент.md",
     "1/note for repeate/Нейроагент.md.tmp.12073.a0abd7cbadc8",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/ВУЗ/java/Spring Framework.md",
@@ -369,7 +390,6 @@
     "1/note for repeate/ВУЗ/java/урок 2.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
     "1/note for repeate/Data Base/Команды mysql.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/Глоссарий лекции 1.md",
     "1/note for repeate/ВУЗ/Задачи.md",
     "1/note for repeate/ВУЗ/Словарь.md",
@@ -386,9 +406,6 @@
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.1 Два типа проектов с ИИ.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5 Проекты с ИИ.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.5 Уровни руководителя.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.4 Рабочий день и окружение PM.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.3 Hard и soft skills.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.2 Лидер-слуга.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
@@ -396,9 +413,6 @@
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.5 Проекты с ИИ",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1 — памятки Obsidian/Лекция 1. Программный проект/1.2 Особенности программного проекта",
     "Pasted image 20260929201407.png",
     "Pasted image 20260926234619.png",
     "Pasted image 20260926232401.png",

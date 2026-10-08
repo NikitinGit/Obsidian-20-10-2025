@@ -5,6 +5,48 @@
 4. [x] как безопасно удалить ветку
 5. [ ] индекс и стек это 
 6. [x]  git merge --abort  - это отмена мержда
+
+>[!question]-  Загрузить демо проект с чужого гитхаба и сохранить его в своем
+> git remote remove origin 
+> gh repo create rabbitmq --private --source=. --push
+> git add complete/ASYNC_EXAMPLES.md complete/src/main/java/com/example/messagingrabbitmq/{AsyncRunnerWithAsyncTemplate,AsyncRunnerWithExecutor,FireAndForgetRunner,Receiver,Runner,RunnerAsync}.java  
+> git push -u origin main    
+
+>[!question]-  GitHub CLI (gh) это
+> официальная утилита GitHub для работы с репозиториями из командной строки.
+> Основная команда
+> ```
+> gh repo create OrderService2 --private --source=. --push
+> ```
+> - Позволяет создавать репозитории на GitHub прямо из терминала
+> - Можно сразу инициализировать git, создать репозиторий на GitHub и
+  запушить код одной командой  
+  >- Не нужно заходить на сайт GitHub для создания репозитория
+  
+>[!question]- новый проект в ветку существующего репозитория: часто коммитить и пушить, а сдать одним коммитом (PR)
+> **1. Подготовка (один раз)** — в папке проекта
+>```
+>git init
+>git remote add origin git@github.com:NikitinGit/NauJava.git
+>git fetch origin
+>git checkout -b task3-spring --no-track origin/main   # ветка от удалённого main; --no-track — чтобы push не ушёл в main
+># если уже создал без --no-track (git status показывает task3-spring...origin/main): git branch --unset-upstream
+>git status                                 # .idea/ и target/ не должно быть (скрыты .gitignore)
+>git add .gitignore .gitattributes pom.xml mvnw mvnw.cmd .mvn src
+>git commit -m "Spring Initializr project"
+>git push -u origin task3-spring
+>```
+> **2. Во время работы** — мелкие коммиты и сразу push (IDEA: Commit and Push, Ctrl+Alt+K). Работа на GitHub — не пропадёт при вылете компа.
+> **3. Перед сдачей** — склеить все коммиты ветки в один
+>```
+>git reset --soft origin/main     # коммиты ветки убираются, изменения остаются в индексе
+>git commit -m "Spring: console app for project management"
+>git push -f origin task3-spring  # -f, т.к. история переписана
+>```
+> **4. Pull request** на GitHub: base: main ← compare: task3-spring → Create pull request. Merge не нажимать, пока куратор не примет.
+> **Вариант без шага 3 (куратор разрешил, практика 3):** коммиты в ветке не склеивать, создать PR со всеми атомарными коммитами. После принятия работы — у кнопки **Merge pull request** нажать стрелку ▾ → **Squash and merge** → поправить сообщение → **Confirm squash and merge**. В main попадёт один коммит, без `reset --soft` и `push -f`. Кнопка запоминает выбор — проверять, что на ней «Squash and merge», а не «Create a merge commit». После слияния — **Delete branch**.
+> ⚠️ Кнопка IDEA «Create Git repository» = только `git init`: создаёт пустой локальный main без remote. Коммитить в него нельзя — история не связана с main на GitHub.
+
 >[!question]- посмотреть историю коммиты
 >git log -5 --all --pretty=format:"%h %ad %an %s"  # хеш, дата, автор, сообщение
 >git log --oneline --graph --all - посмотреть все коммиты
@@ -23,7 +65,6 @@
 >e - отредактировать
 >q - выйти
 >```
-
 
 >[!question]- как посмотреть какие ветки были смерджены в develop
 > git log --merges --first-parent --oneline origin/develop выводит все коммиты
@@ -99,6 +140,28 @@
 >Нет 
 >одна ветка Меняется только после чекаута удаленной ветки 
 
+>[!question]- Откатить не закомиченные изменения
+>1. откатить до последнего коммита 
+>```
+>git reset --hard // только отслеживаемые файлы
+>git reset --hard && git clean -fd // все файлы 
+>```
+>2. откатить изменения в выбранных файлах
+>```
+>git restore backend-java/src/main/java/com/strikerstat/webapp/repository/olympicevents/BracketEntryRepository.java \
+> backend-java/src/main/java/com/strikerstat/webapp/repository/open_events/EventBidFighterRepository.java \
+>```
+>3. откатить изменения во всех фалах 
+>```
+>git restore . 
+>```
+>4. откатить добавленные неотслеживаемые фалы 
+>```
+>git clean -nd   # сначала посмотреть, что будет удалено
+>git clean -fd   # удалить
+>```
+
+
 >[!question]- Откатить ветку до нужного коммита 
 >git reset --hard <хэш_коммита>
 >пример git reset --hard 5d115ed1
@@ -110,87 +173,69 @@
 >  
 >  Способ 1: Через Reflog (самый простой)  
 >  
->  3. Откройте панель Git (Alt+9)  
->  4. Нажмите на иконку часов (Clock icon) в верхней панели или используйте меню: Git → Show Git Log  
->  5. В нижней части окна найдите вкладку Reflog (если её нет, нажмите на шестеренку и включите её)  
->  6. В Reflog найдите запись до вашего reset (обычно это HEAD@{1})  
->  7. Кликните правой кнопкой мыши на нужный коммит  
->  8. Выберите Reset Current Branch to Here...  
->  9. Выберите Hard и нажмите Reset  
+>  5. Откройте панель Git (Alt+9)  
+>  6. Нажмите на иконку часов (Clock icon) в верхней панели или используйте меню: Git → Show Git Log  
+>  7. В нижней части окна найдите вкладку Reflog (если её нет, нажмите на шестеренку и включите её)  
+>  8. В Reflog найдите запись до вашего reset (обычно это HEAD@{1})  
+>  9. Кликните правой кнопкой мыши на нужный коммит  
+>  10. Выберите Reset Current Branch to Here...  
+>  11. Выберите Hard и нажмите Reset  
 >  
 >  Способ 2: Через Git Log  
 >  
->  10. Откройте Git → Show Git Log (Alt+9, затем вкладка Log)  
->  11. Справа вверху найдите поле поиска  
->  12. Введите хеш коммита 296663c42 или название коммита  
->  13. Найдите коммит "STR6-1130 добавил валидацию на изменение оценок бокового судьи главным судьей"  
->  14. Кликните правой кнопкой мыши на нем  
->  15. Выберите Reset Current Branch to Here...  
->  16. Выберите Hard и нажмите Reset  
+>  12. Откройте Git → Show Git Log (Alt+9, затем вкладка Log)  
+>  13. Справа вверху найдите поле поиска  
+>  14. Введите хеш коммита 296663c42 или название коммита  
+>  15. Найдите коммит "STR6-1130 добавил валидацию на изменение оценок бокового судьи главным судьей"  
+>  16. Кликните правой кнопкой мыши на нем  
+>  17. Выберите Reset Current Branch to Here...  
+>  18. Выберите Hard и нажмите Reset  
 >  
 >  Способ 3: Через меню VCS  
 >  
->  17. VCS → Git → Show History (или Ctrl+Alt+H)  
->  18. Включите опцию показа всех веток и reflog  
->  19. Найдите нужный коммит и сделайте reset как описано выше  
+>  19. VCS → Git → Show History (или Ctrl+Alt+H)  
+>  20. Включите опцию показа всех веток и reflog  
+>  21. Найдите нужный коммит и сделайте reset как описано выше  
 >  
 >  Reflog в IntelliJ обычно находится в той же панели Git Log, просто нужно переключиться на соответствующую вкладку.осстановление после git reset --hard в IntelliJ IDEA:  
 >  
 >Способ 1: Через Reflog (самый простой)  
 >  
->  20. Откройте панель Git (Alt+9)  
->  21. Нажмите на иконку часов (Clock icon) в верхней панели или используйте меню: Git → Show Git Log  
->  22. В нижней части окна найдите вкладку Reflog (если её нет, нажмите на шестеренку и включите её)  
->  23. В Reflog найдите запись до вашего reset (обычно это HEAD@{1})  
+>  22. Откройте панель Git (Alt+9)  
+>  23. Нажмите на иконку часов (Clock icon) в верхней панели или используйте меню: Git → Show Git Log  
+>  24. В нижней части окна найдите вкладку Reflog (если её нет, нажмите на шестеренку и включите её)  
+>  25. В Reflog найдите запись до вашего reset (обычно это HEAD@{1})  
 >        5. Кликните правой кнопкой мыши на нужный коммит  
->  24. Выберите Reset Current Branch to Here...  
+>  26. Выберите Reset Current Branch to Here...  
 >        7. Выберите Hard и нажмите Reset  
 >  
 >Способ 2: Через Git Log  
 >  
->  25. Откройте Git → Show Git Log (Alt+9, затем вкладка Log)  
->  26. Справа вверху найдите поле поиска  
->  27. Введите хеш коммита 296663c42 или название коммита  
->  28. Найдите коммит "STR6-1130 добавил валидацию на изменение оценок бокового судьи главным судьей"  
+>  27. Откройте Git → Show Git Log (Alt+9, затем вкладка Log)  
+>  28. Справа вверху найдите поле поиска  
+>  29. Введите хеш коммита 296663c42 или название коммита  
+>  30. Найдите коммит "STR6-1130 добавил валидацию на изменение оценок бокового судьи главным судьей"  
 >        5. Кликните правой кнопкой мыши на нем  
->  29. Выберите Reset Current Branch to Here...  
+>  31. Выберите Reset Current Branch to Here...  
 >        7. Выберите Hard и нажмите Reset  
 >  
 >Способ 3: Через меню VCS  
 >  
->  30. VCS → Git → Show History (или Ctrl+Alt+H)  
->  31. Включите опцию показа всех веток и reflog  
->  32. Найдите нужный коммит и сделайте reset как описано выше  
+>  32. VCS → Git → Show History (или Ctrl+Alt+H)  
+>  33. Включите опцию показа всех веток и reflog  
+>  34. Найдите нужный коммит и сделайте reset как описано выше  
 >  
 >Reflog в IntelliJ обычно находится в той же панели Git Log, просто нужно переключиться на соответствующую вкладку.
 >  ```
-
->[!question]-  Загрузить демо проект с чужого гитхаба и сохранить его в своем
-> git remote remove origin 
-> gh repo create rabbitmq --private --source=. --push
-> git add complete/ASYNC_EXAMPLES.md complete/src/main/java/com/example/messagingrabbitmq/{AsyncRunnerWithAsyncTemplate,AsyncRunnerWithExecutor,FireAndForgetRunner,Receiver,Runner,RunnerAsync}.java  
-> git push -u origin main    
-> 
   
->[!question]-  GitHub CLI (gh) это
-> официальная утилита GitHub для работы с репозиториями из командной строки.
-> Основная команда
-> ```
-> gh repo create OrderService2 --private --source=. --push
-> ```
-> - Позволяет создавать репозитории на GitHub прямо из терминала
-> - Можно сразу инициализировать git, создать репозиторий на GitHub и
-  запушить код одной командой  
-  >- Не нужно заходить на сайт GitHub для создания репозитория
-
 >[!question]- как  локально создать все репозитории и закинуть их на гитхаб ( ил еще куда ) 
->1.  EurekaServer:
+>35.  EurekaServer:
   cd EurekaServer && git init && git add . && git commit -m "Initial commit" && gh repo create EurekaServer --private --source=. --push
-> 2. OrderService:
+> 36. OrderService:
   cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/OrderService && git init && git add . && git commit -m "Initial commit" && gh repo create OrderService --private --source=. --push
-  >3. OrderService2:
+  >37. OrderService2:
   cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/OrderService2 && git init && git add . && git commit -m "Initial commit" && gh repo create OrderService2 --private --source=. --push
-  >4. UserService:
+  >38. UserService:
   cd /home/igor/IdeaProjects/springdoc/balancer/chatgpt/UserService && git init && git add . && git commit -m "Initial commit" && gh
   repo create UserService --private --source=. --push
   >
@@ -229,11 +274,11 @@
 >   в интелдж идеа 
 >   ```
 >   >1. Откройте панель Git (Alt+9 или внизу экрана)  
->2. В разделе Local Branches найдите ветку STR6-1130-reduce-main-judge-permissions  
->3. Кликните правой кнопкой мыши по ветке  
->4. Выберите Rename...  
->5. Введите новое имя: STR-1130-reduce-main-judge-permissions  
->6. Нажмите OK
+>39. В разделе Local Branches найдите ветку STR6-1130-reduce-main-judge-permissions  
+>40. Кликните правой кнопкой мыши по ветке  
+>41. Выберите Rename...  
+>42. Введите новое имя: STR-1130-reduce-main-judge-permissions  
+>43. Нажмите OK
 >   ```
 >   В терминале Git: 
 > если вы находитесь  в ветке git branch -m STR-1130-reduce-main-judge-permissions
@@ -265,10 +310,10 @@
 >⚠️ Если коммит уже запушен — после amend нужен `git push --force-with-lease`
 >
 >В IntelliJ IDEA:
->1. Открыть вкладку **Git** (внизу) → **Log**
->2. Правый клик на нужном коммите (обычно верхний)
->3. **Edit Commit Message...**
->4. Изменить текст → **OK**
+>44. Открыть вкладку **Git** (внизу) → **Log**
+>45. Правый клик на нужном коммите (обычно верхний)
+>46. **Edit Commit Message...**
+>47. Изменить текст → **OK**
 
 >[!question]- найти общего предка у двух веток
 >git merge-base  task/STR6-1121_judge_notification_from_main_branshe main
@@ -347,11 +392,11 @@
 > пиши
 
 >[!question]- КОГДА ВОЗНИКАЮТ КОНФЛИКТЫ
->1. если 2 ветки (b , c) были созданы из первоначальной ветки предка (a) и изменили одну строку файла по разному
->2. если в одной ветке файл удаляется , а в другой меняется
->3. конфликты возникают между веток, у которых есть общий предок (коммит, присутствующий в истории коммитов обоих веток)
->4. если предок веток отличается (ветка Б создана из А, А меняется и ветка В создается из А - ветки Б и В имеют разных предков) - ТО КОНФЛИКТ ВСЕ РАВНО ВОЗНИКАЕТ - ЧТО ДОКАЗЫВАЕТ НЕ ЗАВИСИМОСТЬ КОНФЛИКТА ОТ ВРЕМЕНИ КОММИТА И СОЗДАНИЯ ВЕТКИ
->5. ДЛЯ ВОЗНИКНОВЕНИЯ КОНФЛИКТА НЕОБХОДИМЫ ИЗМЕНЕНИЯ В 2 ВЕТКАХ ОТНОСИТЕЛЬНО ПРЕДКА (МИНИМУМ 2 КОММИТА СУММАРНО)
+>48. если 2 ветки (b , c) были созданы из первоначальной ветки предка (a) и изменили одну строку файла по разному
+>49. если в одной ветке файл удаляется , а в другой меняется
+>50. конфликты возникают между веток, у которых есть общий предок (коммит, присутствующий в истории коммитов обоих веток)
+>51. если предок веток отличается (ветка Б создана из А, А меняется и ветка В создается из А - ветки Б и В имеют разных предков) - ТО КОНФЛИКТ ВСЕ РАВНО ВОЗНИКАЕТ - ЧТО ДОКАЗЫВАЕТ НЕ ЗАВИСИМОСТЬ КОНФЛИКТА ОТ ВРЕМЕНИ КОММИТА И СОЗДАНИЯ ВЕТКИ
+>52. ДЛЯ ВОЗНИКНОВЕНИЯ КОНФЛИКТА НЕОБХОДИМЫ ИЗМЕНЕНИЯ В 2 ВЕТКАХ ОТНОСИТЕЛЬНО ПРЕДКА (МИНИМУМ 2 КОММИТА СУММАРНО)
 
 >[!question]- как сравнить ветки
 > git diff task/794/organizer-create-edit-fighter..task/STR6-798/event-payment-before-send-bid
