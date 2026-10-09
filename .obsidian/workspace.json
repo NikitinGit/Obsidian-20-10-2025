@@ -202,12 +202,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Нейроагент.md",
+                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Нейроагент"
+              "title": "1.1.2 Три класса проектов по неопределённости"
             }
           },
           {
@@ -225,7 +225,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -259,7 +259,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Cynefin",
+                "query": "RUP",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -280,7 +280,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -374,23 +375,24 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "523fcaa045f1fa94",
+  "active": "f3b7893664b5a734",
   "lastOpenFiles": [
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/Глоссарий лекции 1.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
     "1/СТЕНДАП.md",
+    "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
+    "1/note for repeate/Нейроагент.md",
     "1/note for repeate/GIT.md",
     "1/note for repeate/GIT.md.tmp.12073.5c717ffc3c9c",
     "1/note for repeate/GIT.md.tmp.12073.ce28c179a57d",
     "1/note for repeate/Spring/IoC Spring.md",
     "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/Нейроагент.md",
     "1/note for repeate/Нейроагент.md.tmp.12073.a0abd7cbadc8",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/ВУЗ/java/Spring Framework.md",
     "Pasted image 20261007133303.png",
     "1/note for repeate/ВУЗ/java/урок 2.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
     "1/note for repeate/Data Base/Команды mysql.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/Глоссарий лекции 1.md",
     "1/note for repeate/ВУЗ/Задачи.md",
     "1/note for repeate/ВУЗ/Словарь.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4 Роль руководителя проекта.md",
@@ -405,7 +407,6 @@
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.2 Особенности ИИ-нативного проекта.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5.1 Два типа проектов с ИИ.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ/1.5 Проекты с ИИ.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.5 Уровни руководителя.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
