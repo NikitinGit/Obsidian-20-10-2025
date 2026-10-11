@@ -6,6 +6,60 @@
 5. [ ] индекс и стек это 
 6. [x]  git merge --abort  - это отмена мержда
 
+>[!question]-  Перенести чужой рпоект на гитхабе к себе на гитхаб
+> Задача: забрать **все ветки + всю историю** (а не только main) в свой репозиторий, независимый от оригинала. Пример — `kroflex1/School-back` → `NikitinGit/School-back`.
+> **Fork не подходит** — останется привязан к чужому репо («forked from …»).
+> **Не переносится** (это данные сайта, а не git): Issues, обсуждения PR, Wiki, Actions/CI.
+>
+> **Вариант 1. GitHub + gh (как делал)**
+>```
+>git ls-remote https://github.com/kroflex1/School-back.git   # посмотреть, какие ветки есть
+>git clone --bare https://github.com/kroflex1/School-back.git School-back.git   # все ветки, без рабочих файлов
+>gh repo create NikitinGit/School-back --private --description "перенесено из kroflex1/School-back"
+>cd School-back.git
+>git push git@github.com:NikitinGit/School-back.git --all    # все ветки
+>git push git@github.com:NikitinGit/School-back.git --tags   # все теги
+>cd .. && rm -rf School-back.git                             # bare-копия больше не нужна
+>git clone git@github.com:NikitinGit/School-back.git         # рабочая копия, origin = мой репо
+>cd School-back && git branch -r                             # проверить, что все ветки на месте
+>```
+> - `--bare` — обычный `clone` создаёт локально только main, остальные ветки лишь как `origin/*`, и `push --all` их не отправит
+> - ⚠️ **не** `git push --mirror` — тащит служебные `refs/pull/*`, GitHub их отклоняет (`deny updating a hidden ref`)
+> - сделать публичным: `gh repo edit NikitinGit/School-back --visibility public --accept-visibility-change-consequences`
+>
+> **Вариант 2. GitHub без gh**
+> 1. github.com → **New repository** → имя, Private → **ничего не галочить** (без README, .gitignore, license — репо должен быть пустым, иначе push отклонят)
+> 2. Те же команды, что в варианте 1, только без строки `gh repo create`
+> - по SSH нужен ключ в Settings → SSH keys; по HTTPS пароль не работает — нужен Personal access token (Settings → Developer settings → Tokens)
+> - **совсем без терминала:** github.com/new/import → вставить URL чужого репо → GitHub сам скопирует все ветки и историю
+>
+> **Вариант 3. GitLab**
+>```
+>git clone --bare https://github.com/kroflex1/School-back.git School-back.git
+>cd School-back.git
+>git push git@gitlab.com:NikitinGit/School-back.git --all    # push-to-create: проект создастся сам (private)
+>git push git@gitlab.com:NikitinGit/School-back.git --tags
+>```
+> - создать проект заранее: gitlab.com → **New project → Create blank project** → снять галку «Initialize repository with a README»
+> - CLI-аналог gh — `glab repo create School-back --private`
+> - без терминала: **New project → Import project → Repository by URL**
+> - ⚠️ в GitLab ветка main по умолчанию **protected** — `push -f` в неё запрещён (Settings → Repository → Protected branches)
+>
+> **Вариант 4. Bitbucket**
+>```
+>git clone --bare https://github.com/kroflex1/School-back.git School-back.git
+>cd School-back.git
+>git push git@bitbucket.org:<workspace>/school-back.git --all
+>git push git@bitbucket.org:<workspace>/school-back.git --tags
+>```
+> - push-to-create **нет** — сначала bitbucket.org → **Create → Repository** → выбрать workspace и project → «Include a README?» = **No**
+> - в адресе не username, а **workspace**; имя репо Bitbucket приводит к нижнему регистру
+> - по HTTPS — App password / API token, а не пароль от аккаунта
+> - без терминала: **Create → Import repository** → URL чужого репо
+>
+> **Общий шаблон для любого хостинга:** создать **пустой** репо → `git clone --bare <чужой>` → `git push <свой> --all` → `git push <свой> --tags` → `git clone <свой>`
+
+
 >[!question]-  Загрузить демо проект с чужого гитхаба и сохранить его в своем
 > git remote remove origin 
 > gh repo create rabbitmq --private --source=. --push
