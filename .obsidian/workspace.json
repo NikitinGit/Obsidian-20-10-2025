@@ -202,12 +202,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
+                "file": "1/note for repeate/ВУЗ/информацционный менеджемент/урок 4.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1.1.2 Три класса проектов по неопределённости"
+              "title": "урок 4"
             }
           },
           {
@@ -216,12 +216,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/GIT.md",
+                "file": "1/note for repeate/Data Base/Команды MySQL.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "Команды MySQL"
             }
           },
           {
@@ -239,7 +239,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -273,7 +273,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "RUP",
+                "query": "Mysql",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -388,34 +388,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "752e57e313a96eb4",
+  "active": "2f0aa1a5a4c24794",
   "lastOpenFiles": [
+    "1/note for repeate/ВУЗ/информацционный менеджемент/урок 4.md",
+    "1/СТЕНДАП.md",
+    "Pasted image 20261021111530.png",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
+    "1/note for repeate/Data Base/Команды MySQL.md",
+    "1/note for repeate/GIT.md",
+    "1/note for repeate/ВУЗ/java/Spring Framework.md",
+    "1/note for repeate/ВУЗ/карьерное развитие/урок 6.md",
     "Pasted image 20261016201618.png",
     "1/note for repeate/ВУЗ/карьерное развитие/урок 2 - роли.md",
     "1/note for repeate/ВУЗ/карьерное развитие/урок 3.md",
     "1/note for repeate/ВУЗ/карьерное развитие/урок 5.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/урок 6.md",
     "Pasted image 20261016192349.png",
     "1/note for repeate/ВУЗ/математика/Математика.md",
     "Pasted image 20261015185258.png",
     "Pasted image 20261015182822.png",
     "Pasted image 20261015181903.png",
     "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
-    "1/note for repeate/ВУЗ/java/Spring Framework.md",
-    "1/note for repeate/Data Base/Команды mysql.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
     "1/note for repeate/JavaCore/JavaCore.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/GIT.md.tmp.12691.547bdef8bb0b",
     "Pasted image 20261009201810.png",
     "Pasted image 20261009201325.png",
     "Pasted image 20261009200728.png",
     "Pasted image 20261009200654.png",
-    "Pasted image 20261009200037.png",
     "1/note for repeate/Spring/IoC Spring.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/Глоссарий лекции 1.md",
     "1/note for repeate/Нейроагент.md",
@@ -423,13 +424,11 @@
     "1/note for repeate/GIT.md.tmp.12073.ce28c179a57d",
     "1/note for repeate/Нейроагент.md.tmp.12073.a0abd7cbadc8",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "Pasted image 20261007133303.png",
     "1/note for repeate/ВУЗ/java/урок 2.md",
     "1/note for repeate/ВУЗ/Задачи.md",
     "1/note for repeate/ВУЗ/Словарь.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4 Роль руководителя проекта.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.4 Шесть параметров PMI.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.3 Тройное ограничение.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
