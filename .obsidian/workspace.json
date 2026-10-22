@@ -202,12 +202,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/информацционный менеджемент/урок 4.md",
+                "file": "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "урок 4"
+              "title": "Методы и модели управления организационными системами"
             }
           },
           {
@@ -388,8 +388,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2f0aa1a5a4c24794",
+  "active": "c072ebaa3e30ec14",
   "lastOpenFiles": [
+    "Pasted image 20261022180739.png",
     "1/note for repeate/ВУЗ/информацционный менеджемент/урок 4.md",
     "1/СТЕНДАП.md",
     "Pasted image 20261021111530.png",
