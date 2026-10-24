@@ -273,7 +273,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Mysql",
+                "query": "maven",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -294,7 +294,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -390,6 +391,13 @@
   },
   "active": "8322c3d8bfe7f097",
   "lastOpenFiles": [
+    "1/note for repeate/DOCKER COMPOSE.md",
+    "1/note for repeate/Spring/MAVEN.md.tmp.44075.143f9626e36b",
+    "1/note for repeate/Spring/MAVEN.md.tmp.44075.3852ac500934",
+    "1/note for repeate/Spring/MAVEN.md.tmp.44075.3365ca7cab34",
+    "1/note for repeate/DOCKER COMPOSE.md.tmp.44075.fdc7355ff2bc",
+    "1/note for repeate/DOCKER COMPOSE.md.tmp.44075.58177e239881",
+    "1/note for repeate/Spring/MAVEN.md",
     "1/note for repeate/Spring/Spring ERROR.md",
     "1/note for repeate/Spring/SPRING ЛОГИ ЗАПУСКА.md",
     "1/note for repeate/Spring/IoC Spring.md",
@@ -428,14 +436,7 @@
     "1/note for repeate/GIT.md.tmp.12073.5c717ffc3c9c",
     "1/note for repeate/GIT.md.tmp.12073.ce28c179a57d",
     "1/note for repeate/Нейроагент.md.tmp.12073.a0abd7cbadc8",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/ВУЗ/java/урок 2.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.5 Проекты с ИИ",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.3 Статистика провалов и успехов",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
