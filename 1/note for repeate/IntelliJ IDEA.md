@@ -4,6 +4,9 @@
 1. зайти в мавен и нажать clean compile и отключить тесты 
 2. file/ invalidate cashes
 3. В мавен гуи первая кнопка Sync all maven project
+>[!question]- DataGrip починить 
+>поменять название БД ![[Pasted image 20261024194619.png]] 
+
 
 >[!question]- как собрать мавен проект со сбросом кеша
 >mvn clean install -DskipTests -U 

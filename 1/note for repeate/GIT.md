@@ -6,6 +6,17 @@
 5. [ ] индекс и стек это 
 6. [x]  git merge --abort  - это отмена мержда
 
+>[!question]- как посмотреть какие ветки были смерджены в develop
+>выводит все коммиты которые есть в main но нет в develop и наоборот (в выводе < значит коммит есть только в develop, > — только в main. )
+>```
+>git log --left-right --oneline origin/develop...origin/main -20
+>```
+> git log --merges --first-parent --oneline origin/develop выводит все коммиты
+> git log --merges --first-parent --oneline -20 origin/develop - последние 20 
+>  git log --merges --first-parent --oneline --since="2 weeks ago" origin/develop - за последние 2 недели 
+>  git log --merges --first-parent --oneline --after="2026-08-01" origin/develop - после 2026-08-01
+
+
 >[!question]-  Перенести чужой проект на гитхабе к себе на гитхаб
 > Задача: забрать **все ветки + всю историю** (а не только main) в свой репозиторий, независимый от оригинала. Пример — `kroflex1/School-back` → `NikitinGit/School-back`.
 > **Fork не подходит** — останется привязан к чужому репо («forked from …»).
@@ -119,12 +130,6 @@
 >e - отредактировать
 >q - выйти
 >```
-
->[!question]- как посмотреть какие ветки были смерджены в develop
-> git log --merges --first-parent --oneline origin/develop выводит все коммиты
-> git log --merges --first-parent --oneline -20 origin/develop - последние 20 
->  git log --merges --first-parent --oneline --since="2 weeks ago" origin/develop - за последние 2 недели 
->  git log --merges --first-parent --oneline --after="2026-08-01" origin/develop - после 2026-08-01
 
 >[!question]- чем отличается fetch от pull 
 > fetch не изменяет ветку при получении удаленных данных , а  pull меняет через merge / rebase
