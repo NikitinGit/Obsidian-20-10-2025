@@ -230,12 +230,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/GIT.md",
+                "file": "VPN/BASE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GIT"
+              "title": "BASE"
             }
           }
         ],
@@ -273,7 +273,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "git",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -294,8 +294,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -389,8 +388,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2f0aa1a5a4c24794",
+  "active": "8322c3d8bfe7f097",
   "lastOpenFiles": [
+    "VPN/BASE.md.tmp.16175.27c052f9e294",
+    "1/СТЕНДАП.md",
+    "VPN/BASE.md",
+    "VPN",
     "1/note for repeate/GIT.md",
     "1/note for repeate/Spring/MapStruct.md",
     "1/note for repeate/ВУЗ/Задачи.md",
@@ -408,7 +411,6 @@
     "1/note for repeate/Spring/MAVEN.md.tmp.44075.3852ac500934",
     "1/note for repeate/Spring/MAVEN.md.tmp.44075.3365ca7cab34",
     "1/note for repeate/DOCKER COMPOSE.md.tmp.44075.fdc7355ff2bc",
-    "1/note for repeate/DOCKER COMPOSE.md.tmp.44075.58177e239881",
     "1/note for repeate/Spring/Spring ERROR.md",
     "1/note for repeate/Spring/SPRING ЛОГИ ЗАПУСКА.md",
     "1/note for repeate/Spring/IoC Spring.md",
@@ -425,7 +427,6 @@
     "Pasted image 20261023202313.png",
     "Pasted image 20261023195957.png",
     "Pasted image 20261023193004.png",
-    "1/СТЕНДАП.md",
     "1/note for repeate/ВУЗ/Словарь.md",
     "Pasted image 20261022180739.png",
     "1/note for repeate/ВУЗ/информацционный менеджемент/урок 4.md",
@@ -435,8 +436,6 @@
     "1/note for repeate/ВУЗ/карьерное развитие/урок 2 - роли.md",
     "1/note for repeate/ВУЗ/карьерное развитие/урок 3.md",
     "1/note for repeate/ВУЗ/карьерное развитие/урок 5.md",
-    "1/note for repeate/ВУЗ/математика/Математика.md",
-    "1/note for repeate/Сетевое взаимодействие/Виды сетевого взаимодействия.md",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
