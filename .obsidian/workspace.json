@@ -105,7 +105,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -390,14 +390,15 @@
   },
   "active": "8322c3d8bfe7f097",
   "lastOpenFiles": [
-    "VPN/BASE.md.tmp.16175.27c052f9e294",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/note for repeate/ВУЗ/Задачи.md",
+    "1/ГЛАВНОЕ.md",
     "1/СТЕНДАП.md",
     "VPN/BASE.md",
+    "VPN/BASE.md.tmp.16175.27c052f9e294",
     "VPN",
     "1/note for repeate/GIT.md",
     "1/note for repeate/Spring/MapStruct.md",
-    "1/note for repeate/ВУЗ/Задачи.md",
-    "1/ГЛАВНОЕ.md",
     "1/note for repeate/Spring/MAVEN.md",
     "1/note for repeate/Spring/MapStruct.md.tmp.10459.4adc3e8ef34b",
     "1/note for repeate/IntelliJ IDEA.md",
@@ -410,7 +411,6 @@
     "1/note for repeate/Spring/MAVEN.md.tmp.44075.143f9626e36b",
     "1/note for repeate/Spring/MAVEN.md.tmp.44075.3852ac500934",
     "1/note for repeate/Spring/MAVEN.md.tmp.44075.3365ca7cab34",
-    "1/note for repeate/DOCKER COMPOSE.md.tmp.44075.fdc7355ff2bc",
     "1/note for repeate/Spring/Spring ERROR.md",
     "1/note for repeate/Spring/SPRING ЛОГИ ЗАПУСКА.md",
     "1/note for repeate/Spring/IoC Spring.md",
