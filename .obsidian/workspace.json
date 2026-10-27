@@ -105,7 +105,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -388,13 +388,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8322c3d8bfe7f097",
+  "active": "2f0aa1a5a4c24794",
   "lastOpenFiles": [
+    "VPN/BASE.md",
     "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "1/note for repeate/ВУЗ/Задачи.md",
     "1/ГЛАВНОЕ.md",
     "1/СТЕНДАП.md",
-    "VPN/BASE.md",
     "VPN/BASE.md.tmp.16175.27c052f9e294",
     "VPN",
     "1/note for repeate/GIT.md",
