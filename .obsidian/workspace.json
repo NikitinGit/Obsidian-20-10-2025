@@ -119,7 +119,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 4
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -230,12 +230,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/карьерное развитие/урок 6.md",
+                "file": "1/note for repeate/ВУЗ/карьерное развитие/урок  7.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "урок 6"
+              "title": "урок  7"
             }
           },
           {
@@ -258,15 +258,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.1 Нематериальность.md",
+                "file": "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1.2.1 Нематериальность"
+              "title": "1"
             }
           }
-        ]
+        ],
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -415,19 +416,27 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d61a3f73aefa098f",
+  "active": "7fc7ed28a2a7f461",
   "lastOpenFiles": [
+    "Pasted image 20261102184354.png",
+    "Pasted image 20261102183028.png",
+    "Pasted image 20261102182537.png",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
+    "1/note for repeate/ВУЗ/Управление цифровым продуктом",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.1 Нематериальность.md",
+    "VPN/BASE.md",
+    "1/note for repeate/ВУЗ/карьерное развитие/урок  7.md",
+    "Pasted image 20261030194606.png",
+    "1/note for repeate/ВУЗ/карьерное развитие/урок 6.md",
+    "1/note for repeate/Умник.md",
     "1/note for repeate/Умник.md.tmp.13351.28f87165ea77",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/note for repeate/Микросервисы.md",
     "1/note for repeate/strikerStat/STR-1195/migration.md",
     "1/note for repeate/Spring/IoC Spring.md",
-    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.1 Нематериальность.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/урок 6.md",
     "1/note for repeate/ВУЗ/Задачи.md",
-    "VPN/BASE.md",
     "1/note for repeate/ВУЗ/Словарь.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2 Особенности программного проекта.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.5 Технический долг.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.6 IT-проект vs другие отрасли.md",
@@ -440,9 +449,6 @@
     "1/note for repeate/ВУЗ/java/Spring Framework.md",
     "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
     "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/ГЛАВНОЕ.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "VPN/BASE.md.tmp.16175.27c052f9e294",
     "VPN",
     "1/note for repeate/Spring/MapStruct.md.tmp.10459.4adc3e8ef34b",
@@ -452,17 +458,12 @@
     "1/note for repeate/Data Base/SQL.md.tmp.10459.01404207aaec",
     "Pasted image 20261024194619.png",
     "1/note for repeate/Spring/MAVEN.md.tmp.44075.143f9626e36b",
-    "1/note for repeate/Spring/MAVEN.md.tmp.44075.3852ac500934",
-    "1/note for repeate/Spring/MAVEN.md.tmp.44075.3365ca7cab34",
     "Pasted image 20261023202914.png",
     "Pasted image 20261023202713.png",
     "Pasted image 20261023202500.png",
     "Pasted image 20261023202313.png",
     "Pasted image 20261023195957.png",
     "Pasted image 20261023193004.png",
-    "Pasted image 20261022180739.png",
-    "Pasted image 20261021111530.png",
-    "Pasted image 20261016201618.png",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
