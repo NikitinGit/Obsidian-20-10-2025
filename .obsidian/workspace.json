@@ -133,7 +133,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 4
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -444,10 +444,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "702123d31d6df571",
+  "active": "2f0aa1a5a4c24794",
   "lastOpenFiles": [
-    "1/note for repeate/ВУЗ/Словарь.md",
     "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
+    "1/note for repeate/ВУЗ/Словарь.md",
     "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
     "VPN/BASE.md",
     "1/note for repeate/FRONT/Stateless Vs Stateful.md",
