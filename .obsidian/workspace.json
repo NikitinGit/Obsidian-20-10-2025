@@ -105,35 +105,21 @@
             }
           },
           {
-            "id": "d61a3f73aefa098f",
+            "id": "a7159734edaff918",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Умник.md",
+                "file": "1/note for repeate/Собеседование/Тест — Java карточки для повторения.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Умник"
-            }
-          },
-          {
-            "id": "e3af856a49252819",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/ВУЗ/Словарь.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Словарь"
+              "title": "Тест — Java карточки для повторения"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       },
       {
         "id": "43f8f4ac8fb0ba3f",
@@ -244,12 +230,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/карьерное развитие/урок  7.md",
+                "file": "1/note for repeate/ВУЗ/карьерное развитие/8.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "урок  7"
+              "title": "8"
             }
           },
           {
@@ -295,7 +281,7 @@
             }
           }
         ],
-        "currentTab": 10
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -329,7 +315,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "NPV",
+                "query": "tag:#flashcards",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -424,9 +410,19 @@
               "icon": "lucide-list",
               "title": "Outline of Судейство ОЖ"
             }
+          },
+          {
+            "id": "8d446e982fb5e839",
+            "type": "leaf",
+            "state": {
+              "type": "flashcard-studio-note-queue",
+              "state": {},
+              "icon": "studio-card-spark",
+              "title": "Note review queue"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -441,37 +437,45 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "flashcard-studio:Study flashcards": false
     }
   },
-  "active": "2f0aa1a5a4c24794",
+  "active": "98421853c07cd2dd",
   "lastOpenFiles": [
-    "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
+    "1/note for repeate/ВУЗ/Задачи.md",
+    "1/note for repeate/Собеседование/Тест — Java карточки для повторения.md",
     "1/note for repeate/ВУЗ/Словарь.md",
+    "1/ГЛАВНОЕ.md",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
+    "1/СТЕНДАП.md",
+    "1/note for repeate/Собеседование/Памятка — интервальные повторения.md",
+    "1/note for repeate/ВУЗ/карьерное развитие/8.md",
+    "Pasted image 20261106201646.png",
+    "Pasted image 20261106195950.png",
+    "Pasted image 20261106194311.png",
+    "Pasted image 20261106192715.png",
+    "1/note for repeate/ВУЗ/карьерное развитие/урок  7.md",
+    "Flashcard Studio/Exams/2026-11-06 1241 exam.md",
+    "Flashcard Studio/Exams",
+    "Flashcard Studio/Review log/2026-11 linux-xi91.md",
+    "Flashcard Studio/Review log",
+    "Flashcard Studio",
+    "1/note for repeate/Собеседование/СОБЕСЕДОВАНИЕ ts.md",
+    "1/note for repeate/Собеседование/Сбер 04.05.2026.md",
+    "1/note for repeate/JavaCore/socket/TCP.md",
+    "1/note for repeate/Data Base/Ошибки и решения.md",
+    "1/note for repeate/Data Base/Команды MySQL.md",
+    "Транзакции/Чистый mysql.md",
+    "1/note for repeate/Умник.md",
+    "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
     "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
     "VPN/BASE.md",
     "1/note for repeate/FRONT/Stateless Vs Stateful.md",
     "1/note for repeate/FRONT/SSR.md",
     "1/note for repeate/FRONT/Coockie, local Storage.md",
     "1/note for repeate/strikerStat/JWT.md",
-    "1/note for repeate/strikerStat/Ansible.md",
-    "1/note for repeate/strikerStat/Date and Time.md",
-    "1/note for repeate/strikerStat/STR-1195/migration.md",
-    "1/note for repeate/Data Base/SQL.md",
-    "1/note for repeate/strikerStat/SQL операции/SELECT.md",
-    "1/note for repeate/strikerStat/SQL операции/INSERT.md",
-    "Цели на месяц/17-25 декабря.md",
-    "1/note for repeate/Умник.md",
-    "1/note for repeate/Spring/IoC Spring.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
-    "1/note for repeate/ВУЗ/java/Spring Framework.md",
-    "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
-    "1/note for repeate/Data Base/Команды MySQL.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/урок  7.md",
-    "1/СТЕНДАП.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "Pasted image 20261102184354.png",
     "Pasted image 20261102183028.png",
     "Pasted image 20261102182537.png",
@@ -483,15 +487,8 @@
     "1/note for repeate/Spring/MapStruct.md.tmp.10459.4adc3e8ef34b",
     "1/note for repeate/Data Base/SQL.md.tmp.10459.9b7c2dff08a3",
     "1/note for repeate/Data Base/SQL.md.tmp.10459.0903b4a3e6f5",
-    "1/note for repeate/Data Base/SQL.md.tmp.10459.be7b4f4990a4",
-    "1/note for repeate/Data Base/SQL.md.tmp.10459.01404207aaec",
     "Pasted image 20261024194619.png",
-    "1/note for repeate/Spring/MAVEN.md.tmp.44075.143f9626e36b",
     "Pasted image 20261023202914.png",
-    "Pasted image 20261023202713.png",
-    "Pasted image 20261023202500.png",
-    "Pasted image 20261023202313.png",
-    "Pasted image 20261023195957.png",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
