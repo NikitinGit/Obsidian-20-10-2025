@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 49.52638700947225,
+        "dimension": 44.483209768861755,
         "children": [
           {
             "id": "3ecf6f95398a7a27",
@@ -110,21 +110,35 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/Собеседование/Тест — Java карточки для повторения.md",
+                "file": "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Тест — Java карточки для повторения"
+              "title": "1"
+            }
+          },
+          {
+            "id": "752e57e313a96eb4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/ВУЗ/карьерное развитие/8.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "8"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       },
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
-        "dimension": 50.47361299052775,
+        "dimension": 55.516790231138245,
         "children": [
           {
             "id": "ecc0a7fc6192e163",
@@ -225,20 +239,6 @@
             }
           },
           {
-            "id": "752e57e313a96eb4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/ВУЗ/карьерное развитие/8.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "8"
-            }
-          },
-          {
             "id": "8322c3d8bfe7f097",
             "type": "leaf",
             "state": {
@@ -250,20 +250,6 @@
               },
               "icon": "lucide-file",
               "title": "BASE"
-            }
-          },
-          {
-            "id": "7fc7ed28a2a7f461",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "1"
             }
           },
           {
@@ -279,9 +265,51 @@
               "icon": "lucide-file",
               "title": "Асинхронное программирование CompletableFuture"
             }
+          },
+          {
+            "id": "f45bc44579d0f6e2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/GIT.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GIT"
+            }
+          },
+          {
+            "id": "cdf42ce08ef60721",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1 Программный проект и его специфика.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1 Программный проект и его специфика"
+            }
+          },
+          {
+            "id": "149aeb9b90434fd5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.4 Шесть параметров PMI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1.1.4 Шесть параметров PMI"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -315,7 +343,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#flashcards",
+                "query": "git",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -441,41 +469,41 @@
       "flashcard-studio:Study flashcards": false
     }
   },
-  "active": "98421853c07cd2dd",
+  "active": "149aeb9b90434fd5",
   "lastOpenFiles": [
-    "1/note for repeate/ВУЗ/Задачи.md",
-    "1/note for repeate/Собеседование/Тест — Java карточки для повторения.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1 Проект и процесс.md",
     "1/note for repeate/ВУЗ/Словарь.md",
-    "1/ГЛАВНОЕ.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1 Программный проект и его специфика.md",
+    "1/note for repeate/ВУЗ/карьерное развитие/8.md",
+    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
+    "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
+    "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
     "1/СТЕНДАП.md",
+    "1/note for repeate/ВУЗ/Задачи.md",
+    "1/note for repeate/GIT.md",
     "1/note for repeate/Собеседование/Памятка — интервальные повторения.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/8.md",
+    "1/note for repeate/Data Base/Команды MySQL.md",
+    "1/note for repeate/Data Base/Миграции.md",
+    "1/note for repeate/Data Base/База данных.md",
+    "1/note for repeate/FRONT/Coockie, local Storage.md",
+    "1/note for repeate/FRONT/Stateless Vs Stateful.md",
+    "1/note for repeate/FRONT/SSR.md",
+    "1/Дневник работы.md",
+    "1/КУБИК РУБИК/СТРАТЕГИЯ РЕШЕНИЯ.md",
+    "1/note for repeate/WSL.md",
+    "1/note for repeate/RabbitMQ.md",
+    "1/note for repeate/Умник.md",
+    "VPN/BASE.md",
+    "1/note for repeate/Собеседование/Тест — Java карточки для повторения.md",
+    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "Pasted image 20261106201646.png",
     "Pasted image 20261106195950.png",
     "Pasted image 20261106194311.png",
     "Pasted image 20261106192715.png",
-    "1/note for repeate/ВУЗ/карьерное развитие/урок  7.md",
-    "Flashcard Studio/Exams/2026-11-06 1241 exam.md",
     "Flashcard Studio/Exams",
-    "Flashcard Studio/Review log/2026-11 linux-xi91.md",
     "Flashcard Studio/Review log",
     "Flashcard Studio",
-    "1/note for repeate/Собеседование/СОБЕСЕДОВАНИЕ ts.md",
-    "1/note for repeate/Собеседование/Сбер 04.05.2026.md",
-    "1/note for repeate/JavaCore/socket/TCP.md",
-    "1/note for repeate/Data Base/Ошибки и решения.md",
-    "1/note for repeate/Data Base/Команды MySQL.md",
-    "Транзакции/Чистый mysql.md",
-    "1/note for repeate/Умник.md",
-    "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
-    "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
-    "VPN/BASE.md",
-    "1/note for repeate/FRONT/Stateless Vs Stateful.md",
-    "1/note for repeate/FRONT/SSR.md",
-    "1/note for repeate/FRONT/Coockie, local Storage.md",
-    "1/note for repeate/strikerStat/JWT.md",
     "Pasted image 20261102184354.png",
     "Pasted image 20261102183028.png",
     "Pasted image 20261102182537.png",

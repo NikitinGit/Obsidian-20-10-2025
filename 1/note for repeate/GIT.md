@@ -16,7 +16,6 @@
 >  git log --merges --first-parent --oneline --since="2 weeks ago" origin/develop - за последние 2 недели 
 >  git log --merges --first-parent --oneline --after="2026-08-01" origin/develop - после 2026-08-01
 
-
 >[!question]-  Перенести чужой проект на гитхабе к себе на гитхаб
 > Задача: забрать **все ветки + всю историю** (а не только main) в свой репозиторий, независимый от оригинала. Пример — `kroflex1/School-back` → `NikitinGit/School-back`.
 > **Fork не подходит** — останется привязан к чужому репо («forked from …»).
@@ -70,7 +69,6 @@
 >
 > **Общий шаблон для любого хостинга:** создать **пустой** репо → `git clone --bare <чужой>` → `git push <свой> --all` → `git push <свой> --tags` → `git clone <свой>`
 
-
 >[!question]-  Загрузить демо проект с чужого гитхаба и сохранить его в своем
 > git remote remove origin 
 > gh repo create rabbitmq --private --source=. --push
@@ -115,6 +113,20 @@
 >[!question]- посмотреть историю коммиты
 >git log -5 --all --pretty=format:"%h %ad %an %s"  # хеш, дата, автор, сообщение
 >git log --oneline --graph --all - посмотреть все коммиты
+
+>[!tip]- Как узнать, от какой ветки была создана текущая ветка
+>```bash
+>git reflog show <имя-текущей-ветки>
+>```
+>Ищи самую раннюю запись `branch: Created from HEAD`. Хеш рядом с ней — коммит, от которого создана ветка; если Git показывает у этого хеша имя ветки, это и есть исходная ветка.
+>
+>Пример:
+>```text
+>b0aac56aa (develop) task/STR-1027@{4}: branch: Created from HEAD
+>```
+>Значит, `task/STR-1027` была создана от `develop` на коммите `b0aac56aa`.
+>
+>Если reflog уже очищен, точно установить исходную ветку нельзя: можно только сравнить общую базу с предполагаемыми ветками через `git merge-base <текущая-ветка> develop`.
 
 >[!question]- убрать из индекса файлы
 >git restore --staged файл ← убирает из индекса, изменения остаются
