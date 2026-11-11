@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 44.483209768861755,
+        "dimension": 30.088037286380114,
         "children": [
           {
             "id": "3ecf6f95398a7a27",
@@ -138,7 +138,7 @@
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
-        "dimension": 55.516790231138245,
+        "dimension": 69.91196271361989,
         "children": [
           {
             "id": "ecc0a7fc6192e163",
@@ -300,16 +300,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.4 Шесть параметров PMI.md",
+                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1 Проект и процесс.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1.1.4 Шесть параметров PMI"
+              "title": "1.1 Проект и процесс"
+            }
+          },
+          {
+            "id": "1f715bf29906ebdd",
+            "type": "leaf",
+            "state": {
+              "type": "flashcard-studio-tab-view",
+              "state": {},
+              "icon": "studio-card-spark",
+              "title": "Flashcard Studio"
             }
           }
         ],
-        "currentTab": 11
+        "currentTab": 12
       }
     ],
     "direction": "vertical"
@@ -368,7 +378,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 494.5
+    "width": 361.9128303527832
   },
   "right": {
     "id": "44b4722d8c480464",
@@ -469,17 +479,20 @@
       "flashcard-studio:Study flashcards": false
     }
   },
-  "active": "149aeb9b90434fd5",
+  "active": "0c370545142756fd",
   "lastOpenFiles": [
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1 Проект и процесс.md",
+    "1/СТЕНДАП.md",
     "1/note for repeate/ВУЗ/Словарь.md",
+    "Flashcard Studio/Exams/2026-11-10 1702 exam.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.2 Три класса проектов по неопределённости.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.4 Шесть параметров PMI.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1 Программный проект и его специфика.md",
     "1/note for repeate/ВУЗ/карьерное развитие/8.md",
     "1/note for repeate/strikerStat/StrikerStat-Plane.md",
     "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
     "1/note for repeate/ВУЗ/Управление цифровым продуктом/1.md",
     "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/СТЕНДАП.md",
     "1/note for repeate/ВУЗ/Задачи.md",
     "1/note for repeate/GIT.md",
     "1/note for repeate/Собеседование/Памятка — интервальные повторения.md",
@@ -494,9 +507,6 @@
     "1/note for repeate/WSL.md",
     "1/note for repeate/RabbitMQ.md",
     "1/note for repeate/Умник.md",
-    "VPN/BASE.md",
-    "1/note for repeate/Собеседование/Тест — Java карточки для повторения.md",
-    "1/КУБИК РУБИК/Изменения зеркальности плоскостей.md",
     "Pasted image 20261106201646.png",
     "Pasted image 20261106195950.png",
     "Pasted image 20261106194311.png",
