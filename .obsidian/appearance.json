@@ -6,5 +6,6 @@
   "baseFontSize": 14,
   "enabledCssSnippets": [
     "search-highlight"
-  ]
+  ],
+  "showRibbon": true
 }
