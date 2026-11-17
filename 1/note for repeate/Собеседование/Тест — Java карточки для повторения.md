@@ -5,7 +5,7 @@
 Чем `Collections` отличается от `Collectors`?
 ?
 `java.util.Collections` — утилиты для готовых коллекций: например, `sort()` и `shuffle()`.
-<!--SR:!fsrs,2026-11-16T16:16:21.251Z,10,8.2956,1,2,1,0,0,2026-11-06T16:16:21.251Z,id=fu37t8-->
+<!--SR:!fsrs,2027-02-10T08:33:50.003Z,85,79.80449519,1,2,2,0,0,2026-11-17T08:33:50.003Z,id=fu37t8-->
 
 `java.util.stream.Collectors` — фабрики коллекторов для `Stream.collect()`: например, `groupingBy()`, `counting()` и `joining()`.
 

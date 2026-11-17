@@ -133,6 +133,14 @@
 >EXECUTE stmt USING @eid, @ok;
 >```
 
+>[!question]- Основные квантификаторы
+> ANY (=SOME), ALL
+> ```
+> SELECT id, today_sended_sms_count FROM users WHERE today_sended_sms_count >= ALL (SELECT today_sended_sms_count FROM users WHERE telefon_confirmed_flag = 0);
+> ```
+> 
+
+
 >[!question]- Выборка записей fighters с registration_source = CREATED_BY_ORGANIZER у которых совпадают first_name и last_name
 >Все колонки дублирующихся записей
 >```
