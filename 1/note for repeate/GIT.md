@@ -22,6 +22,32 @@
 >  git log --merges --first-parent --oneline --since="2 weeks ago" origin/develop - за последние 2 недели 
 >  git log --merges --first-parent --oneline --after="2026-08-01" origin/develop - после 2026-08-01
 
+>[!question]- Какие задачи из develop попали в релиз после заморозки
+> Команда выводит слияния в `develop` после точки заморозки, merge-коммиты которых также входят в релизную ветку. Помогает найти задачи, попавшие в релиз вместе с `develop` через другую рабочую ветку.
+>
+> Запускать из репозитория проекта. При необходимости сначала обновить удалённые ссылки: `git fetch origin`.
+>```bash
+>git log --first-parent --merges --format='%H %s' \
+>  7e29e3ac7..origin/develop |
+>while read -r merge_commit merge_subject; do
+>  if git merge-base --is-ancestor "$merge_commit" origin/release/2026.11.1; then
+>    printf '%s\n' "$merge_subject"
+>  fi
+>done
+>```
+> - `7e29e3ac7` — зафиксированный коммит заморозки релиза; для другого релиза заменить на его исходный коммит.
+> - `origin/release/2026.11.1` — проверяемая релизная ветка; заменить при необходимости.
+> - `--first-parent --merges` — рассматривает слияния непосредственно в `develop`.
+> - `git merge-base --is-ancestor` — проверяет, входит ли merge-коммит в историю релиза.
+>
+> Пример результата для `release/2026.11.1` на 18.11.2026:
+>```text
+>Merged in task/STR-1393 (pull request #643)
+>Merged in task/STR-1392 (pull request #642)
+>Merged in task/STR-1384 (pull request #639)
+>```
+> Имена берутся из сообщений слияния: удалённые после merge ветки тоже видны. Команда не обнаруживает изменения, перенесённые отдельным `cherry-pick` или squash-коммитом. Наличие merge-коммита показывает происхождение задачи, но не гарантирует, что её изменения позже не откатили. Найденные задачи нужно сверить с согласованным составом релиза.
+
 >[!question]-  Перенести чужой проект на гитхабе к себе на гитхаб
 > Задача: забрать **все ветки + всю историю** (а не только main) в свой репозиторий, независимый от оригинала. Пример — `kroflex1/School-back` → `NikitinGit/School-back`.
 > **Fork не подходит** — останется привязан к чужому репо («forked from …»).
