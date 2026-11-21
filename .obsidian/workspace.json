@@ -6,7 +6,7 @@
       {
         "id": "4807bb2ac28d45d8",
         "type": "tabs",
-        "dimension": 51.47591921284309,
+        "dimension": 36.923873640600725,
         "children": [
           {
             "id": "3ecf6f95398a7a27",
@@ -105,12 +105,12 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       },
       {
         "id": "43f8f4ac8fb0ba3f",
         "type": "tabs",
-        "dimension": 48.52408078715691,
+        "dimension": 63.076126359399275,
         "children": [
           {
             "id": "ecc0a7fc6192e163",
@@ -230,12 +230,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1/note for repeate/ВУЗ/Управление цифровым продуктом/2 - юнит экономика.md",
+                "file": "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1 Проект и процесс.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2 - юнит экономика"
+              "title": "1.1 Проект и процесс"
             }
           }
         ],
@@ -273,7 +273,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#flashcards",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": true,
@@ -294,8 +294,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -400,36 +399,38 @@
       "flashcard-studio:Study flashcards": false
     }
   },
-  "active": "149aeb9b90434fd5",
+  "active": "af07f7b0f12ad293",
   "lastOpenFiles": [
-    "1/note for repeate/ВУЗ/Управление цифровым продуктом/Практика задание №1.md",
-    "1/note for repeate/GIT.md",
-    "1/note for repeate/strikerStat/StrikerStat-Plane.md",
-    "1/note for repeate/Data Base/Orm/JPA N+1 problem.md",
-    "1/note for repeate/ВУЗ/java/Spring Framework.md",
-    "VPN/BASE VPN.md",
-    "1/note for repeate/JavaCore/Асинхронное программирование CompletableFuture.md",
-    "1/СТЕНДАП.md",
+    "cache.db",
+    "Flashcard Studio/Exams/2026-11-21 1518 exam.md",
     "1/note for repeate/ВУЗ/Управление цифровым продуктом/2 - юнит экономика.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/Резюме — Strikerstat.md",
-    "1/note for repeate/Data Base/Команды MySQL.md",
-    "1/note for repeate/ВУЗ/математика/Методы и модели управления организационными системами.md",
-    "1/note for repeate/JavaCore/JavaCore.md",
-    "1/note for repeate/JavaCore/Stream api.md",
-    "1/ПОВТОРЕНИЯ КАЖДЫЙ ДЕНЬ.md",
-    "1/note for repeate/ВУЗ/карьерное развитие/9.md",
-    "1/note for repeate/Spring/IoC Spring.md",
-    "1/note for repeate/ВУЗ/Задачи.md",
-    "1/note for repeate/ВУЗ/Управление цифровым продуктом/лекция 1",
-    "Flashcard Studio/Exams/2026-11-16 1811 exam.md",
-    "Flashcard Studio/Exams/2026-11-15 1502 exam.md",
-    "1/note for repeate/ВУЗ/Словарь по проекту.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1 Проект и процесс.md",
+    "Flashcard Studio/Exams/2026-11-21 0052 exam.md",
+    "1/note for repeate/GIT.md",
+    "1/note for repeate/ВУЗ/Управление цифровым продуктом/Практика задание №1.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.4 Рабочий день и окружение PM.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.3 Hard и soft skills.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.2 Лидер-слуга.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.4 Роль руководителя проекта/1.4.1 Талантовый треугольник PMI.md",
     "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1 Программный проект и его специфика.md",
-    "1/note for repeate/DOCKER.md",
-    "1/ГЛАВНОЕ.md",
-    "1/note for repeate/Spring/Spring тесты.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.3 Знания — главный ресурс.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.2 Конус неопределённости.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2 Особенности программного проекта.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.6 IT-проект vs другие отрасли.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.5 Технический долг.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.4 Изменчивость требований.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.2 Особенности программного проекта/1.2.1 Нематериальность.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.1 Проект и процесс.md",
+    "Flashcard Studio/Exams/2026-11-21 0028 exam.md",
+    "1/note for repeate/ВУЗ/РУПП/Памятка — как строить конспекты и карточки.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.6 Жизненный цикл — 5 групп процессов PMI.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.5 Тест на проект — 5 признаков.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.4 Шесть параметров PMI.md",
+    "1/note for repeate/ВУЗ/РУПП/Лекция 1. Программный проект/1.1 Проект и процесс/1.1.3 Тройное ограничение.md",
+    "Pasted image 20261120204343.png",
+    "Pasted image 20261120203126.png",
+    "1/note for repeate/ВУЗ/Управление цифровым продуктом/лекция 1",
     "Pasted image 20261113193335.png",
-    "1/note for repeate/ВУЗ/карьерное развитие/8.md",
     "Pasted image 20261106201646.png",
     "Pasted image 20261106195950.png",
     "Pasted image 20261106194311.png",
@@ -441,13 +442,11 @@
     "Pasted image 20261102183028.png",
     "Pasted image 20261102182537.png",
     "1/note for repeate/ВУЗ/Управление цифровым продуктом",
-    "Pasted image 20261030194606.png",
     "1/note for repeate/Умник.md.tmp.13351.28f87165ea77",
     "VPN/BASE.md.tmp.16175.27c052f9e294",
     "VPN",
     "1/note for repeate/Spring/MapStruct.md.tmp.10459.4adc3e8ef34b",
     "1/note for repeate/Data Base/SQL.md.tmp.10459.9b7c2dff08a3",
-    "Pasted image 20261024194619.png",
     "testFolder/demo canvas.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas"
